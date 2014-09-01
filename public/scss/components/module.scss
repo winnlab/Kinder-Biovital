@@ -1,0 +1,7 @@
+.moduleWrap {
+	display: none;
+
+	&.active {
+		display: block;
+	}
+}

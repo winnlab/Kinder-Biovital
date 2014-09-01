@@ -1,0 +1,16 @@
+{
+	"framework": "jasmine2",
+	"launchers": {
+		"Jasmine-node": {
+			"command": "jasmine-node spec/ --coffee --color"
+		}
+	},
+	"launch_in_dev": [
+		"Jasmine-node"
+	],
+	"src_files": [
+		"**/*.coffee",
+		"**/**/*.coffee",
+		"**/**/**/*.coffee"
+	]	
+}
