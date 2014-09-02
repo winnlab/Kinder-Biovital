@@ -1,19 +1,25 @@
 http = require 'http'
 async = require 'async'
+multer = require 'multer'
 express = require 'express'
 mongoose = require 'mongoose'
 bodyParser = require 'body-parser'
 
-connectDatabase = require '../../init/database'
+Crypto = require '../utils/crypto'
+connectDatabase = require '../init/database'
 
 exports.app = app = express()
 exports.server = server = http.Server app
 
-configure = () ->
-	@use bodyParser()	
+app.use bodyParser()
+app.use bodyParser.urlencoded extended: false
+app.use bodyParser.json()
+app.use multer
+	dest: './public/uploads/test/',
+	rename: (fieldname, filename) ->
+		return Crypto.md5 filename + Date.now()
 
 exports.startServer = (port, callback) ->	
-	configure.apply app
 	connectDatabase()
 	server.listen port, callback
 

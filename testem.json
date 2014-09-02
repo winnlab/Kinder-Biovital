@@ -1,12 +1,12 @@
 {
-	"framework": "jasmine2",
+	"framework": "mocha",
 	"launchers": {
-		"Jasmine-node": {
-			"command": "jasmine-node spec/ --coffee --color"
+		"Mocha": {
+			"command": "mocha --compilers coffee:coffee-script/register --recursive"
 		}
 	},
 	"launch_in_dev": [
-		"Jasmine-node"
+		"Mocha"
 	],
 	"src_files": [
 		"**/*.coffee",

@@ -37,7 +37,7 @@ configure = () ->
 	@set 'views', "#{__dirname}/../views"
 	@set 'view engine', 'jade'
 	@set 'view options', jadeOptions
-	@use express.static "#{__dirname}/public"	
+	@use express.static "#{__dirname}/public"
 	@use multer
 			dest: './uploads/',
 			rename: (fieldname, filename) ->
@@ -45,12 +45,12 @@ configure = () ->
 	@use Cache.requestCache
 	@use bodyParser()
 	@use cookieParser 'LmAK3VNuA6'
-	@use session sessionParams	
+	@use session sessionParams
 	@use passport.initialize()
 	@use passport.session()
 	@use '/admin', Auth.isAuth
 	@use methodOverride()
-	@use View.globals	
+	@use View.globals
 	@use '/admin', (req, res, next) ->
 		Ajax.isAjax req, res, next, admin_controller.layoutPage
 

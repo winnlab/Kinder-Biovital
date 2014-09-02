@@ -69,10 +69,9 @@ define([
 					var xhr = formSubmited.data('jqxhr');
 
 					xhr.done(function (data) {
-						// self.attr('uploaded', data.message.name);
 
 						if (entity.uploaded) {
-							entity.uploaded(name, data.message.name);
+							entity.uploaded(name, data.data[name]);
 						}
 
 						appState.attr('notification', {
