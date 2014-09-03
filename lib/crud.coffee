@@ -1,9 +1,10 @@
 _ = require 'underscore'
+fs = require 'fs'
 async = require 'async'
 
-Logger = require './logger'
-Model = require './model'
 View = require './view'
+Model = require './model'
+Logger = require './logger'
 
 class Crud
 	
@@ -105,7 +106,7 @@ class Crud
 		], cb
 
 	_remove: (req, cb) ->
-		id = req.params.id
+		id = req.params.id || req.body.id
 
 		if id
 			@remove id, cb
@@ -116,6 +117,10 @@ class Crud
 		async.waterfall [
 			(next) =>
 				@DataEngine @options.modelName, 'findOne', next, _id: id
+			(doc, next) =>
+				proceed = (err) ->
+					next err, doc
+				@_removeDocFiles doc, proceed
 			(doc) ->
 				doc.remove cb
 		], cb
@@ -131,18 +136,26 @@ class Crud
 			when "DELETE"
 				@_removeFile req, cb
 
+	# return file name if it is string, or link to the document array
 	_getUploadedFile: (doc, opt) ->
 		if opt.parent
 			return doc[opt.parent][opt.name]
 		else
 			return doc[opt.name]
 
+	_getFileOpts: (fieldName) ->
+		return _.find @options.files, (file) ->
+			return file.name == fieldName
+
 	_upload: (req, cb) ->
 		id = req.body.id or req.body._id
 		fieldName = req.body.name
-		fileOpts = _.find @options.files, (file) ->
-			return file.name == fieldName
-		file = req.files?[fieldName]?.name
+		fileOpts = @_getFileOpts fieldName
+
+		if fileOpts.type is 'string'
+			file = req.files?[fieldName]?.name
+		else
+			file = req.files?["#{fieldName}[]"]		
 
 		if id and fileOpts and file
 			async.waterfall [
@@ -163,7 +176,7 @@ class Crud
 		else
 			cb 'Error. there are unknown "id" or "fieldName"'
 
-	upload: (doc, file, fileOpts, cb) ->
+	_setDocFiles: (doc, file, fileOpts) ->
 		if fileOpts.type is 'string'
 			if fileOpts.parent
 				doc[fileOpts.parent][fileOpts.name] = file
@@ -171,12 +184,72 @@ class Crud
 				doc[fileOpts.name] = file
 		else
 			target = @_getUploadedFile doc, fileOpts
-			target.push file
+			unless typeof file is 'number'
+				_.each file, (f) ->
+					target.push f.name
+			else
+				target.splice file, 1
+
+	upload: (doc, file, fileOpts, cb) ->
+		@_setDocFiles doc, file, fileOpts
 
 		doc.save () ->
 			data = {}
 			data[fileOpts.name] = file
 			cb null, data
+
+	# parse req and do stuff depends off fieldName 
+	_removeFile: (req, cb) ->
+		id = req.body.id or req.body._id
+		fieldName = req.body.name
+		fileName = req.body.sourceName
+		fileOpts = @_getFileOpts fieldName		
+
+		async.waterfall [
+			(next) ->
+				if id and fileOpts
+					next null
+				else
+					next 'Error. there are unknown "id" or "fieldName"'
+			(next) =>
+				Model @options.modelName, 'findById', next, id
+			(doc, next) =>
+				fileName = fileName or @_getUploadedFile doc, fileOpts
+				unless typeof fileName is 'string'
+					next 'Error. You try remove unknown filename'
+				proceed = (err) ->
+					next err, doc
+				@removeFile fileName, proceed
+			(doc) =>
+				if fileOpts.type == 'string'
+					@_setDocFiles doc, undefined, fileOpts
+				else 
+					index = (@_getUploadedFile doc, fileOpts).indexOf fileName
+					@_setDocFiles doc, index, fileOpts
+				doc.save cb
+		], cb
+
+	_removeFiles: (files, cb) ->
+		async.each files, (file, proceed) =>
+			@removeFile file, proceed
+		, cb
+
+	removeFile: (file, cb) ->
+		fs.unlink "#{@options.uploadDir}#{file}", (err) ->
+			if err is null or err.code is 'ENOENT'
+				cb null
+			else 
+				cb err
+
+	# remove all document files
+	_removeDocFiles: (doc, cb) ->
+		async.each @options.files, (fileOpts, proceed) =>
+			uploadedFile = @_getUploadedFile doc, fileOpts
+			if typeof uploadedFile is 'string'
+				@removeFile uploadedFile, proceed
+			else
+				@_removeFiles uploadedFile, proceed
+		, cb
 
 	###
 		Sending result to client
