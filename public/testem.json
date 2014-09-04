@@ -1,0 +1,13 @@
+{
+	"framework": "mocha",
+	"test_page": "js/test/admin/tests.html",
+	"src_files": [
+		"**/*.js",
+		"**/**/*.js",
+		"**/**/**/*.js",
+		"**/**/**/**/*.js"
+	],
+	"launch_in_dev": [
+		"PhantomJS"
+	]
+}

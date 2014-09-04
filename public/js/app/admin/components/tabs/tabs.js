@@ -1,5 +1,4 @@
-define(
-	
+define(	
 	['canjs'],
 
 	function (can) {

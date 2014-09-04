@@ -66,12 +66,6 @@ module.exports = [
 		'name' : 'Русский'
 		'isoCode' : 'ru'
 		'active' : true
-		'default': false
-	,
-		'_id' : '53db9c427ae86638de0fc924'
-		'name' : 'Английский',
-		'isoCode' : 'en',
-		'active' : true
-		'default': false
+		'default': false	
 	]
 ]

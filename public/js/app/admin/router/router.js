@@ -1,5 +1,11 @@
-define(['canjs', 'underscore'],
-	function (can, _) {
+define([
+	'jquery',
+	'canjs',
+	'underscore',
+
+	'css!cssComponents/module'
+],
+	function ($, can, _) {
 
 
 		var Placeholder = can.Map.extend({
@@ -23,7 +29,6 @@ define(['canjs', 'underscore'],
 						}
 					});
 				}
-				
 			},
 
 			checkModule: function (id) {
@@ -46,16 +51,18 @@ define(['canjs', 'underscore'],
 			},
 
 			activateModule: function (id) {
+				can.batch.start();
 				_.map(this.modules, function (module) {
 					module.attr('active', module.id === id);
 				});
+				can.batch.stop();
 			}
 
 		});
 
 		return can.Control.extend({
 			defaults: {
-				viewpath: '../app/admin/core/views/'
+				viewpath: '../app/admin/router/views/'
 			}
 		}, {
 			init: function (el, options) {
@@ -69,12 +76,8 @@ define(['canjs', 'underscore'],
 
 				$(options.modulesContainer).html(html);
 
-				_.each(options.routes, function (route) {
-					can.route(route.route, route.defaults ? route.defaults : {});
-				});
-
 				can.route.bindings.pushstate.root = options.base;
-				can.route.ready(false);
+				can.route.ready();
 			},
 
 			'.module click': function (el, ev) {
@@ -97,10 +100,10 @@ define(['canjs', 'underscore'],
 
 			':module route': 'routeChanged',
 			':module/:id route': 'routeChanged',
-			':module/:id/:action/:entity_id route': 'routeChanged',
 			':module/:action/:entity_id route': 'routeChanged',
+			':module/:id/:action/:entity_id route': 'routeChanged',
 
-			routeChanged: function(data) {
+			routeChanged: function (data) {				
 				var modules = this.options.modules,
 					moduleName = data.module,
 					id = moduleName + (data.id ? '-' + data.id : '');
@@ -112,13 +115,12 @@ define(['canjs', 'underscore'],
 					if (module) {
 						this.Placeholder.initModule(module, id);
 					} else {
-						throw new  Error("There no such module '" + moduleName + "', please check your configuration file");
+						throw new Error("There no such module '" + moduleName + "', please check your configuration file");
 					}
 				} catch (e) {
 					console.error(e);
 				}
 			}
-
 		});
 	}
 );

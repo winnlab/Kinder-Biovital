@@ -1,9 +1,11 @@
-define(
-	[
-		'canjs', 
-		'core/appState'
-	], 
-	function (can, appState) {
+define([
+	'jquery',
+	'canjs', 
+	'core/appState',
+
+	'css!cssComponents/notification'
+],
+	function ($, can, appState) {
 
 		var Notification = can.Map.extend({
 				notification: {},

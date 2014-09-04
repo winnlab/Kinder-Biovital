@@ -9,10 +9,13 @@ exports.index = (req, res) ->
 	unless req.user
 		res.redirect 'admin/login'
 	else
-		res.redirect 'admin/dashboard'
+		res.redirect '/admin/tales'
 
 exports.login = (req, res)->
-	View.render 'admin/auth/index', res
+	unless req.user		
+		View.render 'admin/auth/index', res
+	else
+		res.redirect '/admin/tales'	
 
 exports.logout = (req, res)->
 	req.logout()
@@ -21,12 +24,12 @@ exports.logout = (req, res)->
 exports.doLogin = (req, res) ->
 	Auth.authenticate('admin') req, res
 
-exports.dashboard = (req, res) ->
+exports.tales = (req, res) ->
 	async.waterfall [
 		(next) ->
 			Model 'Language', 'find', next, active: true
 		(langs) ->
-			View.render 'admin/board/index', res, {langs}
+			View.render 'admin/layout', res, {langs}
 	], (err) ->
 		msg = "Error in #{__filename}: #{err.message or err}"
 		Logger.log 'error', msg

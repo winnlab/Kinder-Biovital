@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Kinder biovital admin tests</title>
+		<link rel="stylesheet" href="/js/lib/mocha/mocha.css" />
+	</head>
+	<body>
+
+		<div id="sandbox"></div>
+
+		<div id="mocha"></div>
+
+		<script src="/js/lib/mocha/mocha.js"></script>
+		<script src="/js/lib/should/should.js"></script>
+		<script src="/js/lib/jquery/dist/jquery.js"></script>
+		<srcipt src="/js/lib/funcunit/dist/funcunit.js"></script>
+		
+		<script type="text/javascript">
+			mocha.setup('bdd');			
+			mocha.globals(['jQuery', '$', 'F']);
+		</script>
+		
+		<script src="/testem.js"></script>
+
+		<script data-main="/js/test/admin/runner.js" src="/js/lib/requirejs/require.js"></script>
+
+	</body>
+</html>

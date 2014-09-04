@@ -4,7 +4,7 @@ _.str = require 'underscore.string'
 
 _.mixin _.str.exports()
 
-Database = require './database'
+Database = require('./database')()
 Logger = require '../lib/logger'
 Migrate = require './migrate'
 Application = require './application'
@@ -21,7 +21,7 @@ async.waterfall [
 		Logger.log 'info', 'Logger is initializated'
 
 		Migrate.init next
-	(next) ->		
+	(next) ->
 		Logger.log 'info', 'Migrate is initializated'
 
 		ModelPreloader "#{process.cwd()}/models/", next

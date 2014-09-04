@@ -1,7 +1,6 @@
 langs = [
     'ua'
-    'ru'
-    'en'
+    'ru'    
 ]
 
 for lang in langs

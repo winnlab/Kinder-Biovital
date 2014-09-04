@@ -2,7 +2,7 @@
 	"framework": "mocha",
 	"launchers": {
 		"Mocha": {
-			"command": "mocha --compilers coffee:coffee-script/register --recursive"
+			"command": "make test"
 		}
 	},
 	"launch_in_dev": [

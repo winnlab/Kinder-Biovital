@@ -9,6 +9,7 @@ Router = express.Router()
 Router.get '/', Main.index
 Router.get '/login', Main.login
 Router.get '/logout', Main.logout
+Router.get '/tales', Main.tales
 
 Router.post '/login', Main.doLogin
 
@@ -17,4 +18,4 @@ Router.post '/login', Main.doLogin
 #----------------#
 
 exports.Router = Router
-exports.layoutPage = Main.dashboard
+exports.layoutPage = Main.tales

@@ -38,7 +38,7 @@ routing = ->
 
 	REST = crud.fileRequest.bind crud
 	
-	Router.post '/crud', REST	
+	Router.post '/crud', REST
 	Router.delete '/crud/:id?', REST
 	Router.delete '/etityCrud', crud.request.bind crud
 
@@ -57,8 +57,8 @@ afterData = (done) ->
 	Spec describes
 ###
 
-describe 'CRUD file api', ->
-	
+describe.skip 'CRUD file api', ->	
+
 	uploadPath = 'public/uploads/test'
 
 	before (done) ->

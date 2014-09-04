@@ -1,6 +1,7 @@
 _ = require 'underscore'
 fs = require 'fs'
 async = require 'async'
+mongoose = require 'mongoose'
 
 View = require './view'
 Model = require './model'
@@ -9,7 +10,10 @@ Logger = require './logger'
 class Crud
 	
 	constructor: (options) ->
-		@options = options
+		defaults = 
+			uploadDir: './public/uploads/'
+			files: []
+		@options = _.extend defaults, options
 		@options.filename = __filename
 
 	# The name of query options field
@@ -35,7 +39,8 @@ class Crud
 
 	# This is the data-model wrapper.
 	DataEngine: (ModelName, method, cb, args...) ->
-		Model ModelName, method, cb, args...
+		arr = [ModelName, method, cb]		
+		Model.apply Model, arr.concat args
 
 	_getOptions: (query) ->
 		if query[@queryOptions] then query[@queryOptions] else {}
@@ -93,8 +98,9 @@ class Crud
 	add: (data, cb) ->
 		next = (err, data) ->
 			cb err, data._id
-
-		@DataEngine @options.modelName, 'create', next, data
+		DocModel = @DataEngine @options.modelName
+		doc = new DocModel data
+		doc.save next
 
 	update: (id, data, cb) ->
 		async.waterfall [
@@ -115,8 +121,8 @@ class Crud
 		
 	remove: (id, cb) ->
 		async.waterfall [
-			(next) =>
-				@DataEngine @options.modelName, 'findOne', next, _id: id
+			(next) =>				
+				@DataEngine @options.modelName, 'findById', next, id
 			(doc, next) =>
 				proceed = (err) ->
 					next err, doc

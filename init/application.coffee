@@ -18,8 +18,8 @@ View = require '../lib/view'
 Auth = require '../lib/auth'
 Ajax = require '../lib/ajax'
 
-admin_controller = require '../controllers/admin'
-user_controller = require '../controllers/user'
+adminController = require '../controllers/admin'
+userController = require '../controllers/user'
 
 jadeOptions =
 	layout: false
@@ -28,16 +28,16 @@ sessionParams =
 	secret: '4159J3v6V4rX6y1O6BN3ASuG2aDN7q'
 
 routes = () ->
-	@use user_controller.Router
-	@use '/', user_controller.Router
-	@use '/:lang(ru|en)', user_controller.Router	
-	@use '/admin', admin_controller.Router
+	@use userController.Router
+	@use '/', userController.Router
+	@use '/:lang(ru|en)', userController.Router	
+	@use '/admin', adminController.Router
 
 configure = () ->
 	@set 'views', "#{__dirname}/../views"
 	@set 'view engine', 'jade'
-	@set 'view options', jadeOptions
-	@use express.static "#{__dirname}/public"
+	@set 'view options', jadeOptions	
+	@use express.static "#{__dirname}/../public"
 	@use multer
 			dest: './uploads/',
 			rename: (fieldname, filename) ->
@@ -52,7 +52,7 @@ configure = () ->
 	@use methodOverride()
 	@use View.globals
 	@use '/admin', (req, res, next) ->
-		Ajax.isAjax req, res, next, admin_controller.layoutPage
+		Ajax.isAjax req, res, next, adminController.layoutPage
 
 exports.init = (callback) ->
 	exports.express = app = express()

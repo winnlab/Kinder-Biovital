@@ -5,7 +5,7 @@ passport = require 'passport'
 params =
 	admin:
 		failureRedirect: '/admin/login'
-		successRedirect: '/admin/dashboard'
+		successRedirect: '/admin/tales'
 		session: true
 	user:
 		failureRedirect: '/account/signin'

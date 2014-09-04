@@ -5,7 +5,7 @@ ObjectId = mongoose.Schema.Types.ObjectId
 schema = new mongoose.Schema	
 	name:
 		type: String
-		required: true
+		required: true		
 	email: 
 		type: String
 	position: 

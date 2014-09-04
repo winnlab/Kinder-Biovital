@@ -1,5 +1,5 @@
 mongoose = require 'mongoose'
-util = require('util')
+util = require 'util'
 
 noModel = 'Exception in Model library: model with name %s does not exist'
 noMethod = 'Exception in Model library: method with name %s does not exist'
@@ -10,6 +10,12 @@ module.exports = (modelName, methodName, cb, args...) ->
 	throw new Error util.format noModel, modelName if mdl is undefined
 
 	method = mdl[methodName]
+
+	if method is undefined
+		if typeof cb is 'function'
+			return cb null, mdl
+		else
+			return mdl 
 
 	throw new Error util.format noMethod, methodName if method is undefined
 

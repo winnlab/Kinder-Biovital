@@ -1,7 +1,8 @@
 define([
 	'canjs',
 	'core/appState',
-	'css!core/css/upload'
+	
+	'css!cssComponents/upload'
 ],
 
 	function (can, appState) {
