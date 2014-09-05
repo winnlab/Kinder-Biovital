@@ -1,2 +1,17 @@
 html {
   overflow-y: scroll; }
+
+.right-side .right-side {
+  margin: 0; }
+
+.coverImgTbl .coverImage {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.coverImgTbl > tbody > tr > td {
+  vertical-align: middle; }
+.coverImgTbl .coverImage {
+  height: 70px;
+  width: 70px;
+  display: inline-block; }

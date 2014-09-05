@@ -10,17 +10,13 @@ FragmentShemaFields =
     position:
         type: Number
         required: true
-    sound:
-        mp3:
-            type: String
-            default: ''
-        wav:
-            type: String
-            default: ''
+    img:
+        type: String
+        default: ''
 
 options =
-    collection: 'tracks'
+    collection: 'coverImages'
 
 FragmentShema = new mongoose.Schema FragmentShemaFields, options
 
-module.exports =  mongoose.model 'Track', FragmentShema
+module.exports =  mongoose.model 'CoverImage', FragmentShema

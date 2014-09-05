@@ -14,7 +14,9 @@ define(
 				successMsg: 'Сущность успешно сохранена.',
 				errorMsg: 'Ошибка сохранения сущности.',
                 // Selectors
-				form: ''
+				form: '',
+				// is change entityId param in can.route
+				setRoute: true
 			}
 		}, {
 			init: function () {
@@ -28,19 +30,22 @@ define(
 				ev.preventDefault();
 
 				var self = this,
+					options = self.options,
 					data = can.deparam(el.serialize()),
-					doc = self.options.doc;
+					doc = options.doc;
 
 				doc.attr(data);
 
 				doc.save()
     				.done(function(doс) {
-						self.options.entity(doc.attr('_id'));
-    					can.route.attr({'entity_id': doc.attr('_id')});
-    					self.setNotification('success', self.options.successMsg);
+						options.entity(doc.attr('_id'));
+						if (options.setRoute) {
+    						can.route.attr({'entity_id': doc.attr('_id')});
+						}
+    					self.setNotification('success', options.successMsg);
     				})
     				.fail(function (doc) {
-    					self.setNotification('error', self.options.errorMsg);
+    					self.setNotification('error', options.errorMsg);
     				});
 
 			},

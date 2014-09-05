@@ -15,6 +15,7 @@ define([
 			'accept': '@',
 			'name': '@',
 			'multiple': '@',
+			'size': '@',
 			'files': [],
 			'progress': 0,
 
@@ -198,9 +199,10 @@ define([
 				renderUploaded: function (options) {
 					var accept = this.attr('accept') || 'file',
 						source = options.context,
+						size = this.attr('size') || 'normal',
 						html;
 					if (accept.indexOf('image') !== -1) {
-						html = '<span class="uploaded thumbnail" style="background-image: url(\'/uploads/' + source + '\')"></span>';
+						html = '<span class="uploaded ' + size + ' thumbnail" style="background-image: url(\'/uploads/' + source + '\')"></span>';
 					} else {
 						html = '<span>' + source + '</span>&nbsp;';
 					}

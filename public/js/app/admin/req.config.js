@@ -32,7 +32,15 @@ require.config({
 			exports: 'F'
 		},
 		'canjs': {
-			deps: ['jquery', 'can/route/pushstate', 'can/map/define', 'can/map/delegate', 'can/map/sort', 'can/list/promise']
+			deps: [
+				'jquery',
+				'can/route/pushstate',
+				'can/map/define',
+				'can/map/delegate',
+				'can/map/sort',
+				'can/list/promise',
+				'can/construct/super'
+			]
 		},
 		'components/upload/upload': {
 			deps: ['jquery-form/jquery.form']

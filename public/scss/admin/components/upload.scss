@@ -17,6 +17,11 @@ upload {
 		background-repeat: no-repeat;
 		background-color: #ddd;
 		border: none;
+
+		&.small {
+			width: 120px;
+			height: 120px;
+		}
 	}
 
 	label {

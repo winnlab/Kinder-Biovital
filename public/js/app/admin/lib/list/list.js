@@ -91,6 +91,8 @@ define([
 
 			setDocCallback: function (id) {
 
+				this.module.attr('display', 'set');
+
 				if (this.module.attr('setEntity')
 					&& this.module.attr('setEntity')() === id) {
 					return;
@@ -103,10 +105,7 @@ define([
 						return doc && doc.attr('_id') === id;
 					});
 
-				this.module.attr({
-					'display': 'set',
-					'setEntity': can.compute(id)
-				});
+				this.module.attr('setEntity', can.compute(id));
 
 				new options.Edit(area, {
 					doc: doc ? doc : new options.Model(),

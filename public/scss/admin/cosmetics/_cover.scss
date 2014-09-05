@@ -1,0 +1,15 @@
+@charset "UTF-8";
+@import '../../bourbon/_bourbon.scss';
+@import '../../base/_placeholders.scss';
+
+.coverImgTbl {
+    & > tbody > tr > td {
+        vertical-align: middle;
+    }
+
+    .coverImage {
+        @include size(70px 70px);
+        @extend %bg-image-cover;
+        display: inline-block;
+    }
+}

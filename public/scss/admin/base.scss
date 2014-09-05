@@ -1,3 +1,11 @@
 html {
 	overflow-y: scroll;
 }
+
+.right-side {
+	.right-side {
+		margin: 0;
+	}
+}
+
+@import 'cosmetics/_cover.scss';
