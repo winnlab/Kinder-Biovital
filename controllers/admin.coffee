@@ -1,6 +1,7 @@
 express = require 'express'
 
 Main = require './admin/main'
+Hero = require './admin/hero'
 
 Router = express.Router()
 
@@ -15,7 +16,11 @@ Router.post '/login', Main.doLogin
 
 # Product REST api
 
-#----------------#
+#------- Hero ---------#
+
+Router.use '/hero/img', Hero.restFile
+Router.use '/hero/:id?', Hero.rest
+
 
 exports.Router = Router
 exports.layoutPage = Main.tales

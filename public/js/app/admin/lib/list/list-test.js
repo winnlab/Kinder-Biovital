@@ -1,7 +1,7 @@
 define([
 	'lib/list/list',
 	'funcunit'
-], 
+],
 	function (List, F) {
 
 		var list = new List('#sandbox');
@@ -13,8 +13,11 @@ define([
 				F('#sandbox p').length.should.eql(1);
 			});
 
-			it('should change "p" color', function() {
-				F('#sandbox p').click();
+			it('should change "p" color', function(done) {
+				F('#sandbox p').click(function() {
+					F('#sandbox p').css('color').should.eql('rgb(241, 76, 56)');
+				});
+				F.add(done);
 			});
 
 		});

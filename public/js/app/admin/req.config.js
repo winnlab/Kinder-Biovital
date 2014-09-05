@@ -1,7 +1,7 @@
 require.config({
 	baseUrl: '/js/lib',
 	paths: {
-		css: '../../css/admin',
+		cssDir: '../../css/admin',
 		app: '../app/admin',
 		lib: '../app/admin/lib',
 		can: 'canjs/amd/can/',
@@ -40,8 +40,11 @@ require.config({
 		'bootstrap': {
 			deps: ['jquery']
 		},
+		'admin-lte/js/jquery-ui-1.10.3.min': {
+			deps: ['jquery']
+		},
 		'adminLTE': {
-			deps: ['jquery', 'bootstrap']
+			deps: ['jquery', 'bootstrap', 'admin-lte/js/jquery-ui-1.10.3.min']
 		}
 	}
 });

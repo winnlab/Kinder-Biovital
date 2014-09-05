@@ -8,9 +8,9 @@ Model = require './model'
 Logger = require './logger'
 
 class Crud
-	
+
 	constructor: (options) ->
-		defaults = 
+		defaults =
 			uploadDir: './public/uploads/'
 			files: []
 		@options = _.extend defaults, options
@@ -28,7 +28,7 @@ class Crud
 
 		switch req.method
 			when "GET"
-				if _.isEmpty req.params
+				if _.isEmpty(req.params) or not req.params.id
 					@_findAll req, cb
 				else
 					@_findOne req, cb
@@ -36,16 +36,21 @@ class Crud
 				@_save req, cb
 			when "DELETE"
 				@_remove req, cb
+			else
+				cb 'Error: #{req.method} is not allowed!'
 
 	# This is the data-model wrapper.
-	DataEngine: (ModelName, method, cb, args...) ->
-		arr = [ModelName, method, cb]		
-		Model.apply Model, arr.concat args
+	DataEngine: (method, cb, args...) ->
+		arr = [@options.modelName]
+		arr.push method if method
+		arr.push cb if cb
+
+		return Model.apply Model, arr.concat args
 
 	_getOptions: (query) ->
 		if query[@queryOptions] then query[@queryOptions] else {}
 
-	# Check of existing "fields" attribute in query options and in case if 
+	# Check of existing "fields" attribute in query options and in case if
 	# this field is exist, the method will remove it from options.
 	_parseFields: (query) ->
 		options = @_getOptions(query)
@@ -57,11 +62,11 @@ class Crud
 
 		return fields
 
-	# Check of existing "options" attribute in query and in case if 
+	# Check of existing "options" attribute in query and in case if
 	# this attribute is exist, it will remove "options" from query.
 	_parseOptions: (query) ->
 		options = @_getOptions(query)
-		
+
 		if query[@queryOptions]
 			delete query[@queryOptions]
 
@@ -74,7 +79,7 @@ class Crud
 		@findAll query, cb, options, fields
 
 	findAll: (query, cb, options = {}, fields = null) ->
-		@DataEngine @options.modelName, 'find', cb, query, fields, options
+		@DataEngine 'find', cb, query, fields, options
 
 	_findOne: (req, cb) ->
 		id = req.params.id
@@ -83,12 +88,12 @@ class Crud
 		@findOne id, cb, options, fields
 
 	findOne: (id, cb, options = {}, fields = null) ->
-		@DataEngine @options.modelName, 'findById', cb, id, fields, options
+		@DataEngine 'findById', cb, id, fields, options
 
 	# Depends of id property this method call "add" or "update" functions
 	_save: (req, cb) ->
 		id = req.body._id or req.params.id
-		
+
 		if id
 			delete req.body._id if req.body._id
 			@update id, req.body, cb
@@ -97,32 +102,32 @@ class Crud
 
 	add: (data, cb) ->
 		next = (err, data) ->
-			cb err, data._id
-		DocModel = @DataEngine @options.modelName
+			cb err, _id: data._id
+		DocModel = @DataEngine()
 		doc = new DocModel data
 		doc.save next
 
 	update: (id, data, cb) ->
 		async.waterfall [
 			(next) =>
-				@DataEngine @options.modelName, 'findById', next, id
+				@DataEngine 'findById', next, id
 			(doc, next) =>
 				_.extend doc, data
 				doc.save cb
 		], cb
 
 	_remove: (req, cb) ->
-		id = req.params.id || req.body.id
+		id = req.params.id || req.body._id || req.body.id
 
 		if id
 			@remove id, cb
 		else
 			cb 'There no "id" param in a query'
-		
+
 	remove: (id, cb) ->
 		async.waterfall [
-			(next) =>				
-				@DataEngine @options.modelName, 'findById', next, id
+			(next) =>
+				@DataEngine 'findById', next, id
 			(doc, next) =>
 				proceed = (err) ->
 					next err, doc
@@ -141,6 +146,8 @@ class Crud
 				@_upload req, cb
 			when "DELETE"
 				@_removeFile req, cb
+			else
+				cb 'Error: #{req.method} is not allowed!'
 
 	# return file name if it is string, or link to the document array
 	_getUploadedFile: (doc, opt) ->
@@ -161,7 +168,7 @@ class Crud
 		if fileOpts.type is 'string'
 			file = req.files?[fieldName]?.name
 		else
-			file = req.files?["#{fieldName}[]"]		
+			file = req.files?["#{fieldName}[]"]
 
 		if id and fileOpts and file
 			async.waterfall [
@@ -204,12 +211,12 @@ class Crud
 			data[fileOpts.name] = file
 			cb null, data
 
-	# parse req and do stuff depends off fieldName 
+	# parse req and do stuff depends off fieldName
 	_removeFile: (req, cb) ->
 		id = req.body.id or req.body._id
 		fieldName = req.body.name
 		fileName = req.body.sourceName
-		fileOpts = @_getFileOpts fieldName		
+		fileOpts = @_getFileOpts fieldName
 
 		async.waterfall [
 			(next) ->
@@ -229,7 +236,7 @@ class Crud
 			(doc) =>
 				if fileOpts.type == 'string'
 					@_setDocFiles doc, undefined, fileOpts
-				else 
+				else
 					index = (@_getUploadedFile doc, fileOpts).indexOf fileName
 					@_setDocFiles doc, index, fileOpts
 				doc.save cb
@@ -241,10 +248,12 @@ class Crud
 		, cb
 
 	removeFile: (file, cb) ->
+		if not file
+			return cb null
 		fs.unlink "#{@options.uploadDir}#{file}", (err) ->
 			if err is null or err.code is 'ENOENT'
 				cb null
-			else 
+			else
 				cb err
 
 	# remove all document files

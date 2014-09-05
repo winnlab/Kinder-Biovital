@@ -8,7 +8,9 @@ require(['/js/app/admin/req.config.js'], function () {
 			'core/appState',
 			'components/tabs/tabs',
 			'components/upload/upload',
-			'core/viewHelpers'
+			'core/viewHelpers',
+
+			'css!cssDir/base'
 		],
 		function (Router, initNotification, config) {
 

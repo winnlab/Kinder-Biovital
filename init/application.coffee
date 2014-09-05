@@ -9,7 +9,7 @@ _ = require 'underscore'
 cookieParser = require 'cookie-parser'
 bodyParser = require 'body-parser'
 session = require 'express-session'
-methodOverride = require 'method-override' 
+methodOverride = require 'method-override'
 multer = require 'multer'
 
 Crypto = require '../utils/crypto'
@@ -30,16 +30,16 @@ sessionParams =
 routes = () ->
 	@use userController.Router
 	@use '/', userController.Router
-	@use '/:lang(ru|en)', userController.Router	
+	@use '/:lang(ru|en)', userController.Router
 	@use '/admin', adminController.Router
 
 configure = () ->
 	@set 'views', "#{__dirname}/../views"
 	@set 'view engine', 'jade'
-	@set 'view options', jadeOptions	
+	@set 'view options', jadeOptions
 	@use express.static "#{__dirname}/../public"
 	@use multer
-			dest: './uploads/',
+			dest: './public/uploads/',
 			rename: (fieldname, filename) ->
 				return Crypto.md5 filename + Date.now()
 	@use Cache.requestCache

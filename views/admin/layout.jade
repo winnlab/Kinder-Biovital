@@ -6,7 +6,7 @@ html(lang="ru")
             meta(content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport')
             title= "Kinder-Biovital | Административная панель"
             link(href="/js/lib/admin-lte/css/bootstrap.min.css" rel="stylesheet" type="text/css")
-            link(href="/js/lib/admin-lte/css/font-awesome.min.css" rel="stylesheet" type="text/css")
+            link(href="/js/lib/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css")
             link(href="/js/lib/admin-lte/css/ionicons.min.css" rel="stylesheet" type="text/css")
             link(href="/js/lib/admin-lte/css/AdminLTE.css" rel="stylesheet" type="text/css")
     body.skin-blue
@@ -33,10 +33,30 @@ html(lang="ru")
             aside.left-side.sidebar-offcanvas
                 section.sidebar
                     ul.sidebar-menu
-                        li(class= (currentHref == 'dashboard' ? "active" : ""))
-                            a.module(href="/admin/dashboard")
-                                i.fa.fa-dashboard
-                                span= "Главная"
+                        li
+                            a.module(href="/admin/tales")
+                                i.fa.fa-book
+                                span= "Сказки"
+                        li
+                            a.module(href="/admin/heroes")
+                                i.fa.fa-paw
+                                span= "Герои"
+                        li
+                            a.module(href="/admin/replica")
+                                i.fa.fa-comments-o
+                                span= "Типы реплик"
+                        li
+                            a.module(href="/admin/decorations")
+                                i.fa.fa-cloud
+                                span= "Декорации"
+                        li
+                            a.module(href="/admin/tracks")
+                                i.fa.fa-music
+                                span= "Треки"
+                        li
+                            a.module(href="/admin/covers")
+                                i.fa.fa-image
+                                span= "Обложки"
             aside#moduleContent
                 block content
         block scripts
