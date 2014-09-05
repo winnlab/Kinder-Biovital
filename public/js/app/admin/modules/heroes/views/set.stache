@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="position">Позиция:</label>
                             <div class="col-md-10">
-                                <input class="form-control" type="text" value="{{hero.position}}" name="position" placeholder="Позиция дня">
+                                <input class="form-control" type="text" value="{{hero.position}}" name="position" placeholder="Позиция героя в списке">
                                 <div class="help help-block"></div>
                             </div>
                         </div>

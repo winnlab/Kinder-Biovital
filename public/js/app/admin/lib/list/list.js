@@ -11,18 +11,21 @@ define([
 
 				// Edit entity controller
 				Edit: function() {},
-
+				// Name for list entity in view
 				moduleName: 'list',
+				// Link to entity constructor model
 				Model: can.Model,
 
 				deleteMsg: 'Вы действительно хотите удалить эту сущность?',
 				deletedMsg: 'Сущность успешно удалена',
+				deletedErr: 'Ошибка удаления сущности',
 
 				// Selectors
 				add: '.add',
 				edit: '.edit',
 				remove: '.remove',
 				toList: '.toList',
+				// Selector for entity form block wrap
 				formWrap: '.formWrap',
 				// Entity selector wich rich with #data view helper
 				parentData: '.entity'
@@ -103,7 +106,7 @@ define([
 				this.module.attr({
 					'display': 'set',
 					'setEntity': can.compute(id)
-				});				
+				});
 
 				new options.Edit(area, {
 					doc: doc ? doc : new options.Model(),
@@ -132,7 +135,9 @@ define([
 					doc.destroy().always(function (doc, status, def) {
 						appState.attr('notification', {
 							status: status,
-							msg: options.deletedMsg + (doc.name ? ' ' + doc.name : '')
+							msg: status === 'success'
+								? options.deletedMsg
+								: options.deletedErr
 						});
 					});
 				}

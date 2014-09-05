@@ -4,7 +4,7 @@ upload {
 
 	.uploadedWrap {
 		margin-top: 10px;
-	}	
+	}
 
 	.uploaded {
 		display: inline-block;
@@ -12,8 +12,11 @@ upload {
 		width: 250px;
 		height: 150px;
 		margin-right: 10px;
-		background-size: cover;
+		background-size: contain;
 		background-position: center center;
+		background-repeat: no-repeat;
+		background-color: #ddd;
+		border: none;
 	}
 
 	label {

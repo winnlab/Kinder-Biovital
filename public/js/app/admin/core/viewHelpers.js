@@ -35,17 +35,17 @@ define([
 				});
 
 				return _.map(sorted, function (member, index) {
-					// return options.fn(member);
-					return options.fn(options.scope.add({
-						"@index": index
-					}).add(member));
+					return options.fn(options.scope
+						.add({'@index': index})
+						.add(member)
+					);
 				}).join('');
 			}
 		});
 
 		can.mustache.registerHelper('getBoxName', function (index, options) {
 			var classes = ['bg-light-blue', 'bg-red', 'bg-green', 'bg-yellow', 'bg-maroon', 'bg-purple', 'bg-aqua'];
-			index = (typeof index === 'function' ? index() : index);
+			index = getObserverValue(index);
 			if (!index && index !== 0) {
 				index = ~~(Math.random() * classes.length - 1);
 			}

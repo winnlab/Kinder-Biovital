@@ -37,10 +37,10 @@ define(
     				.done(function(doс) {
 						self.options.entity(doc.attr('_id'));
     					can.route.attr({'entity_id': doc.attr('_id')});
-    					self.setNotification('success', self.successMsg);
+    					self.setNotification('success', self.options.successMsg);
     				})
-    				.fail(function (doc) {						
-    					self.setNotification('error', self.errorMsg);
+    				.fail(function (doc) {
+    					self.setNotification('error', self.options.errorMsg);
     				});
 
 			},

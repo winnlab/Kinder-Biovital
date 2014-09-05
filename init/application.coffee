@@ -28,10 +28,10 @@ sessionParams =
 	secret: '4159J3v6V4rX6y1O6BN3ASuG2aDN7q'
 
 routes = () ->
+	@use '/admin', adminController.Router
 	@use userController.Router
 	@use '/', userController.Router
 	@use '/:lang(ru|en)', userController.Router
-	@use '/admin', adminController.Router
 
 configure = () ->
 	@set 'views', "#{__dirname}/../views"

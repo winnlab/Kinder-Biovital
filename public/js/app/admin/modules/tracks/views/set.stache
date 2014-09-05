@@ -1,0 +1,78 @@
+<div class="content-header">
+    <h3 class="content-title clearfix">
+        {{#if track._id}}
+            Редактирование трека
+        {{else}}
+            Добавление трека
+        {{/if}}
+        <div class="pull-right btn btn-primary toList">
+            Назад
+        </div>
+    </h3>
+
+</div>
+<div class="content">
+    <div class="col-md-12">
+        <div class="box box-primary">
+
+            <div class="box-body clearfix">
+
+                <div class="col-md-6">
+                    <form class="form-horizontal setTrack">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="name">Название:</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" value="{{track.name}}" name="name" placeholder="Название трека" />
+                                <div class="help help-block"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="position">Позиция:</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" value="{{track.position}}" name="position" placeholder="Позиция трека">
+                                <div class="help help-block"></div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary col-md-offset-2" type="submit">
+                            {{#if track._id}}
+                                Сохранить трек
+                            {{else}}
+                                Добавить трек
+                            {{/if}}
+                        </button>
+                    </form>
+                </div>
+
+                <div class="col-md-6">
+                    {{#if track._id}}
+                        <upload
+                            class="col-md-12"
+                            name="mp3"
+                            url="/admin/track/sound"
+                            delete-url="/admin/track/sound"
+                            entity="{track}"
+                            uploaded="{track.sound.mp3}"
+                            accept="audio/mpeg"
+                        >
+                            Загрузить mp3
+                        </upload>
+
+                        <upload
+                            class="col-md-12"
+                            name="wav"
+                            url="/admin/track/sound"
+                            delete-url="/admin/track/sound"
+                            entity="{track}"
+                            uploaded="{track.sound.wav}"
+                            accept="audio/wav"
+                        >
+                            Загрузить wav
+                        </upload>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,8 +9,11 @@ upload {
     width: 250px;
     height: 150px;
     margin-right: 10px;
-    background-size: cover;
-    background-position: center center; }
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #ddd;
+    border: none; }
   upload label {
     cursor: pointer; }
   upload form {

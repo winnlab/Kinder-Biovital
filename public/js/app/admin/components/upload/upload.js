@@ -99,7 +99,7 @@ define([
 			},
 
 			resetFileInput: function () {
-				document.getElementById(self.attr('uploadId')).parentNode.reset();
+				document.getElementById(this.attr('uploadId')).parentNode.reset();
 			},
 
 			remove: function (sourceName) {

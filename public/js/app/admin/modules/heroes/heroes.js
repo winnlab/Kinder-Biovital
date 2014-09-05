@@ -7,7 +7,6 @@ define(
             defaults: {
                 viewpath: 'app/modules/heroes/views/',
 
-                // Edit entity controller
                 Edit: Hero,
 
                 moduleName: 'heroes',
@@ -16,13 +15,12 @@ define(
                 deleteMsg: 'Вы действительно хотите удалить этого героя?',
                 deletedMsg: 'Герой успешно удален!',
 
-                // Selectors
                 add: '.addHero',
                 edit: '.editHero',
                 remove: '.removeHero',
-                // 
+
                 formWrap: '.heroForm',
-                // Entity selector wich rich with #data view helper
+                
                 parentData: '.hero'
             }
         }, {});
