@@ -121,7 +121,7 @@ define([
 				}).done(function (data) {
 					uploaded.splice(sourceIndex, 1);
 					if (entity.removeUploaded) {
-						entity.removeUploaded(name);
+						entity.removeUploaded(name, sourceIndex);
 					}
 					appState.attr('notification', {
 						status: 'success',

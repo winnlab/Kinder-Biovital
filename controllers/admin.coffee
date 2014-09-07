@@ -6,6 +6,7 @@ Replica = require './admin/replica'
 Track = require './admin/track'
 CoverColor = require './admin/coverColor'
 CoverImage = require './admin/coverImage'
+Decoration = require './admin/decoration'
 
 
 Router = express.Router()
@@ -42,6 +43,11 @@ Router.use '/coverColor/:id?', CoverColor.rest
 
 Router.use '/cover/img', CoverImage.restFile
 Router.use '/cover/:id?', CoverImage.rest
+
+#------- Decoration ---------#
+
+Router.use '/decoration/img', Decoration.restFile
+Router.use '/decoration/:id?', Decoration.rest
 
 exports.Router = Router
 exports.layoutPage = Main.tales
