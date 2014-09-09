@@ -1,3 +1,4 @@
 module.exports = [
 	'/login'
+	'/logout'
 ]

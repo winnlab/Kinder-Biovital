@@ -1,6 +1,9 @@
 html {
   overflow-y: scroll; }
 
+.left-side {
+  z-index: 2; }
+
 .right-side .right-side {
   margin: 0; }
 
@@ -15,3 +18,337 @@ html {
   height: 70px;
   width: 70px;
   display: inline-block; }
+
+.coverImgTbl .coverImage {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.taleBtnWrap {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background: #fff;
+  display: inline-block;
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1); }
+  .taleBtnWrap.big {
+    border-radius: 10px;
+    padding: 9px; }
+  .taleBtnWrap.medium {
+    border-radius: 10px;
+    padding: 4px 8px; }
+  .taleBtnWrap.small {
+    padding: 4px;
+    border-radius: 4px; }
+  .taleBtnWrap.orange {
+    background: #f59b06; }
+  .taleBtnWrap.red {
+    background: #df4a08; }
+
+.taleBtn {
+  border-radius: 7px;
+  background: #fff;
+  display: block;
+  float: left;
+  cursor: pointer;
+  box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.3);
+  text-align: center; }
+  .taleBtn.big {
+    width: 49px;
+    height: 49px;
+    margin-right: 9px; }
+    .taleBtn.big:last-of-type {
+      margin-right: 0; }
+  .taleBtn.small {
+    width: 24px;
+    height: 22px;
+    margin-bottom: 2px;
+    border-radius: 3px; }
+  .taleBtn:active {
+    box-shadow: none; }
+  .taleBtn.orange {
+    color: #fff;
+    background: #f59b06; }
+  .taleBtn.red {
+    color: #fff;
+    background: #df4a08; }
+
+.coverImgTbl .coverImage {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.leftPanel {
+  position: absolute;
+  width: 164px;
+  left: -176px;
+  top: 300px;
+  z-index: 1; }
+  .leftPanel .taleBtnWrap {
+    display: block;
+    margin-bottom: 9px; }
+    .leftPanel .taleBtnWrap .taleBtn {
+      padding: 4px;
+      float: none; }
+      .leftPanel .taleBtnWrap .taleBtn:after {
+        content: "";
+        display: table;
+        clear: both; }
+      .leftPanel .taleBtnWrap .taleBtn .title {
+        margin-bottom: 5px; }
+  .leftPanel .hero {
+    display: block;
+    float: left;
+    width: 62px;
+    height: 62px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #fff;
+    margin: 0 4px;
+    border-radius: 10px;
+    box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.3); }
+
+.authorText {
+  position: absolute;
+  top: 110px;
+  left: 236px;
+  width: 752px;
+  height: 86px;
+  display: none;
+  background: #fff;
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1; }
+  .authorText.active {
+    display: block; }
+  .authorText textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    text-align: center;
+    border: none;
+    overflow: auto;
+    outline: none;
+    box-shadow: none; }
+
+.taleZone .displayFrame .chooseMusic {
+  bottom: -95px;
+  left: -176px;
+  z-index: 1; }
+
+.btmPanel {
+  position: absolute;
+  bottom: -122px;
+  left: 326px;
+  z-index: 1; }
+  .btmPanel .taleBtn {
+    padding: 9px 10px 8px; }
+  .btmPanel .frame {
+    display: block;
+    float: left;
+    width: 102px;
+    background: #fff;
+    color: #333;
+    box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin: 0 6px 0 0;
+    padding: 28px 0 29px; }
+    .btmPanel .frame:last-of-type {
+      margin: 0; }
+
+.rightPanel {
+  position: absolute;
+  right: -179px;
+  top: 453px;
+  z-index: 1;
+  width: 173px; }
+  .rightPanel .taleBtnWrap {
+    display: block;
+    margin: 0 0 17px; }
+    .rightPanel .taleBtnWrap .taleBtn {
+      height: 63px;
+      width: 149px;
+      margin: 0 0 2px 1px;
+      float: none; }
+
+.endTale.taleBtnWrap {
+  position: absolute;
+  bottom: -88px;
+  right: -178px;
+  z-index: 1;
+  padding: 9px 13px 9px 9px; }
+  .endTale.taleBtnWrap .taleBtn {
+    height: 65px;
+    width: 193px; }
+
+.heroIn {
+  position: absolute; }
+  .heroIn .heroImg {
+    background-size: contain;
+    background-position: center center; }
+
+.coverImgTbl .coverImage {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.taleForm .right-side {
+  overflow-y: hidden;
+  overflow-x: visible;
+  min-height: 820px;
+  position: relative;
+  margin-left: 0; }
+
+.taleContainer {
+  min-width: 1604px;
+  min-height: 820px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden; }
+
+.taleZone {
+  position: absolute;
+  top: 20px;
+  left: 190px;
+  width: 1224px;
+  height: 650px; }
+  .taleZone:before, .taleZone:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    z-index: 1;
+    background: #000; }
+  .taleZone:after {
+    left: auto;
+    right: 0; }
+  .taleZone .border {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    height: 1px;
+    background: #000; }
+    .taleZone .border.top {
+      top: 0; }
+    .taleZone .border.btm {
+      bottom: 0; }
+  .taleZone .setDecorations {
+    position: absolute;
+    top: 23px;
+    left: 14px; }
+  .taleZone .taleTitle {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #f59b06;
+    width: 346px;
+    height: 102px;
+    left: 439px;
+    top: 3px;
+    position: absolute;
+    background: #fff;
+    text-align: center; }
+  .taleZone .question {
+    position: absolute;
+    right: 49px;
+    top: 10px; }
+  .taleZone .closeFrame {
+    position: absolute;
+    right: 10px;
+    top: 10px; }
+  .taleZone .arrows {
+    position: absolute;
+    top: 275px;
+    left: 536px;
+    width: 152px;
+    height: 100px;
+    background: #fff;
+    border-radius: 16px; }
+  .taleZone .chooseMusic {
+    position: absolute;
+    bottom: 36px;
+    left: 14px; }
+    .taleZone .chooseMusic .taleBtn {
+      padding: 6px 10px;
+      margin-bottom: 2px;
+      width: 228px; }
+    .taleZone .chooseMusic .musicLabel {
+      box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.3);
+      padding: 7px;
+      background: #fff;
+      height: 34px;
+      width: 157px;
+      display: block;
+      border-radius: 4px; }
+  .taleZone .next {
+    position: absolute;
+    right: 15px;
+    padding: 11px 14px 11px 12px;
+    bottom: 35px; }
+    .taleZone .next .taleBtn {
+      width: 191px;
+      height: 62px;
+      padding: 21px; }
+  .taleZone .framePosWrap {
+    position: absolute;
+    width: 424px;
+    height: 153px;
+    bottom: 21px;
+    left: 400px;
+    background: #fff; }
+    .taleZone .framePosWrap .miniBg {
+      position: absolute;
+      background: red;
+      width: 382px;
+      height: 124px;
+      top: 12px;
+      left: 21px; }
+    .taleZone .framePosWrap .miniFrame {
+      position: absolute;
+      width: 124px;
+      height: 162px;
+      top: -19px;
+      border-radius: 10px;
+      border: 19px solid #f59b06;
+      border-left: 13px solid #f59b06;
+      border-right: 13px solid #f59b06;
+      box-shadow: inset 2px 2px 0px 0px rgba(0, 0, 0, 0.3);
+      cursor: move; }
+
+.frameBg {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  width: 3705px;
+  height: 1200px;
+  top: -275px; }
+  .frameBg img {
+    position: absolute;
+    top: 0;
+    left: 0; }
+    .frameBg img.fg {
+      z-index: 4; }
+    .frameBg img.plan {
+      z-index: 2; }
+    .frameBg img.bg {
+      z-index: 0; }
+
+.taleIn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: none; }
+  .taleIn.active {
+    display: block; }
+
+/*# sourceMappingURL=base.css.map */

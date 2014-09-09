@@ -8,13 +8,10 @@ define(
 
         return can.Model.extend({
             id: "_id",
-            resource: "/admin/decoration",
+            resource: "/admin/tale",
             parseModel: baseModel.parseModel,
             parseModels: baseModel.parseModels
-        }, {
-            uploaded: baseModel.simpleUploaded,
-            removeUploaded: baseModel.simpleRemoveUploaded
-        });
+        }, {});
 
     }
 );

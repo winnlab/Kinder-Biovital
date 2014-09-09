@@ -52,7 +52,11 @@ require.config({
 			deps: ['jquery']
 		},
 		'adminLTE': {
-			deps: ['jquery', 'bootstrap', 'admin-lte/js/jquery-ui-1.10.3.min']
+			deps: [
+				'jquery',
+				'bootstrap',
+				'admin-lte/js/jquery-ui-1.10.3.min'				
+			]
 		}
 	}
 });

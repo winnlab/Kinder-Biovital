@@ -15,14 +15,18 @@ FragmentShemaFields =
     time:
         type: Number
         trim: true
-    header:
+    fg:
         type: String
         default: ''
-    footer:
+    plan:
         type: String
         default: ''
-    perspectives:
-        type: Array
+    bg:
+        type: String
+        default: ''
+    preview:
+        type: String
+        default: ''
 
 options =
     collection: 'decorations'

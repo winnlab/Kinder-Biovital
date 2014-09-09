@@ -1,0 +1,212 @@
+@charset "UTF-8";
+@import '../../bourbon/_bourbon.scss';
+@import '../../base/_mixins.scss';
+@import '../../base/_placeholders.scss';
+@import '../../base/_variables.scss';
+
+$taleZoneWidth: 1224px;
+$taleZoneHeight: 650px;
+$taleContainerWidth: $taleZoneWidth + 380;
+$taleContainerHeight: $taleZoneHeight + 170;
+$frameBgWidth: 3705px;
+$frameBgHeight: 1200px;
+$taleBorderBg: #000;
+$titleWidth: 346px;
+$posWrapWidth: 424px;
+
+.taleForm {
+    .right-side {
+        overflow-y: hidden;
+        overflow-x: visible;
+        min-height: $taleContainerHeight;
+        position: relative;
+        margin-left: 0;
+    }
+}
+
+.taleContainer {
+    min-width: $taleContainerWidth;
+    min-height: $taleContainerHeight;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+
+.taleZone {
+    position: absolute;
+    top: 20px;
+    left: ($taleContainerWidth - $taleZoneWidth) / 2;
+    width: $taleZoneWidth;
+    height: $taleZoneHeight;
+
+    &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        z-index: 1;
+        background: $taleBorderBg;
+    }
+
+    &:after {
+        @extend :before;
+        left: auto;
+        right: 0;
+    }
+
+    .border {
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        height: 1px;
+        background: $taleBorderBg;
+        &.top {
+            top: 0;
+        }
+        &.btm {
+            bottom: 0;
+        }
+    }
+
+    .setDecorations {
+        position: absolute;
+        top: 23px;
+        left: 14px;
+    }
+
+    .taleTitle {
+        @include user-select(none);
+        color: $orange;
+        width: $titleWidth;
+        height: 102px;
+        left: ($taleZoneWidth - $titleWidth) / 2;
+        top: 3px;
+        position: absolute;
+        background: #fff;
+        text-align: center;
+    }
+
+    .question {
+        position: absolute;
+        right: 49px;
+        top: 10px;
+    }
+
+    .closeFrame {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+
+    .arrows {
+        position: absolute;
+        top: 275px;
+        left: 536px;
+        width: 152px;
+        height: 100px;
+        background: #fff;
+        border-radius: 16px
+    }
+
+    .chooseMusic {
+        position: absolute;
+        bottom: 36px;
+        left: 14px;
+
+        .taleBtn {
+            padding: 6px 10px;
+            margin-bottom: 2px;
+            width: 228px;
+        }
+        .musicLabel {
+            box-shadow: inset 1px 1px 0px 0px rgba(0,0,0,0.3);
+            padding: 7px;
+            background: #fff;
+            height: 34px;
+            width: 157px;
+            display: block;
+            border-radius: 4px;
+        }
+    }
+
+    .next {
+        position: absolute;
+        right: 15px;
+        padding: 11px 14px 11px 12px;
+        bottom: 35px;
+
+        .taleBtn {
+            width: 191px;
+            height: 62px;
+            padding: 21px;
+        }
+    }
+
+    .framePosWrap {
+        position: absolute;
+        width: $posWrapWidth;
+        height: 153px;
+        bottom: 21px;
+        left: ($taleZoneWidth - $posWrapWidth) / 2;
+        background: #fff;
+
+        .miniBg {
+            position: absolute;
+            background: red;
+            width: 382px;
+            height: 124px;
+            top: 12px;
+            left: 21px;
+        }
+
+        .miniFrame {
+            position: absolute;
+            width: 124px;
+            height: 162px;
+            top: -19px;
+            border-radius: 10px;
+            border: 19px solid $orange;
+            border-left: 13px solid $orange;
+            border-right: 13px solid $orange;
+            box-shadow: inset 2px 2px 0px 0px rgba(0, 0, 0, 0.3);
+            cursor: move;
+        }
+    }
+}
+
+.frameBg {
+    @include user-select(none);
+    position: absolute;
+    width: $frameBgWidth;
+    height: $frameBgHeight;
+    top: ($taleZoneHeight - $frameBgHeight) / 2;
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        &.fg {
+            z-index: 4;
+        }
+        &.plan {
+            z-index: 2;
+        }
+        &.bg {
+            z-index: 0;
+        }
+    }
+}
+
+.taleIn {
+    @include absolute();
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}

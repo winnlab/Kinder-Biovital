@@ -2,6 +2,10 @@ html {
 	overflow-y: scroll;
 }
 
+.left-side {
+	z-index: 2;
+}
+
 .right-side {
 	.right-side {
 		margin: 0;
@@ -9,3 +13,6 @@ html {
 }
 
 @import 'cosmetics/_cover.scss';
+@import 'cosmetics/_taleBtns.scss';
+@import 'cosmetics/_frame.scss';
+@import 'cosmetics/_tale.scss';

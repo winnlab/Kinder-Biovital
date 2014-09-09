@@ -4,6 +4,8 @@ define([
 ],
 	function (can, _) {
 
+		'use strict';
+
 		function getObserverValue (value) {
 			if (typeof value === 'function') {
 				value = value();
@@ -11,16 +13,47 @@ define([
 			return value;
 		};
 
-		can.mustache.registerHelper('checkState', function (options) {
-			return options.context.attr('viewState') === 'list'
-				? options.fn()
-				: options.inverse();
+		can.mustache.registerHelper('is', function () {
+			var options = arguments[arguments.length - 1],
+				comparator = getObserverValue(arguments[0]),
+				result = true;
+
+			for (var i = 1, ln = arguments.length - 1; i < ln; i += 1) {
+				if (comparator !== getObserverValue(arguments[i])) {
+					result = false;
+					break;
+				}
+			}
+
+			return result ? options.fn() : options.inverse();
 		});
 
-		can.mustache.registerHelper('is', function (left, right, options) {
-			return getObserverValue(left) === getObserverValue(right)
-				? options.fn()
-				: options.inverse();
+
+		can.mustache.registerHelper('isnt', function (a, b, options) {
+			var result = getObserverValue(a) !== getObserverValue(b);
+			return result ? options.fn() : options.inverse();
+		});
+
+		can.mustache.registerHelper('or', function () {
+			var options = arguments[arguments.length - 1],
+				result = false;
+
+			for (var i = arguments.length - 1; i--; ) {
+				if (getObserverValue(arguments[i])) {
+					result = true;
+					break;
+				}
+			}
+
+			return result ? options.fn() : options.inverse();
+		});
+
+		can.mustache.registerHelper('plus', function (a, b) {
+			return getObserverValue(a) + getObserverValue(b);
+		});
+
+		can.mustache.registerHelper('indexOfInc', function (array, element) {
+			return getObserverValue(array).indexOf(getObserverValue(element)) + 1;
 		});
 
 		can.mustache.registerHelper('getArrayObjValue', function (array, index, key) {

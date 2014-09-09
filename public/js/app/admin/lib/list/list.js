@@ -107,9 +107,17 @@ define([
 
 				this.module.attr('setEntity', can.compute(id));
 
-				new options.Edit(area, {
-					doc: doc ? doc : new options.Model(),
-					entity: this.module.attr('setEntity')
+				this.initSetControl(
+					area,
+					doc ? doc : new options.Model(),
+					this.module.attr('setEntity')
+				);
+			},
+
+			initSetControl: function (area, doc, entity) {
+				new this.options.Edit(area, {
+					doc: doc,
+					entity: entity
 				});
 			},
 

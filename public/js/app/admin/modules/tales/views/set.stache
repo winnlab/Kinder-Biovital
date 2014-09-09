@@ -1,0 +1,165 @@
+<div class="taleContainer" style="{{sizeContainer}}">
+    <div class="taleZone">
+        <div class="border top"></div>
+        <div class="border btm"></div>
+        <div class="frameBg" style="{{bgOffset frame.left}}">
+            {{#isnt display 'frame'}}
+                {{>app/modules/tales/views/decoration.stache}}
+            {{/isnt}}
+        </div>
+
+        <div class="taleIn{{#is display 'bg'}} active{{/is}}">
+            <div class="big taleBtnWrap setDecorations">
+                {{#each decorations}}
+                    <div class="big taleBtn{{#is time 0}} orange{{else}} red{{/is}}" can-click="setBg"></div>
+                {{/each}}
+            </div>
+
+            <div class="taleTitle">Обери тло слайду {{indexOfInc tale.frames frame}}</div>
+
+            <div class="taleBtnWrap small question">
+                <div class="small taleBtn red"></div>
+            </div>
+
+            <div class="taleBtnWrap small closeFrame">
+                <div class="small taleBtn orange"></div>
+            </div>
+
+            <div class="arrows"></div>
+
+            <div class="chooseMusic taleBtnWrap big">
+                <div class="taleBtn orange">
+                    <span class="musicLabel">
+
+                    </span>
+                </div>
+            </div>
+
+            <div class="framePosWrap">
+                <div class="miniBg" style="{{getPreview frame.decorationId decorations}}">
+                    <div class="miniFrame" style="{{miniOffset frame.left}}"></div>
+                </div>
+            </div>
+
+            <div class="next taleBtnWrap big">
+                <div class="taleBtn red" data-display="frame"></div>
+            </div>
+
+        </div>
+
+        <div class="displayFrame taleIn{{#is display 'frame'}} active{{/is}}">
+            <div class="taleTitle">Створи слайд {{indexOfInc tale.frames frame}}</div>
+
+            <div class="authorText{{#or showText frame.text}} active{{/or}}">
+                <textarea name="text" can-change="setText">{{tale.text}}</textarea>
+            </div>
+
+            <div class="taleBtnWrap small question">
+                <div class="small taleBtn red"></div>
+            </div>
+
+            <div class="taleBtnWrap small closeFrame">
+                <div class="small taleBtn orange"></div>
+            </div>
+
+            <div class="leftPanel">
+                <div class="taleBtnWrap medium">
+                    <div class="taleBtn orange" data-display="bg">змiнити тло</div>
+                </div>
+
+                <div class="taleBtnWrap medium">
+                    <div class="taleBtn orange">
+                        <div class="title">додати героя</div>
+                        {{#each heroes}}
+                            {{#if img}}
+                                <div class="hero" data-id="{{_id}}" style="background-image: url('/uploads/{{img}}')"></div>
+                            {{/if}}
+                        {{/each}}
+                    </div>
+                </div>
+
+                <div class="{{#if showText}}removeTitr{{else}}addTitr{{/if}} taleBtnWrap medium">
+                    <div class="taleBtn orange">
+                        {{#if showText}}
+                            видалити титр
+                        {{else}}
+                            додати титр
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="chooseMusic taleBtnWrap big">
+                <div class="taleBtn orange">
+                    <span class="musicLabel">
+
+                    </span>
+                </div>
+            </div>
+
+            <div class="btmPanel">
+                <div class="taleBtnWrap big">
+                    <div class="taleBtn orange">
+                        {{#each tale.frames}}
+                            <div class="frame" data-index="{{@index}}">Слайд {{plus @index 1}}</div>
+                        {{/each}}
+                        <div class="frame">
+                            <div class="plus">+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rightPanel">
+                <div class="taleBtnWrap big orange">
+                    <div class="taleBtn preview">
+                        Попереднiй перегляд
+                    </div>
+                </div>
+                <div class="taleBtnWrap big red">
+                    <div class="taleBtn removeSlide">
+                        Видалити слайд
+                    </div>
+                </div>
+            </div>
+
+            <div class="endTale taleBtnWrap big">
+                <div class="taleBtn red" data-display="cover">Завершити казку</div>
+            </div>
+
+            <div class="frameBg" style="{{bgOffset frame.left}}">
+                {{>app/modules/tales/views/decoration.stache}}
+
+                <div class="dragableHeroes">
+                    {{#each frame.heroes}}
+                        <div class="heroInDrag" {{data hero}} style="left: {{left}}px; top: {{top}}px;">
+                            <div class="heroImg" style="{{heroSize}}"></div>
+                            <div class="replica">
+                                <input type="text" can-value="replica.text">
+                            </div>
+                            <div class="replicaControll">
+                                <div class="miniCloud"></div>
+                                <div class="replicaBtn {{#if replica.text}}remove{{else}}add{{/if}}"></div>
+                            </div>
+                            <div class="name">
+                                <input type="text" can-value="name">
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+
+                {{#each frame.heroes}}
+                    <div class="heroIn" style="left: {{left}}px; top: {{top}}px;">
+                        <div class="heroImg" style="background-image: url('/uploads/{{img}}'); {{heroSize}}"></div>
+                    </div>
+                {{/each}}
+            </div>
+
+        </div>
+
+        <div class="taleIn{{#is display 'cover'}} active{{/is}}">
+
+        </div>
+
+    </div>
+</div>

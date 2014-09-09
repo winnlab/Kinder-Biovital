@@ -22,7 +22,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="name">Название:</label>
                             <div class="col-md-10">
-                                <input class="form-control" type="text" value="{{decoration.name}}" name="name" placeholder="Название типа реплики" />
+                                <input class="form-control" type="text" value="{{decoration.name}}" name="name" placeholder="Название декорации" />
                                 <div class="help help-block"></div>
                             </div>
                         </div>
@@ -30,16 +30,27 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="position">Позиция:</label>
                             <div class="col-md-10">
-                                <input class="form-control" type="text" value="{{decoration.position}}" name="position" placeholder="Позиция типа реплики">
+                                <input class="form-control" type="text" value="{{decoration.position}}" name="position" placeholder="Позиция декорации в списке">
+                                <div class="help help-block"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="position">Время:</label>
+                            <div class="col-md-10">
+                                <select name="time" class="form-control">
+                                    <option value="0" {{#is decoration.time 0}}selected{{/is}}>День</option>
+                                    <option value="1" {{#is decoration.time 1}}selected{{/is}}>Ночь</option>
+                                </select>
                                 <div class="help help-block"></div>
                             </div>
                         </div>
 
                         <button class="btn btn-primary col-md-offset-2" type="submit">
                             {{#if decoration._id}}
-                                Сохранить тип реплики
+                                Сохранить декорацию
                             {{else}}
-                                Добавить тип реплики
+                                Добавить декорацию
                             {{/if}}
                         </button>
                     </form>
@@ -49,14 +60,47 @@
                     {{#if decoration._id}}
                         <upload
                             class="col-md-12"
-                            name="img"
+                            name="fg"
                             url="/admin/decoration/img"
                             delete-url="/admin/decoration/img"
                             entity="{decoration}"
-                            uploaded="{decoration.img}"
+                            uploaded="{decoration.fg}"
                             accept="image/*"
                         >
-                            Загрузить картинку для реплики
+                            Загрузить передний план
+                        </upload>
+                        <upload
+                            class="col-md-12"
+                            name="plan"
+                            url="/admin/decoration/img"
+                            delete-url="/admin/decoration/img"
+                            entity="{decoration}"
+                            uploaded="{decoration.plan}"
+                            accept="image/*"
+                        >
+                            Загрузить второй план
+                        </upload>
+                        <upload
+                            class="col-md-12"
+                            name="bg"
+                            url="/admin/decoration/img"
+                            delete-url="/admin/decoration/img"
+                            entity="{decoration}"
+                            uploaded="{decoration.bg}"
+                            accept="image/*"
+                        >
+                            Загрузить задний план
+                        </upload>
+                        <upload
+                            class="col-md-12"
+                            name="preview"
+                            url="/admin/decoration/img"
+                            delete-url="/admin/decoration/img"
+                            entity="{decoration}"
+                            uploaded="{decoration.preview}"
+                            accept="image/*"
+                        >
+                            Загрузить миниатюру декорации
                         </upload>
                     {{/if}}
                 </div>

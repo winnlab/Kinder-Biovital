@@ -13,7 +13,7 @@ define(
                 Model: TracksModel,
 
                 deleteMsg: 'Вы действительно хотите удалить этот трек?',
-                deletedMsg: 'Трек успешно удалена!',
+                deletedMsg: 'Трек успешно удален!',
 
 
                 add: '.addTrack',

@@ -3,16 +3,21 @@ Crud = require '../../lib/crud'
 crud = new Crud
     modelName: 'Decoration'
     files: [
-        name: 'header'
+        name: 'fg'
         replace: true
         type: 'string'
     ,
-        name: 'footer'
+        name: 'plan'
         replace: true
         type: 'string'
     ,
-        name: 'perspectives'
-        type: 'array'
+        name: 'bg'
+        replace: true
+        type: 'string'
+    ,
+        name: 'preview'
+        replace: true
+        type: 'string'
     ]
 
 module.exports.rest = crud.request.bind crud

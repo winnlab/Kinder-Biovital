@@ -7,7 +7,7 @@ Track = require './admin/track'
 CoverColor = require './admin/coverColor'
 CoverImage = require './admin/coverImage'
 Decoration = require './admin/decoration'
-
+Tale = require './admin/tale'
 
 Router = express.Router()
 
@@ -16,7 +16,6 @@ Router = express.Router()
 Router.get '/', Main.index
 Router.get '/login', Main.login
 Router.get '/logout', Main.logout
-Router.get '/tales', Main.tales
 
 Router.post '/login', Main.doLogin
 
@@ -48,6 +47,10 @@ Router.use '/cover/:id?', CoverImage.rest
 
 Router.use '/decoration/img', Decoration.restFile
 Router.use '/decoration/:id?', Decoration.rest
+
+#------- Decoration ---------#
+
+Router.use '/tale/:id?', Tale.rest
 
 exports.Router = Router
 exports.layoutPage = Main.tales
