@@ -102,7 +102,7 @@ class Crud
 
 	add: (data, cb) ->
 		next = (err, data) ->
-			cb err, _id: data._id
+			cb err, _id: data?._id
 		DocModel = @DataEngine()
 		doc = new DocModel data
 		doc.save next
