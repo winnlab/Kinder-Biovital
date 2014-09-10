@@ -123,6 +123,7 @@ module {
 .taleContainer {
   min-width: 1604px;
   min-height: 820px;
+  width: 100%;
   position: absolute;
   left: 0;
   top: 0;
@@ -854,15 +855,15 @@ module {
   background: url("/img/shareInTale.png"); }
 .taleZone.previewBlock .frameControl {
   position: absolute;
-  bottom: -7px;
-  left: 486px;
+  bottom: -6px;
+  left: 478px;
   height: 142px;
   width: 255px;
   background: url("/img/playerControl.png"); }
   .taleZone.previewBlock .frameControl .prevFrame, .taleZone.previewBlock .frameControl .nextFrame {
     position: absolute;
-    top: 54px;
-    left: 24px;
+    top: 55px;
+    left: 33px;
     z-index: 1;
     height: 33px;
     width: 43px;
@@ -870,7 +871,7 @@ module {
     background: url("/img/prevArrow.jpg"); }
   .taleZone.previewBlock .frameControl .nextFrame {
     left: auto;
-    right: 20px;
+    right: 13px;
     background: url("/img/nextArrow.jpg"); }
   .taleZone.previewBlock .frameControl .playFrame {
     position: absolute;

@@ -97,15 +97,15 @@
 
     .frameControl {
         position: absolute;
-        bottom: -7px;
-        left: 486px;
+        bottom: -6px;
+        left: 478px;
         @include size(255px 142px);
         background: url('#{$imgPath}playerControl.png');
 
         .prevFrame {
             position: absolute;
-            top: 54px;
-            left: 24px;
+            top: 55px;
+            left: 33px;
             z-index: 1;
             @include size(43px 33px);
             cursor: pointer;
@@ -115,7 +115,7 @@
         .nextFrame {
             @extend .prevFrame;
             left: auto;
-            right: 20px;
+            right: 13px;
             background: url('#{$imgPath}nextArrow.jpg');
         }
 
