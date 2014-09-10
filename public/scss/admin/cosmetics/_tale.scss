@@ -108,8 +108,8 @@ $posWrapWidth: 424px;
         @include user-select(none);
         color: $orange;
         width: $titleWidth;
+        display: table;
         height: 102px;
-        padding-top: 30px;
         position: absolute;
         left: ($taleZoneWidth - $titleWidth) / 2;
         top: 3px;
@@ -118,6 +118,13 @@ $posWrapWidth: 424px;
         font-size: 27px;
         font-weight: bold;
         text-transform: uppercase;
+
+        .innerTitle {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            padding: 0 13px 0 21px;
+        }
 
         &:after {
             content: '';
@@ -155,7 +162,7 @@ $posWrapWidth: 424px;
         right: 8px;
         top: 10px;
         z-index: 1;
-        
+
         .taleBtn {
             box-shadow: none;
             &:after {

@@ -17,6 +17,7 @@ define(
                 showText: false,
                 talePreview: '',
                 interface: 'big',
+                admin: document.location.pathname.indexOf('admin/') !== -1,
                 setBg: function (context, el, ev) {
                     this.attr('frame.decorationId', context.attr('_id'));
                 },
@@ -162,10 +163,8 @@ define(
                 module.attr('frame', module.attr('tale').attr('frames.' + index));
 
                 if (module.attr('frame.text').length === 0) {
-                    console.log('showText', false);
                     module.attr('showText', false);
                 } else {
-                    console.log('showText', true);
                     module.attr('showText', true);
                 }
             },
@@ -329,11 +328,19 @@ define(
                 this.module.attr('tale.coverColorId', el.data('id'));
             },
 
-            saveTale: function (cb) {
-                this.module.attr('tale').save()
+            saveTale: function (cb, clearStorage) {
+                var module = this.module;
+                module.attr('tale').save()
                     .done(function () {
                         if (typeof cb === 'function') {
                             cb();
+                        }
+                        if (!module.attr('admin')) {
+                            localStorage.setItem('tale', JSON.stringify(module.attr('tale').attr()));
+
+                            if (clearStorage) {
+                                localStorage.removeItem('tale')
+                            }
                         }
                     })
                     .fail(function () {
@@ -357,6 +364,22 @@ define(
 
             '.closePreview click': function () {
                 this.module.attr('talePreview', false);
+            },
+
+            '.end click': function () {
+                this.saveTale(null, true);
+                if (this.module.attr('admin')) {
+                    can.route.attr({module: 'tales'}, true);
+                }
+            },
+
+            '.closeFrame click': function () {
+                this.saveTale();
+                if (this.module.attr('admin')) {
+                    can.route.attr({module: 'tales'}, true)
+                } else {
+                    can.route.attr({module: 'main'}, true)
+                }
             }
 
         });

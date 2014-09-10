@@ -1,0 +1,35 @@
+@charset "UTF-8";
+@import '../../bourbon/_bourbon.scss';
+@import '../../base/_mixins.scss';
+@import '../../base/_placeholders.scss';
+@import '../../base/_variables.scss';
+
+.shareLink {
+    position: absolute;
+    top: 164px;
+    left: 323px;
+    @include size(581px 62px);
+    color: #000;
+    z-index: 1;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 21px;
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: -28px;
+        left: -14px;
+        z-index: -1;
+        @include size(608px 105px);
+        background: url('#{$imgPath}shareLink.png');
+    }
+}
+
+.shareTaleSoc {
+    position: absolute;
+    top: 284px;
+    left: 447px;
+    @include size(331px 147px);
+    background: url('#{$imgPath}shareSoc.png');
+}

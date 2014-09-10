@@ -1,5 +1,5 @@
 define(
-    ['canjs', 'taleCore/talePreview', 'core/appState'],
+    ['canjs', 'modules/tales/talePreview', 'core/appState'],
 
     function (can, TalePreview, appState) {
 
@@ -16,7 +16,7 @@ define(
                         self.element.html(frag);
 
                         new TalePreview(self.element.find('.talePreview'), {
-                            taleId: options.taleId,                            
+                            taleId: options.taleId,
                             isReady: options.isReady
                         });
                     });

@@ -185,8 +185,8 @@ module {
     user-select: none;
     color: #f59b06;
     width: 346px;
+    display: table;
     height: 102px;
-    padding-top: 30px;
     position: absolute;
     left: 439px;
     top: 3px;
@@ -195,6 +195,11 @@ module {
     font-size: 27px;
     font-weight: bold;
     text-transform: uppercase; }
+    .taleZone .taleTitle .innerTitle {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      padding: 0 13px 0 21px; }
     .taleZone .taleTitle:after {
       content: '';
       position: absolute;
@@ -815,7 +820,7 @@ module {
     height: 38px;
     box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    padding: 7px 0;
+    padding: 11px 0;
     outline: none;
     overflow: auto;
     text-align: center;
@@ -871,6 +876,40 @@ module {
     height: 88px;
     width: 88px;
     cursor: pointer; }
+
+.coverImgTbl .coverImage {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.shareLink {
+  position: absolute;
+  top: 164px;
+  left: 323px;
+  height: 62px;
+  width: 581px;
+  color: #000;
+  z-index: 1;
+  text-align: center;
+  font-size: 20px;
+  padding-top: 21px; }
+  .shareLink:after {
+    content: '';
+    position: absolute;
+    top: -28px;
+    left: -14px;
+    z-index: -1;
+    height: 105px;
+    width: 608px;
+    background: url("/img/shareLink.png"); }
+
+.shareTaleSoc {
+  position: absolute;
+  top: 284px;
+  left: 447px;
+  height: 147px;
+  width: 331px;
+  background: url("/img/shareSoc.png"); }
 
 .coverImgTbl .coverImage {
   background-size: cover;

@@ -67,20 +67,29 @@ define(
                 }
 
                 can.when.apply(can, def).then(function () {
-                    self.initSetControl(self.element.find('.taleForm'), new TalesModel(), function(){});
+                    self.initSetControl(self.element.find('.taleForm'), new TalesModel(self.getStoredTale()));
                 });
 
                 self.element.html(can.view(options.viewpath + 'set.stache', self.module));
 
             },
 
-            initSetControl: function (area, doc, entity) {
+            getStoredTale: function () {
+                var data = localStorage.getItem('tale');
+
+                if (data) {
+                    data = JSON.parse(data);
+                }
+
+                return data || {};
+            },
+
+            initSetControl: function (area, doc) {
                 var self = this,
                     options = this.options,
                     module = self.module,
                     obj = {
                         tale: doc,
-                        entity: entity,
                         isReady: options.isReady,
                         interface: this.getInterfaceSize()
                     };

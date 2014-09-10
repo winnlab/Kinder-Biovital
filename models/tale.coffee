@@ -63,7 +63,7 @@ FragmentShemaFields =
     # 0 is tale added by admin, 1 is tale added by user
     type:
         type: Number
-        required: true
+        default: 1
     link:
         type: String
     ready:

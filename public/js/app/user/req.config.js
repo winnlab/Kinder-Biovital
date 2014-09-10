@@ -10,8 +10,7 @@ require.config({
 		jquery: 'jquery/dist/jquery',
 		underscore: 'underscore/underscore',
 		modules: '../app/admin/modules',
-		components: '../app/admin/components',
-		taleCore: '../app/admin/modules/tales',
+		components: '../app/admin/components',		
 		viewHelpers: '../app/admin/core/viewHelpers',
 		cssComponents: '../../css/admin/components'
 	},
@@ -41,5 +40,6 @@ require.config({
 				'can/construct/super'
 			]
 		}
-	}
+	},
+	waitSeconds: 15
 });

@@ -15,7 +15,11 @@
                 {{/each}}
             </div>
 
-            <div class="taleTitle">Обери тло слайду {{indexOfInc tale.frames frame}}</div>
+            <div class="taleTitle">
+                <div class="innerTitle">
+                    Обери тло слайду {{indexOfInc tale.frames frame}}
+                </div>
+            </div>
 
             <div class="taleBtnWrap small question">
                 <div class="small taleBtn red"></div>
@@ -48,7 +52,11 @@
         </div>
 
         <div class="displayFrame taleIn{{#is display 'frame'}} active{{/is}}">
-            <div class="taleTitle">Створи слайд {{indexOfInc tale.frames frame}}</div>
+            <div class="taleTitle">
+                <div class="innerTitle">
+                    Створи слайд {{indexOfInc tale.frames frame}}
+                </div>
+            </div>
 
             <div class="authorText{{#or showText frame.text}} active{{/or}}">
                 <textarea name="text" can-change="setText">{{frame.text}}</textarea>
@@ -159,7 +167,11 @@
         </div>
 
         <div class="taleIn{{#is display 'cover'}} active{{/is}}">
-            <div class="taleTitle">Створи обкладинку</div>
+            <div class="taleTitle">
+                <div class="innerTitle">
+                    Створи обкладинку
+                </div>
+            </div>
 
             <div class="taleBtnWrap small question">
                 <div class="small taleBtn red"></div>
@@ -216,8 +228,27 @@
             </div>
 
             <div class="next end taleBtnWrap big">
-                <div class="taleBtn red"></div>
+                <div class="taleBtn red" {{#unless admin}}data-display="share"{{/unless}}></div>
             </div>
+        </div>
+
+        <div class="taleIn{{#is display 'share'}} active{{/is}}">
+            <div class="taleTitle">
+                <div class="innerTitle">
+                    Подiлися казкою
+                </div>
+            </div>
+
+            <div class="taleBtnWrap small closeFrame">
+                <div class="small taleBtn orange"></div>
+            </div>
+
+            <div class="shareLink">
+                http://bayer.ua/kinderbiovital/podilusya-kazkoyu
+            </div>
+
+            <div class="shareTaleSoc"></div>
+
         </div>
 
     </div>

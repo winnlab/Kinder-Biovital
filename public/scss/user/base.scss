@@ -42,7 +42,7 @@ module {
     width: $sceneWidth;
     height: $sceneHeight;
     position: absolute;
-    z-index: 10;    
+    z-index: 10;
 }
 
 @import '../admin/cosmetics/_cover.scss';
@@ -51,4 +51,5 @@ module {
 @import '../admin/cosmetics/_frame.scss';
 @import '../admin/cosmetics/_taleCover.scss';
 @import '../admin/cosmetics/_preview.scss';
+@import 'cosmetics/_share.scss';
 @import './cosmetics/_main.scss';

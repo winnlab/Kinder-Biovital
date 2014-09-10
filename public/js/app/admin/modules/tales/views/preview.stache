@@ -24,7 +24,11 @@
 
 </div>
 
-<div class="taleTitle">{{tale.name}}</div>
+<div class="taleTitle">
+    <div class="innerTitle">
+        {{tale.name}}
+    </div>
+</div>
 <div class="authorText{{#if frame.text}} active{{/if}}">
     <div class="authorInner">
         {{frame.text}}
