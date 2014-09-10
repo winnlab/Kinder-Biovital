@@ -279,7 +279,6 @@ html {
       top: 12px;
       left: 21px;
       z-index: 2;
-      background: red;
       width: 382px;
       height: 124px; }
     .taleZone .framePosWrap .miniFrame {
@@ -834,11 +833,13 @@ html {
     left: 24px;
     z-index: 1;
     height: 33px;
-    width: 45px;
-    cursor: pointer; }
+    width: 43px;
+    cursor: pointer;
+    background: url("/img/prevArrow.jpg"); }
   .taleZone.previewBlock .frameControl .nextFrame {
     left: auto;
-    right: 20px; }
+    right: 20px;
+    background: url("/img/nextArrow.jpg"); }
   .taleZone.previewBlock .frameControl .playFrame {
     position: absolute;
     top: 28px;

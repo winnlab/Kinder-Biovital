@@ -38,9 +38,13 @@
 <div class="soundBtn"></div>
 
 <div class="frameControl">
-    <div class="prevFrame"></div>
+    {{#isnt cIndex 1}}
+        <div class="prevFrame"></div>
+    {{/isnt}}
     <div class="playFrame"></div>
+    {{#isnt cIndex tale.frames.length}}
     <div class="nextFrame"></div>
+    {{/isnt}}
 </div>
 
 <div class="sharing"></div>

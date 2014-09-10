@@ -41,6 +41,7 @@ define(
                     html;
 
                 self.module = new can.Map({
+                    cIndex: 1,
                     tale: {},
                     frame: {}
                 });
@@ -118,11 +119,13 @@ define(
             },
 
             changeFrame: function (i) {
-                var frames = this.module.attr('tale.frames'),
-                    frame = this.module.attr('frame'),
+                var module = this.module,
+                    frames = module.attr('tale.frames'),
+                    frame = module.attr('frame'),
                     cIndex = frames.indexOf(frame),
                     index = cIndex + i;
                 if (index >= 0 && index < frames.length) {
+                    module.attr('cIndex', index + 1);
                     this.currentFrame(index);
                 }
             }

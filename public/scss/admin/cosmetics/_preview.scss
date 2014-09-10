@@ -107,14 +107,16 @@
             top: 54px;
             left: 24px;
             z-index: 1;
-            @include size(45px 33px);
+            @include size(43px 33px);
             cursor: pointer;
+            background: url('#{$imgPath}prevArrow.jpg');
         }
 
         .nextFrame {
             @extend .prevFrame;
             left: auto;
             right: 20px;
+            background: url('#{$imgPath}nextArrow.jpg');
         }
 
         .playFrame {
