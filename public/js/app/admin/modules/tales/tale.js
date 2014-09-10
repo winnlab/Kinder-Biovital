@@ -362,10 +362,6 @@ define(
                 }, this));
             },
 
-            '.closePreview click': function () {
-                this.module.attr('talePreview', false);
-            },
-
             '.end click': function () {
                 this.saveTale(null, true);
                 if (this.module.attr('admin')) {
@@ -373,12 +369,16 @@ define(
                 }
             },
 
-            '.closeFrame click': function () {
-                this.saveTale();
-                if (this.module.attr('admin')) {
-                    can.route.attr({module: 'tales'}, true)
+            '.closeFrame click': function (el) {
+                if (el.hasClass('.closePreview')) {
+                    this.module.attr('talePreview', false);
                 } else {
-                    can.route.attr({module: 'main'}, true)
+                    this.saveTale();
+                    if (this.module.attr('admin')) {
+                        can.route.attr({module: 'tales'}, true)
+                    } else {
+                        can.route.attr({module: 'main'}, true)
+                    }
                 }
             }
 

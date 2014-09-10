@@ -31,8 +31,10 @@
             border-radius: 10px;
             box-shadow: $innerShadow;
             margin-bottom: 5px;
-            background-size: cover;
+            background-size: contain;
             background-position: center center;
+            background-color: #fff;
+            background-repeat: no-repeat;
 
             &:last-of-type {
                 margin-bottom: 0;
@@ -117,8 +119,9 @@
             top: 25px;
             background-color: #fff;
             box-shadow: inset 2px 2px 0 0 rgba(0, 0, 0, 0.3);
-            background-size: cover;
+            background-size: contain;
             background-position: center center;
+            background-repeat: no-repeat;
         }
     }
 
