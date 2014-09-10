@@ -1,0 +1,42 @@
+<div class="frameBg" style="{{bgOffset frame.left}}">
+    <img class="bg" src="/uploads/{{frame.decorationId.bg}}">
+    <img class="plan" src="/uploads/{{frame.decorationId.plan}}">
+    <img class="fg" src="/uploads/{{frame.decorationId.fg}}">
+
+    <div class="topBlock">
+        {{#each frame.heroes}}
+            <div class="heroInDrag {{heroPlan}}" style="left: {{left}}px; top: {{top}}px;">
+                <div class="replica" style="{{#unless replica.text}}display: none;{{/unless}}">
+                    <div class="replicaInner">
+                        {{replica.text}}
+                    </div>
+                </div>
+                <div class="name">
+                    {{name}}
+                </div>
+            </div>
+        {{/each}}
+    </div>
+
+    {{#each frame.heroes}}
+        <div class="heroImg {{heroPlan}}" style="left: {{left}}px; top: {{top}}px; background-image: url('/uploads/{{heroId.img}}');"></div>
+    {{/each}}
+
+</div>
+
+<div class="taleTitle">{{tale.name}}</div>
+<div class="authorText{{#if frame.text}} active{{/if}}">
+    <div class="authorInner">
+        {{frame.text}}
+    </div>
+</div>
+
+<div class="soundBtn"></div>
+
+<div class="frameControl">
+    <div class="prevFrame"></div>
+    <div class="playFrame"></div>
+    <div class="nextFrame"></div>
+</div>
+
+<div class="sharing"></div>

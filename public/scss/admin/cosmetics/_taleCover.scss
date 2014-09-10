@@ -1,0 +1,173 @@
+@charset "UTF-8";
+@import '../../bourbon/_bourbon.scss';
+@import '../../base/_mixins.scss';
+@import '../../base/_placeholders.scss';
+@import '../../base/_variables.scss';
+
+.taleZone {
+
+    .chooseCover {
+        position: absolute;
+        top: 130px;
+        left: 81px;
+
+        .taleBtnWrap {
+            padding: 32px 5px;
+            border-radius: 15px;
+        }
+
+        .taleBtn {
+            padding: 11px 12px;
+            margin-right: 2px;
+
+            &:active {
+                box-shadow: $btnShadow;
+            }
+        }
+
+        .coverImage {
+            width: 62px;
+            height: 62px;
+            border-radius: 10px;
+            box-shadow: $innerShadow;
+            margin-bottom: 5px;
+            background-size: cover;
+            background-position: center center;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        .chooseColor {
+            position: absolute;
+            top: 25px;
+            left: 98px;
+            border-radius: 0 15px 15px 0;
+            box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.1);
+            width: 74px;
+            padding: 37px 8px;
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: -7px;
+                bottom: -7px;
+                left: -6px;
+                width: 6px;
+                background: #f5ebd9;
+            }
+
+            .arrow {
+                left: 19px;
+                &.top {
+                    top: 12px;
+                    background-image: url('#{$imgPath}colorTop.jpg');
+                }
+                &.btm {
+                    bottom: 11px;
+                    background-image: url('#{$imgPath}colorBtm.jpg');
+                }
+            }
+        }
+
+        .coverColor {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            box-shadow: $innerShadow;
+            margin-bottom: 4px;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        .arrow {
+            position: absolute;
+            width: 27px;
+            height: 15px;
+            left: 27px;
+            cursor: pointer;
+
+            &.top {
+                top: -23px;
+                background-image: url('#{$imgPath}imgTop.jpg');
+            }
+            &.btm {
+                background-image: url('#{$imgPath}imgBtm.jpg');
+                bottom: -23px;
+            }
+        }
+    }
+
+    .taleCover {
+        position: absolute;
+        width: 565px;
+        height: 325px;
+        left: 331px;
+        top: 114px;
+        border-radius: 20px;
+
+        .preview {
+            position: absolute;
+            width: 516px;
+            height: 274px;
+            left: 23px;
+            top: 25px;
+            background-color: #fff;
+            box-shadow: inset 2px 2px 0 0 rgba(0, 0, 0, 0.3);
+            background-size: cover;
+            background-position: center center;
+        }
+    }
+
+    .taleName {
+        position: absolute;
+        top: 453px;
+        left: 491px;
+
+        .taleBtn {
+            padding: 6px 11px;
+        }
+
+        input {
+            border: none;
+            height: 34px;
+            margin-bottom: 1px;
+            width: 206px;
+            border-radius: 5px;
+            box-shadow: $innerShadow;
+            outline: none;
+            padding: 3px 10px;
+            text-align: center;
+            font-size: 16px;
+        }
+    }
+
+    .prev {
+        position: absolute;
+        right: 243px;
+        padding: 11px 14px 11px 12px;
+        bottom: 32px;
+
+        .taleBtn {
+            width: 191px;
+            height: 62px;
+            padding: 21px;
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                @include size(193px 66px);
+                background: url('#{$imgPath}back.png');
+            }
+        }
+    }
+}
+
+.taleZone .next.end .taleBtn:after {
+    background: url('#{$imgPath}taleIsReady.png');
+}

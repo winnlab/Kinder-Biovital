@@ -48,7 +48,7 @@ Router.use '/cover/:id?', CoverImage.rest
 Router.use '/decoration/img', Decoration.restFile
 Router.use '/decoration/:id?', Decoration.rest
 
-#------- Decoration ---------#
+#------- Tale ---------#
 
 Router.use '/tale/:id?', Tale.rest
 

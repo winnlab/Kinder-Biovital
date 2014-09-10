@@ -2,6 +2,11 @@ define(
     [],
     function () {
         return {
+            chooseResource: function (resource) {
+                return document.location.pathname.indexOf('admin/') !== -1
+                    ? '/admin' + resource
+                    : resource;
+            },
             parseModel: function (data) {
                 if (data.success) {
                     data = data.data;

@@ -1,7 +1,15 @@
 express = require 'express'
 
 View = require '../lib/view'
+
 Main = require './user/main.coffee'
+Hero = require './admin/hero'
+Replica = require './admin/replica'
+Track = require './admin/track'
+CoverColor = require './admin/coverColor'
+CoverImage = require './admin/coverImage'
+Decoration = require './admin/decoration'
+Tale = require './admin/tale'
 
 Router = express.Router()
 
@@ -16,13 +24,45 @@ Router.use (req, res, next) ->
 		else
 			Main.ie req, res
 
+#------- Tale ---------#
+
+Router.get '/tale/:id?', Tale.rest
+Router.post '/tale/:id?', Tale.rest
+Router.put '/tale/:id?', Tale.rest
+
 Router.get '/', Main.index
-Router.get '/products', Main.index
-Router.get '/product/:name?', Main.index
-Router.get '/parties', Main.index
-Router.get '/podcast', Main.index
-Router.get '/podcasts', Main.index
-Router.get '/contacts', Main.index
-Router.get '/shakeit', Main.index
+Router.get '/main', Main.index
+Router.get '/create-tale', Main.index
+Router.get '/fairy-tail/:name?', Main.index
+
+
+
+#------- Hero ---------#
+
+Router.get '/hero', Hero.rest
+
+#------- Replica ---------#
+
+Router.get '/replica', Replica.rest
+
+#------- Track ---------#
+
+Router.get '/track', Track.rest
+
+#------- Cover colors ---------#
+
+Router.get '/coverColor', CoverColor.rest
+
+#------- Cover images ---------#
+
+Router.get '/cover', CoverImage.rest
+
+#------- Decoration ---------#
+
+Router.get '/decoration', Decoration.rest
+
+#------- Tale ---------#
+
+Router.get '/tale', Tale.rest
 
 exports.Router = Router

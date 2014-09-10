@@ -6,9 +6,9 @@
 
 .taleBtnWrap {
     @include user-select(none);
-    background: #fff;
+    background: #f5ebd9;
     display: inline-block;
-    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: $outerShadow;
 
     &.big {
         border-radius: 10px;
@@ -30,12 +30,13 @@
     }
 }
 .taleBtn {
+    position: relative;
     border-radius: 7px;
     background: #fff;
     display: block;
     float: left;
     cursor: pointer;
-    box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: $btnShadow;
     text-align: center;
 
     &.big {

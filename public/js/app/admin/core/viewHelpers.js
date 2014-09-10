@@ -56,6 +56,23 @@ define([
 			return getObserverValue(array).indexOf(getObserverValue(element)) + 1;
 		});
 
+		can.mustache.registerHelper('arrFind', function (array, id, findKey, key) {
+			var item;
+			id = getObserverValue(id);
+			findKey = getObserverValue(findKey);
+			key = getObserverValue(key);
+			array = getObserverValue(array);			
+			if (id) {
+				item = _.find(array, function (a) {
+					return a.attr(findKey) === id;
+				});
+				if (item) {
+					return item.attr(key);
+				}
+			}
+			return '';
+		});
+
 		can.mustache.registerHelper('getArrayObjValue', function (array, index, key) {
 			return array() ? array().attr(index + '.' + key) : '';
 		});

@@ -7,8 +7,8 @@ define(
 	function (can, baseModel) {
 
 		return can.Model.extend({
-			id: "_id",
-			resource: "/admin/hero",
+			id: '_id',
+			resource: baseModel.chooseResource('/hero'),			
 			parseModel: baseModel.parseModel,
 			parseModels: baseModel.parseModels
 		}, {

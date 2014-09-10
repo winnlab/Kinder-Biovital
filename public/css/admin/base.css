@@ -29,7 +29,7 @@ html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background: #fff;
+  background: #f5ebd9;
   display: inline-block;
   box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1); }
   .taleBtnWrap.big {
@@ -47,6 +47,7 @@ html {
     background: #df4a08; }
 
 .taleBtn {
+  position: relative;
   border-radius: 7px;
   background: #fff;
   display: block;
@@ -79,126 +80,13 @@ html {
   background-repeat: no-repeat;
   background-position: center center; }
 
-.leftPanel {
-  position: absolute;
-  width: 164px;
-  left: -176px;
-  top: 300px;
-  z-index: 1; }
-  .leftPanel .taleBtnWrap {
-    display: block;
-    margin-bottom: 9px; }
-    .leftPanel .taleBtnWrap .taleBtn {
-      padding: 4px;
-      float: none; }
-      .leftPanel .taleBtnWrap .taleBtn:after {
-        content: "";
-        display: table;
-        clear: both; }
-      .leftPanel .taleBtnWrap .taleBtn .title {
-        margin-bottom: 5px; }
-  .leftPanel .hero {
-    display: block;
-    float: left;
-    width: 62px;
-    height: 62px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-color: #fff;
-    margin: 0 4px;
-    border-radius: 10px;
-    box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.3); }
-
-.authorText {
-  position: absolute;
-  top: 110px;
-  left: 236px;
-  width: 752px;
-  height: 86px;
-  display: none;
-  background: #fff;
-  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
-  z-index: 1; }
-  .authorText.active {
-    display: block; }
-  .authorText textarea {
-    width: 100%;
-    height: 100%;
-    border: none;
-    text-align: center;
-    border: none;
-    overflow: auto;
-    outline: none;
-    box-shadow: none; }
-
-.taleZone .displayFrame .chooseMusic {
-  bottom: -95px;
-  left: -176px;
-  z-index: 1; }
-
-.btmPanel {
-  position: absolute;
-  bottom: -122px;
-  left: 326px;
-  z-index: 1; }
-  .btmPanel .taleBtn {
-    padding: 9px 10px 8px; }
-  .btmPanel .frame {
-    display: block;
-    float: left;
-    width: 102px;
-    background: #fff;
-    color: #333;
-    box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    margin: 0 6px 0 0;
-    padding: 28px 0 29px; }
-    .btmPanel .frame:last-of-type {
-      margin: 0; }
-
-.rightPanel {
-  position: absolute;
-  right: -179px;
-  top: 453px;
-  z-index: 1;
-  width: 173px; }
-  .rightPanel .taleBtnWrap {
-    display: block;
-    margin: 0 0 17px; }
-    .rightPanel .taleBtnWrap .taleBtn {
-      height: 63px;
-      width: 149px;
-      margin: 0 0 2px 1px;
-      float: none; }
-
-.endTale.taleBtnWrap {
-  position: absolute;
-  bottom: -88px;
-  right: -178px;
-  z-index: 1;
-  padding: 9px 13px 9px 9px; }
-  .endTale.taleBtnWrap .taleBtn {
-    height: 65px;
-    width: 193px; }
-
-.heroIn {
-  position: absolute; }
-  .heroIn .heroImg {
-    background-size: contain;
-    background-position: center center; }
-
-.coverImgTbl .coverImage {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center; }
-
 .taleForm .right-side {
   overflow-y: hidden;
   overflow-x: visible;
   min-height: 820px;
   position: relative;
-  margin-left: 0; }
+  margin-left: 0;
+  min-height: 650px; }
 
 .taleContainer {
   min-width: 1604px;
@@ -207,6 +95,10 @@ html {
   left: 0;
   top: 0;
   overflow: hidden; }
+  .taleContainer.small {
+    width: 100%;
+    min-width: 1225px;
+    min-height: 650px; }
 
 .taleZone {
   position: absolute;
@@ -241,6 +133,19 @@ html {
     position: absolute;
     top: 23px;
     left: 14px; }
+    .taleZone .setDecorations .taleBtn {
+      box-shadow: none; }
+      .taleZone .setDecorations .taleBtn:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 49px;
+        height: 49px; }
+      .taleZone .setDecorations .taleBtn.orange:after {
+        background: url("/img/sun.jpg"); }
+      .taleZone .setDecorations .taleBtn.red:after {
+        background: url("/img/moon.jpg"); }
   .taleZone .taleTitle {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -249,35 +154,81 @@ html {
     color: #f59b06;
     width: 346px;
     height: 102px;
+    padding-top: 30px;
+    position: absolute;
     left: 439px;
     top: 3px;
-    position: absolute;
-    background: #fff;
-    text-align: center; }
+    z-index: 1;
+    text-align: center;
+    font-size: 27px;
+    font-weight: bold;
+    text-transform: uppercase; }
+    .taleZone .taleTitle:after {
+      content: '';
+      position: absolute;
+      background-image: url("/img/titleBg.png");
+      width: 381px;
+      height: 138px;
+      left: -16px;
+      top: -14px;
+      z-index: -1; }
   .taleZone .question {
     position: absolute;
-    right: 49px;
-    top: 10px; }
+    right: 47px;
+    top: 10px;
+    z-index: 1; }
+    .taleZone .question .taleBtn {
+      box-shadow: none; }
+      .taleZone .question .taleBtn:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 24px;
+        width: 24px;
+        background: url("/img/question.jpg"); }
   .taleZone .closeFrame {
     position: absolute;
-    right: 10px;
-    top: 10px; }
+    right: 8px;
+    top: 10px;
+    z-index: 1; }
+    .taleZone .closeFrame .taleBtn {
+      box-shadow: none; }
+      .taleZone .closeFrame .taleBtn:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 24px;
+        width: 24px;
+        background: url("/img/close.jpg"); }
   .taleZone .arrows {
     position: absolute;
-    top: 275px;
-    left: 536px;
+    top: 277px;
+    left: 537px;
     width: 152px;
     height: 100px;
-    background: #fff;
-    border-radius: 16px; }
+    background: #f5ebd9;
+    border-radius: 16px;
+    background-image: url("/img/dragArrow.png");
+    background-position: center center;
+    background-repeat: no-repeat; }
   .taleZone .chooseMusic {
     position: absolute;
-    bottom: 36px;
+    bottom: 34px;
     left: 14px; }
     .taleZone .chooseMusic .taleBtn {
       padding: 6px 10px;
       margin-bottom: 2px;
       width: 228px; }
+      .taleZone .chooseMusic .taleBtn:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -1px;
+        width: 230px;
+        height: 49px;
+        background: url("/img/chooseMusic.jpg"); }
     .taleZone .chooseMusic .musicLabel {
       box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.3);
       padding: 7px;
@@ -290,25 +241,42 @@ html {
     position: absolute;
     right: 15px;
     padding: 11px 14px 11px 12px;
-    bottom: 35px; }
+    bottom: 32px; }
     .taleZone .next .taleBtn {
       width: 191px;
       height: 62px;
       padding: 21px; }
+      .taleZone .next .taleBtn:after {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -1px;
+        height: 65px;
+        width: 193px;
+        background: url("/img/next.jpg"); }
   .taleZone .framePosWrap {
     position: absolute;
     width: 424px;
     height: 153px;
     bottom: 21px;
-    left: 400px;
-    background: #fff; }
+    left: 400px; }
+    .taleZone .framePosWrap:after {
+      content: '';
+      position: absolute;
+      left: -14px;
+      top: -13px;
+      z-index: 1;
+      width: 451px;
+      height: 180px;
+      background-image: url("/img/spread.png"); }
     .taleZone .framePosWrap .miniBg {
       position: absolute;
+      top: 12px;
+      left: 21px;
+      z-index: 2;
       background: red;
       width: 382px;
-      height: 124px;
-      top: 12px;
-      left: 21px; }
+      height: 124px; }
     .taleZone .framePosWrap .miniFrame {
       position: absolute;
       width: 124px;
@@ -350,5 +318,526 @@ html {
   display: none; }
   .taleIn.active {
     display: block; }
+
+.coverImgTbl .coverImage {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.leftPanel {
+  position: absolute;
+  width: 164px;
+  left: -176px;
+  top: 300px;
+  z-index: 1; }
+  .small .leftPanel {
+    left: 18px;
+    top: 162px; }
+  .leftPanel .taleBtnWrap {
+    display: block;
+    margin-bottom: 9px;
+    border-radius: 6px; }
+    .leftPanel .taleBtnWrap .taleBtn {
+      padding: 4px;
+      float: none;
+      margin-bottom: 3px; }
+      .leftPanel .taleBtnWrap .taleBtn:after {
+        content: "";
+        display: table;
+        clear: both; }
+      .leftPanel .taleBtnWrap .taleBtn.changeBg:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -1px;
+        height: 29px;
+        width: 149px;
+        background: url("/img/changeBg.jpg"); }
+      .leftPanel .taleBtnWrap .taleBtn .title {
+        margin-bottom: 8px;
+        position: relative; }
+        .leftPanel .taleBtnWrap .taleBtn .title:after {
+          content: '';
+          position: absolute;
+          top: 2px;
+          left: 10px;
+          height: 18px;
+          width: 118px;
+          background: url("/img/addHero.jpg"); }
+    .leftPanel .taleBtnWrap.addTitr .taleBtn:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -1px;
+      height: 29px;
+      width: 149px;
+      background: url("/img/addText.jpg"); }
+  .leftPanel .hero {
+    display: block;
+    float: left;
+    width: 62px;
+    height: 62px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #fff;
+    margin: 0 4px 5px;
+    border-radius: 10px;
+    box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.3); }
+
+.authorText {
+  position: absolute;
+  top: 110px;
+  left: 236px;
+  width: 752px;
+  height: 86px;
+  display: none;
+  z-index: 1; }
+  .authorText:after {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -17px;
+    z-index: -1;
+    height: 117px;
+    width: 787px;
+    background: url("/img/authorText.png"); }
+  .authorText.active {
+    display: block; }
+  .authorText textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+    overflow: auto;
+    outline: none;
+    box-shadow: none;
+    resize: none;
+    background: none; }
+
+.taleZone .displayFrame .chooseMusic {
+  bottom: -95px;
+  left: -176px;
+  z-index: 1; }
+  .small .taleZone .displayFrame .chooseMusic {
+    bottom: 35px;
+    left: 14px; }
+
+.btmPanel {
+  position: absolute;
+  bottom: -122px;
+  left: 326px;
+  z-index: 1; }
+  .small .btmPanel {
+    bottom: 11px; }
+  .btmPanel .taleBtnWrap {
+    padding: 8px 9px; }
+  .btmPanel .taleBtn {
+    padding: 9px 10px 8px; }
+  .btmPanel .frame {
+    display: block;
+    float: left;
+    width: 102px;
+    background: #f4ecd9;
+    color: #333;
+    box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin: 0 6px 0 0;
+    padding: 29px 0;
+    height: 78px;
+    position: relative;
+    font-size: 16px; }
+    .btmPanel .frame:last-of-type {
+      margin: 0; }
+    .btmPanel .frame .plus {
+      position: absolute;
+      top: 16px;
+      left: 29px;
+      height: 45px;
+      width: 45px;
+      background: url("/img/addSlide.jpg"); }
+
+.rightPanel {
+  position: absolute;
+  right: -179px;
+  top: 453px;
+  z-index: 1;
+  width: 174px; }
+  .small .rightPanel {
+    right: 57px;
+    top: 334px; }
+  .rightPanel .taleBtnWrap {
+    display: block;
+    margin: 0 0 17px; }
+    .rightPanel .taleBtnWrap .taleBtn {
+      height: 63px;
+      width: 149px;
+      margin: 0 0 2px 1px;
+      float: none; }
+      .rightPanel .taleBtnWrap .taleBtn.preview:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0px;
+        height: 65px;
+        width: 150px;
+        background: url("/img/preview.jpg"); }
+      .rightPanel .taleBtnWrap .taleBtn.removeSlide {
+        width: 145px;
+        margin-left: 4px; }
+        .rightPanel .taleBtnWrap .taleBtn.removeSlide:after {
+          content: '';
+          position: absolute;
+          top: -1px;
+          left: -2px;
+          height: 65px;
+          width: 150px;
+          background: url("/img/removeSlide.jpg"); }
+
+.endTale.taleBtnWrap {
+  position: absolute;
+  bottom: -88px;
+  right: -178px;
+  z-index: 1;
+  padding: 9px 13px 9px 9px; }
+  .small .endTale.taleBtnWrap {
+    bottom: 34px;
+    right: 15px; }
+  .endTale.taleBtnWrap .taleBtn {
+    height: 65px;
+    width: 193px;
+    border-radius: 10px;
+    margin: 0 0 0 1px; }
+    .endTale.taleBtnWrap .taleBtn:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 1px;
+      height: 65px;
+      width: 192px;
+      background: url("/img/endTale.jpg"); }
+
+.dragableHeroes {
+  position: absolute;
+  z-index: 5; }
+
+.heroInDrag {
+  cursor: move;
+  position: absolute; }
+  .heroInDrag .name {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -84px; }
+    .heroInDrag .name input {
+      width: 168px;
+      height: 38px;
+      border: none;
+      box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      padding: 3px 10px;
+      outline: none;
+      overflow: auto;
+      text-align: center; }
+  .heroInDrag .replica {
+    position: absolute;
+    top: -99px;
+    right: -216px; }
+    .heroInDrag .replica:after {
+      content: '';
+      position: absolute;
+      top: -15px;
+      left: -18px;
+      z-index: -1;
+      height: 203px;
+      width: 254px;
+      background: url("/img/replica.png"); }
+    .heroInDrag .replica textarea {
+      height: 138px;
+      width: 216px;
+      padding: 20px;
+      background: none;
+      text-align: center;
+      font-size: 14px;
+      outline: none;
+      border: none;
+      resize: none; }
+  .heroInDrag .replicaControl {
+    position: absolute;
+    bottom: 0;
+    right: -177px;
+    width: 123px;
+    height: 60px;
+    background: #f4ecd9;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1); }
+    .heroInDrag .replicaControl .miniCloud {
+      position: absolute;
+      left: 14px;
+      top: 13px;
+      width: 51px;
+      height: 40px;
+      background: url("/img/miniCloud.jpg"); }
+    .heroInDrag .replicaControl .replicaBtn {
+      position: absolute;
+      width: 29px;
+      height: 29px;
+      left: 79px;
+      top: 15px;
+      cursor: pointer; }
+      .heroInDrag .replicaControl .replicaBtn.add {
+        background: url("/img/addReplica.jpg"); }
+      .heroInDrag .replicaControl .replicaBtn.remove {
+        background: url("/img/removeReplica.jpg"); }
+
+.heroImg {
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  position: absolute; }
+
+.firstPlan {
+  position: absolute;
+  z-index: 3;
+  width: 150px;
+  height: 200px; }
+
+.secondPlan {
+  position: absolute;
+  z-index: 1;
+  width: 100px;
+  height: 150px; }
+
+.coverImgTbl .coverImage {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.taleZone .chooseCover {
+  position: absolute;
+  top: 130px;
+  left: 81px; }
+  .taleZone .chooseCover .taleBtnWrap {
+    padding: 32px 5px;
+    border-radius: 15px; }
+  .taleZone .chooseCover .taleBtn {
+    padding: 11px 12px;
+    margin-right: 2px; }
+    .taleZone .chooseCover .taleBtn:active {
+      box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.3); }
+  .taleZone .chooseCover .coverImage {
+    width: 62px;
+    height: 62px;
+    border-radius: 10px;
+    box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.3);
+    margin-bottom: 5px;
+    background-size: cover;
+    background-position: center center; }
+    .taleZone .chooseCover .coverImage:last-of-type {
+      margin-bottom: 0; }
+  .taleZone .chooseCover .chooseColor {
+    position: absolute;
+    top: 25px;
+    left: 98px;
+    border-radius: 0 15px 15px 0;
+    box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.1);
+    width: 74px;
+    padding: 37px 8px; }
+    .taleZone .chooseCover .chooseColor:before, .taleZone .chooseCover .chooseColor.taleZone:after {
+      content: "";
+      position: absolute;
+      top: -7px;
+      bottom: -7px;
+      left: -6px;
+      width: 6px;
+      background: #f5ebd9; }
+    .taleZone .chooseCover .chooseColor .arrow {
+      left: 19px; }
+      .taleZone .chooseCover .chooseColor .arrow.top {
+        top: 12px;
+        background-image: url("/img/colorTop.jpg"); }
+      .taleZone .chooseCover .chooseColor .arrow.btm {
+        bottom: 11px;
+        background-image: url("/img/colorBtm.jpg"); }
+  .taleZone .chooseCover .coverColor {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.3);
+    margin-bottom: 4px; }
+    .taleZone .chooseCover .coverColor:last-of-type {
+      margin-bottom: 0; }
+  .taleZone .chooseCover .arrow {
+    position: absolute;
+    width: 27px;
+    height: 15px;
+    left: 27px;
+    cursor: pointer; }
+    .taleZone .chooseCover .arrow.top {
+      top: -23px;
+      background-image: url("/img/imgTop.jpg"); }
+    .taleZone .chooseCover .arrow.btm {
+      background-image: url("/img/imgBtm.jpg");
+      bottom: -23px; }
+.taleZone .taleCover {
+  position: absolute;
+  width: 565px;
+  height: 325px;
+  left: 331px;
+  top: 114px;
+  border-radius: 20px; }
+  .taleZone .taleCover .preview {
+    position: absolute;
+    width: 516px;
+    height: 274px;
+    left: 23px;
+    top: 25px;
+    background-color: #fff;
+    box-shadow: inset 2px 2px 0 0 rgba(0, 0, 0, 0.3);
+    background-size: cover;
+    background-position: center center; }
+.taleZone .taleName {
+  position: absolute;
+  top: 453px;
+  left: 491px; }
+  .taleZone .taleName .taleBtn {
+    padding: 6px 11px; }
+  .taleZone .taleName input {
+    border: none;
+    height: 34px;
+    margin-bottom: 1px;
+    width: 206px;
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.3);
+    outline: none;
+    padding: 3px 10px;
+    text-align: center;
+    font-size: 16px; }
+.taleZone .prev {
+  position: absolute;
+  right: 243px;
+  padding: 11px 14px 11px 12px;
+  bottom: 32px; }
+  .taleZone .prev .taleBtn {
+    width: 191px;
+    height: 62px;
+    padding: 21px; }
+    .taleZone .prev .taleBtn:after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      height: 66px;
+      width: 193px;
+      background: url("/img/back.png"); }
+
+.taleZone .next.end .taleBtn:after {
+  background: url("/img/taleIsReady.png"); }
+
+.coverImgTbl .coverImage {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+.taleZone.previewBlock:before, .taleZone.previewBlock:after {
+  display: none; }
+.taleZone.previewBlock:after {
+  display: none; }
+.taleZone.previewBlock .frameBg {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; }
+.taleZone.previewBlock .topBlock {
+  position: absolute;
+  z-index: 5; }
+  .taleZone.previewBlock .topBlock .heroInDrag {
+    cursor: default; }
+  .taleZone.previewBlock .topBlock .replica {
+    top: -119px;
+    width: 220px;
+    text-align: center;
+    font-size: 16px;
+    display: table; }
+    .taleZone.previewBlock .topBlock .replica:after {
+      content: '';
+      position: absolute;
+      top: -15px;
+      left: -18px;
+      z-index: -1;
+      height: 203px;
+      width: 254px;
+      background: url("/img/replica.png"); }
+  .taleZone.previewBlock .topBlock .replicaInner {
+    display: table-cell;
+    width: 220px;
+    height: 138px;
+    padding: 20px;
+    vertical-align: middle; }
+  .taleZone.previewBlock .topBlock .name {
+    bottom: -45px;
+    width: 168px;
+    height: 38px;
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 7px 0;
+    outline: none;
+    overflow: auto;
+    text-align: center;
+    font-size: 16px;
+    background: #fff; }
+.taleZone.previewBlock .authorText.active {
+  display: table; }
+  .taleZone.previewBlock .authorText.active .authorInner {
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    vertical-align: middle; }
+.taleZone.previewBlock .soundBtn {
+  position: absolute;
+  bottom: 18px;
+  left: 3px;
+  height: 88px;
+  width: 103px;
+  background: url("/img/soundOn.png"); }
+.taleZone.previewBlock .sharing {
+  position: absolute;
+  bottom: -2px;
+  right: -7px;
+  height: 56px;
+  width: 192px;
+  background: url("/img/shareInTale.png"); }
+.taleZone.previewBlock .frameControl {
+  position: absolute;
+  bottom: -7px;
+  left: 486px;
+  height: 142px;
+  width: 255px;
+  background: url("/img/playerControl.png"); }
+  .taleZone.previewBlock .frameControl .prevFrame, .taleZone.previewBlock .frameControl .nextFrame {
+    position: absolute;
+    top: 54px;
+    left: 24px;
+    z-index: 1;
+    height: 33px;
+    width: 45px;
+    cursor: pointer; }
+  .taleZone.previewBlock .frameControl .nextFrame {
+    left: auto;
+    right: 20px; }
+  .taleZone.previewBlock .frameControl .playFrame {
+    position: absolute;
+    top: 28px;
+    left: 86px;
+    z-index: 1;
+    height: 88px;
+    width: 88px;
+    cursor: pointer; }
 
 /*# sourceMappingURL=base.css.map */

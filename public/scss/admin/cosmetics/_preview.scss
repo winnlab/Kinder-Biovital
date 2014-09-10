@@ -1,0 +1,130 @@
+@charset "UTF-8";
+@import '../../bourbon/_bourbon.scss';
+@import '../../base/_mixins.scss';
+@import '../../base/_placeholders.scss';
+@import '../../base/_variables.scss';
+
+.taleZone.previewBlock {
+    &:before {
+        display: none;
+    }
+    &:after {
+        display: none;
+    }
+
+    .frameBg {
+        @include transition(all 0.3s ease-in-out);
+    }
+
+    .topBlock {
+        position: absolute;
+        z-index: 5;
+
+        .heroInDrag {
+            cursor: default;
+        }
+
+        .replica {
+            top: -119px;
+            width: 220px;
+            text-align: center;
+            font-size: 16px;
+            display: table;
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: -15px;
+                left: -18px;
+                z-index: -1;
+                @include size(254px 203px);
+                background: url('#{$imgPath}replica.png');
+            }
+        }
+
+        .replicaInner {
+            display: table-cell;
+            width: 220px;
+            height: 138px;
+            padding: 20px;
+            vertical-align: middle;
+        }
+
+        .name {
+            bottom: -45px;
+            width: 168px;
+            height: 38px;
+            box-shadow: $outerShadow;
+            border-radius: 5px;
+            padding: 7px 0;
+            outline: none;
+            overflow: auto;
+            text-align: center;
+            font-size: 16px;
+            background: #fff;
+        }
+    }
+
+    .authorText.active {
+        display: table;
+
+        .authorInner {
+            display: table-cell;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            font-size: 16px;
+            text-align: center;
+            vertical-align: middle;
+        }
+    }
+
+    .soundBtn {
+        position: absolute;
+        bottom: 18px;
+        left: 3px;
+        @include size(103px 88px);
+        background: url('#{$imgPath}soundOn.png');
+    }
+
+    .sharing {
+        position: absolute;        
+        bottom: -2px;
+        right: -7px;
+        @include size(192px 56px);
+        background: url('#{$imgPath}shareInTale.png');
+    }
+
+    .frameControl {
+        position: absolute;
+        bottom: -7px;
+        left: 486px;
+        @include size(255px 142px);
+        background: url('#{$imgPath}playerControl.png');
+
+        .prevFrame {
+            position: absolute;
+            top: 54px;
+            left: 24px;
+            z-index: 1;
+            @include size(45px 33px);
+            cursor: pointer;
+        }
+
+        .nextFrame {
+            @extend .prevFrame;
+            left: auto;
+            right: 20px;
+        }
+
+        .playFrame {
+            position: absolute;
+            top: 28px;
+            left: 86px;
+            z-index: 1;
+            @include size(88px 88px);
+            cursor: pointer;
+        }
+    }
+
+}

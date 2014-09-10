@@ -1,24 +1,37 @@
 define(
-    ['canjs', 'underscore', 'core/appState', 'lib/jquerypp'],
+    [
+        'canjs',
+        'underscore',
+        'core/appState',
+        'lib/viewport',
+        'modules/tales/talePreview',
+        'lib/jquerypp',
+        'components/itemScroll/itemScroll'
+    ],
 
-    function (can, _, appState) {
+    function (can, _, appState, viewport, TalePreview) {
 
         'use strict';
 
         var Module = can.Map.extend({
                 showText: false,
+                talePreview: '',
+                interface: 'big',
                 setBg: function (context, el, ev) {
                     this.attr('frame.decorationId', context.attr('_id'));
                 },
                 setText: function (scope, el, ev) {
                     this.attr('frame.text', el.val());
+                },
+                setReplica: function (scope, el, ev) {
+                    scope.attr('replica.text', el.val());
                 }
             }),
             vendors = ['-webkit-', '-moz-', '-ms-', '-o-', ''];
 
         return can.Control.extend({
             defaults: {
-                viewpath: 'app/modules/tales/views/',
+                viewpath: '/js/app/admin/modules/tales/views/',
                 viewName: 'set.stache',
                 // can be "bg", "frame", "cover"
                 display: 'frame',
@@ -28,9 +41,17 @@ define(
                 miniProp: 9.69895288,
                 // This is offset of tale backround from tale zone
                 frameBgTop: -275,
+                // the offset top of hero when it become bigger
+                firstPlanTop: 570,
+
+                taleSize: {
+                    width: 1224,
+                    height: 650
+                },
 
                 data: [
                     'display',
+                    'interface',
                     'frame',
                     'tale',
                     'tracks',
@@ -57,15 +78,22 @@ define(
 
                 if (options.tale.isNew()) {
                     this.setDefaults(options.tale, options);
-                    // this.module.attr('display', 'bg');
                 }
 
                 this.currentFrame();
 
                 html = can.view(options.viewpath + options.viewName, this.module, {
-                    sizeContainer: function () {
+                    contentSize: function (size) {
+                        var height = viewport.getViewportHeight() + 'px';
+                        self.element.css('min-height', height);
+                        return 'min-height: ' + height;
+                    },
+                    talePosition: function () {
                         document.body.scrollTop = 50;
-                        return '';
+                        var left = (viewport.getViewportWidth() - 1225) / 2,
+                            top = (viewport.getViewportHeight() - 650) / 2;
+
+                        return 'left: ' + left + 'px; top: ' + top + 'px';;
                     },
                     bgOffset: function (left) {
                         var css = '';
@@ -89,18 +117,20 @@ define(
 
                         return preview ? 'background-image: url("/uploads/' + preview + '");' : '';
                     },
-                    heroSize: function (options) {
-                        var width = 150,
-                            height = 150,
-                            zIndex = 3;
-                        return 'width: ' + width + 'px; height: ' + height + 'px; z-index: ' + zIndex;
+                    heroPlan: function (options) {
+                        return options.context.attr('top') > self.options.firstPlanTop
+                            ? 'firstPlan'
+                            : 'secondPlan';
                     }
                 });
 
                 this.element.html(html);
 
-            },
+                if (options.isReady) {
+                    options.isReady.resolve();
+                }
 
+            },
 
             /**
              * Seting default data to empty tale
@@ -113,6 +143,10 @@ define(
             },
 
             addFrame: function (index) {
+                this.module.attr({
+                    'showText': false
+                    , 'display': 'bg'
+                });
                 return {
                     decorationId: this.options.decorations.attr('0._id'),
                     name: 'Слайд ' + (index + 1),
@@ -126,6 +160,14 @@ define(
                 var module = this.module;
                 index = index || 0;
                 module.attr('frame', module.attr('tale').attr('frames.' + index));
+
+                if (module.attr('frame.text').length === 0) {
+                    console.log('showText', false);
+                    module.attr('showText', false);
+                } else {
+                    console.log('showText', true);
+                    module.attr('showText', true);
+                }
             },
 
             '.miniFrame draginit': function (el, ev, drag) {
@@ -158,10 +200,15 @@ define(
 
             '.taleZone dropon': function (el, ev, drop, drag) {
                 var heroId = drag.element.data('id'),
+                    offset,
+                    left,
+                    top;
+                if (heroId) {
                     offset = el.offset(),
                     left = drag.location.left() - offset.left + this.module.attr('frame.left'),
                     top = drag.location.top() - offset.top - this.options.frameBgTop;
-                this.addHero(heroId, left, top);
+                    this.addHero(heroId, left, top);
+                }
             },
 
             addHero: function (id, left, top) {
@@ -186,8 +233,38 @@ define(
                 });
             },
 
-            '.heroIn click': function () {
-                console.log(module.attr('frame.heroes').attr());
+            '.heroInDrag draginit': function (el, ev, drag) {
+                drag.limit(el.parents('.taleZone'));
+            },
+
+            '.heroInDrag dragmove': 'setHeroPosition',
+
+            '.heroInDrag dragend': 'setHeroPosition',
+
+            setHeroPosition: function (el, ev, drag) {
+                var taleSize = this.options.taleSize,
+                    offset = el.parents('.taleZone').offset(),
+                    leftInContainer = drag.location.left() - offset.left,
+                    topInContainer = drag.location.top() - offset.top,
+                    hero,
+                    left,
+                    top;
+
+                if (leftInContainer >= 0
+                    && topInContainer >= 0
+                    && leftInContainer <= taleSize.width
+                    && topInContainer <=  taleSize.height) {
+
+                    hero = el.data('hero');
+                    left = leftInContainer + this.module.attr('frame.left');
+                    top = topInContainer - this.options.frameBgTop;
+                    hero.attr({
+                        left: left,
+                        top: top
+                    });
+                } else {
+                    return false;
+                }
             },
 
             '[data-display] click': function (el) {
@@ -232,6 +309,54 @@ define(
                         msg: 'Невозможно удалить последний слайд'
                     });
                 }
+            },
+
+            '.replicaBtn click': function (el) {
+                var hero = el.parents('.heroInDrag').data('hero');
+
+                if (hero.attr('replica.text')) {
+                    hero.attr('replica.text', '');
+                } else {
+                    hero.attr('replica.text', ' ');
+                }
+            },
+
+            '.coverImage click': function (el) {
+                this.module.attr('tale.coverImgId', el.data('id'));
+            },
+
+            '.coverColor click': function (el) {
+                this.module.attr('tale.coverColorId', el.data('id'));
+            },
+
+            saveTale: function (cb) {
+                this.module.attr('tale').save()
+                    .done(function () {
+                        if (typeof cb === 'function') {
+                            cb();
+                        }
+                    })
+                    .fail(function () {
+                        appState.attr('notification', {
+                            status: 'error',
+                            msg: 'Невозможно сохранить сказку'
+                        });
+                    });
+            },
+
+            '.preview click': function () {
+                this.saveTale(can.proxy(function(){
+                    var module = this.module;
+                    this.element.find('.talePreviewWrap').html('<div class="talePreview"></div>');
+                    this.module.attr('talePreview', true);
+                    new TalePreview(this.element.find('.talePreview'), {
+                        taleId: module.attr('tale._id')
+                    });
+                }, this));
+            },
+
+            '.closePreview click': function () {
+                this.module.attr('talePreview', false);
             }
 
         });

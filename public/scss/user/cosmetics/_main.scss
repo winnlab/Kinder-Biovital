@@ -1,0 +1,63 @@
+@charset "UTF-8";
+@import '../../bourbon/_bourbon.scss';
+@import '../../base/_mixins.scss';
+@import '../../base/_placeholders.scss';
+@import '../../base/_variables.scss';
+
+.mainPage {
+    .bg {
+        width: 1005px;
+        height: 670px;
+        background: url('#{$imgPath}mainPage.png');
+        position: absolute;
+        left: 109px;
+        top: -14px;
+        z-index: 0;
+    }
+
+    .watchTale {
+        width: 205px;
+        height: 204px;
+        background: #f4ecd9;
+        border-radius: 10px;
+        position: absolute;
+        left: 510px;
+        top: 213px;
+        z-index: 1;
+        cursor: pointer;
+
+        &:after {
+            content: '';
+            background: url('#{$imgPath}playTale.png');
+            width: 176px;
+            height: 175px;
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            z-index: 2;
+        }
+    }
+
+    .createTale {
+        width: 216px;
+        height: 82px;
+        background: $red;
+        border-radius: 10px;
+        position: absolute;
+        left: 739px;
+        top: 335px;
+        z-index: 1;
+        cursor: pointer;
+
+        &:after {
+            content: '';
+            background: url('#{$imgPath}createTale.png');
+            width: 199px;
+            height: 67px;
+            position: absolute;
+            top: 8px;
+            left: 7px;
+            z-index: 2;
+        }
+    }
+}

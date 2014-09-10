@@ -1,0 +1,54 @@
+@charset "UTF-8";
+@import '../bourbon/_bourbon.scss';
+@import '../base/_mixins.scss';
+@import '../base/_placeholders.scss';
+@import '../base/_variables.scss';
+
+*,
+*:after,
+*:before {
+    @include box-sizing(border-box);
+}
+
+html, body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-width: $sceneWidth;
+    min-height: $sceneHeight;
+}
+
+body {
+    background-image: url('#{$imgPath}mainBg.jpg');
+    background-size: cover;
+    background-position: center center;
+}
+
+#modules {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+module {
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}
+
+.positioned {
+    width: $sceneWidth;
+    height: $sceneHeight;
+    position: absolute;
+    z-index: 10;    
+}
+
+@import '../admin/cosmetics/_cover.scss';
+@import '../admin/cosmetics/_taleBtns.scss';
+@import '../admin/cosmetics/_tale.scss';
+@import '../admin/cosmetics/_frame.scss';
+@import '../admin/cosmetics/_taleCover.scss';
+@import '../admin/cosmetics/_preview.scss';
+@import './cosmetics/_main.scss';

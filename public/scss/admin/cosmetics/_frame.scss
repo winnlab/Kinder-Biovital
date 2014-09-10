@@ -11,17 +11,53 @@
     top: 300px;
     z-index: 1;
 
+    .small & {
+        left: 18px;
+        top: 162px;
+    }
+
     .taleBtnWrap {
         display: block;
         margin-bottom: 9px;
+        border-radius: 6px;
 
         .taleBtn {
             @include clearfix;
             padding: 4px;
             float: none;
+            margin-bottom: 3px;
+
+            &.changeBg:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -1px;
+                @include size(149px 29px);
+                background: url('#{$imgPath}changeBg.jpg');
+            }
 
             .title {
-                margin-bottom: 5px;
+                margin-bottom: 8px;
+                position: relative;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: 2px;
+                    left: 10px;
+                    @include size(118px 18px);
+                    background: url('#{$imgPath}addHero.jpg');
+                }
+            }
+        }
+        &.addTitr {
+            .taleBtn:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -1px;
+                @include size(149px 29px);
+                background: url('#{$imgPath}addText.jpg');
             }
         }
     }
@@ -35,9 +71,9 @@
         background-repeat: no-repeat;
         background-position: center center;
         background-color: #fff;
-        margin: 0 4px;
+        margin: 0 4px 5px;
         border-radius: 10px;
-        box-shadow: inset 1px 1px 0px 0px rgba(0,0,0,0.3);
+        box-shadow: $innerShadow;
     }
 
 }
@@ -49,9 +85,17 @@
     width: 752px;
     height: 86px;
     display: none;
-    background: #fff;
-    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
     z-index: 1;
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: -15px;
+        left: -17px;
+        z-index: -1;
+        @include size(787px 117px);
+        background: url('#{$imgPath}authorText.png');
+    }
 
     &.active {
         display: block;
@@ -61,19 +105,27 @@
         width: 100%;
         height: 100%;
         border: none;
+        padding: 15px;
         text-align: center;
+        font-size: 14px;
 
-        border: none;
         overflow: auto;
         outline: none;
 
         box-shadow: none;
+        resize: none;
+        background: none;
     }
 }
 .taleZone .displayFrame .chooseMusic {
     bottom: -95px;
     left: -176px;
     z-index: 1;
+
+    .small & {
+        bottom: 35px;
+        left: 14px;
+    }
 }
 
 .btmPanel {
@@ -81,6 +133,14 @@
     bottom: -122px;
     left: 326px;
     z-index: 1;
+
+    .small & {
+        bottom: 11px;
+    }
+
+    .taleBtnWrap {
+        padding: 8px 9px;
+    }
 
     .taleBtn {
         padding: 9px 10px 8px;
@@ -90,15 +150,26 @@
         display: block;
         float: left;
         width: 102px;
-        background: #fff;
+        background: #f4ecd9;
         color: #333;
         box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.3);
         border-radius: 10px;
         margin: 0 6px 0 0;
-        padding: 28px 0 29px;
+        padding: 29px 0;
+        height: 78px;
+        position: relative;
+        font-size: 16px;
 
         &:last-of-type {
             margin: 0;
+        }
+
+        .plus {
+            position: absolute;
+            top: 16px;
+            left: 29px;
+            @include size(45px 45px);
+            background: url('#{$imgPath}addSlide.jpg');
         }
     }
 }
@@ -108,7 +179,12 @@
     right: -179px;
     top: 453px;
     z-index: 1;
-    width: 173px;
+    width: 174px;
+
+    .small & {
+        right: 57px;
+        top: 334px;
+    }
 
     .taleBtnWrap {
         display: block;
@@ -119,6 +195,30 @@
             width: 149px;
             margin: 0 0 2px 1px;
             float: none;
+
+            &.preview:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0px;
+                @include size(150px 65px);
+                background: url('#{$imgPath}preview.jpg');
+            }
+
+            &.removeSlide {
+
+                width: 145px;
+                margin-left: 4px;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: -1px;
+                    left: -2px;
+                    @include size(150px 65px);
+                    background: url('#{$imgPath}removeSlide.jpg');
+                }
+            }
         }
     }
 }
@@ -130,17 +230,139 @@
     z-index: 1;
     padding: 9px 13px 9px 9px;
 
+    .small & {
+        bottom: 34px;
+        right: 15px;
+    }
+
     .taleBtn {
         height: 65px;
         width: 193px;
+        border-radius: 10px;
+        margin: 0 0 0 1px;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 1px;
+            @include size(192px 65px);
+            background: url('#{$imgPath}endTale.jpg');
+        }
     }
 }
 
-.heroIn {
+.dragableHeroes {
+    position: absolute;
+    z-index: 5;
+}
+
+.heroInDrag {
+    cursor: move;
     position: absolute;
 
-    .heroImg {
-        background-size: contain;
-        background-position: center center;
+    .name {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        margin-left: -84px;
+
+        input {
+            width: 168px;
+            height: 38px;
+            border: none;
+            box-shadow: $outerShadow;
+            border-radius: 5px;
+            padding: 3px 10px;
+            outline: none;
+            overflow: auto;
+            text-align: center;
+        }
     }
+
+    .replica {
+        position: absolute;
+        top: -99px;
+        right: -216px;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -18px;
+            z-index: -1;
+            @include size(254px 203px);
+            background: url('#{$imgPath}replica.png');
+        }
+
+        textarea {
+            height: 138px;
+            width: 216px;
+            padding: 20px;
+            background: none;
+            text-align: center;
+            font-size: 14px;
+            outline: none;
+            border: none;
+            resize: none;
+        }
+    }
+
+    .replicaControl {
+        position: absolute;
+        bottom: 0;
+        right: -177px;
+        width: 123px;
+        height: 60px;
+        background: #f4ecd9;
+        border-radius: 10px;
+        box-shadow: $outerShadow;
+
+        .miniCloud {
+            position: absolute;
+            left: 14px;
+            top: 13px;
+            width: 51px;
+            height: 40px;
+            background: url('#{$imgPath}miniCloud.jpg');
+        }
+
+        .replicaBtn {
+            position: absolute;
+            width: 29px;
+            height: 29px;
+            left: 79px;
+            top: 15px;
+            cursor: pointer;
+
+            &.add {
+                background: url('#{$imgPath}addReplica.jpg');
+            }
+            &.remove {
+                background: url('#{$imgPath}removeReplica.jpg');
+            }
+        }
+    }
+}
+
+.heroImg {
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.firstPlan {
+    position: absolute;
+    z-index: 3;
+    width: 150px;
+    height: 200px;
+}
+.secondPlan {
+    position: absolute;
+    z-index: 1;
+    width: 100px;
+    height: 150px;
 }

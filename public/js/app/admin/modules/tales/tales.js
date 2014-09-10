@@ -4,6 +4,7 @@ define(
 		'underscore',
 		'lib/list/list',
 		'modules/tales/tale',
+		'lib/viewport',
 		'modules/tales/talesModel',
 		'modules/tracks/tracksModel',
 		'modules/covers/colorModel',
@@ -18,6 +19,7 @@ define(
 		_,
 		List,
 		Tale,
+		viewport,
 		TalesModel,
 		TracksModel,
 		CoverColorModel,
@@ -116,7 +118,8 @@ define(
 					module = self.module,
 					obj = {
 						tale: doc,
-						entity: entity
+						entity: entity,
+						interface: this.getInterfaceSize()
 					};
 
 				for (var key in options.dataArr) {
@@ -124,7 +127,14 @@ define(
 				}
 
 				new self.options.Edit(area, obj);
+			},
+
+			getInterfaceSize: function () {
+
+				return viewport.getViewportWidth() > 1600 ? 'big' : 'small';
+
 			}
+
 		});
 
 	}

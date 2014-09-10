@@ -1,10 +1,10 @@
-<div class="taleContainer" style="{{sizeContainer}}">
-    <div class="taleZone">
+<div class="taleContainer {{interface}}" style="{{contentSize}}">
+    <div class="taleZone" style="{{#if talePreview}}display: none;{{/if}} {{talePosition}}">
         <div class="border top"></div>
         <div class="border btm"></div>
         <div class="frameBg" style="{{bgOffset frame.left}}">
             {{#isnt display 'frame'}}
-                {{>app/modules/tales/views/decoration.stache}}
+                {{>/js/app/admin/modules/tales/views/decoration.stache}}
             {{/isnt}}
         </div>
 
@@ -51,7 +51,7 @@
             <div class="taleTitle">Створи слайд {{indexOfInc tale.frames frame}}</div>
 
             <div class="authorText{{#or showText frame.text}} active{{/or}}">
-                <textarea name="text" can-change="setText">{{tale.text}}</textarea>
+                <textarea name="text" can-change="setText">{{frame.text}}</textarea>
             </div>
 
             <div class="taleBtnWrap small question">
@@ -64,7 +64,7 @@
 
             <div class="leftPanel">
                 <div class="taleBtnWrap medium">
-                    <div class="taleBtn orange" data-display="bg">змiнити тло</div>
+                    <div class="taleBtn orange changeBg" data-display="bg">змiнити тло</div>
                 </div>
 
                 <div class="taleBtnWrap medium">
@@ -104,7 +104,7 @@
                             <div class="frame" data-index="{{@index}}">Слайд {{plus @index 1}}</div>
                         {{/each}}
                         <div class="frame">
-                            <div class="plus">+</div>
+                            <div class="plus"></div>
                         </div>
                     </div>
                 </div>
@@ -128,38 +128,103 @@
             </div>
 
             <div class="frameBg" style="{{bgOffset frame.left}}">
-                {{>app/modules/tales/views/decoration.stache}}
+                {{>/js/app/admin/modules/tales/views/decoration.stache}}
 
                 <div class="dragableHeroes">
-                    {{#each frame.heroes}}
-                        <div class="heroInDrag" {{data hero}} style="left: {{left}}px; top: {{top}}px;">
-                            <div class="heroImg" style="{{heroSize}}"></div>
-                            <div class="replica">
-                                <input type="text" can-value="replica.text">
+                    {{#if frame.heroes.length}}
+                        {{#each frame.heroes}}
+                            <div class="heroInDrag {{heroPlan}}" {{data 'hero'}} style="left: {{left}}px; top: {{top}}px;">
+                                <div class="heroImg"></div>
+                                <div class="replica" style="{{#unless replica.text}}display: none;{{/unless}}">
+                                    <textarea name="rteplicaText" can-change="setReplica">{{replica.text}}</textarea>
+                                </div>
+                                <div class="replicaControl">
+                                    <div class="miniCloud"></div>
+                                    <div class="replicaBtn {{#if replica.text}}remove{{else}}add{{/if}}"></div>
+                                </div>
+                                <div class="name">
+                                    <input type="text" can-value="name" placeholder="введи ім'я">
+                                </div>
                             </div>
-                            <div class="replicaControll">
-                                <div class="miniCloud"></div>
-                                <div class="replicaBtn {{#if replica.text}}remove{{else}}add{{/if}}"></div>
-                            </div>
-                            <div class="name">
-                                <input type="text" can-value="name">
-                            </div>
-                        </div>
-                    {{/each}}
+                        {{/each}}
+                    {{/if}}
                 </div>
-
-                {{#each frame.heroes}}
-                    <div class="heroIn" style="left: {{left}}px; top: {{top}}px;">
-                        <div class="heroImg" style="background-image: url('/uploads/{{img}}'); {{heroSize}}"></div>
-                    </div>
-                {{/each}}
+                {{#if frame.heroes.length}}
+                    {{#each frame.heroes}}
+                        <div class="heroImg {{heroPlan}}" style="left: {{left}}px; top: {{top}}px; background-image: url('/uploads/{{arrFind heroes heroId '_id' 'img'}}');"></div>
+                    {{/each}}
+                {{/if}}
             </div>
 
         </div>
 
         <div class="taleIn{{#is display 'cover'}} active{{/is}}">
+            <div class="taleTitle">Створи обкладинку</div>
 
+            <div class="taleBtnWrap small question">
+                <div class="small taleBtn red"></div>
+            </div>
+
+            <div class="taleBtnWrap small closeFrame">
+                <div class="small taleBtn orange"></div>
+            </div>
+
+            <div class="chooseCover">
+                <div class="chooseImg taleBtnWrap">
+                    <div class="taleBtn orange">
+                        <item-scroll data="{coverImages}">
+                            {{#if img}}
+                                <div class="coverImage" data-id="{{_id}}" style="background-image: url('/uploads/{{img}}')"></div>
+                            {{/if}}
+                        </item-scroll>
+                    </div>
+                </div>
+                <div class="chooseColor taleBtnWrap">
+                    <item-scroll data="{coverColors}">
+                        {{#if color}}
+                            <div class="coverColor" data-id="{{_id}}" style="background-color: #{{color}};"></div>
+                        {{/if}}
+                    </item-scroll>
+                </div>
+            </div>
+
+            <div class="taleCover taleBtnWrap orange">
+                <div class="preview" style="
+                {{#if tale.coverColorId}}
+                    background-color: #{{arrFind coverColors tale.coverColorId '_id' 'color'}};
+                {{/if}}
+                {{#if tale.coverImgId}}
+                    background-image: url(/uploads/{{arrFind coverImages tale.coverImgId '_id' 'img'}});
+                {{/if}}
+                "></div>
+            </div>
+
+            <div class="taleName taleBtnWrap big">
+                <div class="taleBtn orange">
+                    <input type="text" can-value="tale.name" placeholder="введи назву">
+                </div>
+            </div>
+
+            <div class="chooseMusic taleBtnWrap big">
+                <div class="taleBtn orange">
+                    <span class="musicLabel"></span>
+                </div>
+            </div>
+
+            <div class="prev taleBtnWrap big">
+                <div class="taleBtn orange" data-display="frame"></div>
+            </div>
+
+            <div class="next end taleBtnWrap big">
+                <div class="taleBtn red"></div>
+            </div>
         </div>
 
+    </div>
+    <div class="taleZone previewBlock" style="{{#unless talePreview}}display: none;{{/unless}} {{talePosition}}">
+        <div class="taleBtnWrap small closePreview closeFrame">
+            <div class="small taleBtn orange"></div>
+        </div>
+        <div class="talePreviewWrap"></div>
     </div>
 </div>
