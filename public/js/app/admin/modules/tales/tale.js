@@ -222,7 +222,7 @@ define(
                     img: hero.attr('img'),
                     left: left,
                     top: top,
-                    name: '',
+                    name: hero.attr('name'),
                     replica: {
                         replicaId: module.attr('replica.0._id'),
                         left: left + 100,
