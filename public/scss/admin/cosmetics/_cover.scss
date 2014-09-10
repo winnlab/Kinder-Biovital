@@ -9,7 +9,7 @@
 
     .coverImage {
         @include size(70px 70px);
-        @extend %bg-image-cover;
+        @extend %bg-image-contain;
         display: inline-block;
     }
 }
