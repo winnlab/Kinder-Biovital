@@ -1,5 +1,5 @@
 .coverImgTbl .coverImage {
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
 
@@ -40,7 +40,7 @@ module {
   z-index: 10; }
 
 .coverImgTbl .coverImage {
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
 
@@ -52,7 +52,7 @@ module {
   display: inline-block; }
 
 .coverImgTbl .coverImage {
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
 
@@ -108,7 +108,7 @@ module {
     background: #df4a08; }
 
 .coverImgTbl .coverImage {
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
 
@@ -357,7 +357,7 @@ module {
     display: block; }
 
 .coverImgTbl .coverImage {
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
 
@@ -650,7 +650,7 @@ module {
   height: 150px; }
 
 .coverImgTbl .coverImage {
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
 
@@ -776,7 +776,7 @@ module {
   background: url("/img/taleIsReady.png"); }
 
 .coverImgTbl .coverImage {
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
 
@@ -820,7 +820,7 @@ module {
     height: 38px;
     box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    padding: 11px 0;
+    padding: 8px 0;
     outline: none;
     overflow: auto;
     text-align: center;
@@ -878,7 +878,7 @@ module {
     cursor: pointer; }
 
 .coverImgTbl .coverImage {
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
 
@@ -912,7 +912,7 @@ module {
   background: url("/img/shareSoc.png"); }
 
 .coverImgTbl .coverImage {
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
 
