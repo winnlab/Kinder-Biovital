@@ -6,7 +6,7 @@ define(
         return can.Control.extend({
             defaults: {
                 viewpath: 'app/tale/views/',
-                taleId: '540f76711c26f3b61be86cf3'
+                taleId: '540ff58d88badf1343e1128c'
             }
         }, {
             init: function () {
