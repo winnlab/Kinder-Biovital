@@ -370,7 +370,7 @@ define(
             },
 
             '.closeFrame click': function (el) {
-                if (el.hasClass('.closePreview')) {
+                if (el.hasClass('closePreview')) {
                     this.module.attr('talePreview', false);
                 } else {
                     this.saveTale();
