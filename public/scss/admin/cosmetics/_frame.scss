@@ -236,25 +236,31 @@
     }
 
     .replica {
-        position: absolute;
-        top: -99px;
-        right: -216px;
+        @include size(216px 80px);
+        @include position(absolute, -70px -216px null null);
+
+        &:before {
+            content: '';
+            @include position(absolute, null null -45px -3px);
+            z-index: -1;
+            @include size(67px 57px);
+            background: url('#{$imgPath}bubleTail.png');
+        }
 
         &:after {
             content: '';
-            position: absolute;
-            top: -15px;
-            left: -18px;
-            z-index: -1;
-            @include size(254px 203px);
-            background: url('#{$imgPath}replica.png');
+            @include position(absolute, 0 0 0 0);
+            z-index: -2;
+            border-radius: 52px;
+            box-shadow: 0px 0px 12px 13px rgba(0, 0, 0, 0.15);
         }
 
         textarea {
-            height: 138px;
-            width: 216px;
+            @include size(216px 80px);
             padding: 20px;
-            background: none;
+            background: #f4ecd9;
+            border-radius: 53px;
+            overflow: hidden;
             text-align: center;
             font-size: 14px;
             outline: none;
