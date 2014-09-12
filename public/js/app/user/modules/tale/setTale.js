@@ -16,7 +16,7 @@ define(
         return Tale.extend({
             defaults: {
                 viewpath: '/js/app/admin/modules/tales/views/'
-                , display: 'share'
+                // , display: 'share'
             }
         }, {
 
