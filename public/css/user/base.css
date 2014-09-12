@@ -34,6 +34,11 @@ body {
   background-size: cover;
   background-position: center center; }
 
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both; }
+
 #modules {
   position: relative;
   width: 100%;
@@ -182,6 +187,8 @@ module {
     left: -16px;
     top: -14px;
     z-index: -1; }
+  .taleTitle .small {
+    font-size: 21px; }
 
 .taleZone {
   position: absolute;
@@ -985,11 +992,12 @@ module {
 
 .shareTaleSoc {
   position: absolute;
-  top: 284px;
-  left: 447px;
-  height: 147px;
-  width: 331px;
-  background: url("/img/shareSoc.png"); }
+  top: 334px;
+  left: 466px;
+  height: 155px;
+  width: 297px;
+  cursor: pointer;
+  background: url("/img/socLinks.png"); }
 
 .coverImgTbl .coverImage, .companyTales .tale {
   background-size: contain;

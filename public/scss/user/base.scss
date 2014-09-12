@@ -25,6 +25,10 @@ body {
     background-position: center center;
 }
 
+.clearfix {
+    @include clearfix;
+}
+
 #modules {
     position: relative;
     width: 100%;

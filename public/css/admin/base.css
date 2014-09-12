@@ -150,6 +150,8 @@ html {
     left: -16px;
     top: -14px;
     z-index: -1; }
+  .taleTitle .small {
+    font-size: 21px; }
 
 .taleZone {
   position: absolute;

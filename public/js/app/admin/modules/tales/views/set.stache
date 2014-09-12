@@ -234,18 +234,24 @@
         <div class="taleIn{{#is display 'share'}} active{{/is}}">
             <div class="taleTitle">
                 <div class="innerTitle">
-                    Подiлися казкою
+                    {{#if shared}}
+                        Подiлися казкою
+                    {{else}}
+                        Щоб завершити
+                        <div clas="clearfix"></div>
+                        <span class="small">подiлися казкою з друзями</span>
+                    {{/if}}
                 </div>
             </div>
 
             <div class="taleBtnWrap small closeFrame">
                 <div class="small taleBtn orange"></div>
             </div>
-
-            <div class="shareLink">
-                http://bayer.ua/kinderbiovital/podilusya-kazkoyu
-            </div>
-
+            {{#if shared}}
+                <div class="shareLink">
+                    http://bayer.ua/kinderbiovital/podilusya-kazkoyu
+                </div>
+            {{/if}}
             <div class="shareTaleSoc"></div>
 
         </div>

@@ -27,9 +27,8 @@
 }
 
 .shareTaleSoc {
-    position: absolute;
-    top: 284px;
-    left: 447px;
-    @include size(331px 147px);
-    background: url('#{$imgPath}shareSoc.png');
+    @include position(absolute, 334px null null 466px);
+    @include size(297px 155px);
+    cursor: pointer;
+    background: url('#{$imgPath}socLinks.png');
 }

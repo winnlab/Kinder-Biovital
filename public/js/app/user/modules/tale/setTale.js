@@ -16,13 +16,12 @@ define(
         return Tale.extend({
             defaults: {
                 viewpath: '/js/app/admin/modules/tales/views/'
-                // , display: 'share'
+                , display: 'share'
             }
         }, {
 
             saveTale: function (cb, clearStorage) {
                 var module = this.module;
-                console.log(module.attr('tale').attr());
                 module.attr('tale').save()
                     .done(function (tale) {
                         if (!module.attr('clearStorage')) {
@@ -49,6 +48,10 @@ define(
                     this.saveTale();
                     can.route.attr({module: 'main'}, true);
                 }
+            },
+
+            '.shareTaleSoc click': function () {
+                this.module.attr('shared', true);
             }
 
         });
