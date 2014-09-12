@@ -120,36 +120,49 @@
     }
 
     .frameControl {
-        position: absolute;
-        bottom: -6px;
-        left: 478px;
-        @include size(255px 142px);
-        background: url('#{$imgPath}playerControl.png');
+        @include position(absolute, null null -16px 484px);
+        @include size(248px 142px);
 
         .prevFrame {
-            position: absolute;
-            top: 55px;
-            left: 33px;
+            @include position(absolute, 45px null null 23px);
+            @include size(45px 45px);
+            border-radius: 5px;
+            box-shadow: $outerShadow;
             z-index: 1;
-            @include size(43px 33px);
             cursor: pointer;
-            background: url('#{$imgPath}prevArrow.jpg');
+            background: #f4ecd9;
+            &:after {
+                content: '';
+                @include size(32px 26px);
+                @include position(absolute, 11px null null 5px);
+                background: url('#{$imgPath}playP.png');
+            }
         }
 
         .nextFrame {
             @extend .prevFrame;
-            left: auto;
-            right: 13px;
-            background: url('#{$imgPath}nextArrow.jpg');
+            @include position(absolute, null 15px null auto);
+
+            &:after {
+                @include position(absolute, 10px null null 4px);
+                @include size(33px 26px);
+                background: url('#{$imgPath}playN.png');
+
+            }
         }
 
         .playFrame {
-            position: absolute;
-            top: 28px;
-            left: 86px;
+            @include position(absolute, 28px null null 86px);
+            @include size(86px 86px);
             z-index: 1;
-            @include size(88px 88px);
             cursor: pointer;
+
+            &:after {
+                content: '';
+                @include position(absolute, -28px null null -28px);
+                @include size(143px 142px);
+                background: url('#{$imgPath}playBtn.png');
+            }
         }
     }
 
