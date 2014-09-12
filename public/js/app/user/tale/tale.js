@@ -2,7 +2,7 @@ define(
     [
         'canjs',
         'underscore',
-        'modules/tales/tale',
+        'app/tale/setTale',
         'modules/tales/talesModel',
         'modules/tracks/tracksModel',
         'modules/covers/colorModel',

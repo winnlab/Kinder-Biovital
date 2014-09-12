@@ -3,6 +3,7 @@
 @import '../base/_mixins.scss';
 @import '../base/_placeholders.scss';
 @import '../base/_variables.scss';
+@import '../base/_fonts.scss';
 
 *,
 *:after,
@@ -53,3 +54,4 @@ module {
 @import '../admin/cosmetics/_preview.scss';
 @import 'cosmetics/_share.scss';
 @import './cosmetics/_main.scss';
+@import './cosmetics/_tales.scss';

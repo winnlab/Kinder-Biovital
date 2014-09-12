@@ -5,18 +5,18 @@ define(
 
         return can.Control.extend({
             defaults: {
-                viewpath: 'app/tale/views/',
-                taleId: '540ff58d88badf1343e1128c'
+                viewpath: 'app/tale/views/'
             }
         }, {
             init: function () {
                 var self = this,
                     options = self.options,
+                    taleId = self.element.attr('id').replace('fairy-tale-', ''),
                     html = can.view(options.viewpath + 'tale.stache', appState, function (frag) {
                         self.element.html(frag);
 
                         new TalePreview(self.element.find('.talePreview'), {
-                            taleId: options.taleId,
+                            taleId: taleId,
                             isReady: options.isReady
                         });
                     });

@@ -9,10 +9,13 @@
     background: #f5ebd9;
     display: inline-block;
     box-shadow: $outerShadow;
+    font-family: Arial;
 
     &.big {
         border-radius: 10px;
         padding: 9px;
+        font-weight: bold;
+        font-size: 20px;
     }
     &.medium {
         border-radius: 10px;

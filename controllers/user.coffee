@@ -26,14 +26,16 @@ Router.use (req, res, next) ->
 
 #------- Tale ---------#
 
+Router.get '/tale', Tale.findTales
 Router.get '/tale/:id?', Tale.rest
 Router.post '/tale/:id?', Tale.rest
 Router.put '/tale/:id?', Tale.rest
 
 Router.get '/', Main.index
 Router.get '/main', Main.index
+Router.get '/tales', Main.index
 Router.get '/create-tale', Main.index
-Router.get '/fairy-tail/:name?', Main.index
+Router.get '/fairy-tale/:name?', Main.index
 
 
 
@@ -60,9 +62,5 @@ Router.get '/cover', CoverImage.rest
 #------- Decoration ---------#
 
 Router.get '/decoration', Decoration.rest
-
-#------- Tale ---------#
-
-Router.get '/tale', Tale.rest
 
 exports.Router = Router

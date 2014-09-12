@@ -20,8 +20,9 @@ FragmentShemaFields =
         decorationId:
             type: ObjectId
             ref: 'Decoration'
-        name:
-            type: String
+        # 0 is day, 1 is night
+        time:
+            type: Number
             trim: true
         text:
             type: String
@@ -54,6 +55,7 @@ FragmentShemaFields =
                     type: Number
                 text:
                     type: String
+                    trim: true
                     default: ''
         ]
     ]

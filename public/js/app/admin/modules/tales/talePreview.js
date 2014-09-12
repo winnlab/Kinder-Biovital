@@ -20,7 +20,7 @@ define(
                 // This is offset of tale backround from tale zone
                 frameBgTop: -275,
                 // the offset top of hero when it become bigger
-                firstPlanTop: 570,
+                firstPlanTop: 450,
 
                 decorationWidth: 3705,
 

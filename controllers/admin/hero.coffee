@@ -6,6 +6,10 @@ crud = new Crud
         name: 'img'
         replace: true
         type: 'string'
+    ,
+        name: 'imgNight'
+        replace: true
+        type: 'string'
     ]
 
 module.exports.rest = crud.request.bind crud

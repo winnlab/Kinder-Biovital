@@ -6,20 +6,23 @@
     <div class="topBlock">
         {{#each frame.heroes}}
             <div class="heroInDrag {{heroPlan}}" style="left: {{left}}px; top: {{top}}px;">
-                <div class="replica" style="{{#unless replica.text}}display: none;{{/unless}}">
-                    <div class="replicaInner">
-                        {{replica.text}}
-                    </div>
-                </div>
+                <div class="heroImg {{heroPlan}}"></div>
                 <div class="name">
                     {{name}}
                 </div>
+                {{#if replica.text}}
+                    <div class="replica" style="{{#unless replica.text}}display: none;{{/unless}}">
+                        <div class="replicaInner">
+                            {{replica.text}}
+                        </div>
+                    </div>
+                {{/if}}
             </div>
         {{/each}}
     </div>
 
     {{#each frame.heroes}}
-        <div class="heroImg {{heroPlan}}" style="left: {{left}}px; top: {{top}}px; background-image: url('/uploads/{{heroId.img}}');"></div>
+        <div class="heroImg {{heroPlan}}" style="left: {{left}}px; top: {{top}}px; background-image: url('/uploads/{{#is frame.time 0}}{{heroId.img}}{{else}}{{heroId.imgNight}}{{/is}}');"></div>
     {{/each}}
 
 </div>

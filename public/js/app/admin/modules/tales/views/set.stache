@@ -33,20 +33,20 @@
 
             <div class="chooseMusic taleBtnWrap big">
                 <div class="taleBtn orange">
-                    <span class="musicLabel">
-
-                    </span>
+                    <span class="musicLabel">обери музику</span>
                 </div>
             </div>
 
             <div class="framePosWrap">
-                <div class="miniBg" style="{{getPreview frame.decorationId decorations}}">
-                    <div class="miniFrame" style="{{miniOffset frame.left}}"></div>
+                <div class="miniBg" style="background-image: url('/uploads/{{arrFind decorations frame.decorationId '_id' 'preview'}}')">
+                    <div class="miniLimit">
+                        <div class="miniFrame" style="{{miniOffset frame.left}}"></div>
+                    </div>
                 </div>
             </div>
 
             <div class="next taleBtnWrap big">
-                <div class="taleBtn red" data-display="frame"></div>
+                <div class="taleBtn red" data-display="frame">Далi</div>
             </div>
 
         </div>
@@ -99,9 +99,7 @@
 
             <div class="chooseMusic taleBtnWrap big">
                 <div class="taleBtn orange">
-                    <span class="musicLabel">
-
-                    </span>
+                    <span class="musicLabel">обери музику</span>
                 </div>
             </div>
 
@@ -109,7 +107,7 @@
                 <div class="taleBtnWrap big">
                     <div class="taleBtn orange">
                         {{#each tale.frames}}
-                            <div class="frame" data-index="{{@index}}">Слайд {{plus @index 1}}</div>
+                            <div class="frame" data-index="{{@index}}">cлайд {{plus @index 1}}</div>
                         {{/each}}
                         <div class="frame">
                             <div class="plus"></div>
@@ -143,6 +141,7 @@
                         {{#each frame.heroes}}
                             <div class="heroInDrag {{heroPlan}}" {{data 'hero'}} style="left: {{left}}px; top: {{top}}px;">
                                 <div class="heroImg"></div>
+                                <div class="removeHero"></div>
                                 <div class="replica" style="{{#unless replica.text}}display: none;{{/unless}}">
                                     <textarea name="rteplicaText" can-change="setReplica">{{replica.text}}</textarea>
                                 </div>
@@ -159,7 +158,7 @@
                 </div>
                 {{#if frame.heroes.length}}
                     {{#each frame.heroes}}
-                        <div class="heroImg {{heroPlan}}" style="left: {{left}}px; top: {{top}}px; background-image: url('/uploads/{{arrFind heroes heroId '_id' 'img'}}');"></div>
+                        <div class="heroImg {{heroPlan}}" style="left: {{left}}px; top: {{top}}px; background-image: url('/uploads/{{#is frame.time 0}}{{arrFind heroes heroId '_id' 'img'}}{{else}}{{arrFind heroes heroId '_id' 'imgNight'}}{{/is}}');"></div>
                     {{/each}}
                 {{/if}}
             </div>
@@ -219,16 +218,16 @@
 
             <div class="chooseMusic taleBtnWrap big">
                 <div class="taleBtn orange">
-                    <span class="musicLabel"></span>
+                    <span class="musicLabel">обери музику</span>
                 </div>
             </div>
 
             <div class="prev taleBtnWrap big">
-                <div class="taleBtn orange" data-display="frame"></div>
+                <div class="taleBtn orange" data-display="frame">Повернутися</div>
             </div>
 
             <div class="next end taleBtnWrap big">
-                <div class="taleBtn red" {{#unless admin}}data-display="share"{{/unless}}></div>
+                <div class="taleBtn red" {{#unless admin}}data-display="share"{{/unless}}>Казка готова</div>
             </div>
         </div>
 

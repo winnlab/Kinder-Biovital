@@ -16,7 +16,7 @@ require(['/js/app/user/req.config.js'], function () {
 		) {
 			var body = $('body');
 
-			new Router(body, config.router);
+			appState.attr('router', new Router(body, config.router));
 
 		}
 	);

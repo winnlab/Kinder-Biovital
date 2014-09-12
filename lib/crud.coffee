@@ -165,6 +165,9 @@ class Crud
 		fieldName = req.body.name
 		fileOpts = @_getFileOpts fieldName
 
+		if not fileOpts
+			return cb 'Ошибка неизвестное название свойства документа'
+
 		if fileOpts.type is 'string'
 			file = req.files?[fieldName]?.name
 		else

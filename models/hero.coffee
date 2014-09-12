@@ -16,6 +16,9 @@ FragmentShemaFields =
 	img:
 		type: String
 		default: ''
+	imgNight:
+		type: String
+		default: ''
 
 options =
 	collection: 'heroes'

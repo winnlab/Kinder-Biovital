@@ -20,11 +20,16 @@ define(
                 admin: document.location.pathname.indexOf('admin/') !== -1,
                 setBg: function (context, el, ev) {
                     this.attr('frame.decorationId', context.attr('_id'));
+                    this.attr('frame.time', context.attr('time'));
                 },
                 setText: function (scope, el, ev) {
-                    this.attr('frame.text', el.val());
+                    var text = el.val().slice(0, 200);
+                    el.val(text);
+                    this.attr('frame.text', text);
                 },
                 setReplica: function (scope, el, ev) {
+                    var text = el.val().slice(0, 120);
+                    el.val(text);
                     scope.attr('replica.text', el.val());
                 }
             }),
@@ -39,11 +44,14 @@ define(
 
                 frame: null,
                 // Proportion of frame background and mini frame
-                miniProp: 9.69895288,
+                realProp: 9.69895288,
+                miniProp: 11.724683544,
                 // This is offset of tale backround from tale zone
                 frameBgTop: -275,
                 // the offset top of hero when it become bigger
-                firstPlanTop: 570,
+                firstPlanTop: 450,
+                // the minimal amount of left frameBg offset in pixels
+                frameBgMinOffset: 348,
 
                 taleSize: {
                     width: 1224,
@@ -104,19 +112,7 @@ define(
                         return css;
                     },
                     miniOffset: function (left) {
-                        return 'left: ' + Math.round(left() / options.miniProp) + 'px';
-                    },
-                    getPreview: function(decorationId, decorations) {
-                        var preview = '';
-                        decorations = decorations().attr();
-                        decorationId = decorationId();
-                        for (var i = decorations.length; i--; ) {
-                            if (decorationId == decorations[i]._id) {
-                                preview = decorations[i].preview;
-                            }
-                        }
-
-                        return preview ? 'background-image: url("/uploads/' + preview + '");' : '';
+                        return 'left: ' + Math.round((left() - options.frameBgMinOffset / 2) / options.miniProp) + 'px';
                     },
                     heroPlan: function (options) {
                         return options.context.attr('top') > self.options.firstPlanTop
@@ -138,8 +134,7 @@ define(
              */
             setDefaults: function (doc, options) {
                 doc.attr({
-                    frames: [this.addFrame(0)],
-                    type: 0
+                    frames: [this.addFrame(0)]
                 });
             },
 
@@ -148,13 +143,34 @@ define(
                     'showText': false
                     , 'display': 'bg'
                 });
-                return {
-                    decorationId: this.options.decorations.attr('0._id'),
-                    name: 'Слайд ' + (index + 1),
-                    text: '',
-                    left: 1240,
-                    heroes: []
+
+                var currentFrame = this.module.attr('frame'),
+                    decoration,
+                    frame = {};
+
+                if (currentFrame) {
+                    _.extend(frame, currentFrame.attr());
+                    frame = this.clearingFrame(frame);
+                } else {
+                    decoration = this.options.decorations.attr('0');
+                    frame = {
+                        decorationId: decoration.attr('_id'),
+                        time: decoration.attr('time'),
+                        text: '',
+                        left: 1240,
+                        heroes: []
+                    }
                 }
+
+                return frame;
+            },
+
+            clearingFrame: function (frame) {
+                frame.text = '';
+                for (var i = frame.heroes.length; i--;) {
+                    frame.heroes[i].replica.text = '';
+                }
+                return frame;
             },
 
             currentFrame: function (index) {
@@ -174,18 +190,17 @@ define(
                 drag.horizontal();
             },
 
-            '.miniFrame dragmove': function (el, ev, drag) {
-                if (drag.required_css_position) {
-                    this.setFrameLeft(drag.required_css_position['0']);
+            '.miniFrame dragmove': 'setFrameLeft',
+
+            '.miniFrame dragend': 'setFrameLeft',
+
+            setFrameLeft: function (el, ev, drag) {
+                if (!drag.required_css_position) {
+                    return true;
                 }
-            },
-
-            '.miniFrame dragend': function (el, ev, drag) {
-                this.setFrameLeft(drag.required_css_position['0']);
-            },
-
-            setFrameLeft: function (miniLeft) {
-                var left = ~~(this.options.miniProp * miniLeft),
+                var dragLeft = drag.required_css_position['0'],
+                    frameBgMinOffset = this.options.frameBgMinOffset,
+                    left = ~~(this.options.realProp * dragLeft + frameBgMinOffset),
                     module = this.module;
 
                 if (left !== module.attr('frame.left')) {
@@ -219,7 +234,6 @@ define(
 
                 module.attr('frame.heroes').push({
                     heroId: id,
-                    img: hero.attr('img'),
                     left: left,
                     top: top,
                     name: hero.attr('name'),
@@ -320,6 +334,14 @@ define(
                 }
             },
 
+            '.removeHero click': function (el) {
+                var heroes = this.module.attr('frame.heroes'),
+                    hero = el.parent().data('hero'),
+                    index = heroes.indexOf(hero);
+
+                heroes.splice(index, 1);
+            },
+
             '.coverImage click': function (el) {
                 this.module.attr('tale.coverImgId', el.data('id'));
             },
@@ -334,13 +356,6 @@ define(
                     .done(function () {
                         if (typeof cb === 'function') {
                             cb();
-                        }
-                        if (!module.attr('admin')) {
-                            localStorage.setItem('tale', JSON.stringify(module.attr('tale').attr()));
-
-                            if (clearStorage) {
-                                localStorage.removeItem('tale')
-                            }
                         }
                     })
                     .fail(function () {
@@ -364,9 +379,7 @@ define(
 
             '.end click': function () {
                 this.saveTale(null, true);
-                if (this.module.attr('admin')) {
-                    can.route.attr({module: 'tales'}, true);
-                }
+                can.route.attr({module: 'tales'}, true);
             },
 
             '.closeFrame click': function (el) {
@@ -374,11 +387,7 @@ define(
                     this.module.attr('talePreview', false);
                 } else {
                     this.saveTale();
-                    if (this.module.attr('admin')) {
-                        can.route.attr({module: 'tales'}, true)
-                    } else {
-                        can.route.attr({module: 'main'}, true)
-                    }
+                    can.route.attr({module: 'tales'}, true);
                 }
             }
 

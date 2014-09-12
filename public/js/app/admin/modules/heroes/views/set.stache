@@ -64,8 +64,19 @@
                             uploaded="{hero.img}"
                             accept="image/*"
                         >
-                            Загрузить Героя
+                            Загрузить Героя (день)
                         </upload>
+						<upload
+							class="col-md-12"
+							name="imgNight"
+							url="/admin/hero/img"
+							delete-url="/admin/hero/img"
+							entity="{hero}"
+							uploaded="{hero.imgNight}"
+							accept="image/*"
+						>
+							Загрузить Героя (ночь)
+						</upload>
                     {{/if}}
                 </div>
             </div>

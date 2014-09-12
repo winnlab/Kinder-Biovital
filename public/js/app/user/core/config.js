@@ -10,16 +10,16 @@ define({
 		}],
 		modules: [{
 			name: 'main',
-			path: 'app/main/main',
-			title: ''
+			path: 'app/main/main'
+		}, {
+			name: 'tales',
+			path: 'app/tales/tales'
 		}, {
 			name: 'create-tale',
-			path: 'app/tale/tale',
-			title: ''
+			path: 'app/tale/tale'
 		}, {
-			name: 'fairy-tail',
-			path: 'app/tale/view',
-			title: ''
+			name: 'fairy-tale',
+			path: 'app/tale/view'
 		}]
 	}
 });

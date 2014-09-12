@@ -42,6 +42,43 @@ $posWrapWidth: 424px;
     }
 }
 
+.taleTitle {
+    @include user-select(none);
+    color: $orange;
+    width: $titleWidth;
+    display: table;
+    height: 102px;
+    position: absolute;
+    left: ($taleZoneWidth - $titleWidth) / 2;
+    top: 3px;
+    z-index: 1;
+    text-align: center;
+    font-family: Futura;
+    font-size: 32px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-top: 5px;
+    text-shadow: 1px 2px 0 #bb6920;
+
+    .innerTitle {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        padding: 0 13px 0 21px;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        background-image: url('#{$imgPath}titleBg.png');
+        width: 381px;
+        height: 138px;
+        left: -16px;
+        top: -14px;
+        z-index: -1;
+    }
+}
+
 .taleZone {
     position: absolute;
     top: 20px;
@@ -105,40 +142,6 @@ $posWrapWidth: 424px;
         }
     }
 
-    .taleTitle {
-        @include user-select(none);
-        color: $orange;
-        width: $titleWidth;
-        display: table;
-        height: 102px;
-        position: absolute;
-        left: ($taleZoneWidth - $titleWidth) / 2;
-        top: 3px;
-        z-index: 1;
-        text-align: center;
-        font-size: 27px;
-        font-weight: bold;
-        text-transform: uppercase;
-
-        .innerTitle {
-            display: table-cell;
-            vertical-align: middle;
-            text-align: center;
-            padding: 0 13px 0 21px;
-        }
-
-        &:after {
-            content: '';
-            position: absolute;
-            background-image: url('#{$imgPath}titleBg.png');
-            width: 381px;
-            height: 138px;
-            left: -16px;
-            top: -14px;
-            z-index: -1;
-        }
-    }
-
     .question {
         position: absolute;
         right: 47px;
@@ -154,25 +157,6 @@ $posWrapWidth: 424px;
                 left: 0;
                 @include size(24px 24px);
                 background: url('#{$imgPath}question.jpg');
-            }
-        }
-    }
-
-    .closeFrame {
-        position: absolute;
-        right: 8px;
-        top: 10px;
-        z-index: 1;
-
-        .taleBtn {
-            box-shadow: none;
-            &:after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                @include size(24px 24px);
-                background: url('#{$imgPath}close.jpg');
             }
         }
     }
@@ -196,49 +180,45 @@ $posWrapWidth: 424px;
         left: 14px;
 
         .taleBtn {
-            padding: 6px 10px;
+            padding: 6px 10px 7px;
             margin-bottom: 2px;
             width: 228px;
 
             &:after {
                 content: '';
-                position: absolute;
-                top: 0;
-                left: -1px;
-                width: 230px;
-                height: 49px;
-                background: url('#{$imgPath}chooseMusic.jpg');
+                @include position(absolute, 8px null null 175px);
+                @include size(41px 32px);
+                background: url('#{$imgPath}sound.jpg');
             }
         }
         .musicLabel {
+            @include size(157px 34px);
             box-shadow: $innerShadow;
-            padding: 7px;
+            padding: 9px 7px 7px;
             background: #fff;
-            height: 34px;
-            width: 157px;
+            font-size: 17px;
+            color: $orange;
+            text-shadow: 1px 1px 0 #c58730;
             display: block;
             border-radius: 4px;
         }
     }
 
     .next {
-        position: absolute;
-        right: 15px;
-        padding: 11px 14px 11px 12px;
-        bottom: 32px;
+        @include position(absolute, null 15px 32px null);
+        padding: 9px 14px 13px 12px;
+        height: 84px;
+        text-shadow: -1px -1px 0 #b73e09;
 
         .taleBtn {
-            width: 191px;
-            height: 62px;
-            padding: 21px;
+            @include size(191px 62px);
+            padding: 21px 58px 21px 21px;
 
             &:after {
                 content: '';
-                position: absolute;
-                top: -2px;
-                left: -1px;
-                @include size(193px 65px);
-                background: url('#{$imgPath}next.jpg');
+                @include position(absolute, 16px null null 114px);
+                @include size(41px 30px);
+                background: url('#{$imgPath}nextInSlide.jpg');
             }
         }
     }
@@ -268,6 +248,15 @@ $posWrapWidth: 424px;
             z-index: 2;
             width: 382px;
             height: 124px;
+
+            .miniLimit {
+                position: absolute;
+                top: 0;
+                left: 33px;
+                height: 100%;
+                width: 316px;
+            }
+
         }
 
         .miniFrame {
@@ -284,6 +273,26 @@ $posWrapWidth: 424px;
         }
     }
 }
+
+.closeFrame {
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    z-index: 1;
+
+    .taleBtn {
+        box-shadow: none;
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            @include size(24px 24px);
+            background: url('#{$imgPath}close.jpg');
+        }
+    }
+}
+
 
 .frameBg {
     @include user-select(none);

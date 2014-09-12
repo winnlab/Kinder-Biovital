@@ -1,0 +1,28 @@
+@charset "UTF-8";
+@import '../../bourbon/_bourbon.scss';
+@import '../../base/_mixins.scss';
+@import '../../base/_placeholders.scss';
+@import '../../base/_variables.scss';
+
+.companyTales {
+    @include position(absolute, 93px null null 249px);
+    @include size(726px 483px);
+    padding: 44px 30px 44px 42px;
+    background: url('#{$imgPath}chooseStory.png');
+
+    .tale {
+        @include size(315px 190px);
+        @include border-color($orange);
+        @include border-style(solid);
+        @include border-width(20px 17px);
+        @extend %bg-image-contain;
+        float: left;
+        display: block;
+        margin: 0 8px 8px 0;
+        border-radius: 15px;
+        box-shadow:
+            inset 2px 2px 0px 0px rgba(0, 0, 0, 0.3),
+            2px 2px 0px 0px rgba(0, 0, 0, 0.3);
+
+    }
+}

@@ -10,6 +10,7 @@
     left: -176px;
     top: 300px;
     z-index: 1;
+    text-shadow: -1px -1px 0 #c58730;
 
     .small & {
         left: 18px;
@@ -23,41 +24,15 @@
 
         .taleBtn {
             @include clearfix;
-            padding: 4px;
+            padding: 5px 4px 5px;
             float: none;
-            margin-bottom: 3px;
-
-            &.changeBg:after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -1px;
-                @include size(149px 29px);
-                background: url('#{$imgPath}changeBg.jpg');
-            }
+            margin-bottom: 1px;
+            font-weight: bold;
+            font-size: 17px;
 
             .title {
                 margin-bottom: 8px;
                 position: relative;
-
-                &:after {
-                    content: '';
-                    position: absolute;
-                    top: 2px;
-                    left: 10px;
-                    @include size(118px 18px);
-                    background: url('#{$imgPath}addHero.jpg');
-                }
-            }
-        }
-        &.addTitr {
-            .taleBtn:after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -1px;
-                @include size(149px 29px);
-                background: url('#{$imgPath}addText.jpg');
             }
         }
     }
@@ -109,7 +84,7 @@
         text-align: center;
         font-size: 14px;
 
-        overflow: auto;
+        overflow: hidden;
         outline: none;
 
         box-shadow: none;
@@ -189,35 +164,22 @@
     .taleBtnWrap {
         display: block;
         margin: 0 0 17px;
+        font-size: 22px;
 
         .taleBtn {
-            height: 63px;
-            width: 149px;
+            @include size(149px 63px);
             margin: 0 0 2px 1px;
             float: none;
+            padding: 10px 0 0;
 
-            &.preview:after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0px;
-                @include size(150px 65px);
-                background: url('#{$imgPath}preview.jpg');
+            &.preview {
+                text-shadow: -1px -1px 0 #c28f58;
+                color: $orange;
             }
 
             &.removeSlide {
-
-                width: 145px;
-                margin-left: 4px;
-
-                &:after {
-                    content: '';
-                    position: absolute;
-                    top: -1px;
-                    left: -2px;
-                    @include size(150px 65px);
-                    background: url('#{$imgPath}removeSlide.jpg');
-                }
+                color: $red;
+                text-shadow: -1px -1px 0 #bb3d0a;
             }
         }
     }
@@ -236,19 +198,12 @@
     }
 
     .taleBtn {
-        height: 65px;
-        width: 193px;
+        @include size(193px 65px);
         border-radius: 10px;
         margin: 0 0 0 1px;
-
-        &:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 1px;
-            @include size(192px 65px);
-            background: url('#{$imgPath}endTale.jpg');
-        }
+        font-size: 22px;
+        padding: 10px 15px;
+        text-shadow: -1px -1px 0 #bb3e04;
     }
 }
 
@@ -343,6 +298,22 @@
             }
         }
     }
+
+    .removeHero {
+        @include position(absolute, -38px null null -34px);
+        @include size(38px 38px);
+        background-color: #f4ecd9;
+        border-radius: 6px;
+        box-shadow: $outerShadow;
+        cursor: pointer;
+
+        &:after {
+            content: '';
+            @include position(absolute, 10px null null 10px);
+            @include size(19px 19px);
+            background: url('#{$imgPath}smallX.jpg');
+        }
+    }
 }
 
 .heroImg {
@@ -357,12 +328,10 @@
 .firstPlan {
     position: absolute;
     z-index: 3;
-    width: 150px;
-    height: 200px;
+    @include size(278px 352px);
 }
 .secondPlan {
     position: absolute;
     z-index: 1;
-    width: 100px;
-    height: 150px;
+    @include size(187px 236px);
 }

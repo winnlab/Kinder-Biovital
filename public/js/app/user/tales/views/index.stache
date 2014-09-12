@@ -1,0 +1,22 @@
+<div class="positioned" style="top: {{appState.size.topOffset}}; left: {{appState.size.leftOffset}};">
+
+    <div class="taleTitle">
+        <div class="innerTitle">
+            Обери казку
+        </div>
+    </div>
+
+    <a href="/main" class="taleBtnWrap small closeFrame">
+        <div class="small taleBtn orange"></div>
+    </a>
+
+    <div class="companyTales">
+        {{#each tales}}
+            <a class="tale" href="/fairy-tale/{{_id}}" style="
+                {{#if coverImgId.img}}background-image: url(/uploads/{{coverImgId.img}});{{/if}}
+                {{#if coverColorId.color}}background-color: #{{coverColorId.color}};{{/if}}
+            "></a>
+        {{/each}}
+    </div>
+
+</div>

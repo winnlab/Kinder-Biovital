@@ -2,7 +2,7 @@
 
     <div class="bg"></div>
 
-    <a class="watchTale module" href="/fairy-tail/my-tale"></a>
+    <a class="watchTale module" href="/tales"></a>
 
     <a class="createTale module" href="/create-tale"></a>
 

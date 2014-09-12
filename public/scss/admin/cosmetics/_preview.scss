@@ -24,30 +24,54 @@
             cursor: default;
         }
 
+        .firstPlan .replica {
+            bottom: 370px;
+            right: -140px;
+        }
+
+        .secondPlan .replica {
+            bottom: 250px;
+            right: -180px;
+        }
+
         .replica {
-            top: -119px;
+            top: auto;
+            left: auto;
+            bottom: 130px;
             width: 220px;
             text-align: center;
             font-size: 16px;
-            display: table;
 
             &:after {
-                content: '';
-                position: absolute;
-                top: -15px;
-                left: -18px;
-                z-index: -1;
-                @include size(254px 203px);
-                background: url('#{$imgPath}replica.png');
+                display: none;
             }
         }
 
         .replicaInner {
-            display: table-cell;
             width: 220px;
-            height: 138px;
             padding: 20px;
-            vertical-align: middle;
+            background: #f4ecd9;
+            border-radius: 52px;
+
+            &:before {
+                content: '';
+                @include position(absolute, null null -45px -3px);
+                z-index: -1;
+                @include size(67px 57px);
+                background: url('#{$imgPath}bubleTail.png');
+            }
+
+            &:after {
+                content: '';
+                @include position(absolute, 0 0 0 0);
+                z-index: -2;
+                border-radius: 52px;
+                box-shadow: 0px 0px 12px 13px rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        .heroImg:hover + .name {
+            opacity: 1;
         }
 
         .name {
@@ -56,12 +80,12 @@
             height: 38px;
             box-shadow: $outerShadow;
             border-radius: 5px;
-            padding: 8px 0;
-            outline: none;
-            overflow: auto;
+            padding: 11px 0;
+            overflow: hidden;
             text-align: center;
             font-size: 16px;
             background: #fff;
+            opacity: 0;
         }
     }
 
