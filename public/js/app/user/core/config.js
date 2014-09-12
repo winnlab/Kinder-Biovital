@@ -10,16 +10,26 @@ define({
 		}],
 		modules: [{
 			name: 'main',
-			path: 'app/main/main'
+			path: 'app/modules/main/main'
 		}, {
 			name: 'tales',
-			path: 'app/tales/tales'
+			path: 'app/modules/tales/tales'
 		}, {
 			name: 'create-tale',
-			path: 'app/tale/tale'
+			path: 'app/modules/tale/tale'
 		}, {
 			name: 'fairy-tale',
-			path: 'app/tale/view'
+			path: 'app/modules/tale/view'
 		}]
+	},
+	social: {
+		fb: {
+			appId: 512705898864753,
+			permissions: ''
+		},
+		vk: {
+			appId: 4547249,
+			permissions: 4
+		}
 	}
 });

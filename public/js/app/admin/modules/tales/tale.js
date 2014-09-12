@@ -351,7 +351,7 @@ define(
             },
 
             saveTale: function (cb, clearStorage) {
-                var module = this.module;
+                var module = this.module;                
                 module.attr('tale').save()
                     .done(function () {
                         if (typeof cb === 'function') {

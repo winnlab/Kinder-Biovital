@@ -16,13 +16,15 @@ define(
         return Tale.extend({
             defaults: {
                 viewpath: '/js/app/admin/modules/tales/views/'
+                // , display: 'share'
             }
         }, {
 
             saveTale: function (cb, clearStorage) {
                 var module = this.module;
+                console.log(module.attr('tale').attr());
                 module.attr('tale').save()
-                    .done(function (tale) {                        
+                    .done(function (tale) {
                         if (!module.attr('clearStorage')) {
                             localStorage.setItem('tale', JSON.stringify(tale.attr()));
                         } else {

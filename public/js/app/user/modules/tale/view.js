@@ -5,7 +5,7 @@ define(
 
         return can.Control.extend({
             defaults: {
-                viewpath: 'app/tale/views/'
+                viewpath: 'app/modules/tale/views/'
             }
         }, {
             init: function () {

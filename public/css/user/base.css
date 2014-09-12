@@ -75,7 +75,8 @@ module {
   background: #f5ebd9;
   display: inline-block;
   box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
-  font-family: Arial; }
+  font-family: Arial;
+  line-height: 110%; }
   .taleBtnWrap.big {
     border-radius: 10px;
     padding: 9px;

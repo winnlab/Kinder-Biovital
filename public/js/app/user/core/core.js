@@ -4,6 +4,7 @@ require(['/js/app/user/req.config.js'], function () {
 			'app/router/router',
 			'core/config',
 			'core/appState',
+			'src/social',
 			'viewHelpers',
 
 			'css!cssDir/reset.css',
@@ -12,11 +13,15 @@ require(['/js/app/user/req.config.js'], function () {
 		function (
 			Router,
 			config,
-			appState
+			appState,
+			Social
 		) {
 			var body = $('body');
 
 			appState.attr('router', new Router(body, config.router));
+			// appState.attr('social', new Social('vk'));
+			//
+			// appState.attr('social').share();
 
 		}
 	);

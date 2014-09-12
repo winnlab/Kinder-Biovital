@@ -1,11 +1,11 @@
 define(
-    ['canjs', 'core/appState'],
+    ['canjs', 'core/appState', 'src/social'],
 
     function (can, appState) {
 
         return can.Control.extend({
             defaults: {
-                viewpath: 'app/main/views/'
+                viewpath: 'app/modules/main/views/'
             }
         }, {
 

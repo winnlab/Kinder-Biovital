@@ -9,7 +9,7 @@ define(
 
         return can.Control.extend({
             defaults: {
-                viewpath: 'app/tales/views/'
+                viewpath: 'app/modules/tales/views/'
             }
         }, {
             init: function () {

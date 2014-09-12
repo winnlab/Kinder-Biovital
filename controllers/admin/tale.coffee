@@ -1,3 +1,4 @@
+async = require 'async'
 Crud = require '../../lib/crud'
 
 class Tale extends Crud
@@ -7,6 +8,15 @@ class Tale extends Crud
         if req.user and req.user.role is 'admin'
             req.body.type = 0
         super req, cb
+
+    update: (id, data, cb) ->
+        async.waterfall [
+            (next) =>
+                @DataEngine 'findById', next, id
+            (doc, next) =>
+                doc.frames = data.frames                
+                doc.save cb
+        ], cb
 
     findTales: (req, res) ->
         query = req.query
@@ -18,7 +28,6 @@ class Tale extends Crud
     findOne: (id, cb, options = {}, fields = null) ->
         tale = @DataEngine 'findById', null, id
         tale.populate("coverImgId coverColorId trackId userId frames.decorationId frames.heroes.heroId frames.heroes.replica.replicaId").exec cb
-
 
 crud = new Tale
     modelName: 'Tale'

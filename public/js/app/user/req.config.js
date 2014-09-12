@@ -4,15 +4,20 @@ require.config({
 		cssDir: '../../css/user',
 		app: '../app/user',
 		lib: '../app/admin/lib',
+		src: '../app/user/src',
 		can: 'canjs/amd/can/',
 		canjs: 'canjs/amd/can',
 		core: '../app/user/core',
 		jquery: 'jquery/dist/jquery',
 		underscore: 'underscore/underscore',
 		modules: '../app/admin/modules',
-		components: '../app/admin/components',		
+		components: '../app/admin/components',
 		viewHelpers: '../app/admin/core/viewHelpers',
-		cssComponents: '../../css/admin/components'
+		cssComponents: '../../css/admin/components',
+
+		// Social
+		fb: '../app/user/src/networks/fb-sdk',
+		vk: '../app/user/src/networks/vk-sdk'
 	},
 	map: {
 		'*': {
@@ -39,7 +44,14 @@ require.config({
 				'can/list/promise',
 				'can/construct/super'
 			]
+		},
+		'fb': {
+			exports: 'FB'
+		},
+		'vk': {
+			exports: 'VK'			
 		}
+
 	},
 	waitSeconds: 15
 });

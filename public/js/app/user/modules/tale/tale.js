@@ -2,7 +2,7 @@ define(
     [
         'canjs',
         'underscore',
-        'app/tale/setTale',
+        'app/modules/tale/setTale',
         'modules/tales/talesModel',
         'modules/tracks/tracksModel',
         'modules/covers/colorModel',
@@ -29,7 +29,7 @@ define(
 
         return can.Control.extend({
             defaults: {
-                viewpath: 'app/tale/views/',
+                viewpath: 'app/modules/tale/views/',
                 dataArr: {
                     tales: TalesModel,
                     tracks: TracksModel,

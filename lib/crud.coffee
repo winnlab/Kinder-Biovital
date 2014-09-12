@@ -113,8 +113,9 @@ class Crud
 				@DataEngine 'findById', next, id
 			(doc, next) =>
 				_.extend doc, data
-				doc.save cb
+				doc.save cb				
 		], cb
+
 
 	_remove: (req, cb) ->
 		id = req.params.id || req.body._id || req.body.id
