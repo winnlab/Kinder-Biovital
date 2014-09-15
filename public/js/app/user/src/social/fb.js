@@ -56,15 +56,6 @@ define(
                 return this.user;
             },
             share: function (image, cb) {
-				// FB.ui({
-				// 	method: 'feed',
-				// 	name: 'Kinder-Biovital',
-				// 	link: window.location.origin,
-				// 	// picture: ,
-				// 	caption: 'Kinder-Biovital 2',
-				// 	description: 'Kinder-Biovital 3',
-				// 	message: 'test'
-				// }, cb);
                 this.postCanvasToFacebook(image);
 			},
 
@@ -73,14 +64,14 @@ define(
 
             	FB.getLoginStatus(function(response) {
             	  if (response.status === "connected") {
-            		self.postImageToFacebook(response.authResponse.accessToken, "kinder", "image/png", decodedPng, "http://localhost:3000");
+            		self.postImageToFacebook(response.authResponse.accessToken, "kinder.png", "image/png", decodedPng, "http://localhost:3000");
             	  } else if (response.status === "not_authorized") {
             		 FB.login(function(response) {
-            			self.postImageToFacebook(response.authResponse.accessToken, "kinder", "image/png", decodedPng, "http://localhost:3000");
+            			self.postImageToFacebook(response.authResponse.accessToken, "kinder.png", "image/png", decodedPng, "http://localhost:3000");
             		 }, {scope: "publish_stream"});
             	  } else {
             		 FB.login(function(response)  {
-            			self.postImageToFacebook(response.authResponse.accessToken, "kinder", "image/png", decodedPng, "http://localhost:3000");
+            			self.postImageToFacebook(response.authResponse.accessToken, "kinder.png", "image/png", decodedPng, "http://localhost:3000");
             		 }, {scope: "publish_stream"});
             	  }
             	 });
@@ -88,14 +79,30 @@ define(
             },
 
             postImageToFacebook: function ( authToken, filename, mimeType, imageData, message ){
+                FB.api(
+                    "/me/photos",
+                    "POST",
+                    {
+                        "source": imageData,
+                        "message": 'Test: <a href="http://www.vedmezhuiky.com.ua/">Kinder-Biovital</a>'
+                    },
+                    function (response) {
+                        console.log("/me/photos POST", response)
+                      if (response && !response.error) {
+                        /* handle the result */
+                      }
+                    }
+                );
+            },
+
+            _postImageToFacebook: function ( authToken, filename, mimeType, imageData, message ){
                 // this is the multipart/form-data boundary we'll use
                 var boundary = '----ThisIsTheBoundary1234567890';
                 // let's encode our image file, which is contained in the var
                 var formData = '--' + boundary + '\r\n'
                 formData += 'Content-Disposition: form-data; name="source"; filename="' + filename + '"\r\n';
                 formData += 'Content-Type: ' + mimeType + '\r\n\r\n';
-                for ( var i = 0; i < imageData.length; ++i )
-                {
+                for ( var i = 0; i < imageData.length; ++i ) {
                     formData += String.fromCharCode( imageData[ i ] & 0xff );
                 }
                 formData += '\r\n';

@@ -6,8 +6,10 @@ define([
         var ViewModel = can.Map.extend({
             'view': '@',
             'cIndex': 0,
+            'count': '@',
             'lastIndex': function () {
-                return this.attr('data').length - 3;
+                var count = this.attr('count') || 3
+                return this.attr('data').length - count;
             }
         });
 
@@ -18,11 +20,13 @@ define([
                 '{{#isnt cIndex 0}}' +
                     '<div class="arrow top"></div>' +
                 '{{/isnt}}' +
-                '{{#isnt cIndex lastIndex}}' +
-                    '<div class="arrow btm"></div>' +
-                '{{/isnt}}' +
+                '{{#gt data.length count}}'+
+                    '{{#isnt cIndex lastIndex}}' +
+                        '<div class="arrow btm"></div>' +
+                    '{{/isnt}}' +
+                '{{/gt}}'+
                 '{{#each data}}' +
-                    '{{#in cIndex @index}}' +
+                    '{{#in cIndex @index count}}' +
                         '<content />' +
                     '{{/in}}' +
                 '{{/each}}'
@@ -36,10 +40,11 @@ define([
                 }
             },
             helpers: {
-                in: function (cIndex, index, options) {
+                in: function (cIndex, index, count, options) {
                     cIndex = cIndex();
                     index = index();
-                    return index >= cIndex && cIndex + 2 >= index
+                    count = count() - 1;                    
+                    return index >= cIndex && cIndex + count >= index
                         ? options.fn()
                         : options.inverse();
                 }

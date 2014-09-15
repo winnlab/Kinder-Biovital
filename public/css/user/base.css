@@ -513,7 +513,7 @@ module {
     bottom: 4px; }
   .btmPanel .taleBtnWrap {
     border-radius: 7px;
-    padding: 7px 9px; }
+    padding: 7px 22px; }
   .btmPanel .taleBtn {
     border-radius: 5px;
     padding: 7px 8px 5px; }
@@ -530,7 +530,7 @@ module {
     box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.3);
     border-radius: 7px;
     font-size: 14px; }
-    .btmPanel .frame:last-of-type {
+    .btmPanel .frame.addFrame {
       margin: 0; }
     .btmPanel .frame .plus {
       position: absolute;
@@ -539,6 +539,18 @@ module {
       height: 39px;
       width: 39px;
       background: url("/img/addSlide.png"); }
+  .btmPanel .arrow {
+    position: absolute;
+    top: 25px;
+    height: 29px;
+    width: 15px;
+    cursor: pointer; }
+    .btmPanel .arrow.btm {
+      right: -19px;
+      background: url("/img/nextFrame.png"); }
+    .btmPanel .arrow.top {
+      left: -19px;
+      background: url("/img/prevFrame.png"); }
 
 .rightPanel {
   position: absolute;
@@ -1125,19 +1137,19 @@ module {
     box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     padding: 12px; }
-    .mainPage .watchTale:after {
-      content: '';
-      background: url("/img/watchTale.png");
-      height: 82px;
-      width: 83px;
-      position: absolute;
-      top: 34px;
-      left: 43px;
-      z-index: 2; }
     .mainPage .watchTale .taleBtn {
       padding: 115px 9px 9px;
       font-size: 14px;
       text-decoration: none; }
+      .mainPage .watchTale .taleBtn:after {
+        content: '';
+        background: url("/img/watchTale.png");
+        height: 82px;
+        width: 83px;
+        position: absolute;
+        top: 22px;
+        left: 32px;
+        z-index: 2; }
   .mainPage .howToWrite {
     position: absolute;
     top: 281px;
@@ -1168,8 +1180,16 @@ module {
     left: 126px;
     height: 155px;
     width: 971px;
-    background: #fff;
     padding: 29px 19px 28px 141px; }
+    .mainPage .text:after {
+      content: '';
+      z-index: -1;
+      position: absolute;
+      top: -13px;
+      left: -17px;
+      height: 191px;
+      width: 1006px;
+      background: url("/img/mainTextBg.png"); }
     .mainPage .text:before, .mainPage .text.taleZone:after {
       content: '';
       position: absolute;

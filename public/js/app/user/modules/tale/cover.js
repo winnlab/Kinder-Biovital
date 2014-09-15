@@ -61,6 +61,7 @@ define(
                     encodedPng = data.substring(data.indexOf(',') + 1, data.length),
                     decodedPng = Base64Binary.decode(encodedPng);
 
+                // cb(encodedPng);
                 cb(decodedPng);
             }
         }

@@ -98,10 +98,10 @@
             <div class="btmPanel">
                 <div class="taleBtnWrap big">
                     <div class="taleBtn orange">
-                        {{#each tale.frames}}
+                        <item-scroll data="{tale.frames}" count="4">
                             <div class="frame" data-index="{{@index}}">{{locale.setTale.slide}} {{plus @index 1}}</div>
-                        {{/each}}
-                        <div class="frame">
+                        </item-scroll>
+                        <div class="frame addFrame">
                             <div class="plus"></div>
                         </div>
                     </div>
@@ -180,7 +180,7 @@
             <div class="chooseCover">
                 <div class="chooseImg taleBtnWrap">
                     <div class="taleBtn orange">
-                        <item-scroll data="{coverImages}">
+                        <item-scroll data="{coverImages}" count="3">
                             {{#if img}}
                                 <div class="coverImage" data-id="{{_id}}" style="background-image: url('/uploads/{{img}}')"></div>
                             {{/if}}
@@ -188,7 +188,7 @@
                     </div>
                 </div>
                 <div class="chooseColor taleBtnWrap">
-                    <item-scroll data="{coverColors}">
+                    <item-scroll data="{coverColors}" count="3">
                         {{#if color}}
                             <div class="coverColor" data-id="{{_id}}" style="background-color: #{{color}};"></div>
                         {{/if}}

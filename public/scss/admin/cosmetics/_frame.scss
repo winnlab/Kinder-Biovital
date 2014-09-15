@@ -113,7 +113,7 @@
 
     .taleBtnWrap {
         border-radius: 7px;
-        padding: 7px 9px;
+        padding: 7px 22px;
     }
 
     .taleBtn {
@@ -136,7 +136,7 @@
 
         font-size: 14px;
 
-        &:last-of-type {
+        &.addFrame {
             margin: 0;
         }
 
@@ -144,6 +144,22 @@
             @include position(absolute, 13px null null 24px);
             @include size(39px 39px);
             background: url('#{$imgPath}addSlide.png');
+        }
+    }
+
+    .arrow {
+        @include position(absolute, 25px null null null);
+        @include size(15px 29px);
+        cursor: pointer;
+
+        &.btm {
+            right: -19px;
+            background: url('#{$imgPath}nextFrame.png');
+        }
+
+        &.top {
+            left: -19px;
+            background: url('#{$imgPath}prevFrame.png');
         }
     }
 }

@@ -49,18 +49,18 @@
         cursor: pointer;
         padding: 12px;
 
-        &:after {
-            content: '';
-            background: url('#{$imgPath}watchTale.png');
-            @include size(83px 82px);
-            @include position(absolute, 34px null null 43px);
-            z-index: 2;
-        }
-
         .taleBtn {
             padding: 115px 9px 9px;
             font-size: 14px;
             text-decoration: none;
+
+            &:after {
+                content: '';
+                background: url('#{$imgPath}watchTale.png');
+                @include size(83px 82px);
+                @include position(absolute, 22px null null 32px);
+                z-index: 2;
+            }
         }
     }
 
@@ -95,8 +95,15 @@
     .text {
         @include position(absolute, null null 9px 126px);
         @include size(971px 155px);
-        background: #fff;
         padding: 29px 19px 28px 141px;
+
+        &:after {
+            content: '';
+            z-index: -1;
+            @include position(absolute, -13px null null -17px);
+            @include size(1006px 191px);
+            background: url('#{$imgPath}mainTextBg.png');
+        }
 
         &:before {
             content: '';

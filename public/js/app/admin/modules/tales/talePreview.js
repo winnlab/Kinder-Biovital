@@ -33,6 +33,8 @@ define(
 
                 queryBase: '/admin',
 
+                timeOut: 5000,
+
                 taleSize: {
                     width: 1225,
                     height: 650
@@ -46,6 +48,8 @@ define(
                     def = can.Deferred(),
                     options = this.options,
                     html;
+
+                self.playInterval = null;
 
                 self.module = new can.Map({
                     cIndex: 1,
@@ -142,10 +146,20 @@ define(
 
             '.prevFrame click': function () {
                 this.changeFrame(-1);
+                clearInterval(this.playInterval);
             },
 
             '.nextFrame click': function () {
                 this.changeFrame(1);
+                clearInterval(this.playInterval);
+            },
+
+            '.playFrame click': function () {
+                var self = this;
+
+                self.playInterval = setInterval(function () {
+                    self.changeFrame(1);
+                }, self.options.timeOut);
             },
 
             changeFrame: function (i) {
@@ -157,6 +171,8 @@ define(
                 if (index >= 0 && index < frames.length) {
                     module.attr('cIndex', index + 1);
                     this.currentFrame(index);
+                } else {
+                    clearInterval(this.playInterval);
                 }
             }
         });
