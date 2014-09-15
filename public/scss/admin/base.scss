@@ -14,6 +14,11 @@ html {
 	}
 }
 
+.navTabs,
+.addInnerPage {
+	margin-bottom: 20px;
+}
+
 @import 'cosmetics/_cover.scss';
 @import 'cosmetics/_taleBtns.scss';
 @import 'cosmetics/_tale.scss';

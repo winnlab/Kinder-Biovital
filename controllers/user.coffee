@@ -4,7 +4,6 @@ View = require '../lib/view'
 
 Main = require './user/main.coffee'
 Hero = require './admin/hero'
-Replica = require './admin/replica'
 Track = require './admin/track'
 CoverColor = require './admin/coverColor'
 CoverImage = require './admin/coverImage'
@@ -36,16 +35,13 @@ Router.get '/main', Main.index
 Router.get '/tales', Main.index
 Router.get '/create-tale', Main.index
 Router.get '/fairy-tale/:name?', Main.index
+Router.get '/sp/:link?', Main.index
 
 
 
 #------- Hero ---------#
 
 Router.get '/hero', Hero.rest
-
-#------- Replica ---------#
-
-Router.get '/replica', Replica.rest
 
 #------- Track ---------#
 
@@ -62,5 +58,9 @@ Router.get '/cover', CoverImage.rest
 #------- Decoration ---------#
 
 Router.get '/decoration', Decoration.rest
+
+#------- Page ---------#
+
+Router.get '/page/:link', Main.getPage
 
 exports.Router = Router

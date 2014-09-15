@@ -1,0 +1,38 @@
+@charset "UTF-8";
+@import '../../bourbon/_bourbon.scss';
+@import '../../base/_mixins.scss';
+@import '../../base/_placeholders.scss';
+@import '../../base/_variables.scss';
+
+.instruction .pageWrap {
+    font-size: 15px;
+    padding: 30px 84px;
+
+
+
+    ol {
+        list-style-type: none;
+        counter-reset: ol-counter;
+
+        li {
+            margin: 0 0 15px;
+            display: block;
+        }
+    }
+    ol > li:before {
+        content: counter(ol-counter);
+        counter-increment: ol-counter;
+        float: left;
+        color: $orange;
+        font-size: 55px;
+        font-weight: normal;
+        line-height: 60px;
+        font-family: Futura;
+        margin: 3px 3px -15px -7px;
+        text-shadow: 1px 2px 0 #bb6920;
+    }
+}
+
+.instruction .link .taleBtn {
+    padding: 7px
+}

@@ -1,9 +1,9 @@
 <div class="content-header">
     <h3 class="content-title clearfix">
-        {{#if replica._id}}
-            Редактирование типа реплики
+        {{#if track._id}}
+            Редактирование трека
         {{else}}
-            Добавление типа реплики
+            Добавление трека
         {{/if}}
         <div class="pull-right btn btn-primary toList">
             Назад
@@ -18,11 +18,11 @@
             <div class="box-body clearfix">
 
                 <div class="col-md-6">
-                    <form class="form-horizontal setReplica">
+                    <form class="form-horizontal setTrack">
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="name">Название:</label>
                             <div class="col-md-10">
-                                <input class="form-control" type="text" value="{{replica.name}}" name="name" placeholder="Название типа реплики" />
+                                <input class="form-control" type="text" value="{{track.name}}" name="name" placeholder="Название трека" />
                                 <div class="help help-block"></div>
                             </div>
                         </div>
@@ -30,33 +30,45 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="position">Позиция:</label>
                             <div class="col-md-10">
-                                <input class="form-control" type="text" value="{{replica.position}}" name="position" placeholder="Позиция типа реплики">
+                                <input class="form-control" type="text" value="{{track.position}}" name="position" placeholder="Позиция трека">
                                 <div class="help help-block"></div>
                             </div>
                         </div>
 
                         <button class="btn btn-primary col-md-offset-2" type="submit">
-                            {{#if replica._id}}
-                                Сохранить тип реплики
+                            {{#if track._id}}
+                                Сохранить трек
                             {{else}}
-                                Добавить тип реплики
+                                Добавить трек
                             {{/if}}
                         </button>
                     </form>
                 </div>
 
                 <div class="col-md-6">
-                    {{#if replica._id}}
+                    {{#if track._id}}
                         <upload
                             class="col-md-12"
-                            name="img"
-                            url="/admin/replica/img"
-                            delete-url="/admin/replica/img"
-                            entity="{replica}"
-                            uploaded="{replica.img}"
-                            accept="image/*"
+                            name="mp3"
+                            url="/admin/track/sound"
+                            delete-url="/admin/track/sound"
+                            entity="{track}"
+                            uploaded="{track.sound.mp3}"
+                            accept="audio/mpeg"
                         >
-                            Загрузить картинку для реплики
+                            Загрузить mp3
+                        </upload>
+
+                        <upload
+                            class="col-md-12"
+                            name="wav"
+                            url="/admin/track/sound"
+                            delete-url="/admin/track/sound"
+                            entity="{track}"
+                            uploaded="{track.sound.wav}"
+                            accept="audio/wav"
+                        >
+                            Загрузить wav
                         </upload>
                     {{/if}}
                 </div>

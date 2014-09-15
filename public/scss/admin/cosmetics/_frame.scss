@@ -5,16 +5,14 @@
 @import '../../base/_variables.scss';
 
 .leftPanel {
-    position: absolute;
+    @include position(absolute, 294px null null -176px);
     width: 164px;
-    left: -176px;
-    top: 300px;
     z-index: 1;
     text-shadow: -1px -1px 0 #c58730;
 
     .small & {
         left: 18px;
-        top: 162px;
+        top: 146px;
     }
 
     .taleBtnWrap {
@@ -105,70 +103,69 @@
 
 .btmPanel {
     position: absolute;
-    bottom: -122px;
+    bottom: -119px;
     left: 326px;
     z-index: 1;
 
     .small & {
-        bottom: 11px;
+        bottom: 4px;
     }
 
     .taleBtnWrap {
-        padding: 8px 9px;
+        border-radius: 7px;
+        padding: 7px 9px;
     }
 
     .taleBtn {
-        padding: 9px 10px 8px;
+        border-radius: 5px;
+        padding: 7px 8px 5px;
     }
 
     .frame {
+        position: relative;
         display: block;
         float: left;
-        width: 102px;
+        @include size(83px 65px);
+        margin: 0 5px 0 0;
+        padding: 21px 0;
+
         background: #f4ecd9;
         color: #333;
         box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.3);
-        border-radius: 10px;
-        margin: 0 6px 0 0;
-        padding: 29px 0;
-        height: 78px;
-        position: relative;
-        font-size: 16px;
+        border-radius: 7px;
+
+        font-size: 14px;
 
         &:last-of-type {
             margin: 0;
         }
 
         .plus {
-            position: absolute;
-            top: 16px;
-            left: 29px;
-            @include size(45px 45px);
-            background: url('#{$imgPath}addSlide.jpg');
+            @include position(absolute, 13px null null 24px);
+            @include size(39px 39px);
+            background: url('#{$imgPath}addSlide.png');
         }
     }
 }
 
 .rightPanel {
-    position: absolute;
-    right: -179px;
-    top: 453px;
+    @include position(absolute, 453 -179px null null);
     z-index: 1;
-    width: 174px;
+    width: 156px;
 
     .small & {
-        right: 57px;
-        top: 334px;
+        right: 16px;
+        top: 357px;
     }
 
     .taleBtnWrap {
         display: block;
-        margin: 0 0 17px;
-        font-size: 22px;
+        margin: 0 0 9px;
+        font-size: 19px;
 
         .taleBtn {
-            @include size(149px 63px);
-            margin: 0 0 2px 1px;
+            @include size(133px 56px);
+            margin: 0 0 1px 1px;
             float: none;
             padding: 10px 0 0;
 
@@ -198,11 +195,11 @@
     }
 
     .taleBtn {
-        @include size(193px 65px);
+        @include size(172px 57px);
         border-radius: 10px;
         margin: 0 0 0 1px;
         font-size: 22px;
-        padding: 10px 15px;
+        padding: 6px 15px;
         text-shadow: -1px -1px 0 #bb3e04;
     }
 }
@@ -236,15 +233,37 @@
     }
 
     .replica {
-        @include size(216px 80px);
+        @include size(216px null);
         @include position(absolute, -70px -216px null null);
+
+        &.dragged {
+            @include position(absolute, auto auto null null);
+        }
 
         &:before {
             content: '';
-            @include position(absolute, null null -45px -3px);
             z-index: -1;
             @include size(67px 57px);
-            background: url('#{$imgPath}bubleTail.png');
+        }
+
+        &.RT:before {
+            @include position(absolute, null null -45px -3px);
+            background: url('#{$imgPath}bubleTailRT.png');
+        }
+
+        &.LT:before {
+            @include position(absolute, null -3px -45px null);
+            background: url('#{$imgPath}bubleTailLT.png');
+        }
+
+        &.RB:before {
+            @include position(absolute, -50px null null -3px);
+            background: url('#{$imgPath}bubleTailRB.png');
+        }
+
+        &.LB:before {
+            @include position(absolute, -50px -3px null null);
+            background: url('#{$imgPath}bubleTailLB.png');
         }
 
         &:after {
@@ -258,6 +277,7 @@
         textarea {
             @include size(216px 80px);
             padding: 20px;
+            display: block;
             background: #f4ecd9;
             border-radius: 53px;
             overflow: hidden;
@@ -269,45 +289,10 @@
         }
     }
 
-    .replicaControl {
-        position: absolute;
-        bottom: 0;
-        right: -177px;
-        width: 123px;
-        height: 60px;
-        background: #f4ecd9;
-        border-radius: 10px;
-        box-shadow: $outerShadow;
-
-        .miniCloud {
-            position: absolute;
-            left: 14px;
-            top: 13px;
-            width: 51px;
-            height: 40px;
-            background: url('#{$imgPath}miniCloud.jpg');
-        }
-
-        .replicaBtn {
-            position: absolute;
-            width: 29px;
-            height: 29px;
-            left: 79px;
-            top: 15px;
-            cursor: pointer;
-
-            &.add {
-                background: url('#{$imgPath}addReplica.jpg');
-            }
-            &.remove {
-                background: url('#{$imgPath}removeReplica.jpg');
-            }
-        }
-    }
-
     .removeHero {
-        @include position(absolute, -38px null null -34px);
-        @include size(38px 38px);
+        @include position(absolute, 0 null null 0);
+        z-index: 2;
+        @include size(30px 30px);
         background-color: #f4ecd9;
         border-radius: 6px;
         box-shadow: $outerShadow;
@@ -315,9 +300,33 @@
 
         &:after {
             content: '';
-            @include position(absolute, 10px null null 10px);
-            @include size(19px 19px);
+            @include position(absolute, 7px null null 8px);
+            @include size(15px 14px);
             background: url('#{$imgPath}smallX.jpg');
+        }
+    }
+
+    .replicaBtn {
+        cursor: pointer;
+
+        &.add {
+            @include position(absolute, null -105px 0 null);
+            @include size(92px 72px);
+            background: #f4ecd9;
+            box-shadow: $outerShadow;
+            border-radius: 5px;
+
+            &:after {
+                content: '';
+                @include position(absolute, 10px null null 11px);
+                @include size(71px 55px);
+                background: url('#{$imgPath}addBubble.png');
+            }
+        }
+        &.remove {
+            @extend .removeHero;
+            left: auto;
+            right: -15px;
         }
     }
 }
@@ -334,10 +343,10 @@
 .firstPlan {
     position: absolute;
     z-index: 3;
-    @include size(278px 352px);
+    @include size(190px 240px);
 }
 .secondPlan {
     position: absolute;
     z-index: 1;
-    @include size(187px 236px);
+    @include size(120px 150px);
 }

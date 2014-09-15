@@ -1,0 +1,51 @@
+@charset "UTF-8";
+@import '../../bourbon/_bourbon.scss';
+@import '../../base/_mixins.scss';
+@import '../../base/_placeholders.scss';
+@import '../../base/_variables.scss';
+
+.how-to-write .pageWrap {
+    font-size: 13px;
+    padding: 17px 84px;
+
+    list-slider {
+        height: 353px;
+
+        .arrow {
+            top: 157px;
+
+            &.prev {
+                left: -86px;
+            }
+
+            &.next {
+                right: -77px;
+            }
+        }
+
+        div {
+            margin-bottom: 10px;
+        }
+    }
+
+    h5 {
+        color: $orange;
+        text-shadow: 1px 2px 0 #bb6920;
+        font-family: Futura;
+        font-weight: normal;
+        font-size: 24px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 17px 0 8px;
+    }
+
+    h6 {
+        color: #a9692b;
+        font-size: 16px;
+        margin-top: 1px;
+    }
+}
+
+.how-to-write .link .taleBtn {
+    padding: 7px
+}

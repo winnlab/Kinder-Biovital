@@ -1,0 +1,21 @@
+<div class="positioned productPage" style="top: {{appState.size.topOffset}}; left: {{appState.size.leftOffset}};">
+
+    <div class="taleTitle">
+        <div class="innerTitle">
+            {{page.lang.title}}
+        </div>
+    </div>
+
+    <div class="pageWrap">
+        <list-slider data="{page.frames}">
+            <div class="kinderSlide slide-{{@index}}">{{{frame.text}}}</div>
+        </list-slider>
+    </div>
+
+    <div class="link taleBtnWrap big orange">
+        <a class="taleBtn" target="_blank" href="http://www.vedmezhuiky.com.ua/">
+            {{appState.locale.details}}
+        </a>
+    </div>
+
+</div>

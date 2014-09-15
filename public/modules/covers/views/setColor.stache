@@ -1,0 +1,58 @@
+<div class="box {{#if color._id}}box-warning{{/if}}">
+    <div class="box-header">
+        <h3 class="box-title">
+            {{#if color._id}}
+                Редактирование фона обложки
+            {{else}}
+                Добавление фона обложки
+            {{/if}}
+        </h3>
+        <div class="box-tools pull-right">
+            <div class="btn btn-primary toList">
+                Назад
+            </div>
+        </div>
+    </div>
+    <div class="box-footer">
+        <form class="form-horizontal setColor">
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="name">Название:</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" value="{{color.name}}" name="name" placeholder="Название цвета" />
+                    <div class="help help-block"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="name">Цвет:</label>
+                <div class="col-md-10">
+                    <div class="input-group">
+                        <span class="input-group-addon">#</span>
+                        <input class="form-control" type="text" value="{{color.color}}" name="color" placeholder="hex, a.g. ffffff" />
+                    </div>
+                    <div class="help help-block"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="position">Позиция:</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" value="{{color.position}}" name="position" placeholder="Позиция цвета">
+                    <div class="help help-block"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-offset-2 col-md-6">
+                    <button class="btn btn-primary" type="submit">
+                        {{#if color._id}}
+                            Сохранить
+                        {{else}}
+                            Добавить
+                        {{/if}}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

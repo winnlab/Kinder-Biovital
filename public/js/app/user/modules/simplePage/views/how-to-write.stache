@@ -1,0 +1,22 @@
+<div class="positioned {{page.link}}" style="top: {{appState.size.topOffset}}; left: {{appState.size.leftOffset}};">
+
+    <div class="taleTitle">
+        <div class="innerTitle">
+            {{page.lang.title}}
+        </div>
+    </div>
+
+    <div class="pageWrap">
+        <list-slider data="{page.frames}">
+            <div class="slide">{{{frame.text}}}</div>
+        </list-slider>
+    </div>
+
+    <div class="link taleBtnWrap big red">
+        <a class="taleBtn module" href="/create-tale">
+            {{appState.locale.create}}
+        </a>
+    </div>
+
+
+</div>

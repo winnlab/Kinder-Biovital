@@ -1,0 +1,146 @@
+@charset "UTF-8";
+@import '../../bourbon/_bourbon.scss';
+@import '../../base/_mixins.scss';
+@import '../../base/_placeholders.scss';
+@import '../../base/_variables.scss';
+
+.pageWrap {
+    @include position(absolute, 125px null null 289px);
+    @include size(650px 400px);
+    padding: 30px;
+    font-family: Arial;
+    font-size: 15px;
+    line-height: 130%;
+
+    .howToWrite & {
+
+    }
+
+    &:after {
+        content: '';
+        z-index: -1;
+        @include position(absolute, -32px null null -40px);
+        @include size(726px 466px);
+        background: url('#{$imgPath}pageBg.png');
+    }
+
+    list-slider {
+        display: block;
+        position: relative;
+        height: 340px;
+
+        .arrow {
+            @include position(absolute, 144px null null null);
+            z-index: 10;
+            @include size(22px 41px);
+            cursor: pointer;
+
+            &.prev {
+                left: -32px;
+                background: url('#{$imgPath}kibiPrev.png');
+            }
+
+            &.next {
+                right: -23px;
+                background: url('#{$imgPath}kibiNext.png');
+            }
+        }
+
+        .dotsWrap {
+            @include position(absolute, null null -18px 0);
+            @include size(100% 15px);
+            text-align: center;
+
+            .dot {
+                display: inline-block;
+                @include size(11px 9px);
+                margin: 0 4px 0 0;
+                cursor: pointer;
+                background: url('#{$imgPath}dot.png');
+
+                &.active {
+                    background: url('#{$imgPath}dotActive.png');
+                }
+            }
+        }
+
+    }
+
+    .kinderSlide {
+        float: right;
+        width: 390px;
+        padding: 12px 0 0 6px;
+        position: relative;
+
+        &.slide-0:before {
+            content: '';
+            @include position(absolute, 35px null null -226px);
+            @include size(221px 288px);
+            background: url('#{$imgPath}kibi.png');
+        }
+        &.slide-1:before {
+            content: '';
+            @include position(absolute, 12px null null -196px);
+            @include size(185px 310px);
+            background: url('#{$imgPath}gel.png');
+        }
+
+        div:first-child:first-letter {
+            float: left;
+            color: $orange;
+            font-size: 65px;
+            font-weight: normal;
+            line-height: 60px;
+            font-family: Futura;
+            margin: 3px 3px -15px -7px;
+            text-shadow: 1px 2px 0 #bb6920;
+        }
+
+        div {
+            margin: 0 0 10px;
+        }
+    }
+
+    ul {
+        list-style: url(#{$imgPath}list-style.png) inside;
+        li {
+            margin: -2px 0 6px;
+            display: block;
+
+            &:before {
+                content: url(#{$imgPath}list-style.png);
+                display: inline-block;
+                vertical-align: middle;
+                margin: 0 10px 0 0;
+            }
+        }
+    }
+
+    b, strong {
+        font-weight: bold;
+        color: $orange;
+    }
+}
+
+.positioned {
+    .link {
+        @include position(absolute, null null 29px 515px);
+
+        &.orange a {
+            text-shadow: -1px -1px 0 #bb7520;
+            color: $orange;
+        }
+        &.red a {
+            color: $red;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .taleBtn {
+            padding: 18px;
+            width: 177px;
+        }
+    }
+}

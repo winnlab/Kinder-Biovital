@@ -20,6 +20,9 @@ define({
 		}, {
 			name: 'fairy-tale',
 			path: 'app/modules/tale/view'
+		}, {
+			name: 'sp',
+			path: 'app/modules/simplePage/simplePage'
 		}]
 	},
 	social: {

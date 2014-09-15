@@ -30,7 +30,7 @@ sessionParams =
 routes = () ->
 	@use '/', userController.Router
 	@use '/admin', adminController.Router
-	@use '/:lang(ru|en)', userController.Router
+	@use '/:lang(ru)', userController.Router
 
 configure = () ->
 	@set 'views', "#{__dirname}/../views"

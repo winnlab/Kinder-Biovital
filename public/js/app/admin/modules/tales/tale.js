@@ -4,19 +4,22 @@ define(
         'underscore',
         'core/appState',
         'lib/viewport',
+        'modules/tales/talePreloader',
         'modules/tales/talePreview',
         'lib/jquerypp',
         'components/itemScroll/itemScroll'
     ],
 
-    function (can, _, appState, viewport, TalePreview) {
+    function (can, _, appState, viewport, Preloader, TalePreview) {
 
         'use strict';
 
         var Module = can.Map.extend({
                 showText: false,
+                showTracks: false,
                 talePreview: '',
                 interface: 'big',
+                locale: appState.attr('locale'),
                 admin: document.location.pathname.indexOf('admin/') !== -1,
                 setBg: function (context, el, ev) {
                     this.attr('frame.decorationId', context.attr('_id'));
@@ -31,6 +34,10 @@ define(
                     var text = el.val().slice(0, 120);
                     el.val(text);
                     scope.attr('replica.text', el.val());
+                },
+                setTrack: function (context, el, ev) {
+                    this.attr('tale.trackId', context.attr('_id'));
+                    this.attr('showTracks', false);
                 }
             }),
             vendors = ['-webkit-', '-moz-', '-ms-', '-o-', ''];
@@ -39,8 +46,8 @@ define(
             defaults: {
                 viewpath: '/js/app/admin/modules/tales/views/',
                 viewName: 'set.stache',
-                // can be "bg", "frame", "cover"
-                display: 'frame',
+                // can be "bg", "frame", "cover", "share"
+                display: 'frame',                
 
                 frame: null,
                 // Proportion of frame background and mini frame
@@ -49,13 +56,20 @@ define(
                 // This is offset of tale backround from tale zone
                 frameBgTop: -275,
                 // the offset top of hero when it become bigger
-                firstPlanTop: 450,
+                firstPlanTop: 500,
                 // the minimal amount of left frameBg offset in pixels
                 frameBgMinOffset: 348,
 
                 taleSize: {
                     width: 1224,
                     height: 650
+                },
+
+                heroSize: {
+                    fgWidth: 190,
+                    fgHeight: 240,
+                    bgWidth: 120,
+                    bgHeight: 150
                 },
 
                 data: [
@@ -67,8 +81,7 @@ define(
                     'coverColors',
                     'coverImages',
                     'decorations',
-                    'heroes',
-                    'replica'
+                    'heroes'
                 ]
             }
         }, {
@@ -79,26 +92,25 @@ define(
                     options = this.options,
                     html;
 
-                this.module = new Module();
+                self.module = new Module();
 
                 for (var i = options.data.length; i-- ;) {
-                    this.module.attr(options.data[i], options[options.data[i]]);
+                    self.module.attr(options.data[i], options[options.data[i]]);
                 }
 
                 if (options.tale.isNew()) {
-                    this.setDefaults(options.tale, options);
+                    self.setDefaults(options.tale, options);
                 }
 
-                this.currentFrame();
+                self.currentFrame();
 
-                html = can.view(options.viewpath + options.viewName, this.module, {
+                html = can.view(options.viewpath + options.viewName, self.module, {
                     contentSize: function (size) {
                         var height = viewport.getViewportHeight() + 'px';
                         self.element.css('min-height', height);
                         return 'min-height: ' + height;
                     },
                     talePosition: function () {
-                        document.body.scrollTop = 50;
                         var left = (viewport.getViewportWidth() - 1225) / 2,
                             top = (viewport.getViewportHeight() - 650) / 2;
 
@@ -118,13 +130,36 @@ define(
                         return options.context.attr('top') > self.options.firstPlanTop
                             ? 'firstPlan'
                             : 'secondPlan';
+                    },
+                    getReplicaTail: function (options) {
+                        var hero = options.context,
+                            heroTop = hero.attr('top'),
+                            heroLeft = hero.attr('left'),
+                            sizePrefix = heroTop > self.options.firstPlanTop ? 'fg' : 'bg',
+                            heroWidth = self.options.heroSize[sizePrefix + 'Width'],
+                            heroHeight = self.options.heroSize[sizePrefix + 'Height'],
+                            replicaClass = '';
+
+                        if ((heroLeft + heroWidth / 2) > hero.attr('replica.left')) {
+                            replicaClass += 'L';
+                        } else {
+                            replicaClass += 'R';
+                        }
+
+                        if ((heroTop + heroHeight / 2) > hero.attr('replica.top')) {
+                            replicaClass += 'T';
+                        } else {
+                            replicaClass += 'B';
+                        }
+
+                        return replicaClass;
                     }
                 });
 
-                this.element.html(html);
+                self.element.html(html);
 
                 if (options.isReady) {
-                    options.isReady.resolve();
+                    Preloader.preload(self.module.attr(), options.isReady.resolve);
                 }
 
             },
@@ -134,7 +169,9 @@ define(
              */
             setDefaults: function (doc, options) {
                 doc.attr({
-                    frames: [this.addFrame(0)]
+                    frames: [this.addFrame(0)],
+                    left: 150,
+                    top: 50
                 });
             },
 
@@ -238,9 +275,8 @@ define(
                     top: top,
                     name: hero.attr('name'),
                     replica: {
-                        replicaId: module.attr('replica.0._id'),
-                        left: left + 100,
-                        top: top - 30,
+                        left: null,
+                        top: null,
                         text: ''
                     }
                 });
@@ -254,31 +290,65 @@ define(
 
             '.heroInDrag dragend': 'setHeroPosition',
 
+            '.displayFrame .replica draginit': function (el, ev, drag) {
+                drag.limit(el.parents('.taleZone'));
+            },
+
+            '.displayFrame .replica dragend': 'setReplicaPosition',
+
             setHeroPosition: function (el, ev, drag) {
-                var taleSize = this.options.taleSize,
-                    offset = el.parents('.taleZone').offset(),
+                this.setHeroDragged(el, null, drag);
+            },
+
+            setReplicaPosition: function (el, ev, drag) {
+                this.setHeroDragged(el, 'replica', drag);
+            },
+
+            setHeroDragged: function (el, attr, drag) {
+                var offset = el.parents('.taleZone').offset(),
                     leftInContainer = drag.location.left() - offset.left,
                     topInContainer = drag.location.top() - offset.top,
-                    hero,
-                    left,
-                    top;
-
-                if (leftInContainer >= 0
-                    && topInContainer >= 0
-                    && leftInContainer <= taleSize.width
-                    && topInContainer <=  taleSize.height) {
-
-                    hero = el.data('hero');
-                    left = leftInContainer + this.module.attr('frame.left');
+                    hero = attr ? el.parents('.heroInDrag').data('hero') : el.data('hero'),
+                    left = leftInContainer + this.module.attr('frame.left'),
                     top = topInContainer - this.options.frameBgTop;
-                    hero.attr({
+
+                if (attr) {
+                    hero.attr(attr).attr({
                         left: left,
                         top: top
                     });
                 } else {
-                    return false;
+                    var oldTop = hero.attr('top'),
+                        oldLeft = hero.attr('left'),
+                        replicaTop = hero.attr('replica.top'),
+                        replicaLeft = hero.attr('replica.left');
+
+                    can.batch.start();
+
+                    hero.attr({
+                        left: left,
+                        top: top
+                    });
+                    hero.attr('replica.top', replicaTop - (oldTop - top));
+                    hero.attr('replica.left', replicaLeft - (oldLeft - left));
+
+                    can.batch.stop();
                 }
             },
+
+            '.coverName draginit': function (el, ev, drag) {
+                drag.limit(el.parent());
+            },
+
+            '.coverName dragend': function (el, ev, drag) {
+                var offset = el.parents('.coverPreview').offset(),
+                    left = drag.location.left() - offset.left,
+                    top = drag.location.top() - offset.top;
+
+                this.module.attr('tale.top', top);
+                this.module.attr('tale.left', left);
+            },
+
 
             '[data-display] click': function (el) {
                 this.module.attr('display', el.data('display'));
@@ -331,6 +401,8 @@ define(
                     hero.attr('replica.text', '');
                 } else {
                     hero.attr('replica.text', ' ');
+                    hero.attr('replica.left', hero.attr('left') + 150);
+                    hero.attr('replica.top', hero.attr('top') - 30);
                 }
             },
 
@@ -351,7 +423,7 @@ define(
             },
 
             saveTale: function (cb, clearStorage) {
-                var module = this.module;                
+                var module = this.module;
                 module.attr('tale').save()
                     .done(function () {
                         if (typeof cb === 'function') {
@@ -389,6 +461,10 @@ define(
                     this.saveTale();
                     can.route.attr({module: 'tales'}, true);
                 }
+            },
+
+            '.showTracks click': function () {
+                this.module.attr('showTracks', !this.module.attr('showTracks'));
             }
 
         });

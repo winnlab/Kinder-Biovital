@@ -7,18 +7,17 @@
 .taleZone {
 
     .chooseCover {
-        position: absolute;
-        top: 130px;
-        left: 81px;
+        @include position(absolute, 130px null null 83px);
 
         .taleBtnWrap {
-            padding: 32px 5px;
+            padding: 30px 8px;
             border-radius: 15px;
         }
 
         .taleBtn {
-            padding: 11px 12px;
-            margin-right: 2px;
+            padding: 11px 13px;
+            border-radius: 13px;
+            margin: 0 2px 2px 0;
 
             &:active {
                 box-shadow: $btnShadow;
@@ -44,7 +43,7 @@
         .chooseColor {
             position: absolute;
             top: 25px;
-            left: 98px;
+            left: 103px;
             border-radius: 0 15px 15px 0;
             box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.1);
             width: 74px;
@@ -56,7 +55,7 @@
                 top: -7px;
                 bottom: -7px;
                 left: -6px;
-                width: 6px;
+                width: 9px;
                 background: #f5ebd9;
             }
 
@@ -90,7 +89,7 @@
             position: absolute;
             width: 27px;
             height: 15px;
-            left: 27px;
+            left: 28px;
             cursor: pointer;
 
             &.top {
@@ -112,7 +111,7 @@
         top: 114px;
         border-radius: 20px;
 
-        .preview {
+        .coverPreview {
             position: absolute;
             width: 516px;
             height: 274px;
@@ -128,18 +127,18 @@
 
     .taleName {
         position: absolute;
-        top: 453px;
-        left: 491px;
+        top: 452px;
+        left: 440px;
 
         .taleBtn {
             padding: 6px 11px;
+            margin: 0 2px 2px 0;
         }
 
         input {
             border: none;
-            height: 34px;
+            @include size(306px 34px);
             margin-bottom: 1px;
-            width: 206px;
             border-radius: 5px;
             box-shadow: $innerShadow;
             outline: none;
@@ -150,30 +149,38 @@
     }
 
     .prev {
-        position: absolute;
-        right: 243px;
-        padding: 11px 14px 11px 12px;
-        bottom: 32px;
+        @include position(absolute, null 221px 18px null);
+        padding: 8px 11px 11px 9px;
 
         .taleBtn {
-            @include size(191px 62px);
-            padding: 21px 21px 21px 44px;
-            letter-spacing: 1px;
+            @include size(174px 56px);
+            padding: 18px 0 0  32px;
+            letter-spacing: 0px;
             text-shadow: -1px -1px 0 #ba8947;
 
             &:after {
                 content: '';
-                @include position(absolute, 16px null null 4px);
-                @include size(35px 29px);
-                background: url('#{$imgPath}backArrow.jpg');
+                @include position(absolute, 16px null null 6px);
+                @include size(26px 26px);
+                background: url('#{$imgPath}backArrow.png');
             }
         }
     }
 }
 
 .taleZone .next.end .taleBtn {
-    padding: 21px;
     &:after {
         background: none;
     }
+}
+
+.coverName {
+    position: absolute;
+    font-family: Futura;
+    font-size: 32px;
+    text-shadow: 1px 2px 0 #bb6920;
+    color: $orange;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    cursor: move;
 }

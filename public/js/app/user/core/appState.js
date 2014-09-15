@@ -3,11 +3,14 @@ define([
 	'lib/viewport'
 ],
 	function (can, viewport) {
-
+		
 		var AppState = can.Map.extend({
 				//Settings
 				imgPath: '/img/',
 				uploadPath: '/uploads/',
+
+				locale: window.data.locale,
+				lang: window.data.lang,
 
 				size: {
 					width: 1224,

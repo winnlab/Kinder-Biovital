@@ -1,0 +1,110 @@
+<div class="content-header">
+    <h3 class="content-title clearfix">
+        {{#if decoration._id}}
+            Редактирование декорации
+        {{else}}
+            Добавление декорации
+        {{/if}}
+        <div class="pull-right btn btn-primary toList">
+            Назад
+        </div>
+    </h3>
+
+</div>
+<div class="content">
+    <div class="col-md-12">
+        <div class="box box-primary">
+
+            <div class="box-body clearfix">
+
+                <div class="col-md-6">
+                    <form class="form-horizontal setDecoration">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="name">Название:</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" value="{{decoration.name}}" name="name" placeholder="Название декорации" />
+                                <div class="help help-block"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="position">Позиция:</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" value="{{decoration.position}}" name="position" placeholder="Позиция декорации в списке">
+                                <div class="help help-block"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="position">Время:</label>
+                            <div class="col-md-10">
+                                <select name="time" class="form-control">
+                                    <option value="0" {{#is decoration.time 0}}selected{{/is}}>День</option>
+                                    <option value="1" {{#is decoration.time 1}}selected{{/is}}>Ночь</option>
+                                </select>
+                                <div class="help help-block"></div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary col-md-offset-2" type="submit">
+                            {{#if decoration._id}}
+                                Сохранить декорацию
+                            {{else}}
+                                Добавить декорацию
+                            {{/if}}
+                        </button>
+                    </form>
+                </div>
+
+                <div class="col-md-6">
+                    {{#if decoration._id}}
+                        <upload
+                            class="col-md-12"
+                            name="fg"
+                            url="/admin/decoration/img"
+                            delete-url="/admin/decoration/img"
+                            entity="{decoration}"
+                            uploaded="{decoration.fg}"
+                            accept="image/*"
+                        >
+                            Загрузить передний план
+                        </upload>
+                        <upload
+                            class="col-md-12"
+                            name="plan"
+                            url="/admin/decoration/img"
+                            delete-url="/admin/decoration/img"
+                            entity="{decoration}"
+                            uploaded="{decoration.plan}"
+                            accept="image/*"
+                        >
+                            Загрузить второй план
+                        </upload>
+                        <upload
+                            class="col-md-12"
+                            name="bg"
+                            url="/admin/decoration/img"
+                            delete-url="/admin/decoration/img"
+                            entity="{decoration}"
+                            uploaded="{decoration.bg}"
+                            accept="image/*"
+                        >
+                            Загрузить задний план
+                        </upload>
+                        <upload
+                            class="col-md-12"
+                            name="preview"
+                            url="/admin/decoration/img"
+                            delete-url="/admin/decoration/img"
+                            entity="{decoration}"
+                            uploaded="{decoration.preview}"
+                            accept="image/*"
+                        >
+                            Загрузить миниатюру декорации
+                        </upload>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

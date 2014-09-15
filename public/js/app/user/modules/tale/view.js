@@ -1,7 +1,7 @@
 define(
-    ['canjs', 'modules/tales/talePreview', 'core/appState'],
+    ['canjs', 'modules/tales/talePreview', 'core/appState', 'app/modules/tale/cover'],
 
-    function (can, TalePreview, appState) {
+    function (can, TalePreview, appState, Cover) {
 
         return can.Control.extend({
             defaults: {
@@ -17,7 +17,8 @@ define(
 
                         new TalePreview(self.element.find('.talePreview'), {
                             taleId: taleId,
-                            isReady: options.isReady
+                            isReady: options.isReady,
+                            getCover: Cover.getCover
                         });
                     });
             }

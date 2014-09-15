@@ -48,8 +48,18 @@ define([
 			return result ? options.fn() : options.inverse();
 		});
 
+		can.mustache.registerHelper('gt', function (a, b, options) {
+			return getObserverValue(a) > getObserverValue(b)
+				? options.fn()
+				: options.inverse();
+		});
+
 		can.mustache.registerHelper('plus', function (a, b) {
 			return getObserverValue(a) + getObserverValue(b);
+		});
+
+		can.mustache.registerHelper('minus', function (a, b) {
+			return getObserverValue(a) - getObserverValue(b);
 		});
 
 		can.mustache.registerHelper('indexOfInc', function (array, element) {
@@ -61,7 +71,7 @@ define([
 			id = getObserverValue(id);
 			findKey = getObserverValue(findKey);
 			key = getObserverValue(key);
-			array = getObserverValue(array);			
+			array = getObserverValue(array);
 			if (id) {
 				item = _.find(array, function (a) {
 					return a.attr(findKey) === id;
@@ -74,7 +84,7 @@ define([
 		});
 
 		can.mustache.registerHelper('getArrayObjValue', function (array, index, key) {
-			return array() ? array().attr(index + '.' + key) : '';
+			return array() ? array().attr(index() + '.' + key) : '';
 		});
 
 		can.mustache.registerHelper('sortedBy', function (collection, prop, options) {
@@ -100,6 +110,12 @@ define([
 				index = ~~(Math.random() * classes.length - 1);
 			}
 			return classes[index % classes.length];
+		});
+
+		can.mustache.registerHelper('wysihtml5', function (index) {
+			return function (el) {
+				$(el).wysihtml5();
+			};
 		});
 
 		can.mustache.registerHelper('make3Col', function (index) {

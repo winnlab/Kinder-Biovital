@@ -9,9 +9,6 @@ define({
 			name: 'heroes',
 			path: 'modules/heroes/heroes'
 		}, {
-			name: 'replica',
-			path: 'modules/replica/replicas'
-		}, {
 			name: 'decorations',
 			path: 'modules/decorations/decorations'
 		}, {
@@ -20,6 +17,9 @@ define({
 		}, {
 			name: 'covers',
 			path: 'modules/covers/covers'
+		}, {
+			name: 'pages',
+			path: 'modules/pages/pages'
 		}]
 	}
 });

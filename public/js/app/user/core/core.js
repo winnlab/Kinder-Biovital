@@ -19,9 +19,9 @@ require(['/js/app/user/req.config.js'], function () {
 			var body = $('body');
 
 			appState.attr('router', new Router(body, config.router));
-			// appState.attr('social', new Social('vk'));
+			// appState.attr('social', new Social('fb'));
 			//
-			// appState.attr('social').share();
+			// appState.attr('social').logIn();
 
 		}
 	);

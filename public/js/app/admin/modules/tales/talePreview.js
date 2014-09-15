@@ -20,9 +20,16 @@ define(
                 // This is offset of tale backround from tale zone
                 frameBgTop: -275,
                 // the offset top of hero when it become bigger
-                firstPlanTop: 450,
+                firstPlanTop: 500,
 
                 decorationWidth: 3705,
+
+                heroSize: {
+                    fgWidth: 190,
+                    fgHeight: 240,
+                    bgWidth: 120,
+                    bgHeight: 150
+                },
 
                 queryBase: '/admin',
 
@@ -83,6 +90,29 @@ define(
                         return options.context.attr('top') > self.options.firstPlanTop
                             ? 'firstPlan'
                             : 'secondPlan';
+                    },
+                    getReplicaTail: function (options) {
+                        var hero = options.context,
+                            heroTop = hero.attr('top'),
+                            heroLeft = hero.attr('left'),
+                            sizePrefix = heroTop > self.options.firstPlanTop ? 'fg' : 'bg',
+                            heroWidth = self.options.heroSize[sizePrefix + 'Width'],
+                            heroHeight = self.options.heroSize[sizePrefix + 'Height'],
+                            replicaClass = '';
+
+                        if ((heroLeft + heroWidth / 2) > hero.attr('replica.left')) {
+                            replicaClass += 'L';
+                        } else {
+                            replicaClass += 'R';
+                        }
+
+                        if ((heroTop + heroHeight / 2) > hero.attr('replica.top')) {
+                            replicaClass += 'T';
+                        } else {
+                            replicaClass += 'B';
+                        }
+
+                        return replicaClass;
                     }
                 });
 

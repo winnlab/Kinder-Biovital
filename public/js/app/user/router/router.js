@@ -113,6 +113,7 @@ define([
 				var html = can.view(this.options.viewpath + 'route.stache', {
 						modules: this.Modules.attr('modules')
 					}),
+					lang = appState.attr('lang'),
 					self = this;
 
 				$(options.modulesContainer).prepend(html);
@@ -123,7 +124,7 @@ define([
 
 				can.on.call(hub, 'silentModule', can.proxy(this.Modules.silentInit, this.Modules));
 
-				can.route.bindings.pushstate.root = options.base;
+				can.route.bindings.pushstate.root = (lang ? '/' + lang : '') + '/';
 				can.route.ready();
 
 			},

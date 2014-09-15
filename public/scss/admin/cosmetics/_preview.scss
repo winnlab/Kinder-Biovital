@@ -27,23 +27,35 @@
         .firstPlan .replica {
             bottom: 370px;
             right: -140px;
+
+            &.dragged {
+                bottom: auto;
+                right: auto;
+            }
         }
 
         .secondPlan .replica {
             bottom: 250px;
             right: -180px;
+
+            &.dragged {
+                bottom: auto;
+                right: auto;
+            }
         }
 
         .replica {
-            top: auto;
-            left: auto;
-            bottom: 130px;
+            position: absolute;
             width: 220px;
             text-align: center;
             font-size: 16px;
 
             &:after {
                 display: none;
+            }
+
+            &.dragged {
+                @include position(absolute, auto auto null null);
             }
         }
 
@@ -55,10 +67,28 @@
 
             &:before {
                 content: '';
-                @include position(absolute, null null -45px -3px);
                 z-index: -1;
                 @include size(67px 57px);
-                background: url('#{$imgPath}bubleTail.png');
+            }
+
+            &.RT:before {
+                @include position(absolute, null null -45px -3px);
+                background: url('#{$imgPath}bubleTailRT.png');
+            }
+
+            &.LT:before {
+                @include position(absolute, null -3px -45px null);
+                background: url('#{$imgPath}bubleTailLT.png');
+            }
+
+            &.RB:before {
+                @include position(absolute, -50px null null -3px);
+                background: url('#{$imgPath}bubleTailRB.png');
+            }
+
+            &.LB:before {
+                @include position(absolute, -50px -3px null null);
+                background: url('#{$imgPath}bubleTailLB.png');
             }
 
             &:after {

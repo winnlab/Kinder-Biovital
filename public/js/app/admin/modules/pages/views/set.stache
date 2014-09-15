@@ -1,0 +1,102 @@
+<div class="content-header">
+    <h3 class="content-title clearfix">
+        {{#if page._id}}
+            Редактирование страницы
+        {{else}}
+            Добавление страницы
+        {{/if}}
+        <div class="pull-right btn btn-primary toList">
+            Назад
+        </div>
+    </h3>
+</div>
+<div class="content">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-body clearfix">
+
+                <tabs>
+                    <panel name="Основная информация">
+                        <form class="form-horizontal setPage">
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="name">Отображение:</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="text" value="{{page.view}}" name="view" placeholder="Отображение страницы" />
+                                    <div class="help help-block"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="name">Ссылка:</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="text" value="{{page.link}}" name="link" placeholder="Ссылка страницы" />
+                                    <div class="help help-block"></div>
+                                </div>
+                            </div>
+
+                            <tabs>
+                                {{#each langs}}
+                                    <panel name="{{name}}">
+                                        <input type="hidden" value="{{_id}}" name="lang[{{@index}}]languageId">
+
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label" for="title">Заголок:</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control" type="text" value="{{getArrayObjValue page.lang @index 'title'}}" name="lang[{{@index}}]title" placeholder="Заголовок страницы">
+                                                <div class="help help-block"></div>
+                                            </div>
+                                        </div>
+                                    </panel>
+                                {{/each}}
+                            </tabs>
+
+                            <button class="btn btn-primary col-md-offset-2" type="submit">
+                                Сохранить изменения
+                            </button>
+                        </form>
+
+
+                    </panel>
+
+                    <panel name="Страницы">
+                        <div class="btn btn-primary addInnerPage">Добавить вложенную страницу</div>
+                        <div class="clearfix"></div>
+                        <tabs>
+                            {{#each page.frames}}
+                                <panel name="Страница {{plus @index 1}}">
+                                    <form class="pageFrame">
+                                        <tabs>
+                                            {{#each langs}}
+                                                <panel name="{{name}}">
+                                                    <input type="hidden" value="{{_id}}" name="frame[{{@index}}]languageId">
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-2 control-label" for="title">Заголок страницы:</label>
+                                                        <div class="col-md-10">
+                                                            <input class="form-control" type="text" value="{{getArrayObjValue frame @index 'title'}}" name="frame[{{@index}}]title" placeholder="Заголок вложенной страницы">
+                                                            <div class="help help-block"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-2 control-label" for="text">Содержание:</label>
+                                                        <div class="col-md-10">
+                                                            <textarea class="form-control" {{wysihtml5}} name="frame[{{@index}}]text" placeholder="Содержание вложенной страницы">{{getArrayObjValue frame @index 'text'}}</textarea>
+                                                            <div class="help help-block"></div>
+                                                        </div>
+                                                    </div>
+                                                </panel>
+                                            {{/each}}
+                                        </tabs>
+                                    </form>
+                                </panel>
+                            {{/each}}
+                        </tabs>
+
+                    </panel>
+                </tabs>
+            </div>
+        </div>
+	</div>
+</div>

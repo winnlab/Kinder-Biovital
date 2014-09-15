@@ -8,7 +8,7 @@ define(
 
         return can.Model.extend({
             id: '_id',
-            resource: baseModel.chooseResource('/replica'),            
+            resource: baseModel.chooseResource('/decoration'),
             parseModel: baseModel.parseModel,
             parseModels: baseModel.parseModels
         }, {

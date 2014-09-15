@@ -21,7 +21,9 @@ define(
 		}, {
 			init: function () {
 				var options = this.options,
-					data = {};
+					data = {
+						langs: appState.attr('langs')
+					};
 				data[options.moduleName] = options.doc;
 				this.element.html(can.view(options.viewpath + options.viewName, data));
 			},
@@ -31,7 +33,7 @@ define(
 
 				var self = this,
 					options = self.options,
-					data = can.deparam(el.serialize()),
+					data = this.getDocData(el),
 					doc = options.doc;
 
 				doc.attr(data);
@@ -48,6 +50,10 @@ define(
     					self.setNotification('error', options.errorMsg);
     				});
 
+			},
+
+			getDocData: function (el) {
+				return can.deparam(el.serialize())
 			},
 
 			setNotification: function (status, msg) {

@@ -65,6 +65,7 @@ $posWrapWidth: 424px;
         vertical-align: middle;
         text-align: center;
         padding: 0 13px 0 21px;
+        line-height: 90%;
     }
 
     &:after {
@@ -79,7 +80,7 @@ $posWrapWidth: 424px;
     }
 
     .small {
-        font-size: 21px;
+        font-size: 19px;
     }
 }
 
@@ -123,106 +124,47 @@ $posWrapWidth: 424px;
     }
 
     .setDecorations {
-        position: absolute;
-        top: 23px;
-        left: 14px;
+        @include position(absolute, 36px null null 39px);
+        padding: 6px 7px;
 
         .taleBtn {
             box-shadow: none;
+            @include size(37px 37px);
             &:after {
                 content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 49px;
-                height: 49px;
+                @include position(absolute, 0 null null 0);
+                @include size(37px 37px);
             }
             &.orange:after {
-                background: url('#{$imgPath}sun.jpg');
+                background: url('#{$imgPath}sun.png');
             }
             &.red:after {
-                background: url('#{$imgPath}moon.jpg');
-            }
-        }
-    }
-
-    .question {
-        position: absolute;
-        right: 47px;
-        top: 10px;
-        z-index: 1;
-
-        .taleBtn {
-            box-shadow: none;
-            &:after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                @include size(24px 24px);
-                background: url('#{$imgPath}question.jpg');
+                background: url('#{$imgPath}moon.png');
             }
         }
     }
 
     .arrows {
-        position: absolute;
-        top: 277px;
-        left: 537px;
-        width: 152px;
-        height: 100px;
-        background: #f5ebd9;
-        border-radius: 16px;
-        background-image: url('#{$imgPath}dragArrow.png');
-        background-position: center center;
-        background-repeat: no-repeat;
-    }
-
-    .chooseMusic {
-        position: absolute;
-        bottom: 34px;
-        left: 14px;
-
-        .taleBtn {
-            padding: 6px 10px 7px;
-            margin-bottom: 2px;
-            width: 228px;
-
-            &:after {
-                content: '';
-                @include position(absolute, 8px null null 175px);
-                @include size(41px 32px);
-                background: url('#{$imgPath}sound.jpg');
-            }
-        }
-        .musicLabel {
-            @include size(157px 34px);
-            box-shadow: $innerShadow;
-            padding: 9px 7px 7px;
-            background: #fff;
-            font-size: 17px;
-            color: $orange;
-            text-shadow: 1px 1px 0 #c58730;
-            display: block;
-            border-radius: 4px;
-        }
+        @include position(absolute, 271px null null 548px);
+        @include size(131px 100px);
+        background: url('#{$imgPath}dragArrow.png');
     }
 
     .next {
-        @include position(absolute, null 15px 32px null);
-        padding: 9px 14px 13px 12px;
-        height: 84px;
+        @include position(absolute, null 13px 18px null);
+        padding: 8px 12px 12px 11px;
+        height: 75px;
         text-shadow: -1px -1px 0 #b73e09;
 
         .taleBtn {
-            @include size(191px 62px);
-            padding: 21px 58px 21px 21px;
+            @include size(172px 58px);
+            padding: 16px;
 
             &:after {
                 content: '';
-                @include position(absolute, 16px null null 114px);
-                @include size(41px 30px);
-                background: url('#{$imgPath}nextInSlide.jpg');
+                @include position(absolute, 17px 8px null null);
+                @include size(27px 25px);
+                background: url('#{$imgPath}nextInSlide.png');
             }
         }
     }
@@ -264,12 +206,11 @@ $posWrapWidth: 424px;
         }
 
         .miniFrame {
-            position: absolute;
-            width: 124px;
-            height: 162px;
-            top: -19px;
+            @include position(absolute, 0 null null null);
+            @include size(154px 124px);
+            margin-left: -13px;
             border-radius: 10px;
-            border: 19px solid $orange;
+            border: 31px solid $orange;
             border-left: 13px solid $orange;
             border-right: 13px solid $orange;
             box-shadow: inset 2px 2px 0px 0px rgba(0, 0, 0, 0.3);
@@ -278,25 +219,92 @@ $posWrapWidth: 424px;
     }
 }
 
-.closeFrame {
+.chooseMusic {
     position: absolute;
-    right: 8px;
-    top: 10px;
+    bottom: 34px;
+    left: 14px;
+
+    &.taleBtnWrap {
+        padding: 7px 5px;
+        border-radius: 7px;
+    }
+
+    .taleBtn {
+        padding: 4px 8px;
+        margin-bottom: 2px;
+        width: 168px;
+
+        &:after {
+            content: '';
+            @include position(absolute, 8px null null 135px);
+            @include size(26px 21px);
+            background: url('#{$imgPath}sound.png');
+        }
+    }
+    .musicLabel {
+        @include size(122px 26px);
+        box-shadow: $innerShadow;
+        padding: 1px 0;
+        background: #fff;
+        font-size: 14px;
+        color: $orange;
+        text-shadow: 1px 1px 0 #c58730;
+        display: block;
+        border-radius: 4px;
+    }
+
+    .trackList {
+        @include position(absolute, null null 50px 14px);
+        background: $white;
+        width: 121px;
+        padding: 5px 10px 0;
+        border-radius: 3px 3px 0 0;
+        font-size: 12px;
+
+        &:before {
+            content: '';
+            @include position(absolute, 0 0 0 0);
+            z-index: -1;
+            border-radius: 3px 3px 0 0;
+            box-shadow: $outerShadow;
+        }
+        &:after {
+            content: '';
+            @include position(absolute, null -5px -7px -5px);
+            height: 7px;
+            background: $white;
+        }
+
+        .trackItem {
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.closeFrame {
+    @include position(absolute, 9px 8px null null);
     z-index: 1;
 
     .taleBtn {
         box-shadow: none;
         &:after {
             content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            @include size(24px 24px);
-            background: url('#{$imgPath}close.jpg');
+            @include position(absolute, -1px null null -1px);
+            @include size(22px 22px);
+            background: url('#{$imgPath}close.png');
         }
     }
 }
 
+.question {
+    @extend .closeFrame;
+    right: 44px;
+
+    .taleBtn:after {
+        background: url('#{$imgPath}question.png');
+    }
+}
 
 .frameBg {
     @include user-select(none);

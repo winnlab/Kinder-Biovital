@@ -4,6 +4,10 @@
 @import '../../base/_placeholders.scss';
 @import '../../base/_variables.scss';
 
+#cover {
+    display: none;
+}
+
 .shareLink {
     position: absolute;
     top: 164px;

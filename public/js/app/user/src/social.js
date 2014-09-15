@@ -28,8 +28,8 @@ define(
                 network[this.nw].logIn();
             },
 
-            share: function (cb) {
-                network[this.nw].share(cb);
+            share: function (image, cb) {
+                network[this.nw].share(image, cb);
             },
 
             changeNw: function (nw) {

@@ -1,0 +1,10 @@
+<div class="chooseMusic taleBtnWrap big">
+    <div class="trackList" style="{{#unless showTracks}}display: none;{{/unless}}">
+        {{#each tracks}}
+            <div class="trackItem{{#is trackId _id}} active{{/is}}" can-click="setTrack">{{name}}</div>
+        {{/each}}
+    </div>
+    <div class="taleBtn orange showTracks">
+        <span class="musicLabel">{{locale.setTale.tracks}}</span>
+    </div>
+</div>

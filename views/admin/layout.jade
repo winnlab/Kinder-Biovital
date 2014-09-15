@@ -42,10 +42,6 @@ html(lang="ru")
                                 i.fa.fa-paw
                                 span= "Герои"
                         li
-                            a.module(href="/admin/replica")
-                                i.fa.fa-comments-o
-                                span= "Типы реплик"
-                        li
                             a.module(href="/admin/decorations")
                                 i.fa.fa-cloud
                                 span= "Декорации"
@@ -57,9 +53,14 @@ html(lang="ru")
                             a.module(href="/admin/covers")
                                 i.fa.fa-image
                                 span= "Обложки"
+                        li
+                            a.module(href="/admin/pages")
+                                i.fa.fa-files-o
+                                span= "Странички"
             aside#moduleContent
                 block content
         block scripts
             script(src="/js/lib/requirejs/require.js" data-main="/js/app/admin/core/core.js")
             script.
                 window.langs = !{JSON.stringify(langs)}
+                window.locale = !{JSON.stringify(locale)}

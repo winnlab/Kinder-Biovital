@@ -1,0 +1,57 @@
+<div class="box box-success" {{#is display 'set'}}style="display: none;"{{/is}}>
+    <div class="box-header">
+        <h3 class="box-title">
+            Список цветов обложек
+        </h3>
+
+        <div class="box-tools pull-right">
+            <div class="btn btn-primary addColor">
+                <i class="fa fa-plus"></i>
+                &nbsp;Добавить цвет обложки
+            </div>
+        </div>
+    </div>
+    <div class="box-footer">
+        {{#if color.isResolved}}
+            {{#if color.length}}
+                <table class='table table-striped'>
+                    <thead>
+                        <th>Название</th>
+                        <th>Цвет</th>
+                        <th>Действия</th>
+                    </thead>
+                    <tbody>
+                        {{#sortedBy color 'position'}}
+                            <tr class="color" {{data "color"}}>
+                                <td>{{name}}</td>
+                                <td>
+                                    {{#if color}}
+                                        <span style="background-color: #{{color}};"
+                                            class="btn btn-default disabled">&nbsp;</span>
+                                    {{/if}}
+                                </td>
+                                <td>
+                                    <div class="btn btn-sm btn-default editColor">
+                                        <i class="fa fa-pencil"></i>
+                                    </div>
+                                    <div class="btn btn-sm btn-danger removeColor">
+                                        <i class="fa fa-trash-o"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        {{/sortedBy}}
+                    </tbody>
+                </table>
+            {{else}}
+                <div class="alert alert-info">
+                    <i class="fa fa-info"></i>
+                    <b>Примечание! </b>
+                    Ни одного цвета обложки еще не добавлено!
+                </div>
+            {{/if}}
+        {{/if}}
+    </div>
+</div>
+
+<div class="colorForm" {{#is display 'list'}}style="display: none;"{{/is}}>
+</div>

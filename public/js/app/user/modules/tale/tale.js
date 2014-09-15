@@ -8,8 +8,7 @@ define(
         'modules/covers/colorModel',
         'modules/covers/imagesModel',
         'modules/decorations/decorationsModel',
-        'modules/heroes/heroesModel',
-        'modules/replica/replicaModel'
+        'modules/heroes/heroesModel'
     ],
 
     function (
@@ -21,8 +20,7 @@ define(
         CoverColorModel,
         CoverImagesModel,
         DecorationsModel,
-        HeroesModel,
-        ReplicaModel
+        HeroesModel
     ) {
 
         'use strict';
@@ -36,8 +34,7 @@ define(
                     coverColors: CoverColorModel,
                     coverImages: CoverImagesModel,
                     decorations: DecorationsModel,
-                    heroes: HeroesModel,
-                    replica: ReplicaModel
+                    heroes: HeroesModel
                 }
             }
         }, {

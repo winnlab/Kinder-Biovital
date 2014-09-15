@@ -16,6 +16,7 @@
         @include border-style(solid);
         @include border-width(20px 17px);
         @extend %bg-image-contain;
+        position: relative;
         float: left;
         display: block;
         margin: 0 8px 8px 0;
@@ -23,6 +24,5 @@
         box-shadow:
             inset 2px 2px 0px 0px rgba(0, 0, 0, 0.3),
             2px 2px 0px 0px rgba(0, 0, 0, 0.3);
-
     }
 }

@@ -2,8 +2,8 @@ express = require 'express'
 
 Main = require './admin/main'
 Hero = require './admin/hero'
-Replica = require './admin/replica'
 Track = require './admin/track'
+Page = require './admin/page'
 CoverColor = require './admin/coverColor'
 CoverImage = require './admin/coverImage'
 Decoration = require './admin/decoration'
@@ -23,11 +23,6 @@ Router.post '/login', Main.doLogin
 
 Router.use '/hero/img', Hero.restFile
 Router.use '/hero/:id?', Hero.rest
-
-#------- Replica ---------#
-
-Router.use '/replica/img', Replica.restFile
-Router.use '/replica/:id?', Replica.rest
 
 #------- Track ---------#
 
@@ -51,6 +46,10 @@ Router.use '/decoration/:id?', Decoration.rest
 #------- Tale ---------#
 
 Router.use '/tale/:id?', Tale.rest
+
+#------- Page ---------#
+
+Router.use '/page/:id?', Page.rest
 
 exports.Router = Router
 exports.layoutPage = Main.tales

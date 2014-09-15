@@ -73,7 +73,7 @@ class Crud
 		return options
 
 	_findAll: (req, cb) ->
-		query = req.query
+		query = req.query		
 		fields = @_parseFields req.query
 		options = @_parseOptions req.query
 		@findAll query, cb, options, fields
@@ -82,7 +82,7 @@ class Crud
 		@DataEngine 'find', cb, query, fields, options
 
 	_findOne: (req, cb) ->
-		id = req.params.id
+		id = req.params.id or req.query.id
 		fields = @_parseFields req.query
 		options = @_parseOptions req.query
 		@findOne id, cb, options, fields
@@ -113,7 +113,7 @@ class Crud
 				@DataEngine 'findById', next, id
 			(doc, next) =>
 				_.extend doc, data
-				doc.save cb				
+				doc.save cb
 		], cb
 
 

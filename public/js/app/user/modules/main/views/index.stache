@@ -1,9 +1,43 @@
 <div class="positioned mainPage" style="top: {{size.topOffset}}; left: {{size.leftOffset}};">
 
-    <div class="bg"></div>
+    <div class="taleTitle">
+        <div class="innerTitle">
+            {{{locale.main.title}}}
+        </div>
+    </div>
 
-    <a class="watchTale module" href="/tales"></a>
+    <nav class="menu">
+        <a class="module" href="/">
+            <span class="label">{{locale.main.terms}}</span>
+        </a>
+        <a class="module" href="/">
+            <span class="label">{{locale.main.rating}}</span>
+        </a>
+        <a class="module" href="/">
+            <span class="label">{{locale.main.gifts}}</span>
+        </a>
+        <a class="module" href="/sp/kinder-biovital">
+            <span class="label">{{locale.main.brand}}</span>
+        </a>
+    </nav>
 
-    <a class="createTale module" href="/create-tale"></a>
+    <div class="howToWrite taleBtnWrap big orange">
+        <a class="module taleBtn" href="/sp/how-to-write">{{locale.main.how}}</a>
+    </div>
+
+    <div class="watchTale taleBtnWrap big">
+        <a class="module taleBtn red" href="/tales">
+            <span>{{locale.main.watch}}</span>
+        </a>
+    </div>
+
+    <div class="createTale taleBtnWrap big red">
+        <a class="module taleBtn" href="/create-tale">{{locale.main.create}}</a>
+    </div>
+
+    <div class="text">
+        <div class="column">{{{locale.main.block1}}}</div>
+        <div class="column">{{{locale.main.block2}}}</div>
+    </div>
 
 </div>

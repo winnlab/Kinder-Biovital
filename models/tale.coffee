@@ -3,7 +3,7 @@ mongoose = require 'mongoose'
 ObjectId = mongoose.Schema.Types.ObjectId
 Mixed = mongoose.Schema.Types.Mixed
 
-FragmentShemaFields =
+TaleShemaFields =
     userId:
         type: ObjectId
         ref: 'User'
@@ -46,9 +46,6 @@ FragmentShemaFields =
                 type: Number
                 required: true
             replica:
-                replicaID:
-                    type: ObjectId
-                    ref: 'Replica'
                 left:
                     type: Number
                 top:
@@ -62,6 +59,10 @@ FragmentShemaFields =
     name:
         type: String
         trim: true
+    left:
+        type: Number
+    top:
+        type: Number
     # 0 is tale added by admin, 1 is tale added by user
     type:
         type: Number
@@ -74,6 +75,6 @@ FragmentShemaFields =
 options =
     collection: 'tales'
 
-FragmentShema = new mongoose.Schema FragmentShemaFields, options
+TaleShema = new mongoose.Schema TaleShemaFields, options
 
-module.exports =  mongoose.model 'Tale', FragmentShema
+module.exports =  mongoose.model 'Tale', TaleShema
