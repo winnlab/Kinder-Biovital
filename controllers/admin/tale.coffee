@@ -15,7 +15,8 @@ class Tale extends Crud
             (next) =>
                 @DataEngine 'findById', next, id
             (doc, next) =>
-                doc.frames.splice(0)
+                if doc.frames.length
+                    doc.frames.splice(0)
                 _.extend doc, data
                 doc.save cb
         ], cb
