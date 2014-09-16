@@ -7,13 +7,13 @@
     </div>
 
     <nav class="menu">
-        <a class="module" href="/">
+        <a class="module" href="/sp/conditions">
             <span class="label">{{locale.main.terms}}</span>
         </a>
         <a class="module" href="/">
             <span class="label">{{locale.main.rating}}</span>
         </a>
-        <a class="module" href="/">
+        <a class="module" href="/sp/conditions">
             <span class="label">{{locale.main.gifts}}</span>
         </a>
         <a class="module" href="/sp/kinder-biovital">
