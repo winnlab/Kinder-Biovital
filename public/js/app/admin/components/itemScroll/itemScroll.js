@@ -7,10 +7,33 @@ define([
             'view': '@',
             'cIndex': 0,
             'count': '@',
-            'lastIndex': function () {
-                var count = this.attr('count') || 3
-                return this.attr('data').length - count;
+
+            lastIndex: function () {
+                var count = this.attr('count') || 3;
+                return this.attr('data.length') - count;
+            },
+
+            nextItem: function (idx) {
+                var index = this.attr('cIndex') + 1;
+
+                if (idx) {
+                    index = idx;
+                }
+                console.log(index, this.lastIndex());
+
+                if (index <= this.lastIndex() && index >= 0) {
+                    this.attr('cIndex', index);
+                }
+
+            },
+
+            prevItem: function () {
+                var index = this.attr('cIndex') - 1;
+                if (index >= 0) {
+                    this.attr('cIndex', index);
+                }
             }
+
         });
 
         can.Component.extend({
@@ -26,26 +49,26 @@ define([
                     '{{/isnt}}' +
                 '{{/gt}}'+
                 '{{#each data}}' +
-                    '{{#in cIndex @index count}}' +
+                    '<div class="item" style="display: {{in cIndex @index count}};">' +
                         '<content />' +
-                    '{{/in}}' +
+                    '</div>' +
                 '{{/each}}'
             ,
             events: {
                 '.top click': function () {
-                    this.scope.attr('cIndex', this.scope.attr('cIndex') - 1);
+                    this.scope.prevItem();
                 },
                 '.btm click': function () {
-                    this.scope.attr('cIndex', this.scope.attr('cIndex') + 1);
+                    this.scope.nextItem();
                 },
                 '{data} change': function (data, ev, attr, how) {
                     if (attr.indexOf('.') === -1 && (how === 'add' || how === 'remove')) {
-                        var cIndex = this.scope.attr('cIndex');
-                        if (how === 'add') {                            
-                            this.scope.attr('cIndex', data.attr('length') - this.scope.attr('count'));
+
+                        if (how === 'add') {
+                            this.scope.nextItem(data.attr('length') - this.scope.attr('count'));
                         }
                         if (how === 'remove') {
-                            this.scope.attr('cIndex', cIndex - 1);
+                            this.scope.prevItem();
                         }
                     }
                 }
@@ -56,8 +79,10 @@ define([
                     index = index();
                     count = count() - 1;
                     return index >= cIndex && cIndex + count >= index
-                        ? options.fn()
-                        : options.inverse();
+                        // ? options.fn()
+                        // : options.inverse();
+                        ? 'block'
+                        : 'none';
                 }
             }
         });

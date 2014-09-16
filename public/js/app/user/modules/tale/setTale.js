@@ -20,7 +20,7 @@ define(
         return Tale.extend({
             defaults: {
                 viewpath: '/js/app/admin/modules/tales/views/'
-                // , display: 'share'
+                , display: 'share'
             }
         }, {
 
@@ -55,21 +55,24 @@ define(
             },
 
             '.share click': function (el) {
-                appState.attr('social').changeNw(el.data('nw'));
-                var module = this.module,
-                    tale = module.attr('tale'),
-                    coverImage = _.find(module.attr('coverImages'), function (cover) {
-                        return cover.attr('_id') === tale.attr('coverImgId');
-                    }),
-                    coverColor = _.find(module.attr('coverColors'), function (cover) {
-                        return cover.attr('_id') === tale.attr('coverColorId');
-                    });
-
-                Cover.getCover(
-                    coverImage && coverImage.attr('img'),
-                    coverColor && coverColor.attr('color'),
-                    can.proxy(this.shareCover, this)
-                );
+                // appState.attr('social').changeNw(el.data('nw'));
+                FB.getLoginStatus(function(response) {
+                    appState.attr('social').logIn();
+                });
+                // var module = this.module,
+                //     tale = module.attr('tale'),
+                //     coverImage = _.find(module.attr('coverImages'), function (cover) {
+                //         return cover.attr('_id') === tale.attr('coverImgId');
+                //     }),
+                //     coverColor = _.find(module.attr('coverColors'), function (cover) {
+                //         return cover.attr('_id') === tale.attr('coverColorId');
+                //     });
+                //
+                // Cover.getCover(
+                //     coverImage && coverImage.attr('img'),
+                //     coverColor && coverColor.attr('color'),
+                //     can.proxy(this.shareCover, this)
+                // );
             },
 
             shareCover: function (image) {
