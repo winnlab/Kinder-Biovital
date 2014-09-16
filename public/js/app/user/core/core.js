@@ -16,6 +16,7 @@ require(['/js/app/user/req.config.js'], function () {
 			appState,
 			Social
 		) {
+
 			var body = $('body');
 
 			appState.attr('router', new Router(body, config.router));

@@ -25,6 +25,10 @@
 
         div {
             margin-bottom: 10px;
+
+            &.dotsWrap {
+                margin-bottom: 0;
+            }
         }
     }
 

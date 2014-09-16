@@ -27,7 +27,7 @@
 
     <div class="watchTale taleBtnWrap big">
         <a class="module taleBtn red" href="/tales">
-            <span>{{locale.main.watch}}</span>
+            <span>{{locale.main.watchTale}}</span>
         </a>
     </div>
 
