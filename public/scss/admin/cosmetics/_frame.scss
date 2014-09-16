@@ -229,11 +229,16 @@
     cursor: move;
     position: absolute;
 
+    &:hover .name {
+        display: block;
+    }
+
     .name {
         position: absolute;
         bottom: 0;
         left: 50%;
         margin-left: -84px;
+        display: none;
 
         input {
             width: 168px;
@@ -326,16 +331,16 @@
         cursor: pointer;
 
         &.add {
-            @include position(absolute, null -105px 0 null);
-            @include size(92px 72px);
+            @include position(absolute, null -49px 0 null);
+            @include size(50px 38px);
             background: #f4ecd9;
             box-shadow: $outerShadow;
             border-radius: 5px;
 
             &:after {
                 content: '';
-                @include position(absolute, 10px null null 11px);
-                @include size(71px 55px);
+                @include position(absolute, 7px null null 8px);
+                @include size(35px 27px);
                 background: url('#{$imgPath}addBubble.png');
             }
         }

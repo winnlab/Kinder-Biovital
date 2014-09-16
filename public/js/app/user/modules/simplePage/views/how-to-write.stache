@@ -6,6 +6,10 @@
         </div>
     </div>
 
+    <a href="/{{#is page.link 'instruction'}}create-tale{{/is}}" class="taleBtnWrap small closeFrame">
+        <div class="small taleBtn orange"></div>
+    </a>
+
     <div class="pageWrap">
         <list-slider data="{page.frames}">
             <div class="slide">{{{frame.text}}}</div>

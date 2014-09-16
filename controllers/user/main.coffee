@@ -28,6 +28,9 @@ exports.getPage = (req, res) ->
 			Language = Model 'Language', 'findOne', null, isoCode: reqLang
 			Language.lean().exec proceed
 	, (err, data) ->
+		unless data.page
+			return View.clientFail 'Such link is not found', res
+
 		data.page.lang = _.find data.page.lang, (l) ->
 			return l.languageId.toString() == data.lang._id.toString()
 		_.map data.page.frames, (fr, i) ->

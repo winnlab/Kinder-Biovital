@@ -54,7 +54,8 @@ define(
                 self.module = new can.Map({
                     cIndex: 1,
                     tale: {},
-                    frame: {}
+                    frame: {},
+                    playTrack: true
                 });
 
                 html = can.view(options.viewpath + options.viewName, this.module, {
@@ -130,6 +131,7 @@ define(
                     .then(function () {
                         self.currentFrame();
                         self.element.html(html);
+                        self.playTrack();
 
                         if (options.isReady) {
                             options.isReady.resolve();
@@ -174,7 +176,40 @@ define(
                 } else {
                     clearInterval(this.playInterval);
                 }
+            },
+
+            playTrack: function () {
+                var $track = $('#track' + this.module.attr('tale._id'));
+                if ($track.length) {
+                    $track[0].volume = 0.4;
+                    $track[0].play();
+                }
+            },
+
+            pauseTrack: function () {
+                var $track = $('#track' + this.module.attr('tale._id'));
+                if ($track.length) {
+                    $track[0].pause();
+                }
+            },
+
+            '.soundBtn click': function () {
+                var played = this.module.attr('playTrack');
+
+                if (played) {
+                    this.pauseTrack();
+                } else {
+                    this.playTrack();
+                }
+
+                this.module.attr('playTrack', !played);
+            },
+
+            '{closePreview} click': function () {                
+                this.pauseTrack();
             }
+
+
         });
 
     }

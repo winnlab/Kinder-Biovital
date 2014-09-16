@@ -1,6 +1,6 @@
 <div class="taleContainer small" style="min-height: {{size.winHeight}}px;">
     <div class="taleZone previewBlock" style="top: {{size.topOffset}}; left: {{size.leftOffset}};">
-        <a href="/main" class="taleBtnWrap small closePreview closeFrame">
+        <a href="/" class="taleBtnWrap small closePreview closeFrame">
             <div class="small taleBtn orange"></div>
         </a>
         <div class="talePreviewWrap">

@@ -53,3 +53,16 @@
 </div>
 
 <div class="sharing"></div>
+
+<div class="trackWrap">
+    {{#or tale.trackId.sound.mp3 tale.trackId.sound.wav}}
+        <audio id="track{{tale._id}}" preload="metadata">
+            {{#if tale.trackId.sound.mp3}}
+                <source src="/uploads/{{tale.trackId.sound.mp3}}" type="audio/mp3" >
+            {{/if}}
+            {{#if tale.trackId.sound.wav}}
+                <source src="/uploads/{{tale.trackId.sound.wav}}" type="audio/wav" >
+            {{/if}}
+    	</audio>
+    {{/or}}
+</div>

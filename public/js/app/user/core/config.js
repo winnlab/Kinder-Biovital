@@ -23,6 +23,9 @@ define({
 		}, {
 			name: 'sp',
 			path: 'app/modules/simplePage/simplePage'
+		}, {
+			name: 'rating',
+			path: 'app/modules/rating/rating'
 		}]
 	},
 	social: {

@@ -35,6 +35,7 @@ Router.get '/main', Main.index
 Router.get '/tales', Main.index
 Router.get '/create-tale', Main.index
 Router.get '/fairy-tale/:name?', Main.index
+Router.get '/rating', Main.index
 Router.get '/sp/:link?', Main.index
 
 

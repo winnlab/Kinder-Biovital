@@ -570,11 +570,14 @@ html {
 .heroInDrag {
   cursor: move;
   position: absolute; }
+  .heroInDrag:hover .name {
+    display: block; }
   .heroInDrag .name {
     position: absolute;
     bottom: 0;
     left: 50%;
-    margin-left: -84px; }
+    margin-left: -84px;
+    display: none; }
     .heroInDrag .name input {
       width: 168px;
       height: 38px;
@@ -664,20 +667,20 @@ html {
     cursor: pointer; }
     .heroInDrag .replicaBtn.add {
       position: absolute;
-      right: -105px;
+      right: -49px;
       bottom: 0;
-      height: 72px;
-      width: 92px;
+      height: 38px;
+      width: 50px;
       background: #f4ecd9;
       box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
       border-radius: 5px; }
       .heroInDrag .replicaBtn.add:after {
         content: '';
         position: absolute;
-        top: 10px;
-        left: 11px;
-        height: 55px;
-        width: 71px;
+        top: 7px;
+        left: 8px;
+        height: 27px;
+        width: 35px;
         background: url("/img/addBubble.png"); }
     .heroInDrag .replicaBtn.remove {
       left: auto;
@@ -956,6 +959,7 @@ html {
   position: absolute;
   bottom: 18px;
   left: 3px;
+  cursor: pointer;
   height: 88px;
   width: 103px;
   background: url("/img/soundOn.png"); }
@@ -1018,5 +1022,7 @@ html {
       height: 142px;
       width: 143px;
       background: url("/img/playBtn.png"); }
+.taleZone.previewBlock .trackWrap {
+  display: none; }
 
 /*# sourceMappingURL=base.css.map */

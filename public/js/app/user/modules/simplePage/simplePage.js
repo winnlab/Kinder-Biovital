@@ -27,12 +27,18 @@ define(
                             page: page.data
                         })
                     );
-
-                    if (self.options.isReady) {
-                        self.options.isReady.resolve();
-                    }
+                    self.loaded();
+                }).fail(function () {
+                    self.loaded();
                 });
 
+            },
+
+            loaded: function () {
+                var self = this;
+                if (self.options.isReady) {
+                    self.options.isReady.resolve();
+                }
             }
 
         });

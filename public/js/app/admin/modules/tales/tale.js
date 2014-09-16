@@ -31,7 +31,7 @@ define(
                     this.attr('frame.text', text);
                 },
                 setReplica: function (scope, el, ev) {
-                    var text = el.val().slice(0, 120);
+                    var text = el.val().slice(0, 240);
                     el.val(text);
                     scope.attr('replica.text', el.val());
                 },
@@ -47,7 +47,7 @@ define(
                 viewpath: '/js/app/admin/modules/tales/views/',
                 viewName: 'set.stache',
                 // can be "bg", "frame", "cover", "share"
-                display: 'frame',                
+                display: 'frame',
 
                 frame: null,
                 // Proportion of frame background and mini frame
@@ -312,6 +312,10 @@ define(
                     left = leftInContainer + this.module.attr('frame.left'),
                     top = topInContainer - this.options.frameBgTop;
 
+                if (!hero) {
+                    return false;
+                }
+
                 if (attr) {
                     hero.attr(attr).attr({
                         left: left,
@@ -444,7 +448,8 @@ define(
                     this.element.find('.talePreviewWrap').html('<div class="talePreview"></div>');
                     this.module.attr('talePreview', true);
                     new TalePreview(this.element.find('.talePreview'), {
-                        taleId: module.attr('tale._id')
+                        taleId: module.attr('tale._id'),
+                        closePreview: this.element.find('.closePreview')
                     });
                 }, this));
             },

@@ -32,3 +32,5 @@ module.exports =
 	details: 'Детальнее'
 	create: 'Создать свою сказку'
 	link: 'Ссылка'
+	chooseTale: 'Выбери сказку'
+	rating: 'Рейтинг сказок'

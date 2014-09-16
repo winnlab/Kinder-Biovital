@@ -137,6 +137,7 @@
         position: absolute;
         bottom: 18px;
         left: 3px;
+        cursor: pointer;
         @include size(103px 88px);
         background: url('#{$imgPath}soundOn.png');
     }
@@ -196,4 +197,7 @@
         }
     }
 
+    .trackWrap {
+        display: none;
+    }
 }

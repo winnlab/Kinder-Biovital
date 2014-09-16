@@ -18,7 +18,8 @@ define(
                         new TalePreview(self.element.find('.talePreview'), {
                             taleId: taleId,
                             isReady: options.isReady,
-                            getCover: Cover.getCover
+                            getCover: Cover.getCover,
+                            closePreview: self.element.find('.closePreview')
                         });
                     });
             }

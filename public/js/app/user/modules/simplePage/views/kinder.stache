@@ -6,6 +6,10 @@
         </div>
     </div>
 
+    <a href="/" class="taleBtnWrap small closeFrame">
+        <div class="small taleBtn orange"></div>
+    </a>
+
     <div class="pageWrap">
         <list-slider data="{page.frames}">
             <div class="kinderSlide slide-{{@index}}">{{{frame.text}}}</div>

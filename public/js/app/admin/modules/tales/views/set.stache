@@ -22,7 +22,7 @@
             </div>
 
             <div class="taleBtnWrap small question">
-                <div class="small taleBtn red"></div>
+                <a class="small taleBtn red module" href="/sp/instruction"></a>
             </div>
 
             <div class="taleBtnWrap small closeFrame">
@@ -59,7 +59,7 @@
             </div>
 
             <div class="taleBtnWrap small question">
-                <div class="small taleBtn red"></div>
+                <a class="small taleBtn red module" href="/sp/instruction"></a>
             </div>
 
             <div class="taleBtnWrap small closeFrame">
@@ -67,10 +67,6 @@
             </div>
 
             <div class="leftPanel">
-                <div class="taleBtnWrap medium">
-                    <div class="taleBtn orange changeBg" data-display="bg">{{locale.setTale.changeBg}}</div>
-                </div>
-
                 <div class="{{#if showText}}removeTitr{{else}}addTitr{{/if}} taleBtnWrap medium">
                     <div class="taleBtn orange">
                         {{#if showText}}
@@ -79,6 +75,10 @@
                             {{locale.setTale.addAuthor}}
                         {{/if}}
                     </div>
+                </div>
+
+                <div class="taleBtnWrap medium">
+                    <div class="taleBtn orange changeBg" data-display="bg">{{locale.setTale.changeBg}}</div>
                 </div>
 
                 <div class="taleBtnWrap medium">
@@ -170,7 +170,7 @@
             </div>
 
             <div class="taleBtnWrap small question">
-                <div class="small taleBtn red"></div>
+                <a class="small taleBtn red module" href="/sp/instruction"></a>
             </div>
 
             <div class="taleBtnWrap small closeFrame">

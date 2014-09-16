@@ -2,7 +2,7 @@
 
     <div class="taleTitle">
         <div class="innerTitle">
-            Обери казку
+            {{appState.locale.chooseTale}}
         </div>
     </div>
 
@@ -16,11 +16,11 @@
                 {{#if coverImgId.img}}background-image: url(/uploads/{{coverImgId.img}});{{/if}}
                 {{#if coverColorId.color}}background-color: #{{coverColorId.color}};{{/if}}
             ">
-                {{#if name}}
+                {{#unless name}}
                     <div class="coverName" style="top: {{top}}px; left: {{left}}px;">
                         {{name}}
                     </div>
-                {{/if}}
+                {{/unless}}
             </a>
         {{/each}}
     </div>

@@ -1,0 +1,29 @@
+<div class="positioned" style="top: {{appState.size.topOffset}}; left: {{appState.size.leftOffset}};">
+
+    <div class="taleTitle">
+        <div class="innerTitle">
+            {{appState.locale.rating}}
+        </div>
+    </div>
+
+    <a href="/" class="taleBtnWrap small closeFrame">
+        <div class="small taleBtn orange"></div>
+    </a>
+
+    <div class="ratingTales">
+        {{#each tales}}
+            <div class="tale">
+                <a class="cover" href="/fairy-tale/{{_id}}" style="
+                    {{#if coverImgId.img}}background-image: url(/uploads/{{coverImgId.img}});{{/if}}
+                    {{#if coverColorId.color}}background-color: #{{coverColorId.color}};{{/if}}
+                "></a>
+                {{#if name}}
+                    <div class="taleName">
+                        {{name}}
+                    </div>
+                {{/if}}
+            </div>
+        {{/each}}
+    </div>
+
+</div>
