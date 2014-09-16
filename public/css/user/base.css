@@ -1396,6 +1396,8 @@ module {
   .positioned .link .taleBtn {
     padding: 18px;
     width: 177px; }
+    .positioned .link .taleBtn.mini {
+      padding: 7px; }
 
 .coverImgTbl .coverImage, .companyTales .tale {
   background-size: contain;
@@ -1428,9 +1430,6 @@ module {
     color: #a9692b;
     font-size: 16px;
     margin-top: 1px; }
-
-.how-to-write .link .taleBtn {
-  padding: 7px; }
 
 .coverImgTbl .coverImage, .companyTales .tale {
   background-size: contain;
