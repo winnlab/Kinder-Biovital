@@ -37,13 +37,24 @@ define([
                 },
                 '.btm click': function () {
                     this.scope.attr('cIndex', this.scope.attr('cIndex') + 1);
+                },
+                '{data} change': function (data, ev, attr, how) {
+                    if (attr.indexOf('.') === -1 && (how === 'add' || how === 'remove')) {
+                        var cIndex = this.scope.attr('cIndex');
+                        if (how === 'add') {                            
+                            this.scope.attr('cIndex', data.attr('length') - this.scope.attr('count'));
+                        }
+                        if (how === 'remove') {
+                            this.scope.attr('cIndex', cIndex - 1);
+                        }
+                    }
                 }
             },
             helpers: {
                 in: function (cIndex, index, count, options) {
                     cIndex = cIndex();
                     index = index();
-                    count = count() - 1;                    
+                    count = count() - 1;
                     return index >= cIndex && cIndex + count >= index
                         ? options.fn()
                         : options.inverse();
