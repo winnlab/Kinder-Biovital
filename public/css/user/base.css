@@ -1267,23 +1267,23 @@ module {
 
 .companyTales {
   position: absolute;
-  top: 93px;
-  left: 249px;
-  height: 483px;
-  width: 726px;
-  padding: 44px 30px 44px 42px;
+  top: 97px;
+  left: 420px;
+  height: 569px;
+  width: 388px;
+  padding: 34px 30px 44px 61px;
   background: url("/img/chooseStory.png"); }
   .companyTales .tale {
-    height: 190px;
-    width: 315px;
+    height: 152px;
+    width: 262px;
     border-color: #f59b06;
     border-style: solid;
-    border-width: 20px 17px;
+    border-width: 14px;
     position: relative;
     float: left;
     display: block;
-    margin: 0 8px 8px 0;
-    border-radius: 15px;
+    margin: 0 0 15px;
+    border-radius: 10px;
     box-shadow: inset 2px 2px 0px 0px rgba(0, 0, 0, 0.3), 2px 2px 0px 0px rgba(0, 0, 0, 0.3); }
 
 .coverImgTbl .coverImage, .companyTales .tale {

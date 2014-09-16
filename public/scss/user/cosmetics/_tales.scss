@@ -5,22 +5,22 @@
 @import '../../base/_variables.scss';
 
 .companyTales {
-    @include position(absolute, 93px null null 249px);
-    @include size(726px 483px);
-    padding: 44px 30px 44px 42px;
+    @include position(absolute, 97px null null 420px);
+    @include size(388px 569px);
+    padding: 34px 30px 44px 61px;
     background: url('#{$imgPath}chooseStory.png');
 
     .tale {
-        @include size(315px 190px);
+        @include size(262px 152px);
         @include border-color($orange);
         @include border-style(solid);
-        @include border-width(20px 17px);
+        @include border-width(14px 14px);
         @extend %bg-image-contain;
         position: relative;
         float: left;
         display: block;
-        margin: 0 8px 8px 0;
-        border-radius: 15px;
+        margin: 0 0 15px;
+        border-radius: 10px;
         box-shadow:
             inset 2px 2px 0px 0px rgba(0, 0, 0, 0.3),
             2px 2px 0px 0px rgba(0, 0, 0, 0.3);
