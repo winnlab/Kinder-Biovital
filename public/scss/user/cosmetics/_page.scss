@@ -141,6 +141,10 @@
         .taleBtn {
             padding: 18px;
             width: 177px;
+
+            &.mini {
+                padding: 7px;
+            }
         }
     }
 }
