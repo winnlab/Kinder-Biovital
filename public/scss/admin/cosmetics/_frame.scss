@@ -336,6 +336,7 @@
             background: #f4ecd9;
             box-shadow: $outerShadow;
             border-radius: 5px;
+            z-index: 2;
 
             &:after {
                 content: '';

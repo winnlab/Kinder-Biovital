@@ -28,8 +28,7 @@ define(
         return can.Control.extend({
             defaults: {
                 viewpath: 'app/modules/tale/views/',
-                dataArr: {
-                    tales: TalesModel,
+                dataArr: {                    
                     tracks: TracksModel,
                     coverColors: CoverColorModel,
                     coverImages: CoverImagesModel,
@@ -48,15 +47,11 @@ define(
                 self.module = new can.Map({});
 
                 for (var key in options.dataArr) {
-                    if (key == 'decorations') {
-                        self.module.attr(key, new options.dataArr[key].List({
-                            queryOptions: {
-                                sort: 'position'
-                            }
-                        }));
-                    } else {
-                        self.module.attr(key, new options.dataArr[key].List({}));
-                    }
+                    self.module.attr(key, new options.dataArr[key].List({
+                        queryOptions: {
+                            sort: 'position'
+                        }
+                    }));
                 }
 
                 for (key in options.dataArr) {

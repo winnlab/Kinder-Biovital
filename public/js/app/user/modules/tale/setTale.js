@@ -41,7 +41,7 @@ define(
             },
 
             '.end click': function () {
-                self.module.attr('clearStorage', true);
+                this.module.attr('clearStorage', true);
                 this.saveTale(null);
             },
 

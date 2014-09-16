@@ -673,7 +673,8 @@ html {
       width: 50px;
       background: #f4ecd9;
       box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
-      border-radius: 5px; }
+      border-radius: 5px;
+      z-index: 2; }
       .heroInDrag .replicaBtn.add:after {
         content: '';
         position: absolute;
