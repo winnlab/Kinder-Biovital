@@ -20,7 +20,7 @@ define(
         return Tale.extend({
             defaults: {
                 viewpath: '/js/app/admin/modules/tales/views/'
-                // , display: 'cover'
+                // , display: 'share'
             }
         }, {
 
@@ -41,7 +41,6 @@ define(
             },
 
             '.end click': function () {
-                this.module.attr('clearStorage', true);
                 this.saveTale(null);
             },
 
@@ -54,11 +53,8 @@ define(
                 }
             },
 
-            '.shareTaleSoc click': function () {
-                this.module.attr('shared', true);
-            },
-
-            '.coverPreview click': function () {
+            '.share click': function (el) {
+                appState.attr('social').changeNw(el.data('nw'));
                 var module = this.module,
                     tale = module.attr('tale'),
                     coverImage = _.find(module.attr('coverImages'), function (cover) {
@@ -71,15 +67,20 @@ define(
                 Cover.getCover(
                     coverImage && coverImage.attr('img'),
                     coverColor && coverColor.attr('color'),
-                    can.proxy(this.imageGeted, this)
+                    can.proxy(this.shareCover, this)
                 );
             },
 
-            imageGeted: function (imageCode) {
-                // console.log(imageCode);
+            shareCover: function (image) {
+                var self = this,
+                    message = 'Some message';
 
-                appState.attr('social').share(imageCode, function () {
+                appState.attr('social').shareCanvas(image, message, function () {
                     console.log('social post cb', arguments);
+                    self.module.attr('shared', true);
+                    self.module.attr('tale.shared', 1);
+                    self.module.attr('clearStorage', true);
+                    self.saveTale(null);
                 });
             }
 

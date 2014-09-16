@@ -9,30 +9,70 @@
 }
 
 .shareLink {
-    position: absolute;
-    top: 164px;
-    left: 323px;
+    @include position(absolute, 245px null null 323px);
     @include size(581px 62px);
     color: #000;
     z-index: 1;
     text-align: center;
-    font-size: 20px;
-    padding-top: 21px;
+    font-size: 18px;
+    padding: 25px 0 0;
 
     &:after {
+        @include position(absolute, -29px null null -18px);
+        @include size(618px 123px);
         content: '';
-        position: absolute;
-        top: -28px;
-        left: -14px;
         z-index: -1;
-        @include size(608px 105px);
         background: url('#{$imgPath}shareLink.png');
+    }
+
+    .linkTitle {
+        @include position(absolute, -11px null null 167px);
+        @include size(249px 20px);
+        font-family: Futura;
+        text-transform: lowercase;
+        font-size: 18px;
+        color: $orange;
+        text-shadow: -1px -1px 0 #bb6920;
+    }
+
+    .link {
+        color: #333;
     }
 }
 
 .shareTaleSoc {
     @include position(absolute, 334px null null 466px);
     @include size(297px 155px);
-    cursor: pointer;
-    background: url('#{$imgPath}socLinks.png');
+    padding: 45px 40px 40px 58px;
+    background: url('#{$imgPath}shareSoc.png');
+
+    .share {
+        float: left;
+        @include size(45px);
+        position: relative;
+        margin: 13px 20px 13px 0px;
+        background: $orange;
+        box-shadow: $btnShadow;
+        border-radius: 10px;
+        cursor: pointer;
+
+        &:after {
+            content: '';
+            @include position(absolute, 0 null null 0);
+            @include size(47px);
+        }
+
+        &.fb:after {
+            background: url('#{$imgPath}FB.png');
+        }
+
+        &.ok:after {
+            background: url('#{$imgPath}OK.png');
+        }
+
+        &.vk:after {
+            background: url('#{$imgPath}VK.png');
+        }
+    }
+
 }

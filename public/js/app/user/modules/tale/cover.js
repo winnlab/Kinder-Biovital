@@ -16,24 +16,26 @@ define(
                     context = canvas.getContext('2d'),
                     image = new Image();
 
-                    context.canvas.width = width;
-                    context.canvas.height = height;
+                context.canvas.width = width;
+                context.canvas.height = height;
 
-                    if (color) {
-                        context.fillStyle = '#' + color;
-                        context.fillRect(0, 0, width, height);
-                    }
+                if (color) {
+                    context.fillStyle = '#' + color;
+                    context.fillRect(0, 0, width, height);
+                }
 
-                    if (image) {
-                        image.onload = function() {
-                            self.drawImage(image, context, width, height);
-                            self.getImageData(canvas, cb);
-                        };
-
-                        image.src = '/uploads/' + img;
-                    } else {
+                if (img) {
+                    image.onload = function() {
+                        self.drawImage(image, context, width, height);
                         self.getImageData(canvas, cb);
-                    }
+                    };
+
+                    image.src = '/uploads/' + img;
+                } else if (!color) {
+                    cb(null);
+                } else {
+                    self.getImageData(canvas, cb);
+                }
             },
 
             drawImage: function (image, context) {
@@ -57,12 +59,25 @@ define(
             },
 
             getImageData: function (canvas, cb) {
-                var data = canvas.toDataURL("image/png"),
-                    encodedPng = data.substring(data.indexOf(',') + 1, data.length),
-                    decodedPng = Base64Binary.decode(encodedPng);
+                var mime = 'image/png',
+                    data = canvas.toDataURL(mime),
+                    encodedPng = data.split(',')[1];
 
-                // cb(encodedPng);
-                cb(decodedPng);
+                // convert base64 to raw binary data held in a string
+                // doesn't handle URLEncoded DataURIs
+                var byteString = window.atob(encodedPng);
+                // separate out the mime component
+                var ia = new Uint8Array(byteString.length);
+                for (var i = 0, ln = byteString.length; i < ln; i++) {
+                    ia[i] = byteString.charCodeAt(i);
+                }
+
+                // write the ArrayBuffer to a blob, and you're done
+                var blob = new Blob([ia], { type: mime });
+
+                // return blob;
+                cb(blob);
+
             }
         }
     }

@@ -244,12 +244,21 @@
             <div class="taleBtnWrap small closeFrame">
                 <div class="small taleBtn orange"></div>
             </div>
+
             {{#if shared}}
                 <div class="shareLink">
-                    http://bayer.ua/kinderbiovital/podilusya-kazkoyu
+                    <div class="linkTitle">{{locale.link}}</div>
+                    <a class="link" href="http://46.21.104.20:3000/fairy-tale/{{tale._id}}">
+                        http://46.21.104.20:3000/fairy-tale/{{tale._id}}
+                    </a>
                 </div>
             {{/if}}
-            <div class="shareTaleSoc"></div>
+
+            <div class="shareTaleSoc">
+                <div class="share fb" data-nw="fb"></div>
+                <div class="share vk" data-nw="vk"></div>
+                <div class="share ok" data-nw="ok"></div>
+            </div>
 
         </div>
 

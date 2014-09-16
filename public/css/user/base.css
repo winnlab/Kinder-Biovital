@@ -1062,24 +1062,37 @@ module {
 
 .shareLink {
   position: absolute;
-  top: 164px;
+  top: 245px;
   left: 323px;
   height: 62px;
   width: 581px;
   color: #000;
   z-index: 1;
   text-align: center;
-  font-size: 20px;
-  padding-top: 21px; }
+  font-size: 18px;
+  padding: 25px 0 0; }
   .shareLink:after {
-    content: '';
     position: absolute;
-    top: -28px;
-    left: -14px;
+    top: -29px;
+    left: -18px;
+    height: 123px;
+    width: 618px;
+    content: '';
     z-index: -1;
-    height: 105px;
-    width: 608px;
     background: url("/img/shareLink.png"); }
+  .shareLink .linkTitle {
+    position: absolute;
+    top: -11px;
+    left: 167px;
+    height: 20px;
+    width: 249px;
+    font-family: Futura;
+    text-transform: lowercase;
+    font-size: 18px;
+    color: #f59b06;
+    text-shadow: -1px -1px 0 #bb6920; }
+  .shareLink .link {
+    color: #333; }
 
 .shareTaleSoc {
   position: absolute;
@@ -1087,8 +1100,31 @@ module {
   left: 466px;
   height: 155px;
   width: 297px;
-  cursor: pointer;
-  background: url("/img/socLinks.png"); }
+  padding: 45px 40px 40px 58px;
+  background: url("/img/shareSoc.png"); }
+  .shareTaleSoc .share {
+    float: left;
+    height: 45px;
+    width: 45px;
+    position: relative;
+    margin: 13px 20px 13px 0px;
+    background: #f59b06;
+    box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    cursor: pointer; }
+    .shareTaleSoc .share:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 47px;
+      width: 47px; }
+    .shareTaleSoc .share.fb:after {
+      background: url("/img/FB.png"); }
+    .shareTaleSoc .share.ok:after {
+      background: url("/img/OK.png"); }
+    .shareTaleSoc .share.vk:after {
+      background: url("/img/VK.png"); }
 
 .coverImgTbl .coverImage, .companyTales .tale {
   background-size: contain;

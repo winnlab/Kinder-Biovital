@@ -4,14 +4,16 @@ define(
         'core/config',
         'canjs',
         'src/social/fb',
-        'src/social/vk'
+        'src/social/vk',
+        'src/social/ok'
     ],
 
-    function (config, can, fb, vk) {
+    function (config, can, fb, vk, ok) {
 
         var network = {
-                fb: fb,
-                vk: vk
+                fb: fb
+                , vk: vk
+                // , ok: ok
             };
 
         for (var key in network) {
@@ -30,6 +32,10 @@ define(
 
             share: function (image, cb) {
                 network[this.nw].share(image, cb);
+            },
+
+            shareCanvas: function (image, message, cb) {
+                network[this.nw].shareCanvas(image, message, cb);
             },
 
             changeNw: function (nw) {

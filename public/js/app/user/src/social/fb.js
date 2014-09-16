@@ -4,20 +4,6 @@ define(
 
     function (can, FB) {
 
-
-        if (!XMLHttpRequest.prototype.sendAsBinary) {
-
-              XMLHttpRequest.prototype.sendAsBinary = function (sData) {
-                var nBytes = sData.length, ui8Data = new Uint8Array(nBytes);
-                for (var nIdx = 0; nIdx < nBytes; nIdx++) {
-                    ui8Data[nIdx] = sData.charCodeAt(nIdx) & 0xff;
-                }
-                /* send as ArrayBufferView...: */
-                this.send(ui8Data);
-                /* ...or as ArrayBuffer (legacy)...: this.send(ui8Data.buffer); */
-            };
-        }
-
         return {
             init: function (options) {
                 this.options = options;
@@ -30,8 +16,7 @@ define(
             },
             logIn: function () {
                 FB.login(can.proxy(this.logedIn, this), {
-                    // scope: this.options.permissions
-                    scope: 'publish_actions'
+                    scope: this.options.permissions
                 });
             },
             logedIn: function (response) {
@@ -55,70 +40,65 @@ define(
             getUser: function () {
                 return this.user;
             },
-            share: function (image, cb) {
-                this.postCanvasToFacebook(image);
+
+            share: function (img, message, cb) {
+                // Do shearing
 			},
 
-            postCanvasToFacebook: function(decodedPng) {
+            shareCanvas: function (image, message, cb) {
                 var self = this;
 
             	FB.getLoginStatus(function(response) {
-            	  if (response.status === "connected") {
-            		self.postImageToFacebook(response.authResponse.accessToken, "kinder.png", "image/png", decodedPng, "http://localhost:3000");
-            	  } else if (response.status === "not_authorized") {
-            		 FB.login(function(response) {
-            			self.postImageToFacebook(response.authResponse.accessToken, "kinder.png", "image/png", decodedPng, "http://localhost:3000");
-            		 }, {scope: "publish_stream"});
-            	  } else {
-            		 FB.login(function(response)  {
-            			self.postImageToFacebook(response.authResponse.accessToken, "kinder.png", "image/png", decodedPng, "http://localhost:3000");
-            		 }, {scope: "publish_stream"});
-            	  }
-            	 });
 
-            },
+                    if (response.status === 'connected') {
 
-            postImageToFacebook: function ( authToken, filename, mimeType, imageData, message ){
-                FB.api(
-                    "/me/photos",
-                    "POST",
-                    {
-                        "source": imageData,
-                        "message": 'Test: <a href="http://www.vedmezhuiky.com.ua/">Kinder-Biovital</a>'
-                    },
-                    function (response) {
-                        console.log("/me/photos POST", response)
-                      if (response && !response.error) {
-                        /* handle the result */
-                      }
+                        self.postImage(response.authResponse.accessToken, image, message, cb);
+
+                    } else if (response.status === 'not_authorized') {
+
+                        FB.login(function (response) {
+                            self.postImage(response.authResponse.accessToken, image, message, cb);
+                        }, {scope: self.options.permissions});
+
+                    } else {
+
+                        FB.login(function (response) {
+                            self.postImage(response.authResponse.accessToken, image, message, cb);
+                        }, {scope: self.options.permissions});
+
                     }
-                );
+
+                });
+
             },
 
-            _postImageToFacebook: function ( authToken, filename, mimeType, imageData, message ){
-                // this is the multipart/form-data boundary we'll use
-                var boundary = '----ThisIsTheBoundary1234567890';
-                // let's encode our image file, which is contained in the var
-                var formData = '--' + boundary + '\r\n'
-                formData += 'Content-Disposition: form-data; name="source"; filename="' + filename + '"\r\n';
-                formData += 'Content-Type: ' + mimeType + '\r\n\r\n';
-                for ( var i = 0; i < imageData.length; ++i ) {
-                    formData += String.fromCharCode( imageData[ i ] & 0xff );
+            postImage: function (accessToken, imageData, message, cb) {
+
+                if (!imageData) {
+                    return this.share(null, message, cb);
                 }
-                formData += '\r\n';
-                formData += '--' + boundary + '\r\n';
-                formData += 'Content-Disposition: form-data; name="message"\r\n\r\n';
-                formData += message + '\r\n'
-                formData += '--' + boundary + '--\r\n';
 
-                var xhr = new XMLHttpRequest();
-                xhr.open( 'POST', 'https://graph.facebook.com/me/photos?access_token=' + authToken, true );
-                xhr.onload = xhr.onerror = function() {
-                    console.log( xhr.responseText );
-                };
-                xhr.setRequestHeader( "Content-Type", "multipart/form-data; boundary=" + boundary );
+                var fd = new FormData();
+                fd.append('access_token', accessToken);
+                fd.append('source', imageData);
+                fd.append('message', message);
 
-                xhr.sendAsBinary( formData );
+                can.ajax({
+                    url: 'https://graph.facebook.com/me/photos?access_token=' + accessToken,
+                    type: 'POST',
+                    data: fd,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        cb('success', data);
+                    },
+                    error: function (shr, status, data) {
+                        cb('error', data);
+                    },
+                    complete: function () {
+                        console.log('Ajax Complete', arguments);
+                    }
+                });
             }
 
         };

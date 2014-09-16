@@ -31,3 +31,4 @@ module.exports =
 		shareTale: 'Поделись сказкой'
 	details: 'Детальнее'
 	create: 'Создать свою сказку'
+	link: 'Ссылка'

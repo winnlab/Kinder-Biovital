@@ -28,7 +28,7 @@ define({
 	social: {
 		fb: {
 			appId: 512705898864753,
-			permissions: ''
+			permissions: 'publish_actions'
 		},
 		vk: {
 			appId: 4547249,

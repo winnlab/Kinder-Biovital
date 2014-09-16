@@ -64,6 +64,9 @@ TaleShemaFields =
     top:
         type: Number
     # 0 is tale added by admin, 1 is tale added by user
+    shared:
+        type: Number
+        default: 0
     type:
         type: Number
         default: 1

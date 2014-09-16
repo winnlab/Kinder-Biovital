@@ -1,7 +1,0 @@
-{{#each decorations}}
-    {{#is frame.decorationId _id}}
-        <img class="bg" src="/uploads/{{bg}}">
-        <img class="plan" src="/uploads/{{plan}}">
-        <img class="fg" src="/uploads/{{fg}}">
-    {{/is}}
-{{/each}}  
