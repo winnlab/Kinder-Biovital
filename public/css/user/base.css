@@ -1180,8 +1180,9 @@ module {
     cursor: pointer;
     padding: 12px; }
     .mainPage .watchTale .taleBtn {
+      width: 149px;
       padding: 115px 9px 9px;
-      font-size: 14px;
+      font-size: 12px;
       text-decoration: none; }
       .mainPage .watchTale .taleBtn:after {
         content: '';
@@ -1227,7 +1228,7 @@ module {
       content: '';
       z-index: -1;
       position: absolute;
-      top: -13px;
+      top: -11px;
       left: -17px;
       height: 191px;
       width: 1006px;
@@ -1242,8 +1243,8 @@ module {
       background: url("/img/vedmeBanka.png"); }
     .mainPage .text .column {
       float: left;
-      width: 370px;
-      margin: 0 25px 0 0;
+      width: 380px;
+      margin: 0 15px 0 0;
       font-size: 16px;
       line-height: 130%; }
       .mainPage .text .column:last-of-type {
@@ -1253,7 +1254,7 @@ module {
         text-transform: uppercase;
         font-weight: normal;
         font-family: Futura;
-        font-size: 21px; }
+        font-size: 18px; }
         .mainPage .text .column .block-title.color-red {
           color: #df4a08; }
         .mainPage .text .column .block-title.color-orange {

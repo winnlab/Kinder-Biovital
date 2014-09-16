@@ -50,8 +50,9 @@
         padding: 12px;
 
         .taleBtn {
+            width: 149px;
             padding: 115px 9px 9px;
-            font-size: 14px;
+            font-size: 12px;
             text-decoration: none;
 
             &:after {
@@ -100,7 +101,7 @@
         &:after {
             content: '';
             z-index: -1;
-            @include position(absolute, -13px null null -17px);
+            @include position(absolute, -11px null null -17px);
             @include size(1006px 191px);
             background: url('#{$imgPath}mainTextBg.png');
         }
@@ -114,8 +115,8 @@
 
         .column {
             float: left;
-            width: 370px;
-            margin: 0 25px 0 0;
+            width: 380px;
+            margin: 0 15px 0 0;
             font-size: 16px;
             line-height: 130%;
 
@@ -128,7 +129,7 @@
                 text-transform: uppercase;
                 font-weight: normal;
                 font-family: Futura;
-                font-size: 21px;
+                font-size: 18px;
 
                 &.color-red {
                     color: $red;
