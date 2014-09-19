@@ -336,7 +336,8 @@ module {
     color: #f59b06;
     text-shadow: 1px 1px 0 #c58730;
     display: block;
-    border-radius: 4px; }
+    border-radius: 4px;
+    overflow: hidden; }
   .chooseMusic .trackList {
     position: absolute;
     bottom: 50px;
@@ -426,14 +427,14 @@ module {
 
 .leftPanel {
   position: absolute;
-  top: 294px;
+  top: 140px;
   left: -176px;
+  height: 340px;
   width: 164px;
   z-index: 1;
   text-shadow: -1px -1px 0 #c58730; }
   .small .leftPanel {
-    left: 18px;
-    top: 146px; }
+    left: 18px; }
   .leftPanel .taleBtnWrap {
     display: block;
     margin-bottom: 9px;
@@ -607,6 +608,10 @@ module {
   position: absolute; }
   .heroInDrag:hover .name {
     display: block; }
+  .displayFrame .heroInDrag.secondPlan .name {
+    margin-left: -55px; }
+    .displayFrame .heroInDrag.secondPlan .name input {
+      width: 110px; }
   .heroInDrag .name {
     position: absolute;
     bottom: 0;
@@ -1062,6 +1067,90 @@ module {
   background-repeat: no-repeat;
   background-position: center center; }
 
+.popUpWrap {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000; }
+  .popUpWrap.visible {
+    display: block; }
+  .popUpWrap:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.5;
+    z-index: -1; }
+  .popUpWrap .popUp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    height: 206px;
+    width: 393px;
+    margin: -103px 0 0 -186px;
+    padding: 30px;
+    background: url("/img/popupBg.png"); }
+    .popUpWrap .popUp.largeText .msg {
+      padding: 0;
+      font-size: 15px; }
+    .popUpWrap .popUp.largeText .btnWrap {
+      top: 133px; }
+    .popUpWrap .popUp .close {
+      position: absolute;
+      top: 17px;
+      right: -14px;
+      height: 30px;
+      width: 30px;
+      background-color: #f4ecd9;
+      border-radius: 6px;
+      box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+      z-index: 2;
+      cursor: pointer;
+      opacity: 1; }
+      .popUpWrap .popUp .close:after {
+        content: '';
+        position: absolute;
+        top: 7px;
+        left: 8px;
+        height: 14px;
+        width: 15px;
+        background: url("/img/smallX.jpg"); }
+    .popUpWrap .popUp .msg {
+      font-size: 15px;
+      text-align: center;
+      padding: 20px 0 0;
+      font-family: Arial; }
+    .popUpWrap .popUp .btnWrap {
+      position: absolute;
+      top: 120px;
+      left: 0;
+      width: 100%;
+      text-align: center; }
+    .popUpWrap .popUp .taleBtn {
+      height: 38px;
+      width: 116px;
+      padding: 11px 0 0;
+      margin: 0 18px 0 18px;
+      display: inline-block;
+      float: none;
+      font-family: Futura;
+      letter-spacing: 1px;
+      line-heigth: 100%;
+      text-transform: uppercase;
+      font-size: 18px; }
+
+.coverImgTbl .coverImage, .companyTales .tale {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center; }
+
 #cover {
   display: none; }
 
@@ -1142,8 +1231,9 @@ module {
     position: absolute;
     top: 114px;
     left: 269px;
+    z-index: 1;
     width: 700px;
-    z-index: 1; }
+    text-align: center; }
     .mainPage .menu a {
       display: inline-block;
       border-radius: 5px;
@@ -1423,6 +1513,8 @@ module {
         right: -77px; }
     .how-to-write .pageWrap list-slider div {
       margin-bottom: 10px; }
+      .how-to-write .pageWrap list-slider div.dotsWrap {
+        margin-bottom: 0; }
   .how-to-write .pageWrap h5 {
     color: #f59b06;
     text-shadow: 1px 2px 0 #bb6920;

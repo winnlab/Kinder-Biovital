@@ -19,7 +19,6 @@ define([
                 if (idx) {
                     index = idx;
                 }
-                console.log(index, this.lastIndex());
 
                 if (index <= this.lastIndex() && index >= 0) {
                     this.attr('cIndex', index);

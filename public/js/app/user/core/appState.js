@@ -2,8 +2,7 @@ define([
 	'canjs',
 	'lib/viewport'
 ],
-	function (can, viewport) {
-		console.log(window.data.locale);
+	function (can, viewport) {		
 		var AppState = can.Map.extend({
 				//Settings
 				imgPath: '/img/',

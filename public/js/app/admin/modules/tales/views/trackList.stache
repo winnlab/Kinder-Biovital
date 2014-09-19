@@ -5,6 +5,13 @@
         {{/each}}
     </div>
     <div class="taleBtn orange showTracks">
-        <span class="musicLabel">{{locale.setTale.tracks}}</span>
+        <span class="musicLabel">
+            {{#unless tale.trackId}}
+                {{locale.setTale.tracks}}
+            {{/unless}}
+            {{#if tale.trackId}}
+                {{arrFind tracks tale.trackId '_id' 'name'}}
+            {{/if}}
+        </span>
     </div>
 </div>

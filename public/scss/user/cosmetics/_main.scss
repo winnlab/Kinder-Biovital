@@ -9,8 +9,9 @@
 
     .menu {
         @include position(absolute, 114px null null 269px);
-        width: 700px;
         z-index: 1;
+        width: 700px;
+        text-align: center;
 
         a {
             display: inline-block;

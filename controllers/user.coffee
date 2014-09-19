@@ -3,6 +3,7 @@ express = require 'express'
 View = require '../lib/view'
 
 Main = require './user/main.coffee'
+VK = require './user/vk.coffee'
 Hero = require './admin/hero'
 Track = require './admin/track'
 CoverColor = require './admin/coverColor'
@@ -38,6 +39,7 @@ Router.get '/fairy-tale/:name?', Main.index
 Router.get '/rating', Main.index
 Router.get '/sp/:link?', Main.index
 
+Router.post '/vk/upload', VK.upload
 
 
 #------- Hero ---------#

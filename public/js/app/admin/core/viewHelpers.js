@@ -1,8 +1,10 @@
 define([
 	'canjs',
-    'underscore'
+    'underscore',
+	'lib/viewport',
+	'modules/tales/taleConfig'
 ],
-	function (can, _) {
+	function (can, _, viewport, taleConfig) {
 
 		'use strict';
 
@@ -117,9 +119,52 @@ define([
 				$(el).wysihtml5();
 			};
 		});
-
 		can.mustache.registerHelper('make3Col', function (index) {
 			return (index() + 1) % 3 === 0 ? '<div class="clearfix"></div>' : '';
+		});
+
+		/**
+		 * TALES HELPERS
+		 */
+
+		can.mustache.registerHelper('getReplicaTail', function (options) {
+			var hero = options.context,
+				heroTop = hero.attr('top'),
+				heroLeft = hero.attr('left'),
+				sizePrefix = heroTop > taleConfig.firstPlanTop ? 'fg' : 'bg',
+				heroSize = taleConfig.heroSize,
+				heroWidth = heroSize[sizePrefix + 'Width'],
+				heroHeight = heroSize[sizePrefix + 'Height'],
+				replicaWidth = heroSize.replWidth,
+				replicaHeight = heroSize.replHeight,
+				replicaClass = '';
+
+			if ((heroLeft + (heroWidth - replicaWidth) / 2) > hero.attr('replica.left')) {
+				replicaClass += 'L';
+			} else {
+				replicaClass += 'R';
+			}
+
+			if ((heroTop + (heroHeight - replicaHeight) / 2) > hero.attr('replica.top')) {
+				replicaClass += 'T';
+			} else {
+				replicaClass += 'B';
+			}
+
+			return replicaClass;
+		});
+
+		can.mustache.registerHelper('heroPlan', function (options) {
+			return options.context.attr('top') > taleConfig.firstPlanTop
+				? 'firstPlan'
+				: 'secondPlan';
+		});
+
+		can.mustache.registerHelper('talePosition', function (size) {
+			var left = (viewport.getViewportWidth() - taleConfig.taleSize.width) / 2,
+				top = (viewport.getViewportHeight() - taleConfig.taleSize.height) / 2;
+
+			return 'left: ' + left + 'px; top: ' + top + 'px';;
 		});
 
 	}

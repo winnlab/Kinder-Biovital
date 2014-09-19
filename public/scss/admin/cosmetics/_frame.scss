@@ -5,14 +5,13 @@
 @import '../../base/_variables.scss';
 
 .leftPanel {
-    @include position(absolute, 294px null null -176px);
-    width: 164px;
+    @include position(absolute, 140px null null -176px);
+    @include size(164px 340px);
     z-index: 1;
     text-shadow: -1px -1px 0 #c58730;
 
     .small & {
         left: 18px;
-        top: 146px;
     }
 
     .taleBtnWrap {
@@ -235,6 +234,16 @@
 
     &:hover .name {
         display: block;
+    }
+
+    .displayFrame &.secondPlan {
+        .name {
+            margin-left: -55px;
+
+            input {
+                width: 110px;
+            }
+        }
     }
 
     .name {

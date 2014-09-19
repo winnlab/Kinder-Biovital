@@ -3,10 +3,11 @@ define(
         'canjs',
         'underscore',
         'lib/viewport',
-        'modules/tales/talesModel'
+        'modules/tales/talesModel',
+        'modules/tales/taleConfig'
     ],
 
-    function (can, _, viewport, TalesModel) {
+    function (can, _, viewport, TalesModel, taleConfig) {
 
         'use strict';
 
@@ -16,34 +17,15 @@ define(
             defaults: {
                 viewpath: '/js/app/admin/modules/tales/views/',
                 viewName: 'preview.stache',
-
-                // This is offset of tale backround from tale zone
-                frameBgTop: -275,
-                // the offset top of hero when it become bigger
-                firstPlanTop: 500,
-
-                decorationWidth: 3705,
-
-                heroSize: {
-                    fgWidth: 190,
-                    fgHeight: 240,
-                    bgWidth: 120,
-                    bgHeight: 150
-                },
-
-                queryBase: '/admin',
-
-                timeOut: 5000,
-
-                taleSize: {
-                    width: 1225,
-                    height: 650
-                }
+                // which frame show while init tale preview
+                frameIndex: 0,
+                // Player timeout
+                timeOut: 5000
             }
         }, {
 
             init: function () {
-
+                _.extend(this.options, taleConfig);
                 var self = this,
                     def = can.Deferred(),
                     options = this.options,
@@ -52,7 +34,7 @@ define(
                 self.playInterval = null;
 
                 self.module = new can.Map({
-                    cIndex: 1,
+                    cIndex: self.options.frameIndex + 1,
                     tale: {},
                     frame: {},
                     playTrack: true
@@ -63,13 +45,7 @@ define(
                         var height = viewport.getViewportHeight() + 'px';
                         self.element.css('min-height', height);
                         return 'min-height: ' + height;
-                    },
-                    talePosition: function () {
-                        var left = (viewport.getViewportWidth() - self.options.taleSize.width) / 2,
-                            top = (viewport.getViewportHeight() - 650) / 2;
-
-                        return 'left: ' + left + 'px; top: ' + top + 'px';;
-                    },
+                    },                    
                     bgOffset: function (left) {
                         var css = '';
                         var winWidth = viewport.getViewportWidth(),
@@ -90,34 +66,6 @@ define(
                             css += vendors[i] + 'transform: translateX(-' + left + 'px);';
                         }
                         return css;
-                    },
-                    heroPlan: function (options) {
-                        return options.context.attr('top') > self.options.firstPlanTop
-                            ? 'firstPlan'
-                            : 'secondPlan';
-                    },
-                    getReplicaTail: function (options) {
-                        var hero = options.context,
-                            heroTop = hero.attr('top'),
-                            heroLeft = hero.attr('left'),
-                            sizePrefix = heroTop > self.options.firstPlanTop ? 'fg' : 'bg',
-                            heroWidth = self.options.heroSize[sizePrefix + 'Width'],
-                            heroHeight = self.options.heroSize[sizePrefix + 'Height'],
-                            replicaClass = '';
-
-                        if ((heroLeft + heroWidth / 2) > hero.attr('replica.left')) {
-                            replicaClass += 'L';
-                        } else {
-                            replicaClass += 'R';
-                        }
-
-                        if ((heroTop + heroHeight / 2) > hero.attr('replica.top')) {
-                            replicaClass += 'T';
-                        } else {
-                            replicaClass += 'B';
-                        }
-
-                        return replicaClass;
                     }
                 });
 
@@ -129,7 +77,7 @@ define(
 
                 can.when(def)
                     .then(function () {
-                        self.currentFrame();
+                        self.currentFrame(self.options.frameIndex);
                         self.element.html(html);
                         self.playTrack();
 
@@ -205,7 +153,7 @@ define(
                 this.module.attr('playTrack', !played);
             },
 
-            '{closePreview} click': function () {                
+            '{closePreview} click': function () {
                 this.pauseTrack();
             }
 

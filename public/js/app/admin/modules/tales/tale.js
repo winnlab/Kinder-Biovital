@@ -6,11 +6,13 @@ define(
         'lib/viewport',
         'modules/tales/talePreloader',
         'modules/tales/talePreview',
+        'modules/tales/taleConfig',
+        'lib/popUp/popUp',
         'lib/jquerypp',
         'components/itemScroll/itemScroll'
     ],
 
-    function (can, _, appState, viewport, Preloader, TalePreview) {
+    function (can, _, appState, viewport, Preloader, TalePreview, taleConfig, popUp) {
 
         'use strict';
 
@@ -49,33 +51,9 @@ define(
                 // can be "bg", "frame", "cover", "share"
                 display: 'frame',
 
-                frame: null,
-                // Proportion of frame background and mini frame
-                realProp: 9.69895288,
-                miniProp: 11.724683544,
-                // This is offset of tale backround from tale zone
-                frameBgTop: -275,
-                // the offset top of hero when it become bigger
-                firstPlanTop: 500,
-                // the minimal amount of left frameBg offset in pixels
-                frameBgMinOffset: 348,
-
-                taleSize: {
-                    width: 1224,
-                    height: 650
-                },
-
-                heroSize: {
-                    fgWidth: 190,
-                    fgHeight: 240,
-                    bgWidth: 120,
-                    bgHeight: 150
-                },
-
                 data: [
                     'display',
                     'interface',
-                    'frame',
                     'tale',
                     'tracks',
                     'coverColors',
@@ -87,7 +65,7 @@ define(
         }, {
 
             init: function () {
-
+                _.extend(this.options, taleConfig);
                 var self = this,
                     options = this.options,
                     html;
@@ -110,12 +88,6 @@ define(
                         self.element.css('min-height', height);
                         return 'min-height: ' + height;
                     },
-                    talePosition: function () {
-                        var left = (viewport.getViewportWidth() - 1225) / 2,
-                            top = (viewport.getViewportHeight() - 650) / 2;
-
-                        return 'left: ' + left + 'px; top: ' + top + 'px';;
-                    },
                     bgOffset: function (left) {
                         var css = '';
                         for (var i = vendors.length; i--; ) {
@@ -125,34 +97,6 @@ define(
                     },
                     miniOffset: function (left) {
                         return 'left: ' + Math.round((left() - options.frameBgMinOffset / 2) / options.miniProp) + 'px';
-                    },
-                    heroPlan: function (options) {
-                        return options.context.attr('top') > self.options.firstPlanTop
-                            ? 'firstPlan'
-                            : 'secondPlan';
-                    },
-                    getReplicaTail: function (options) {
-                        var hero = options.context,
-                            heroTop = hero.attr('top'),
-                            heroLeft = hero.attr('left'),
-                            sizePrefix = heroTop > self.options.firstPlanTop ? 'fg' : 'bg',
-                            heroWidth = self.options.heroSize[sizePrefix + 'Width'],
-                            heroHeight = self.options.heroSize[sizePrefix + 'Height'],
-                            replicaClass = '';
-
-                        if ((heroLeft + heroWidth / 2) > hero.attr('replica.left')) {
-                            replicaClass += 'L';
-                        } else {
-                            replicaClass += 'R';
-                        }
-
-                        if ((heroTop + heroHeight / 2) > hero.attr('replica.top')) {
-                            replicaClass += 'T';
-                        } else {
-                            replicaClass += 'B';
-                        }
-
-                        return replicaClass;
                     }
                 });
 
@@ -237,10 +181,18 @@ define(
                 }
                 var dragLeft = drag.required_css_position['0'],
                     frameBgMinOffset = this.options.frameBgMinOffset,
-                    left = ~~(this.options.realProp * dragLeft + frameBgMinOffset),
-                    module = this.module;
+                    module = this.module,
+                    oldLeft = module.attr('frame.left'),
+                    left = ~~(this.options.realProp * dragLeft + frameBgMinOffset);
 
-                if (left !== module.attr('frame.left')) {
+                _.each(module.attr('frame.heroes'), function (hero){
+                    var heroLeft = hero.attr('left'),
+                        replicaLeft = hero.attr('replica.left');
+                    hero.attr('left', heroLeft + (left - oldLeft));
+                    hero.attr('replica.left', replicaLeft + (left - oldLeft));
+                });
+
+                if (left !== oldLeft) {
                     module.attr('frame.left', left);
                 }
             },
@@ -380,22 +332,31 @@ define(
             },
 
             '.removeSlide click': function () {
-                var frames = this.module.attr('tale.frames'),
-                    index = frames.indexOf(this.module.attr('frame')),
+                var def = can.Deferred(),
+                    self = this,
+                    frames = self.module.attr('tale.frames'),
+                    index = frames.indexOf(self.module.attr('frame')),
                     nextIndex = index - 1;
 
-                if (frames.length > 1) {
-                    if (nextIndex < 0) {
-                        nextIndex = 1;
+                popUp.show({
+                    def: def,
+                    msg: appState.locale.removeSlide + ' ' + (index + 1) + '?'
+                });
+
+                can.when(def).done(function(){
+                    if (frames.length > 1) {
+                        if (nextIndex < 0) {
+                            nextIndex = 1;
+                        }
+                        self.currentFrame(nextIndex);
+                        frames.splice(index, 1);
+                    } else {
+                        appState.attr('notification', {
+                            status: 'error',
+                            msg: 'Невозможно удалить последний слайд'
+                        });
                     }
-                    this.currentFrame(nextIndex);
-                    frames.splice(index, 1);
-                } else {
-                    appState.attr('notification', {
-                        status: 'error',
-                        msg: 'Невозможно удалить последний слайд'
-                    });
-                }
+                });
             },
 
             '.replicaBtn click': function (el) {
@@ -411,11 +372,19 @@ define(
             },
 
             '.removeHero click': function (el) {
-                var heroes = this.module.attr('frame.heroes'),
+                var def = can.Deferred(),
+                    heroes = this.module.attr('frame.heroes'),
                     hero = el.parent().data('hero'),
                     index = heroes.indexOf(hero);
 
-                heroes.splice(index, 1);
+                popUp.show({
+                    def: def,
+                    msg: appState.locale.removeHero + ' "' + hero.attr('name') + '"?'
+                });
+
+                can.when(def).done(function () {
+                    heroes.splice(index, 1);
+                });
             },
 
             '.coverImage click': function (el) {
@@ -449,7 +418,8 @@ define(
                     this.module.attr('talePreview', true);
                     new TalePreview(this.element.find('.talePreview'), {
                         taleId: module.attr('tale._id'),
-                        closePreview: this.element.find('.closePreview')
+                        closePreview: this.element.find('.closePreview'),
+                        frameIndex: module.attr('tale.frames').indexOf(module.attr('frame'))
                     });
                 }, this));
             },

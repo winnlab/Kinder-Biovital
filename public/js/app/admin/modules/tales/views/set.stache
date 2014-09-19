@@ -34,7 +34,7 @@
             {{>/js/app/admin/modules/tales/views/trackList.stache}}
 
             <div class="framePosWrap">
-                <div class="miniBg" style="background-image: url('/uploads/{{arrFind decorations frame.decorationId '_id' 'preview'}}')">
+                <div class="miniBg" style="background-image: url(/uploads/{{arrFind decorations frame.decorationId '_id' 'preview'}})">
                     <div class="miniLimit">
                         <div class="miniFrame" style="{{miniOffset frame.left}}"></div>
                     </div>
@@ -86,7 +86,7 @@
                         <div class="title">{{locale.setTale.addHero}}</div>
                         {{#each heroes}}
                             {{#if img}}
-                                <div class="hero" data-id="{{_id}}" style="background-image: url('/uploads/{{img}}')"></div>
+                                <div class="hero" data-id="{{_id}}" style="{{#if img}}background-image: url(/uploads/{{img}});{{/if}}"></div>
                             {{/if}}
                         {{/each}}
                     </div>
@@ -155,7 +155,11 @@
                 </div>
                 {{#if frame.heroes.length}}
                     {{#each frame.heroes}}
-                        <div class="heroImg {{heroPlan}}" style="left: {{left}}px; top: {{top}}px; background-image: url('/uploads/{{#is frame.time 0}}{{arrFind heroes heroId '_id' 'img'}}{{else}}{{arrFind heroes heroId '_id' 'imgNight'}}{{/is}}');"></div>
+                        <div class="heroImg {{heroPlan}}" style="
+                            left: {{left}}px;
+                            top: {{top}}px;
+                            background-image: url(/uploads/{{#is frame.time 0}}{{arrFind heroes heroId '_id' 'img'}}{{else}}{{arrFind heroes heroId '_id' 'imgNight'}}{{/is}});"
+                        ></div>
                     {{/each}}
                 {{/if}}
             </div>
@@ -182,7 +186,7 @@
                     <div class="taleBtn orange">
                         <item-scroll data="{coverImages}" count="3">
                             {{#if img}}
-                                <div class="coverImage" data-id="{{_id}}" style="background-image: url('/uploads/{{img}}')"></div>
+                                <div class="coverImage" data-id="{{_id}}" style="{{#if img}}background-image: url(/uploads/{{img}});{{/if}}"></div>
                             {{/if}}
                         </item-scroll>
                     </div>
@@ -245,7 +249,7 @@
                 <div class="small taleBtn orange"></div>
             </div>
 
-            {{#if shared}}
+            {{#if tale.shared}}
                 <div class="shareLink">
                     <div class="linkTitle">{{locale.link}}</div>
                     <a class="link" href="http://46.21.104.20:3000/fairy-tale/{{tale._id}}">

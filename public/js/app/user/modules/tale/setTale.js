@@ -4,7 +4,8 @@ define(
         'underscore',
         'modules/tales/tale',
         'app/modules/tale/cover',
-        'core/appState'
+        'core/appState',
+        'lib/popUp/popUp'
     ],
 
     function (
@@ -12,7 +13,8 @@ define(
         _,
         Tale,
         Cover,
-        appState
+        appState,
+        popUp
     ) {
 
         'use strict';
@@ -20,9 +22,18 @@ define(
         return Tale.extend({
             defaults: {
                 viewpath: '/js/app/admin/modules/tales/views/'
-                , display: 'share'
+                // , display: 'share'
             }
         }, {
+
+            init: function () {
+                popUp.show({
+                    msg: appState.locale.goodTales,
+                    choice: false
+                });
+
+                this._super.apply(this, arguments);
+            },
 
             saveTale: function (cb, clearStorage) {
                 var module = this.module;
@@ -56,9 +67,6 @@ define(
 
             '.share click': function (el) {
                 appState.attr('social').changeNw(el.data('nw'));
-                // FB.getLoginStatus(function(response) {
-                //     appState.attr('social').logIn();
-                // });
                 var module = this.module,
                     tale = module.attr('tale'),
                     coverImage = _.find(module.attr('coverImages'), function (cover) {
@@ -81,9 +89,8 @@ define(
 
                 appState.attr('social').shareCanvas(image, message, function () {
                     console.log('social post cb', arguments);
-                    self.module.attr('shared', true);
                     self.module.attr('tale.shared', 1);
-                    self.module.attr('clearStorage', true);
+                    // self.module.attr('clearStorage', true);
                     self.saveTale(null);
                 });
             }
