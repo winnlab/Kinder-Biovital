@@ -1042,6 +1042,14 @@ html {
   bottom: 0;
   left: 0;
   z-index: 1000; }
+  .popUpWrap strong {
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: inline-block; }
+    .popUpWrap strong.orange {
+      color: #f59b06; }
+    .popUpWrap strong.red {
+      color: #df4a08; }
   .popUpWrap.visible {
     display: block; }
   .popUpWrap:after {
@@ -1066,7 +1074,7 @@ html {
     background: url("/img/popupBg.png"); }
     .popUpWrap .popUp.largeText .msg {
       padding: 0;
-      font-size: 15px; }
+      font-size: 14px; }
     .popUpWrap .popUp.largeText .btnWrap {
       top: 133px; }
     .popUpWrap .popUp .close {

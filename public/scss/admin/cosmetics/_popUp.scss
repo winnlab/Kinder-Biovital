@@ -9,6 +9,18 @@
     @include position(fixed, 0 0 0 0);
     z-index: 1000;
 
+    strong {
+        font-size: 16px;
+        margin-bottom: 8px;
+        display: inline-block;
+        &.orange {
+            color: $orange;
+        }
+        &.red {
+            color: $red;
+        }
+    }
+
     &.visible {
         display: block;
     }
@@ -32,7 +44,7 @@
         &.largeText {
             .msg {
                 padding: 0;
-                font-size: 15px;
+                font-size: 14px;
             }
             .btnWrap {
                 top: 133px;

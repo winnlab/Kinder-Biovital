@@ -5,24 +5,51 @@
 @import '../../base/_variables.scss';
 
 .companyTales {
-    @include position(absolute, 97px null null 420px);
-    @include size(388px 569px);
-    padding: 34px 30px 44px 61px;
-    background: url('#{$imgPath}chooseStory.png');
+    @include position(absolute, 92px null null 245px);
+    @include size(738px 575px);
+    padding: 25px 31px;
+    background: url('#{$imgPath}ratingBg.png');
 
     .tale {
-        @include size(262px 152px);
-        @include border-color($orange);
-        @include border-style(solid);
-        @include border-width(14px 14px);
-        @extend %bg-image-contain;
+        @include size(642px 172px);
         position: relative;
-        float: left;
         display: block;
-        margin: 0 0 15px;
-        border-radius: 10px;
-        box-shadow:
-            inset 2px 2px 0px 0px rgba(0, 0, 0, 0.3),
-            2px 2px 0px 0px rgba(0, 0, 0, 0.3);
+        background: url('#{$imgPath}ratingTaleBg.png');
+        margin: 0 0 1px 14px;
+        padding: 18px 21px;
+
+        .cover {
+            @include size(233px 136px);
+            float: left;
+            display: block;
+            position: relative;
+            @include border-color($orange);
+            @include border-style(solid);
+            @include border-width(13px 14px);
+            border-radius: 10px;
+            box-shadow: inset 2px 2px 0 0 rgba(0, 0, 0, 0.3), $btnShadow;
+            background-color: #b3b4b5;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+
+            &:after {
+                content: '';
+                @include position(absolute, 22px null null 71px);
+                @include size(65px 64px);
+                background: url('#{$imgPath}playInRating.png');
+            }
+
+        }
+
+        .taleName {
+            color: $orange;
+            font-family: Futura;
+            font-size: 44px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 1px 2px 0 #bb6920;
+            margin: 25px 0 0 260px;
+        }
     }
 }

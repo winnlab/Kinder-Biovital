@@ -27,10 +27,13 @@ define(
         }, {
 
             init: function () {
-                popUp.show({
-                    msg: appState.locale.goodTales,
-                    choice: false
-                });
+
+                if (!localStorage.getItem('tale')) {
+                    popUp.show({
+                        msg: appState.locale.goodTales,
+                        choice: false
+                    });
+                }
 
                 this._super.apply(this, arguments);
             },

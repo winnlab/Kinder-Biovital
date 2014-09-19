@@ -2,7 +2,9 @@ define(
     [
         'canjs',
         'modules/tales/talesModel',
-        'core/appState'
+        'core/appState',
+        '/js/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js',
+        'css!/js/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css'
     ],
 
     function (can, TalesModel, appState) {
@@ -23,6 +25,15 @@ define(
                             appState: appState
                         })
                     );
+
+                    self.element.find('.ratingTalesWrap').mCustomScrollbar({
+                        scrollInertia: 0,
+                        scrollButtons: {
+                            enable: true,
+                            scrollAmount: 200,
+                            scrollType: 'stepless'
+                        }
+                    });
 
                     if (options.isReady) {
                         options.isReady.resolve();

@@ -1,9 +1,9 @@
-.coverImgTbl .coverImage, .companyTales .tale {
+.coverImgTbl .coverImage {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
 
-.coverImgTbl .coverImage, .companyTales .tale {
+.coverImgTbl .coverImage {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
@@ -55,7 +55,7 @@ module {
   position: absolute;
   z-index: 10; }
 
-.coverImgTbl .coverImage, .companyTales .tale {
+.coverImgTbl .coverImage {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
@@ -67,7 +67,7 @@ module {
   width: 70px;
   display: inline-block; }
 
-.coverImgTbl .coverImage, .companyTales .tale {
+.coverImgTbl .coverImage {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
@@ -127,7 +127,7 @@ module {
     color: #fff;
     background: #df4a08; }
 
-.coverImgTbl .coverImage, .companyTales .tale {
+.coverImgTbl .coverImage {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
@@ -420,7 +420,7 @@ module {
   .taleIn.active {
     display: block; }
 
-.coverImgTbl .coverImage, .companyTales .tale {
+.coverImgTbl .coverImage {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
@@ -747,7 +747,7 @@ module {
   height: 150px;
   width: 120px; }
 
-.coverImgTbl .coverImage, .companyTales .tale {
+.coverImgTbl .coverImage {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
@@ -887,7 +887,7 @@ module {
   background: rgba(255, 255, 255, 0.7);
   cursor: move; }
 
-.coverImgTbl .coverImage, .companyTales .tale {
+.coverImgTbl .coverImage {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
@@ -1062,7 +1062,7 @@ module {
 .taleZone.previewBlock .trackWrap {
   display: none; }
 
-.coverImgTbl .coverImage, .companyTales .tale {
+.coverImgTbl .coverImage {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
@@ -1075,6 +1075,14 @@ module {
   bottom: 0;
   left: 0;
   z-index: 1000; }
+  .popUpWrap strong {
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: inline-block; }
+    .popUpWrap strong.orange {
+      color: #f59b06; }
+    .popUpWrap strong.red {
+      color: #df4a08; }
   .popUpWrap.visible {
     display: block; }
   .popUpWrap:after {
@@ -1099,7 +1107,7 @@ module {
     background: url("/img/popupBg.png"); }
     .popUpWrap .popUp.largeText .msg {
       padding: 0;
-      font-size: 15px; }
+      font-size: 14px; }
     .popUpWrap .popUp.largeText .btnWrap {
       top: 133px; }
     .popUpWrap .popUp .close {
@@ -1146,7 +1154,7 @@ module {
       text-transform: uppercase;
       font-size: 18px; }
 
-.coverImgTbl .coverImage, .companyTales .tale {
+.coverImgTbl .coverImage {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
@@ -1220,7 +1228,7 @@ module {
     .shareTaleSoc .share.vk:after {
       background: url("/img/VK.png"); }
 
-.coverImgTbl .coverImage, .companyTales .tale {
+.coverImgTbl .coverImage {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
@@ -1349,33 +1357,60 @@ module {
         .mainPage .text .column .block-title.color-orange {
           color: #f59b06; }
 
-.coverImgTbl .coverImage, .companyTales .tale {
+.coverImgTbl .coverImage {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
 
 .companyTales {
   position: absolute;
-  top: 97px;
-  left: 420px;
-  height: 569px;
-  width: 388px;
-  padding: 34px 30px 44px 61px;
-  background: url("/img/chooseStory.png"); }
+  top: 92px;
+  left: 245px;
+  height: 575px;
+  width: 738px;
+  padding: 25px 31px;
+  background: url("/img/ratingBg.png"); }
   .companyTales .tale {
-    height: 152px;
-    width: 262px;
-    border-color: #f59b06;
-    border-style: solid;
-    border-width: 14px;
+    height: 172px;
+    width: 642px;
     position: relative;
-    float: left;
     display: block;
-    margin: 0 0 15px;
-    border-radius: 10px;
-    box-shadow: inset 2px 2px 0px 0px rgba(0, 0, 0, 0.3), 2px 2px 0px 0px rgba(0, 0, 0, 0.3); }
+    background: url("/img/ratingTaleBg.png");
+    margin: 0 0 1px 14px;
+    padding: 18px 21px; }
+    .companyTales .tale .cover {
+      height: 136px;
+      width: 233px;
+      float: left;
+      display: block;
+      position: relative;
+      border-color: #f59b06;
+      border-style: solid;
+      border-width: 13px 14px;
+      border-radius: 10px;
+      box-shadow: inset 2px 2px 0 0 rgba(0, 0, 0, 0.3), 1px 1px 0px 0px rgba(0, 0, 0, 0.3);
+      background-color: #b3b4b5;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center; }
+      .companyTales .tale .cover:after {
+        content: '';
+        position: absolute;
+        top: 22px;
+        left: 71px;
+        height: 64px;
+        width: 65px;
+        background: url("/img/playInRating.png"); }
+    .companyTales .tale .taleName {
+      color: #f59b06;
+      font-family: Futura;
+      font-size: 44px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 1px 2px 0 #bb6920;
+      margin: 25px 0 0 260px; }
 
-.coverImgTbl .coverImage, .companyTales .tale {
+.coverImgTbl .coverImage {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
@@ -1495,7 +1530,7 @@ module {
     .positioned .link .taleBtn.mini {
       padding: 7px; }
 
-.coverImgTbl .coverImage, .companyTales .tale {
+.coverImgTbl .coverImage {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
@@ -1529,7 +1564,7 @@ module {
     font-size: 16px;
     margin-top: 1px; }
 
-.coverImgTbl .coverImage, .companyTales .tale {
+.coverImgTbl .coverImage {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
@@ -1558,7 +1593,7 @@ module {
 .instruction .link .taleBtn {
   padding: 7px; }
 
-.coverImgTbl .coverImage, .companyTales .tale {
+.coverImgTbl .coverImage {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center; }
@@ -1571,6 +1606,11 @@ module {
   width: 738px;
   padding: 25px 31px;
   background: url("/img/ratingBg.png"); }
+  .ratingTales .ratingTalesWrap {
+    height: 519px;
+    width: 676px;
+    position: relative;
+    overflow: hidden; }
   .ratingTales .tale {
     height: 172px;
     width: 642px;
@@ -1611,5 +1651,35 @@ module {
       text-shadow: 1px 2px 0 #bb6920;
       float: left;
       margin: 8px 0 0 32px; }
+  .ratingTales .mCSB_scrollTools {
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    height: 498px;
+    width: 13px; }
+    .ratingTales .mCSB_scrollTools .mCSB_buttonUp, .ratingTales .mCSB_scrollTools .mCSB_buttonDown {
+      position: absolute;
+      top: 2px;
+      left: 1px;
+      height: 8px;
+      width: 11px;
+      background-image: url("/img/scrollArTop.png");
+      opacity: 0.8; }
+    .ratingTales .mCSB_scrollTools .mCSB_buttonDown {
+      top: auto;
+      bottom: 0;
+      left: 2px;
+      background-image: url("/img/scrollArBtm.png");
+      background-position: 0 0; }
+    .ratingTales .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+      width: 100%;
+      background: #f59b06; }
+      .ratingTales .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar:hover, .ratingTales .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar:active {
+        background: #f59b06; }
+    .ratingTales .mCSB_scrollTools a + .mCSB_draggerContainer {
+      margin: 14px 0 12px; }
+    .ratingTales .mCSB_scrollTools .mCSB_draggerRail {
+      width: 100%;
+      background: #82440d; }
 
 /*# sourceMappingURL=base.css.map */

@@ -11,19 +11,21 @@
     </a>
 
     <div class="ratingTales">
-        {{#each tales}}
-            <div class="tale">
-                <a class="cover" href="/fairy-tale/{{_id}}" style="
-                    {{#if coverImgId.img}}background-image: url(/uploads/{{coverImgId.img}});{{/if}}
-                    {{#if coverColorId.color}}background-color: #{{coverColorId.color}};{{/if}}
-                "></a>
-                {{#if name}}
-                    <div class="taleName">
-                        {{name}}
-                    </div>
-                {{/if}}
-            </div>
-        {{/each}}
+        <div class="ratingTalesWrap" {{customScroll}}>
+            {{#each tales}}
+                <div class="tale">
+                    <a class="cover" href="/fairy-tale/{{_id}}" style="
+                        {{#if coverImgId.img}}background-image: url(/uploads/{{coverImgId.img}});{{/if}}
+                        {{#if coverColorId.color}}background-color: #{{coverColorId.color}};{{/if}}
+                    "></a>
+                    {{#if name}}
+                        <div class="taleName">
+                            {{name}}
+                        </div>
+                    {{/if}}
+                </div>
+            {{/each}}
+        </div>
     </div>
 
 </div>

@@ -12,16 +12,17 @@
 
     <div class="companyTales">
         {{#each tales}}
-            <a class="tale" href="/fairy-tale/{{_id}}" style="
-                {{#if coverImgId.img}}background-image: url(/uploads/{{coverImgId.img}});{{/if}}
-                {{#if coverColorId.color}}background-color: #{{coverColorId.color}};{{/if}}
-            ">
-                {{#unless name}}
-                    <div class="coverName" style="top: {{top}}px; left: {{left}}px;">
+            <div class="tale">
+                <a class="cover" href="/fairy-tale/{{_id}}" style="
+                    {{#if coverImgId.img}}background-image: url(/uploads/{{coverImgId.img}});{{/if}}
+                    {{#if coverColorId.color}}background-color: #{{coverColorId.color}};{{/if}}
+                "></a>
+                {{#if name}}
+                    <div class="taleName">
                         {{name}}
                     </div>
-                {{/unless}}
-            </a>
+                {{/if}}
+            </div>
         {{/each}}
     </div>
 

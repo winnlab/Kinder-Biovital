@@ -10,6 +10,12 @@
     padding: 25px 31px;
     background: url('#{$imgPath}ratingBg.png');
 
+    .ratingTalesWrap {
+        @include size(676px 519px);
+        position: relative;
+        overflow: hidden;
+    }
+
     .tale {
         @include size(642px 172px);
         position: relative;
@@ -52,5 +58,45 @@
             float: left;
             margin: 8px 0 0 32px;
         }
+    }
+
+    .mCSB_scrollTools {
+        @include position(absolute, 8px 15px null null);
+        @include size(13px 498px);
+
+        .mCSB_buttonUp {
+            @include position(absolute, 2px null null 1px);
+            @include size(11px 8px);
+            background-image: url('#{$imgPath}scrollArTop.png');
+            opacity: 0.8;
+        }
+
+        .mCSB_buttonDown {
+            @extend .mCSB_buttonUp;
+            top: auto;
+            bottom: 0;
+            left: 2px;
+            background-image: url('#{$imgPath}scrollArBtm.png');
+            background-position: 0 0;
+        }
+
+        .mCSB_dragger .mCSB_dragger_bar {
+            width: 100%;
+            background: $orange;
+
+            &:hover, &:active {
+                background: $orange;
+            }
+        }
+
+        a + .mCSB_draggerContainer {
+            margin: 14px 0 12px;
+        }
+
+        .mCSB_draggerRail {
+            width: 100%;
+            background: #82440d;
+        }
+
     }
 }

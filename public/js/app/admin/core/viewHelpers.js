@@ -118,7 +118,8 @@ define([
 			return function (el) {
 				$(el).wysihtml5();
 			};
-		});
+		});	
+
 		can.mustache.registerHelper('make3Col', function (index) {
 			return (index() + 1) % 3 === 0 ? '<div class="clearfix"></div>' : '';
 		});
