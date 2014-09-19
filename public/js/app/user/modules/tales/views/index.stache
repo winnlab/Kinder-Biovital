@@ -19,7 +19,9 @@
                 "></a>
                 {{#if name}}
                     <div class="taleName">
-                        {{name}}
+                        <div class="taleNameInner">
+                            {{name}}
+                        </div>
                     </div>
                 {{/if}}
             </div>

@@ -32,24 +32,23 @@
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center center;
-
-            &:after {
-                content: '';
-                @include position(absolute, 22px null null 71px);
-                @include size(65px 64px);
-                background: url('#{$imgPath}playInRating.png');
-            }
-
         }
 
         .taleName {
             color: $orange;
             font-family: Futura;
-            font-size: 44px;
+            font-size: 32px;
             text-transform: uppercase;
             letter-spacing: 2px;
             text-shadow: 1px 2px 0 #bb6920;
-            margin: 25px 0 0 260px;
+            @include size(293px 137px);
+            margin: 0 0 0 260px;
+            display: table;
+
+            .taleNameInner {
+                display: table-cell;
+                vertical-align: middle;
+            }
         }
     }
 }
