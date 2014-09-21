@@ -126,6 +126,13 @@ define(
 				new self.options.Edit(area, obj);
 			},
 
+			'.activate click': function (el) {
+				var tale = el.parents('.tale').data('tales');
+				if (confirm('Вы хотите активировать сказку "' + tale.attr('name') + '"')) {
+					tale.attr('active', 1).save();
+				}
+			},
+
 			getInterfaceSize: function () {
 
 				return viewport.getViewportWidth() > 1600 ? 'big' : 'small';

@@ -1,48 +1,24 @@
 define(
     [
         'canjs',
+        'modules/tales/viewModel',
         'underscore',
         'core/appState',
         'lib/viewport',
         'modules/tales/talePreloader',
         'modules/tales/talePreview',
         'modules/tales/taleConfig',
+        'modules/tales/cover',
         'lib/popUp/popUp',
         'lib/jquerypp',
         'components/itemScroll/itemScroll'
     ],
 
-    function (can, _, appState, viewport, Preloader, TalePreview, taleConfig, popUp) {
+    function (can, ViewModel, _, appState, viewport, Preloader, TalePreview, taleConfig, Cover, popUp) {
 
         'use strict';
 
-        var Module = can.Map.extend({
-                showText: false,
-                showTracks: false,
-                talePreview: '',
-                interface: 'big',
-                locale: appState.attr('locale'),
-                admin: document.location.pathname.indexOf('admin/') !== -1,
-                setBg: function (context, el, ev) {
-                    this.attr('frame.decorationId', context.attr('_id'));
-                    this.attr('frame.time', context.attr('time'));
-                },
-                setText: function (scope, el, ev) {
-                    var text = el.val().slice(0, 200);
-                    el.val(text);
-                    this.attr('frame.text', text);
-                },
-                setReplica: function (scope, el, ev) {
-                    var text = el.val().slice(0, 240);
-                    el.val(text);
-                    scope.attr('replica.text', el.val());
-                },
-                setTrack: function (context, el, ev) {
-                    this.attr('tale.trackId', context.attr('_id'));
-                    this.attr('showTracks', false);
-                }
-            }),
-            vendors = ['-webkit-', '-moz-', '-ms-', '-o-', ''];
+        var vendors = ['-webkit-', '-moz-', '-ms-', '-o-', ''];
 
         return can.Control.extend({
             defaults: {
@@ -70,7 +46,7 @@ define(
                     options = this.options,
                     html;
 
-                self.module = new Module();
+                self.module = new ViewModel();
 
                 for (var i = options.data.length; i-- ;) {
                     self.module.attr(options.data[i], options[options.data[i]]);
@@ -395,25 +371,9 @@ define(
                 this.module.attr('tale.coverColorId', el.data('id'));
             },
 
-            saveTale: function (cb, clearStorage) {
-                var module = this.module;
-                module.attr('tale').save()
-                    .done(function () {
-                        if (typeof cb === 'function') {
-                            cb();
-                        }
-                    })
-                    .fail(function () {
-                        appState.attr('notification', {
-                            status: 'error',
-                            msg: 'Невозможно сохранить сказку'
-                        });
-                    });
-            },
-
             '.preview click': function () {
-                this.saveTale(can.proxy(function(){
-                    var module = this.module;
+                var module = this.module;
+                module.saveTale(can.proxy(function(){
                     this.element.find('.talePreviewWrap').html('<div class="talePreview"></div>');
                     this.module.attr('talePreview', true);
                     new TalePreview(this.element.find('.talePreview'), {
@@ -425,15 +385,72 @@ define(
             },
 
             '.end click': function () {
-                this.saveTale(null, true);
-                can.route.attr({module: 'tales'}, true);
+                var self = this;
+                self.module.saveTale(function () {
+                    self.uploadCover(function () {
+                        can.route.attr({module: 'tales'}, true);
+                    })
+                }, true);
+            },
+
+            uploadCover: function (cb) {
+                var self = this,
+                    module = this.module,
+                    tale = module.attr('tale'),
+                    coverImage = _.find(module.attr('coverImages'), function (cover) {
+                        return cover.attr('_id') === tale.attr('coverImgId');
+                    }),
+                    coverColor = _.find(module.attr('coverColors'), function (cover) {
+                        return cover.attr('_id') === tale.attr('coverColorId');
+                    });
+
+                if (coverImage && coverImage.attr('img')) {
+                    Cover.getCover(
+                        coverImage.attr('img'),
+                        coverColor && coverColor.attr('color'),
+                        function (imageData) {
+                            self.doUploadCover(imageData, cb);
+                        }
+                    );
+                } else {
+                    cb();
+                }
+
+            },
+
+            doUploadCover: function (imageData, cb) {
+                var self = this,
+                    fd = new FormData();
+                fd.append('cover', imageData, 'cover.png');
+                fd.append('name', 'cover');
+                fd.append('_id', this.module.attr('tale._id'));
+
+                can.ajax({
+                    url: '/tale/img',
+                    type: 'POST',
+                    data: fd,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        self.module.attr('tale.cover', data.data.cover)
+                        localStorage.setItem('tale', JSON.stringify(self.module.attr('tale').attr()));
+                        cb();
+                    },
+                    error: function (shr, status, data) {
+                        appState.attr('notification', {
+                            status: 'error',
+                            msg: 'Невозможно загрузить обложку сказки'
+                        });
+                        cb();
+                    }
+                });
             },
 
             '.closeFrame click': function (el) {
                 if (el.hasClass('closePreview')) {
                     this.module.attr('talePreview', false);
                 } else {
-                    this.saveTale();
+                    this.module.saveTale();
                     can.route.attr({module: 'tales'}, true);
                 }
             },

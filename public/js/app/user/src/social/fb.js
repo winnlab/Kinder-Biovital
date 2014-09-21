@@ -1,8 +1,8 @@
 define(
 
-    ['canjs', 'fb'],
+    ['canjs', 'fb', 'core/appState'],
 
-    function (can, FB) {
+    function (can, FB, appState) {
 
         return {
             init: function (options) {
@@ -13,20 +13,40 @@ define(
                     xfbml: true,
                     version: 'v2.1'
                 });
+
+                $('#fb-app_id').attr('content', options.appId);
             },
-            logIn: function () {
-                FB.login(can.proxy(this.logedIn, this), {
+
+            logIn: function (cb) {
+                var self = this;
+                FB.login(function (response) {
+                    self.logedIn(response, cb);
+                }, {
                     scope: this.options.permissions
                 });
             },
-            logedIn: function (response) {
+
+            logedIn: function (response, cb) {
                 var self = this;
                 if (response.status === 'connected') {
-
 					FB.api('/me', function(userResponse) {
-						self.saveUser(userResponse)
+						FB.api('/me/picture', {
+                            'redirect': false,
+                            'height': '200',
+                            'type': 'normal',
+                            'width': '200'
+                        }, function(imageResponse) {
+                            var user = {
+                                id: userResponse.id,
+                                link: userResponse.link,
+                                firstName: userResponse.first_name,
+                                lastName: userResponse.last_name,
+                                photo: imageResponse.data.url
+                            };
+                            self.saveUser(user);
+                            cb(user);
+						});
 					});
-
 				} else if (response.status === 'not_authorized') {
 					// The person is logged into Facebook, but not your app.
 				} else {
@@ -34,71 +54,35 @@ define(
 					// they are logged into this app or not.
 				}
             },
+
             saveUser: function (user) {
                 this.user = user;
             },
+
             getUser: function () {
                 return this.user;
             },
 
-            share: function (img, message, cb) {
-                // Do shearing
+            share: function (options, cb) {
+                var shareObj = {
+                    method: 'feed',
+                    name: appState.attr('locale.appName'),
+                    link: options.link,
+                    picture: options.img,
+                    caption:  options.msg + ' Caption',
+                    description: options.msg + ' Description',
+                    message: options.msg + ' Message'
+                };
+
+                FB.ui(shareObj, function (response) {
+                    if (response && response.post_id) {
+                        cb(response.post_id);
+                    }
+                });
 			},
 
-            shareCanvas: function (image, message, cb) {
-                var self = this;
-
-            	FB.getLoginStatus(function(response) {
-
-                    if (response.status === 'connected') {
-
-                        self.postImage(response.authResponse.accessToken, image, message, cb);
-
-                    } else if (response.status === 'not_authorized') {
-
-                        FB.login(function (response) {
-                            self.postImage(response.authResponse.accessToken, image, message, cb);
-                        }, {scope: self.options.permissions});
-
-                    } else {
-
-                        FB.login(function (response) {
-                            self.postImage(response.authResponse.accessToken, image, message, cb);
-                        }, {scope: self.options.permissions});
-
-                    }
-
-                });
-
-            },
-
-            postImage: function (accessToken, imageData, message, cb) {
-
-                if (!imageData) {
-                    return this.share(null, message, cb);
-                }
-
-                var fd = new FormData();
-                fd.append('access_token', accessToken);
-                fd.append('source', imageData);
-                fd.append('message', message);
-
-                can.ajax({
-                    url: 'https://graph.facebook.com/me/photos?access_token=' + accessToken,
-                    type: 'POST',
-                    data: fd,
-                    processData: false,
-                    contentType: false,
-                    success: function (data) {
-                        cb('success', data);
-                    },
-                    error: function (shr, status, data) {
-                        cb('error', data);
-                    },
-                    complete: function () {
-                        console.log('Ajax Complete', arguments);
-                    }
-                });
+            makeLike: function () {
+                FB.XFBML.parse();
             }
 
         };

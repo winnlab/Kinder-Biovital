@@ -1,0 +1,13 @@
+module.exports =
+	facebook:
+		clientID: '1467152086895015'
+		clientSecret: '8d15d8dd0acf82a4ea41d2612a4c6e2b'
+		callbackURL: 'http://31.192.225.64:3002/auth/facebook/callback'
+
+	vk:
+		apiId: 4542267
+
+	odnoklassniki:
+		clientID: '1101943552'
+		clientPublic: 'CBAEFPKCEBABABABA'
+		clientSecret: '55C1FD7EA97F4FBDB571E7A8'		

@@ -6,15 +6,15 @@ validator = require '../utils/validate'
 
 ObjectId = mongoose.Schema.Types.ObjectId
 
-UserShemaFields = 
-	username: { 
-		type: String, 
+UserShemaFields =
+	username: {
+		type: String,
 		required: true
 		unique: true
 	}
 	password: {
-		type: String, 
-		required: true, 
+		type: String,
+		required: true,
 		set: cryptoUtil.password
 		validate: validator.password
 	}
@@ -41,6 +41,11 @@ UserShemaFields =
 	lastName:
 		type: String
 		required: false
+	ok:
+		id:
+			type: String
+		birthday:
+			type: String
 
 options =
 	collection: 'users'

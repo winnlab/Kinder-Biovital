@@ -2,6 +2,9 @@ async = require 'async'
 
 passport = require 'passport'
 localStrategy = require('passport-local').Strategy
+odnoklassnikiStrategy = require('passport-odnoklassniki').Strategy
+
+socialConfig = require '../meta/socialConfig'
 
 mongoose = require 'mongoose'
 Model = require '../lib/model'
@@ -46,6 +49,32 @@ exports.init = (callback) ->
 	adminAuth = new localStrategy adminStrategy
 	clientAuth = new localStrategy userStrategy
 
+	odnoklassnikiAuth = new odnoklassnikiStrategy
+		clientID: socialConfig.odnoklassniki.clientID
+		clientPublic: socialConfig.odnoklassniki.clientPublic
+		clientSecret: socialConfig.odnoklassniki.clientSecret
+		callbackURL: socialConfig.odnoklassniki.clientID
+
+	, (accessToken, refreshToken, profile, done) ->
+
+		process.nextTick ->
+			async.waterfall [
+				(next) ->
+					Model 'User', 'findOne', next, {'ok.id': profile.id}
+				(visitor, next) ->
+					if visitor
+						done null, visitor
+					else
+						Model 'User', 'create', done,
+							ok:
+								id: profile.id
+								birthday: profile._json.birthday
+							firstName: profile.name.givenName
+							lastName: profile.name.familyName
+			], done
+
+
+	passport.use 'odnoklassniki', odnoklassnikiAuth
 	passport.use 'admin', adminAuth
 	passport.use 'user', clientAuth
 

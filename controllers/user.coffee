@@ -1,9 +1,11 @@
 express = require 'express'
+passport = require 'passport'
 
 View = require '../lib/view'
 
 Main = require './user/main.coffee'
 VK = require './user/vk.coffee'
+OK = require './user/ok.coffee'
 Hero = require './admin/hero'
 Track = require './admin/track'
 CoverColor = require './admin/coverColor'
@@ -12,6 +14,8 @@ Decoration = require './admin/decoration'
 Tale = require './admin/tale'
 
 Router = express.Router()
+
+socialConfig = require '../meta/socialConfig'
 
 Router.use (req, res, next) ->
 	ie = (/MSIE ([0-9]{1,}[\.0-9]{0,})/g).exec req.headers['user-agent']
@@ -27,6 +31,7 @@ Router.use (req, res, next) ->
 #------- Tale ---------#
 
 Router.get '/tale', Tale.findTales
+Router.post '/tale/img', Tale.restFile
 Router.get '/tale/:id?', Tale.rest
 Router.post '/tale/:id?', Tale.rest
 Router.put '/tale/:id?', Tale.rest
@@ -41,6 +46,10 @@ Router.get '/sp/:link?', Main.index
 
 Router.post '/vk/upload', VK.upload
 
+Router.get '/auth/odnoklassniki', OK.login
+Router.get "/auth/#{socialConfig.odnoklassniki.clientID}", passport.authenticate "odnoklassniki",
+	successRedirect: '/simplePage/personal-form'
+	failureRedirect: '/simplePage/login-page'
 
 #------- Hero ---------#
 

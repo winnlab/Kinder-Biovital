@@ -18,7 +18,7 @@ define(
                 var self = this,
                     options = self.options;
 
-                TalesModel.findAll({type: 1}, function (tales) {
+                TalesModel.findAll({type: 1, active: 1}, function (tales) {
 
                     self.element.html(can.view(options.viewpath + 'index.stache', {
                             tales: tales,

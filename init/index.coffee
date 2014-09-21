@@ -11,7 +11,7 @@ Application = require './application'
 AuthStartegies = require './auth'
 ModelPreloader = require './mpload'
 
-appPort = 3000
+appPort = 80
 
 async.waterfall [
 	(next) ->
@@ -34,7 +34,7 @@ async.waterfall [
 
 		AuthStartegies.init next
 	(next) ->
-		Logger.log 'info', 'Auth is initializated'		
+		Logger.log 'info', 'Auth is initializated'
 
 		Application.listen appPort, next
 	(next) ->

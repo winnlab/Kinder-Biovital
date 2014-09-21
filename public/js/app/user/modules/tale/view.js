@@ -1,5 +1,5 @@
 define(
-    ['canjs', 'modules/tales/talePreview', 'core/appState', 'app/modules/tale/cover'],
+    ['canjs', 'modules/tales/talePreview', 'core/appState', 'modules/tales/cover'],
 
     function (can, TalePreview, appState, Cover) {
 
@@ -19,7 +19,8 @@ define(
                             taleId: taleId,
                             isReady: options.isReady,
                             getCover: Cover.getCover,
-                            closePreview: self.element.find('.closePreview')
+                            closePreview: self.element.find('.closePreview'),
+                            share: true
                         });
                     });
             }

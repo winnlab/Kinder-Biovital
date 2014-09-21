@@ -7,6 +7,8 @@ require(['/js/app/user/req.config.js'], function () {
 			'src/social',
 			'viewHelpers',
 
+			'src/sprintf',
+
 			'css!cssDir/reset.css',
 			'css!cssDir/base.css'
 		],
@@ -20,7 +22,7 @@ require(['/js/app/user/req.config.js'], function () {
 			var body = $('body');
 
 			appState.attr('router', new Router(body, config.router));
-			appState.attr('social', new Social('fb'));
+			appState.attr('social', new Social());
 			//
 			// appState.attr('social').logIn();
 

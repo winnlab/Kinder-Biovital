@@ -36,6 +36,10 @@ define({
 		vk: {
 			appId: 4547249,
 			permissions: 4
+		},
+		ok: {
+			appId: 1101943552,
+			publicKey: 'CBAEFPKCEBABABABA'
 		}
 	}
 });

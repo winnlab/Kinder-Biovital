@@ -6,29 +6,31 @@ http = require 'http'
 http.post = require 'http-post'
 rest = require 'restler'
 
+Model = require '../../lib/model'
+
 module.exports.upload = (req, res) ->
 
-    rest.post(req.body.uploadUrl, {
-        multipart: true,
-        data: {
-            'photo': rest.file(path.join(__dirname, '../../' + req.files.photo.path), req.files.photo.path + '.png', req.files.photo.size, null, 'image/png')
-        }
-    }).on 'complete', (data) ->
-        console.log('restler', data);
-        res.send(data);
+    # rest.post(req.body.uploadUrl, {
+    #     multipart: true,
+    #     data: {
+    #         'photo': rest.file(path.join(__dirname, '../../' + req.files.photo.path), req.files.photo.path + '.png', req.files.photo.size, null, 'image/png')
+    #     }
+    # }).on 'complete', (data) ->
+    #     console.log('restler', data);
+    #     res.send(data);
 
 
-    # async.waterfall [
-    #     (next) ->
-            # r = request.post req.body.uploadUrl, (err, httpResponse, body) ->
-            #     console.log body
-            #     res.send body
-            # form = r.form()
-            # form.append 'photo', fs.createReadStream(path.join(__dirname, '../../' + req.files.photo.path)), {contentType: req.files.photo.mimetype, filename: req.files.photo.name, knownLength: req.files.photo.size}
-    #     # (httpResponse, body) ->
-    #     #     res.send body
-    # ], (err) ->
-    #     res.writeHead(500).send err
+    async.waterfall [
+        (next) ->
+            Model 'Tale', 'findById', next, req.body.taleId
+        (doc, next) ->
+            r = request.post req.body.uploadUrl, next
+            form = r.form()
+            form.append 'photo', fs.createReadStream(path.join(__dirname, '../../public/uploads/' + doc.cover)), {contentType: 'image/png', filename: doc.cover}
+        (httpResponse, body) ->
+            res.send body
+    ], (err) ->
+        res.writeHead(500).send err
 
     # form.parse req, (err, fields, files) ->
     #     # r = request.post fields.uploadUrl, (err, httpResponse, body) ->

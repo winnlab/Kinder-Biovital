@@ -17,6 +17,7 @@ class Tale extends Crud
             (doc, next) =>
                 if doc.frames.length
                     doc.frames.splice(0)
+                delete data.__v
                 _.extend doc, data
                 doc.save cb
         ], cb
@@ -25,6 +26,8 @@ class Tale extends Crud
         query = req.query
         if query.type
             query.type = parseInt query.type
+        if query.active
+            query.active = parseInt query.active
 
         tales = @DataEngine 'find', null, query
         tales.populate("coverImgId coverColorId").exec (err, docs) =>
@@ -36,6 +39,12 @@ class Tale extends Crud
 
 crud = new Tale
     modelName: 'Tale'
+    files: [
+        name: 'cover'
+        replace: true
+        type: 'string'
+    ]
 
 module.exports.rest = crud.request.bind crud
+module.exports.restFile = crud.fileRequest.bind crud
 module.exports.findTales = crud.findTales.bind crud

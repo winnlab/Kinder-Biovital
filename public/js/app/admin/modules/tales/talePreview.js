@@ -4,10 +4,11 @@ define(
         'underscore',
         'lib/viewport',
         'modules/tales/talesModel',
-        'modules/tales/taleConfig'
+        'modules/tales/taleConfig',
+        'core/appState'
     ],
 
-    function (can, _, viewport, TalesModel, taleConfig) {
+    function (can, _, viewport, TalesModel, taleConfig, appState) {
 
         'use strict';
 
@@ -20,7 +21,9 @@ define(
                 // which frame show while init tale preview
                 frameIndex: 0,
                 // Player timeout
-                timeOut: 5000
+                timeOut: 5000,
+                // is the last page of tale 'Sharing'
+                share: false
             }
         }, {
 
@@ -34,10 +37,29 @@ define(
                 self.playInterval = null;
 
                 self.module = new can.Map({
-                    cIndex: self.options.frameIndex + 1,
+                    cIndex: options.frameIndex + 1,
                     tale: {},
                     frame: {},
-                    playTrack: true
+                    playTrack: true,
+                    locale: appState.attr('locale'),
+
+                    share: function (scope, el, ev) {
+                        var self = this,
+                            network = el.data('nw'),
+                            tale = self.attr('tale'),
+                            cover = tale.attr('cover'),
+                            social = appState.attr('social'),
+                            msg = tale.attr('type') == 1 ? appState.attr('locale.shareUser') : appState.attr('locale.shareCompany');
+
+                        social.provider(network).share({
+                            msg: msg.format(tale.attr('name')),
+                            link: window.location.origin + '/fairy-tale/' + tale.attr('_id'),
+                            img: window.location.origin + (cover ? '/uploads/' + cover : '/img/favicon.png'),
+                            taleId: tale.attr('_id')
+                        }, function (postId) {
+                            // do something
+                        });
+                    }
                 });
 
                 html = can.view(options.viewpath + options.viewName, this.module, {
@@ -45,7 +67,7 @@ define(
                         var height = viewport.getViewportHeight() + 'px';
                         self.element.css('min-height', height);
                         return 'min-height: ' + height;
-                    },                    
+                    },
                     bgOffset: function (left) {
                         var css = '';
                         var winWidth = viewport.getViewportWidth(),
@@ -72,14 +94,31 @@ define(
                 can.ajax({url: '/tale/' + this.options.taleId})
                 .done(function(data){
                     self.module.attr('tale', data.data);
+                    if (options.share && data.data.type == 1) {
+                        self.addShareFrame();
+                    }
                     def.resolve();
                 });
 
                 can.when(def)
                     .then(function () {
-                        self.currentFrame(self.options.frameIndex);
+                        // self.currentFrame(self.options.frameIndex);
+                        self.currentFrame(self.module.attr('tale.frames.length') - 1);
                         self.element.html(html);
                         self.playTrack();
+
+
+                        var tale = self.module.attr('tale'),
+                            id = tale.attr('_id'),
+                            cover = tale.attr('cover');
+                        if (options.share && tale.attr('type') == 1) {
+                            appState.attr('social').makeLike('like-' + id, {
+                                'title': tale.attr('name'),
+                                'desc': 'Мне понравилась сказка "' + tale.attr('name') + '"',
+                                'url': window.location.origin + '/fairy-tale/' + id,
+                                'image': window.location.origin + (cover ? '/uploads/' + cover : '/img/favicon.png')
+                            });
+                        }
 
                         if (options.isReady) {
                             options.isReady.resolve();
@@ -92,6 +131,19 @@ define(
                 var module = this.module;
                 index = index || 0;
                 module.attr('frame', module.attr('tale').attr('frames.' + index));
+            },
+
+            addShareFrame: function () {
+                var frames = this.module.attr('tale.frames'),
+                    shareFrame = {};
+
+                _.extend(shareFrame, frames.attr(frames.length - 1).attr());
+
+                shareFrame.text = '';
+                shareFrame.heroes = [];
+                shareFrame.share = true;
+
+                frames.push(shareFrame);
             },
 
             '.prevFrame click': function () {
@@ -156,7 +208,6 @@ define(
             '{closePreview} click': function () {
                 this.pauseTrack();
             }
-
 
         });
 

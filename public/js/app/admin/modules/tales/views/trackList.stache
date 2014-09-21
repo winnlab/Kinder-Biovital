@@ -1,4 +1,4 @@
-<div class="chooseMusic taleBtnWrap big">
+<div class="chooseMusic taleBtnWrap big" {{#if collapsed}}style="display: none;"{{/if}}>
     <div class="trackList" style="{{#unless showTracks}}display: none;{{/unless}}">
         {{#each tracks}}
             <div class="trackItem{{#is trackId _id}} active{{/is}}" can-click="setTrack">{{name}}</div>

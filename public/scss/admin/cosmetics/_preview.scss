@@ -145,11 +145,52 @@
     }
 
     .sharing {
-        position: absolute;
-        bottom: -2px;
-        right: -7px;
-        @include size(192px 56px);
-        background: url('#{$imgPath}shareInTale.png');
+        @include position(absolute, null -3px -11px null);
+        @include size(195px 69px);
+        padding: 15px 20px 23px 18px;
+        line-height: 170%;
+        background: url('#{$imgPath}playerShareBg.png');
+        text-align: justify;
+
+        &:after {
+            content: '';
+            display: inline-block;
+            width: 100%;
+        }
+
+        .shareLabel {
+            font-family: Arial;
+            font-weight: bold;
+            font-size: 13px;
+            color: $brown;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 0 0 3px;
+        }
+
+        .share {
+            height: 22px;
+            display: inline-block;
+            vertical-align: middle;
+            background: url('#{$imgPath}playerShareNw.png');
+            cursor: pointer;
+
+            &.fb {
+                width: 18px;
+                background-position: 0 0;
+            }
+
+            &.ok {
+                width: 13px;
+                background-position: -28px 0;
+            }
+
+            &.vk {
+                width: 17px;
+                background-position: -52px 0;
+            }
+        }
+
     }
 
     .frameControl {
@@ -201,5 +242,47 @@
 
     .trackWrap {
         display: none;
+    }
+
+    .likeBox {
+        @include position(absolute, 208px null null 380px);
+        @include size(471px 206px);
+        padding: 43px 58px;
+        font-family: Arial;
+        font-size: 18px;
+        background: url('#{$imgPath}likeBg.png');
+
+        .likeBtns {
+            text-align: justify;
+            margin: 40px 0 0 -29px;
+            padding: 0 5px 0 0;
+            width: 420px;
+            &:after {
+                content: '';
+                display: inline-block;
+                width: 100%;
+            }
+        }
+
+        .likeBtn {
+            display: inline-block;
+            vertical-align: middle;
+            cursor: pointer;
+
+            &.fb {
+                @include size(73px 31px);
+                background: url('#{$imgPath}fbLike.png');
+            }
+
+            &.ok {
+                @include size(90px 28px);
+                background: url('#{$imgPath}okLike.png');
+            }
+
+            &.vk {
+                @include size(121px 28px);
+                background: url('#{$imgPath}vkLike.png');
+            }
+        }
     }
 }

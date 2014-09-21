@@ -16,6 +16,25 @@ TaleShemaFields =
     coverColorId:
         type: ObjectId
         ref: 'CoverColor'
+    postId:
+        type: String
+    cover:
+        type: String
+        default: ''
+    network:
+        type: String
+        default: ''
+    user:
+        id:
+            type: String
+        link:
+            type: String
+        firstName:
+            type: String
+        lastName:
+            type: String
+        photo:
+            type: String
     frames: [
         decorationId:
             type: ObjectId
@@ -63,17 +82,16 @@ TaleShemaFields =
         type: Number
     top:
         type: Number
-    # 0 is tale added by admin, 1 is tale added by user
     shared:
         type: Number
         default: 0
+    # 0 is tale added by admin, 1 is tale added by user
     type:
         type: Number
         default: 1
-    link:
-        type: String
-    ready:
-        type: Boolean
+    active:
+        type: Number
+        default: 0
 
 options =
     collection: 'tales'

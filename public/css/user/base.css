@@ -890,6 +890,9 @@ module {
   background: rgba(255, 255, 255, 0.7);
   cursor: move; }
 
+#cover {
+  display: none; }
+
 .coverImgTbl .coverImage {
   background-size: contain;
   background-repeat: no-repeat;
@@ -1007,11 +1010,41 @@ module {
   background: url("/img/soundOn.png"); }
 .taleZone.previewBlock .sharing {
   position: absolute;
-  bottom: -2px;
-  right: -7px;
-  height: 56px;
-  width: 192px;
-  background: url("/img/shareInTale.png"); }
+  right: -3px;
+  bottom: -11px;
+  height: 69px;
+  width: 195px;
+  padding: 15px 20px 23px 18px;
+  line-height: 170%;
+  background: url("/img/playerShareBg.png");
+  text-align: justify; }
+  .taleZone.previewBlock .sharing:after {
+    content: '';
+    display: inline-block;
+    width: 100%; }
+  .taleZone.previewBlock .sharing .shareLabel {
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 13px;
+    color: #82440d;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 0 3px; }
+  .taleZone.previewBlock .sharing .share {
+    height: 22px;
+    display: inline-block;
+    vertical-align: middle;
+    background: url("/img/playerShareNw.png");
+    cursor: pointer; }
+    .taleZone.previewBlock .sharing .share.fb {
+      width: 18px;
+      background-position: 0 0; }
+    .taleZone.previewBlock .sharing .share.ok {
+      width: 13px;
+      background-position: -28px 0; }
+    .taleZone.previewBlock .sharing .share.vk {
+      width: 17px;
+      background-position: -52px 0; }
 .taleZone.previewBlock .frameControl {
   position: absolute;
   bottom: -16px;
@@ -1066,6 +1099,41 @@ module {
       background: url("/img/playBtn.png"); }
 .taleZone.previewBlock .trackWrap {
   display: none; }
+.taleZone.previewBlock .likeBox {
+  position: absolute;
+  top: 208px;
+  left: 380px;
+  height: 206px;
+  width: 471px;
+  padding: 43px 58px;
+  font-family: Arial;
+  font-size: 18px;
+  background: url("/img/likeBg.png"); }
+  .taleZone.previewBlock .likeBox .likeBtns {
+    text-align: justify;
+    margin: 40px 0 0 -29px;
+    padding: 0 5px 0 0;
+    width: 420px; }
+    .taleZone.previewBlock .likeBox .likeBtns:after {
+      content: '';
+      display: inline-block;
+      width: 100%; }
+  .taleZone.previewBlock .likeBox .likeBtn {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer; }
+    .taleZone.previewBlock .likeBox .likeBtn.fb {
+      height: 31px;
+      width: 73px;
+      background: url("/img/fbLike.png"); }
+    .taleZone.previewBlock .likeBox .likeBtn.ok {
+      height: 28px;
+      width: 90px;
+      background: url("/img/okLike.png"); }
+    .taleZone.previewBlock .likeBox .likeBtn.vk {
+      height: 28px;
+      width: 121px;
+      background: url("/img/vkLike.png"); }
 
 .coverImgTbl .coverImage {
   background-size: contain;

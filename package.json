@@ -29,6 +29,7 @@
     "multer": "0.1.0",
     "passport": "0.2.0",
     "passport-local": "1.0.0",
+    "passport-odnoklassniki": "^0.1.5",
     "restler": "^3.2.2",
     "roles": "https://github.com/Rastopyr/node-roles/tarball/master",
     "underscore": "1.6.0",

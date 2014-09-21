@@ -78,6 +78,16 @@
                 </div>
 
                 <div class="taleBtnWrap medium">
+                    <div class="taleBtn orange" can-click="changeCollapse">
+                        {{#if collapsed}}
+                            {{locale.setTale.expand}}
+                        {{else}}
+                            {{locale.setTale.collapse}}
+                        {{/if}}
+                    </div>
+                </div>
+
+                <div class="taleBtnWrap medium">
                     <div class="taleBtn orange changeBg" data-display="bg">{{locale.setTale.changeBg}}</div>
                 </div>
 
@@ -95,7 +105,7 @@
 
             {{>/js/app/admin/modules/tales/views/trackList.stache}}
 
-            <div class="btmPanel">
+            <div class="btmPanel" {{#if collapsed}}style="display: none;"{{/if}}>
                 <div class="taleBtnWrap big">
                     <div class="taleBtn orange">
                         <item-scroll data="{tale.frames}" count="4">
@@ -108,7 +118,7 @@
                 </div>
             </div>
 
-            <div class="rightPanel">
+            <div class="rightPanel" {{#if collapsed}}style="display: none;"{{/if}}>
                 <div class="taleBtnWrap big orange">
                     <div class="taleBtn preview">
                         {{locale.setTale.preview}}
@@ -121,7 +131,7 @@
                 </div>
             </div>
 
-            <div class="endTale taleBtnWrap big">
+            <div class="endTale taleBtnWrap big" {{#if collapsed}}style="display: none;"{{/if}}>
                 <div class="taleBtn red" data-display="cover">{{locale.setTale.endTale}}</div>
             </div>
 
@@ -230,7 +240,7 @@
             </div>
 
             <div class="next end taleBtnWrap big">
-                <div class="taleBtn red" {{#unless admin}}data-display="share"{{/unless}}>{{locale.setTale.isReady}}</div>
+                <div class="taleBtn red">{{locale.setTale.isReady}}</div>
             </div>
         </div>
 
@@ -259,9 +269,9 @@
             {{/if}}
 
             <div class="shareTaleSoc">
-                <div class="share fb" data-nw="fb"></div>
-                <div class="share vk" data-nw="vk"></div>
-                <div class="share ok" data-nw="ok"></div>
+                <div class="share fb" data-nw="fb" can-click="share"></div>
+                <div class="share vk" data-nw="vk" can-click="share"></div>
+                <div class="share ok" data-nw="ok" can-click="share"></div>
             </div>
 
         </div>

@@ -17,7 +17,8 @@ require.config({
 
 		// Social
 		fb: '../app/user/src/networks/fb-sdk',
-		vk: '../app/user/src/networks/vk-sdk'
+		vk: '../app/user/src/networks/vk-sdk',
+		ok: '../app/user/src/networks/ok-sdk'
 	},
 	map: {
 		'*': {
@@ -49,7 +50,10 @@ require.config({
 			exports: 'FB'
 		},
 		'vk': {
-			exports: 'VK'			
+			exports: 'VK'
+		},
+		'ok': {
+			exports: 'OK'
 		}
 
 	},

@@ -1,7 +1,7 @@
 define(
-    ['src/base64binary'],
+    [],
 
-    function (Base64Binary) {
+    function () {
 
         var width = 470,
             height = 246;
@@ -19,10 +19,8 @@ define(
                 context.canvas.width = width;
                 context.canvas.height = height;
 
-                if (color) {
-                    context.fillStyle = '#' + color;
-                    context.fillRect(0, 0, width, height);
-                }
+                context.fillStyle = '#' + (color || 'ffffff');
+                context.fillRect(0, 0, width, height);
 
                 if (img) {
                     image.onload = function() {
@@ -31,10 +29,8 @@ define(
                     };
 
                     image.src = '/uploads/' + img;
-                } else if (!color) {
-                    cb(null);
                 } else {
-                    self.getImageData(canvas, cb);
+                    cb(null);
                 }
             },
 
@@ -75,7 +71,6 @@ define(
                 // write the ArrayBuffer to a blob, and you're done
                 var blob = new Blob([ia], { type: mime });
 
-                // return blob;
                 cb(blob);
 
             }
