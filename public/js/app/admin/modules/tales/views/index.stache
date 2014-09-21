@@ -21,7 +21,7 @@
                     </thead>
                     <tbody>
                         {{#sortedBy tales '_id' 'desc'}}
-                            <tr class="tale{{#is type 0}} info{{/is}}" {{data "tales"}}>
+                            <tr class="tale{{#is type 0}} info{{/is}} {{#unless shared}} danger{{/unless}}" {{data "tales"}}>
                                 <td>{{name}}</td>
                                 <td>
                                     <span class="label label-primary">{{frames.length}}</span>
