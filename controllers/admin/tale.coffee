@@ -4,9 +4,10 @@ Crud = require '../../lib/crud'
 
 class Tale extends Crud
     _save: (req, cb) ->
+        id = req.body._id or req.params.id
         if req.user
             req.body.userId = req.user.id
-        if req.user and req.user.role is 'admin'
+        if req.user and req.user.role is 'admin' and not id
             req.body.type = 0
         super req, cb
 
