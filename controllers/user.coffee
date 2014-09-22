@@ -56,7 +56,7 @@ Router.post '/vk/upload', VK.upload
 
 Router.get '/count-likes/:id?', social.countLikes
 
-Router.get '/fb/like/:id?', FB.taleLike
+Router.get '/like/:id?', social.taleLike
 
 Router.get '/auth/odnoklassniki', OK.login
 Router.get "/auth/#{socialConfig.odnoklassniki.clientID}", passport.authenticate "odnoklassniki",

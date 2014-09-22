@@ -37,3 +37,13 @@ module.exports.countLikes = (req, res) ->
             tale.save next
     ], (err, data) ->
         res.send data
+
+module.exports.taleLike = (req, res) ->
+    console.log req.headers['user-agent']
+    async.waterfall [
+        (next) ->
+            Model 'Tale', 'findOne', next, _id: req.params.id
+    ], (err, doc) ->
+        View.render 'user/fbTaleLike', res,
+            appId: socialConfig.facebook.clientID
+            tale: doc
