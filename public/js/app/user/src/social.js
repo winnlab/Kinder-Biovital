@@ -50,6 +50,10 @@ define(
                 for (var key in network) {
                     network[key].makeLike(key + '-' + id, options);
                 }
+            },
+
+            getUser: function (cb) {
+                network[this.nw].getUser(cb);
             }
 
         });

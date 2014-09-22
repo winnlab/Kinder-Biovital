@@ -59,8 +59,15 @@ define(
                 this.user = user;
             },
 
-            getUser: function () {
-                return this.user;
+            getUser: function (cb) {
+                var self = this;
+                if (!self.user) {
+                    FB.getLoginStatus(function(response) {
+                        self.logedIn(response, cb);
+                    });
+                } else {
+                    cb(self.user);
+                }
             },
 
             share: function (options, cb) {
