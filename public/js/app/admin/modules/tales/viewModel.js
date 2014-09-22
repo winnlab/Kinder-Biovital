@@ -45,13 +45,13 @@ define(
                     cover = tale.attr('cover'),
                     social = appState.attr('social');
 
-                social.provider(network).share({
-                    msg: appState.attr('locale.shareUser').format(tale.attr('name')),
-                    link: window.location.origin + '/fairy-tale/' + tale.attr('_id'),
-                    img: window.location.origin + (cover ? '/uploads/' + cover : '/img/favicon.png'),
-                    taleId: tale.attr('_id')
-                }, function (postId) {
-                    social.provider(network).getUser(function (user) {
+                social.provider(network).logIn(function (user) {
+                    social.provider(network).share({
+                        msg: appState.attr('locale.shareUser').format(tale.attr('name')),
+                        link: window.location.origin + '/fairy-tale/' + tale.attr('_id'),
+                        img: window.location.origin + (cover ? '/uploads/' + cover : '/img/favicon.png'),
+                        taleId: tale.attr('_id')
+                    }, function (postId) {
                         scope.attr('clearStorage', true);
                         tale.attr({
                             user: user,
