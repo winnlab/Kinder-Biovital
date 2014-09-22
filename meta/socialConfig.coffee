@@ -1,6 +1,6 @@
 module.exports =
 	facebook:
-		clientID: ''
+		clientID: 512705898864753
 		clientSecret: ''
 		callbackURL: ''
 
