@@ -2,7 +2,7 @@ request = require 'request'
 async = require 'async'
 
 View = require '../../lib/view'
-Model = require '../../model'
+Model = require '../../lib/model'
 
 module.exports.likesCount = (url, cb) ->
     requestUrl = "http://api.facebook.com/restserver.php?method=links.getStats&urls=#{url}&format=json"
