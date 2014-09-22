@@ -6,10 +6,12 @@ http = require 'http'
 http.post = require 'http-post'
 rest = require 'restler'
 
+socialConfig = require '../../meta/socialConfig'
+
 Model = require '../../lib/model'
 
 module.exports.likesCount = (url, cb) ->
-    requestUrl = "http://vk.com/share.php?act=count&index=1&url=#{url}"
+    requestUrl = "http://api.vk.com/method/likes.getList?type=sitepage&owner_id=#{socialConfig.vk.apiId}&page_url=#{url}"
     request requestUrl, (error, response, body) ->
         body = body.replace 'VK.Share.count(1, ', ''
         body = body.replace ');', ''

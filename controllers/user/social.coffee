@@ -58,6 +58,6 @@ module.exports.taleLike = (req, res) ->
     ], (err, doc) ->
         View.render 'user/taleLike', res,
             fbAppId: socialConfig.facebook.clientID
-            okAppId: socialConfig.vk.apiId
-            vkAppId: socialConfig.odnoklassniki.clientID
+            vkAppId: socialConfig.vk.apiId
+            okAppId: socialConfig.odnoklassniki.clientID
             tale: doc
