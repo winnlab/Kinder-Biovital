@@ -94,7 +94,7 @@ define([
 				options = direction;
 				direction = false;
 			}
-			collection = collection();
+			collection = computedVal(collection);
 			if (collection && collection.attr('length') && prop) {
 				var sorted = _.sortBy(collection, function (member) {
 					return member.attr(prop);
@@ -104,7 +104,7 @@ define([
 					sorted.reverse();
 				}
 
-				return _.map(sorted, function (member, index) {					
+				return _.map(sorted, function (member, index) {
 					return options.fn(options.scope
 						.add({'@index': index})
 						.add(member)

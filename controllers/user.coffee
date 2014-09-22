@@ -3,9 +3,12 @@ passport = require 'passport'
 
 View = require '../lib/view'
 
-Main = require './user/main.coffee'
-VK = require './user/vk.coffee'
-OK = require './user/ok.coffee'
+Main = require './user/main'
+VK = require './user/vk'
+OK = require './user/ok'
+
+social = require './user/social'
+
 Hero = require './admin/hero'
 Track = require './admin/track'
 CoverColor = require './admin/coverColor'
@@ -45,6 +48,8 @@ Router.get '/rating', Main.index
 Router.get '/sp/:link?', Main.index
 
 Router.post '/vk/upload', VK.upload
+
+Router.get '/count-likes/:id?', social.countLikes
 
 Router.get '/auth/odnoklassniki', OK.login
 Router.get "/auth/#{socialConfig.odnoklassniki.clientID}", passport.authenticate "odnoklassniki",

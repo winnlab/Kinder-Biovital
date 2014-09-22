@@ -22,7 +22,6 @@ define(
                         }, function (photoRes) {
                             cb(photoRes.response[0].id);
                         });
-
                     },
                     error: function (shr, status, data) {
                         console.log('error', data);

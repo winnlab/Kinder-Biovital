@@ -240,13 +240,6 @@ module {
         background: url("/img/sun.png"); }
       .taleZone .setDecorations .taleBtn.red:after {
         background: url("/img/moon.png"); }
-  .taleZone .arrows {
-    position: absolute;
-    top: 271px;
-    left: 548px;
-    height: 100px;
-    width: 131px;
-    background: url("/img/dragArrow.png"); }
   .taleZone .next {
     position: absolute;
     right: 13px;
@@ -1111,9 +1104,9 @@ module {
   background: url("/img/likeBg.png"); }
   .taleZone.previewBlock .likeBox .likeBtns {
     text-align: justify;
-    margin: 40px 0 0 -29px;
+    margin: 37px 0 0 -35px;
     padding: 0 5px 0 0;
-    width: 420px; }
+    width: 439px; }
     .taleZone.previewBlock .likeBox .likeBtns:after {
       content: '';
       display: inline-block;
@@ -1713,15 +1706,24 @@ module {
         height: 64px;
         width: 65px;
         background: url("/img/playInRating.png"); }
+    .ratingTales .tale .taleInfo {
+      float: left;
+      margin: 8px 0 0 32px;
+      width: 335px; }
     .ratingTales .tale .taleName {
+      width: 100%;
       color: #f59b06;
       font-family: Futura;
       font-size: 32px;
       text-transform: uppercase;
       letter-spacing: 2px;
-      text-shadow: 1px 2px 0 #bb6920;
-      float: left;
-      margin: 8px 0 0 32px; }
+      text-shadow: 1px 2px 0 #bb6920; }
+    .ratingTales .tale .author, .ratingTales .tale .likes {
+      margin: 15px 0;
+      font-family: Arial;
+      font-size: 16px; }
+      .ratingTales .tale .author a, .ratingTales .tale .likes a {
+        color: #333; }
   .ratingTales .mCSB_scrollTools {
     position: absolute;
     top: 8px;

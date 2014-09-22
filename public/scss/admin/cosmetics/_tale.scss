@@ -142,13 +142,7 @@ $posWrapWidth: 424px;
                 background: url('#{$imgPath}moon.png');
             }
         }
-    }
-
-    .arrows {
-        @include position(absolute, 271px null null 548px);
-        @include size(131px 100px);
-        background: url('#{$imgPath}dragArrow.png');
-    }
+    }    
 
     .next {
         @include position(absolute, null 13px 18px null);

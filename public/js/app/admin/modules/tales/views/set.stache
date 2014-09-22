@@ -27,9 +27,7 @@
 
             <div class="taleBtnWrap small closeFrame">
                 <div class="small taleBtn orange"></div>
-            </div>
-
-            <div class="arrows"></div>
+            </div>            
 
             {{>/js/app/admin/modules/tales/views/trackList.stache}}
 

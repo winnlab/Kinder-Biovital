@@ -23,6 +23,13 @@ define(
                             share: true
                         });
                     });
+
+                can.ajax({
+                    url: '/count-likes/' + taleId,
+                    type: 'GET',
+                    success: function () {},
+                    error: function () {}
+                })
             }
         });
 

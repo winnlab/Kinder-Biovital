@@ -48,15 +48,30 @@
 
         }
 
+        .taleInfo {
+            float: left;
+            margin: 8px 0 0 32px;
+            width: 335px;
+        }
+
         .taleName {
-            color: #f59b06;
+            width: 100%;
+            color: $orange;
             font-family: Futura;
             font-size: 32px;
             text-transform: uppercase;
             letter-spacing: 2px;
             text-shadow: 1px 2px 0 #bb6920;
-            float: left;
-            margin: 8px 0 0 32px;
+        }
+
+        .author, .likes {
+            margin: 15px 0;
+            font-family: Arial;
+            font-size: 16px;
+
+            a {
+                color: #333;
+            }
         }
     }
 

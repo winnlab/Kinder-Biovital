@@ -12,19 +12,30 @@
 
     <div class="ratingTales">
         <div class="ratingTalesWrap" {{customScroll}}>
-            {{#each tales}}
+            {{#sortedBy tales 'likes'}}
                 <div class="tale">
                     <a class="cover" href="/fairy-tale/{{_id}}" style="
                         {{#if coverImgId.img}}background-image: url(/uploads/{{coverImgId.img}});{{/if}}
                         {{#if coverColorId.color}}background-color: #{{coverColorId.color}};{{/if}}
                     "></a>
-                    {{#if name}}
-                        <div class="taleName">
-                            {{name}}
+                    <div class="taleInfo">
+                        {{#if name}}
+                            <div class="taleName">
+                                {{name}}
+                            </div>
+                        {{/if}}
+                        {{#if user}}
+                            <div class="author">
+                                <span>{{appState.locale.author}}:</span>
+                                <a href="{{user.link}}" target="_blank">{{user.firstName}} {{user.lastName}}</a>
+                            </div>
+                        {{/if}}
+                        <div class="likes">
+                            {{appState.locale.allLikes}}: {{likes}}.
                         </div>
-                    {{/if}}
+                    </div>
                 </div>
-            {{/each}}
+            {{/sortedBy}}
         </div>
     </div>
 

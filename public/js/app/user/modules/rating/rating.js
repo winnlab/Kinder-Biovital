@@ -1,13 +1,14 @@
 define(
     [
         'canjs',
+        'underscore',
         'modules/tales/talesModel',
         'core/appState',
         '/js/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js',
         'css!/js/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css'
     ],
 
-    function (can, TalesModel, appState) {
+    function (can, _, TalesModel, appState) {
 
         return can.Control.extend({
             defaults: {
@@ -20,8 +21,12 @@ define(
 
                 TalesModel.findAll({type: 1, active: 1}, function (tales) {
 
+                    _.each(tales, function (tale){
+                        tale.attr('likes', tale.attr('fbLikes') + tale.attr('vkLikes') + tale.attr('okLikes'));
+                    });
+
                     self.element.html(can.view(options.viewpath + 'index.stache', {
-                            tales: tales,
+                            tales: new can.List(tales),
                             appState: appState
                         })
                     );

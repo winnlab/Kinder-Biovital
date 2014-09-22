@@ -213,13 +213,6 @@ html {
         background: url("/img/sun.png"); }
       .taleZone .setDecorations .taleBtn.red:after {
         background: url("/img/moon.png"); }
-  .taleZone .arrows {
-    position: absolute;
-    top: 271px;
-    left: 548px;
-    height: 100px;
-    width: 131px;
-    background: url("/img/dragArrow.png"); }
   .taleZone .next {
     position: absolute;
     right: 13px;
@@ -1084,9 +1077,9 @@ html {
   background: url("/img/likeBg.png"); }
   .taleZone.previewBlock .likeBox .likeBtns {
     text-align: justify;
-    margin: 40px 0 0 -29px;
+    margin: 37px 0 0 -35px;
     padding: 0 5px 0 0;
-    width: 420px; }
+    width: 439px; }
     .taleZone.previewBlock .likeBox .likeBtns:after {
       content: '';
       display: inline-block;

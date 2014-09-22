@@ -102,8 +102,7 @@ define(
 
                 can.when(def)
                     .then(function () {
-                        // self.currentFrame(self.options.frameIndex);
-                        self.currentFrame(self.module.attr('tale.frames.length') - 1);
+                        self.currentFrame(self.options.frameIndex);                        
                         self.element.html(html);
                         self.playTrack();
 

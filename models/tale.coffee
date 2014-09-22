@@ -92,6 +92,16 @@ TaleShemaFields =
     active:
         type: Number
         default: 0
+    fbLikes:
+        type: Number
+        default: 0
+    vkLikes:
+        type: Number
+        default: 0
+    okLikes: 
+        type: Number
+        default: 0
+
 
 options =
     collection: 'tales'
