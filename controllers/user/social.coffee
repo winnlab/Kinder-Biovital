@@ -25,6 +25,8 @@ module.exports.countLikes = (req, res) ->
         (next) ->
             Model 'Tale', 'findOne', next, _id: req.params.id
         (doc, next) ->
+            unless doc
+                return next 'No such tale found', {}
             tale = doc
             getLikes "#{socialConfig.baseUrl}fairy-tale/#{doc._id}", next
         (data, next) ->
@@ -33,5 +35,5 @@ module.exports.countLikes = (req, res) ->
             tale.okLikes = data.ok
 
             tale.save next
-    ], (err, data) ->        
+    ], (err, data) ->
         res.send data
