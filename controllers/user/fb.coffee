@@ -14,7 +14,7 @@ module.exports.likesCount = (url, cb) ->
         cb error, body[0]
 
 module.exports.taleLike = (req, res) ->
-    console.log req.get('Referer')
+    console.log req.headers['user-agent']
     async.waterfall [
         (next) ->
             Model 'Tale', 'findOne', next, _id: req.params.id
