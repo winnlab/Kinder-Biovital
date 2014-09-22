@@ -65,13 +65,19 @@
         }
 
         .author, .likes {
-            margin: 15px 0;
+            margin: 8px 0;
             font-family: Arial;
             font-size: 16px;
 
             a {
                 color: #333;
             }
+        }
+
+        .likeBtn {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 3px;
         }
     }
 

@@ -10,6 +10,8 @@ define(
             interface: 'big',
             locale: appState.attr('locale'),
 
+            baseUrl: window.location.origin,
+
             collapsed: false,
 
             setBg: function (context, el, ev) {

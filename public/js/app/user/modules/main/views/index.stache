@@ -21,6 +21,15 @@
         </a>
     </nav>
 
+    <div class="langsWrap">
+        <a class="isoLang" href="/">
+            <span class="label">Укр</span>
+        </a>
+        <a class="isoLang" href="/ru">
+            <span class="label">Рус</span>
+        </a>
+    </div>
+
     <div class="howToWrite taleBtnWrap big orange">
         <a class="module taleBtn" href="/sp/how-to-write">{{locale.main.how}}</a>
     </div>

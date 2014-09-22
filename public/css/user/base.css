@@ -1302,14 +1302,14 @@ module {
 
 .mainPage {
   font-family: Arial; }
-  .mainPage .menu {
+  .mainPage .menu, .mainPage .langsWrap {
     position: absolute;
     top: 114px;
     left: 269px;
     z-index: 1;
     width: 700px;
     text-align: center; }
-    .mainPage .menu a {
+    .mainPage .menu a, .mainPage .langsWrap a {
       display: inline-block;
       border-radius: 5px;
       box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
@@ -1324,13 +1324,19 @@ module {
       font-size: 14px;
       text-shadow: -1px -1px 0 #bb732b;
       text-transform: lowercase; }
-    .mainPage .menu span {
+    .mainPage .menu span, .mainPage .langsWrap span {
       background: #f59b06;
       display: block;
       height: 26px;
       padding: 5px;
       border-radius: 5px;
       box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.3); }
+  .mainPage .langsWrap {
+    left: auto;
+    right: 0px;
+    width: 200px; }
+    .mainPage .langsWrap a {
+      width: 60px; }
   .mainPage .watchTale {
     height: 172px;
     width: 172px;
@@ -1720,11 +1726,15 @@ module {
       letter-spacing: 2px;
       text-shadow: 1px 2px 0 #bb6920; }
     .ratingTales .tale .author, .ratingTales .tale .likes {
-      margin: 15px 0;
+      margin: 8px 0;
       font-family: Arial;
       font-size: 16px; }
       .ratingTales .tale .author a, .ratingTales .tale .likes a {
         color: #333; }
+    .ratingTales .tale .likeBtn {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 3px; }
   .ratingTales .mCSB_scrollTools {
     position: absolute;
     top: 8px;

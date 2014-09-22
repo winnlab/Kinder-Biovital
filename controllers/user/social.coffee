@@ -32,7 +32,7 @@ module.exports.countLikes = (req, res) ->
             tale = doc
             getLikes "#{socialConfig.baseUrl}like/#{doc._id}", next
         (data, next) ->
-            tale.fbLikes = data.fb.total_count
+            tale.fbLikes = data.fb
             tale.vkLikes = data.vk
             tale.okLikes = data.ok
 
@@ -41,18 +41,16 @@ module.exports.countLikes = (req, res) ->
         res.send data
 
 module.exports.taleLike = (req, res) ->
-    botHeaders = [
-        'OdklBot'
-        'facebookexternalhit'
-    ]
-
-    console.log req.headers['user-agent']
-
-    isBot = _.find botHeaders, (bot) ->
-        return req.headers['user-agent'].indexOf(bot) isnt -1
-
-    if not isBot
-        return res.redirect 301, "/fairy-tale/#{req.params.id}"
+    # botHeaders = [
+    #     'OdklBot'
+    #     'facebookexternalhit'
+    # ]
+    #
+    # isBot = _.find botHeaders, (bot) ->
+    #     return req.headers['user-agent'].indexOf(bot) isnt -1
+    #
+    # if not isBot
+    #     return res.redirect 301, "/fairy-tale/#{req.params.id}"
 
     async.waterfall [
         (next) ->
@@ -60,6 +58,7 @@ module.exports.taleLike = (req, res) ->
     ], (err, doc) ->
         View.render 'user/taleLike', res,
             fbAppId: socialConfig.facebook.clientID
-            okAppId: socialConfig.vk.apiId
-            vkAppId: socialConfig.odnoklassniki.clientID
+            vkAppId: socialConfig.vk.apiId
+            okAppId: socialConfig.odnoklassniki.clientID
+            host: socialConfig.baseUrl
             tale: doc

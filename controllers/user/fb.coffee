@@ -1,9 +1,8 @@
 request = require 'request'
 
 module.exports.likesCount = (url, cb) ->
-    console.log url
     requestUrl = "http://api.facebook.com/restserver.php?method=links.getStats&urls=#{url}&format=json"
 
     request requestUrl, (error, response, body) ->
         body = JSON.parse body
-        cb error, body[0]
+        cb error, body[0].total_count

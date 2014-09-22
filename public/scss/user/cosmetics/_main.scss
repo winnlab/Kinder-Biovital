@@ -40,6 +40,17 @@
         }
     }
 
+    .langsWrap {
+        @extend .menu;
+        left: auto;
+        right: 0px;
+        width: 200px;
+
+        a {
+            width: 60px;
+        }
+    }
+
     .watchTale {
         @include size(172px 172px);
         @include position(absolute, 233px null null 526px);
