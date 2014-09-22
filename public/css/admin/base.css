@@ -1071,6 +1071,7 @@ html {
   left: 380px;
   height: 206px;
   width: 471px;
+  z-index: 2;
   padding: 43px 58px;
   font-family: Arial;
   font-size: 18px;
