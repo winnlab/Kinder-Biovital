@@ -22,7 +22,7 @@ getLikes = (url, cb) ->
 
 module.exports.countLikes = (req, res) ->
     tale = undefined
-
+        
     async.waterfall [
         (next) ->
             Model 'Tale', 'findOne', next, _id: req.params.id
@@ -32,7 +32,7 @@ module.exports.countLikes = (req, res) ->
             tale = doc
             getLikes "#{socialConfig.baseUrl}like/#{doc._id}", next
         (data, next) ->
-            tale.fbLikes = data.fb.total_count
+            tale.fbLikes = data.fb
             tale.vkLikes = data.vk
             tale.okLikes = data.ok
 
