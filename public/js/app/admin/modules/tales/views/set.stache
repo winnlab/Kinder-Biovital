@@ -27,7 +27,7 @@
 
             <div class="taleBtnWrap small closeFrame">
                 <div class="small taleBtn orange"></div>
-            </div>            
+            </div>
 
             {{>/js/app/admin/modules/tales/views/trackList.stache}}
 
@@ -260,8 +260,8 @@
             {{#if tale.shared}}
                 <div class="shareLink">
                     <div class="linkTitle">{{locale.link}}</div>
-                    <a class="link" href="http://46.21.104.20:3000/fairy-tale/{{tale._id}}">
-                        http://46.21.104.20:3000/fairy-tale/{{tale._id}}
+                    <a class="link" href="{{baseUrl}}/fairy-tale/{{tale._id}}">
+                        {{baseUrl}}/fairy-tale/{{tale._id}}
                     </a>
                 </div>
             {{/if}}
