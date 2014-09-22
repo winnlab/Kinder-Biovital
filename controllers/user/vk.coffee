@@ -13,9 +13,7 @@ Model = require '../../lib/model'
 module.exports.likesCount = (url, cb) ->
     requestUrl = "http://api.vk.com/method/likes.getList?type=sitepage&owner_id=#{socialConfig.vk.apiId}&page_url=#{url}"
     request requestUrl, (error, response, body) ->
-        body = body.replace 'VK.Share.count(1, ', ''
-        body = body.replace ');', ''
-        cb error, Number body
+        cb error, Number body.response.count
 
 
 
