@@ -4,11 +4,13 @@ html(lang="ua")
 
         meta(id="fb-app_id" property="fb:app_id" content="#{appId}")
         meta(property="og:site_name" content="Kinder-Biovital")
-        meta(property="og:type" content="article")
-        meta(id="og-title" property="og:title" content="#{tale.name}")
-        meta(id="og-desc" property="og:description" content="Мне понравилась сказка '#{tale.name}'")
-        meta(id="og-url" property="og:url" content="http://promo.365rozvag.com.ua/fairy-tale/#{tale._id}")
-        meta(id="og-image" property="og:image" content="http://promo.365rozvag.com.ua/uploads/#{tale.cover}")
+        meta(property="og:type" content="website")
+        meta(property="og:title" content="#{tale.name}")
+        meta(property="og:description" content="Мне понравилась сказка '#{tale.name}'")
+        meta(property="og:url" content="http://promo.365rozvag.com.ua/fairy-tale/#{tale._id}")
+        meta(property="og:image" content="http://promo.365rozvag.com.ua/uploads/#{tale.cover}")
+
+        <link rel="canonical" href="http://promo.365rozvag.com.ua/fairy-tale/#{tale._id}" />
 
         title Kinder-Biovital
     body

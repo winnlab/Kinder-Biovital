@@ -42,6 +42,7 @@ define(
                     frame: {},
                     playTrack: true,
                     locale: appState.attr('locale'),
+                    baseUrl: window.location.origin,
 
                     share: function (scope, el, ev) {
                         var self = this,
@@ -102,7 +103,7 @@ define(
 
                 can.when(def)
                     .then(function () {
-                        self.currentFrame(self.options.frameIndex);                        
+                        self.currentFrame(self.options.frameIndex);
                         self.element.html(html);
                         self.playTrack();
 
