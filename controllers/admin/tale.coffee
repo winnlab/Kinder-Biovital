@@ -17,7 +17,7 @@ class Tale extends Crud
                 @DataEngine 'findById', next, id
             (doc, next) =>
                 unless doc
-                    cb "Cannot find such tale #{id}"
+                    return cb "Cannot find such tale #{id}"
                 if doc.frames.length
                     doc.frames.splice(0)
                 delete data.__v
