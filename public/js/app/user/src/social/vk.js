@@ -110,11 +110,11 @@ define(
             share: function (options, cb) {
                 var self = this;
 
-                // if (!self.user) {
-                //     return self.logIn(function () {
-                //         self.share(options, cb);
-                //     });
-                // }
+                if (!self.user) {
+                    return self.logIn(function () {
+                        self.share(options, cb);
+                    });
+                }
 
                 if (options.img) {
                     getPhotoId(options.taleId, function (photoId) {

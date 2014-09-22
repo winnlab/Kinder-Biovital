@@ -12,4 +12,4 @@ module.exports =
 		clientPublic: 'CBAEFPKCEBABABABA'
 		clientSecret: '55C1FD7EA97F4FBDB571E7A8'
 
-	baseUrl: 'http://188.127.249.39/'
+	baseUrl: 'http://promo.365rozvag.com.ua/'
