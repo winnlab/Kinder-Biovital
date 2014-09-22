@@ -11,11 +11,12 @@ define(
 
             init: function () {
                 this.module = new can.Map({
-                    msg: '',
-                    modal: true,
-                    visible: false,
-                    choice: true,
-                    close: true
+                    'msg': '',
+                    'modal': true,
+                    'visible': false,
+                    'choice': true,
+                    'close': true,
+                    'content': false
                 });
 
                 this.element.append(can.view(this.options.viewpath + 'index.stache', {
@@ -31,8 +32,16 @@ define(
                     'msg': options.msg,
                     'choice': typeof options.choice == 'undefined' ? true : options.choice,
                     'visible': true,
-                    'msgLength': options.msg.length > 200 ? true : false
-                });                
+                    'msgLength': options.msg.length > 200 ? true : false,
+                    'content': false
+                });
+            },
+
+            info: function (options) {
+                this.module.attr({
+                    'visible': true,
+                    'content': options.content
+                });
             },
 
             '.ok click': function() {
@@ -51,6 +60,17 @@ define(
                 this.closePopup(-1);
             },
 
+            ' keyup': function (el, ev) {
+                switch (ev.keyCode) {
+                    case 27:
+                        this.closePopup(-1);
+                        break;
+                    case 13:
+                        this.closePopup(1);
+                        break;
+                }
+            },
+
             closePopup: function (type) {
 
                 if (this.def && type === 1) {
@@ -61,7 +81,10 @@ define(
                     this.def.reject();
                 }
 
-                this.module.attr('visible', false);
+                this.module.attr({
+                    'visible': false,
+                    'content': false
+                });
 
                 this.def = null
             }

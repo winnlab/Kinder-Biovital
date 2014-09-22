@@ -114,7 +114,7 @@
             content: '';
             z-index: -1;
             @include position(absolute, -11px null null -17px);
-            @include size(1006px 191px);
+            @include size(1006px 190px);
             background: url('#{$imgPath}mainTextBg.png');
         }
 

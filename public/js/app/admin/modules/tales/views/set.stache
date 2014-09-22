@@ -22,7 +22,7 @@
             </div>
 
             <div class="taleBtnWrap small question">
-                <a class="small taleBtn red module" href="/sp/instruction"></a>
+                <div class="small taleBtn red"></div>
             </div>
 
             <div class="taleBtnWrap small closeFrame">
@@ -57,7 +57,7 @@
             </div>
 
             <div class="taleBtnWrap small question">
-                <a class="small taleBtn red module" href="/sp/instruction"></a>
+                <div class="small taleBtn red"></div>
             </div>
 
             <div class="taleBtnWrap small closeFrame">
@@ -182,7 +182,7 @@
             </div>
 
             <div class="taleBtnWrap small question">
-                <a class="small taleBtn red module" href="/sp/instruction"></a>
+                <div class="small taleBtn red"></div>
             </div>
 
             <div class="taleBtnWrap small closeFrame">

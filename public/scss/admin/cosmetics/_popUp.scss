@@ -97,3 +97,55 @@
     }
 
 }
+
+
+.popUpInfo {
+    @include position(fixed, 0 null null 0);
+    @include size(100%);
+    background: rgba(0,0,0,0.9);
+    z-index: 9999;
+    display: none;
+
+    &.visible {
+        display: table;
+    }
+
+    .popUpBody {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .content {
+        position: relative;
+        background: white;
+        margin: 20px auto;
+        max-width: 70%;
+        height: 0;
+        padding-top: 40%;
+    }
+
+    iframe {
+        @include position(absolute, 0 0 0 0);
+        @include size(100%);
+        border: 0;
+    }
+
+    .close {
+        @include position(absolute, 0 -40px null null);
+        @include size(30px 30px);
+        background-color: #f4ecd9;
+        border-radius: 6px;
+        box-shadow: $outerShadow;
+        z-index: 2;
+        cursor: pointer;
+        opacity: 1;
+
+        &:after {
+            content: '';
+            @include position(absolute, 7px null null 8px);
+            @include size(15px 14px);
+            background: url('#{$imgPath}smallX.jpg');
+        }
+    }
+}

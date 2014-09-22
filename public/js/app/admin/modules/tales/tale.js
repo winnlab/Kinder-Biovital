@@ -36,7 +36,13 @@ define(
                     'coverImages',
                     'decorations',
                     'heroes'
-                ]
+                ],
+
+                instructions: {
+                    bg: '//www.youtube.com/embed/L7NyuuBN51M',
+                    frame: '//www.youtube.com/embed/-GSl6LFAhFc',
+                    cover: '//www.youtube.com/embed/mca-rAJqI1A'                    
+                }
             }
         }, {
 
@@ -457,6 +463,16 @@ define(
 
             '.showTracks click': function () {
                 this.module.attr('showTracks', !this.module.attr('showTracks'));
+            },
+
+            '.question click': function () {
+                var self = this,
+                    source = self.options.instructions[self.module.attr('display')];
+
+                popUp.info({
+                    content: '<iframe src="' + source + '?autoplay=1" frameborder="0" allowfullscreen></iframe>'
+                });
+
             }
 
         });
