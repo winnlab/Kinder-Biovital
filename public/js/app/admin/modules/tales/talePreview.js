@@ -54,7 +54,7 @@ define(
 
                         social.provider(network).share({
                             msg: msg.format(tale.attr('name')),
-                            link: window.location.origin + '/like/' + tale.attr('_id'),
+                            link: window.location.origin + '/fairy-tale/' + tale.attr('_id'),
                             img: window.location.origin + (cover ? '/uploads/' + cover : '/img/favicon.png'),
                             taleId: tale.attr('_id')
                         }, function (postId) {
@@ -115,7 +115,7 @@ define(
                             appState.attr('social').makeLike('like-' + id, {
                                 'title': tale.attr('name'),
                                 'desc': 'Мне понравилась сказка "' + tale.attr('name') + '"',
-                                'url': window.location.origin + '/fairy-tale/' + id,
+                                'url': window.location.origin + '/like/' + id,
                                 'image': window.location.origin + (cover ? '/uploads/' + cover : '/img/favicon.png')
                             });
                         }
