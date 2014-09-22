@@ -31,7 +31,9 @@
                             </div>
                         {{/if}}
                         <div class="likes">
-                            {{appState.locale.allLikes}}: {{likes}}.
+                            <fb:like class="likeBtn" href="{{baseUrl}}/like/{{_id}}" layout="button_count" action="like" show_faces="false" send="false" share="false"></fb:like>
+                            <div class="likeBtn" id="vk-rlike-{{_id}}"></div>
+                            <div class="likeBtn" id="ok-rlike-{{_id}}"></div>
                         </div>
                     </div>
                 </div>

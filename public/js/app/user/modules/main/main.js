@@ -12,7 +12,7 @@ define(
             init: function () {
 
                 var options = this.options;
-
+                console.log(appState.attr());
                 this.element.html(can.view(options.viewpath + 'index.stache', appState));
 
                 if (options.isReady) {

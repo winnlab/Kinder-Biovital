@@ -13,8 +13,11 @@ Model = require '../../lib/model'
 module.exports.likesCount = (url, cb) ->
     requestUrl = "http://api.vk.com/method/likes.getList?type=sitepage&owner_id=#{socialConfig.vk.apiId}&page_url=#{url}"
     request requestUrl, (error, response, body) ->
-        body = JSON.parse body        
-        cb error, Number body.response.count
+        body = JSON.parse body
+        count = 0
+        if body?.response?.count
+            count = Number body.response.count
+        cb error, count
 
 
 

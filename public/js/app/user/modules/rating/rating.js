@@ -27,6 +27,7 @@ define(
 
                     self.element.html(can.view(options.viewpath + 'index.stache', {
                             tales: new can.List(tales),
+                            baseUrl: window.location.origin,
                             appState: appState
                         })
                     );
@@ -39,6 +40,18 @@ define(
                             scrollType: 'stepless'
                         }
                     });
+
+                    _.each(tales, function (tale) {
+                        var id = tale.attr('_id'),
+                            cover = tale.attr('cover');
+                        appState.attr('social').makeLike('rlike-' + id, {
+                            'title': tale.attr('name'),
+                            'desc': 'Мне понравилась сказка "' + tale.attr('name') + '"',
+                            'url': window.location.origin + '/like/' + id,
+                            'image': window.location.origin + (cover ? '/uploads/' + cover : '/img/favicon.png')
+                        });
+                    });
+
 
                     if (options.isReady) {
                         options.isReady.resolve();
