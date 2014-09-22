@@ -36,11 +36,7 @@ Router.use (req, res, next) ->
 
 Router.get '/tale', Tale.findTales
 Router.post '/tale/img', Tale.restFile
-Router.get '/tale/:id?', (req, res, next) ->
-	console.log req.get('Referer')
-	console.log '!!!'
-	next()
-, Tale.rest
+Router.get '/tale/:id?', Tale.rest
 Router.post '/tale/:id?', Tale.rest
 Router.put '/tale/:id?', Tale.rest
 

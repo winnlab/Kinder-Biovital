@@ -1,4 +1,5 @@
 async = require 'async'
+_ = require 'underscore'
 
 fb = require './fb'
 vk = require './vk'
@@ -6,6 +7,7 @@ ok = require './ok'
 
 socialConfig = require '../../meta/socialConfig'
 
+View = require '../../lib/view'
 Model = require '../../lib/model'
 
 getLikes = (url, cb) ->
@@ -28,7 +30,7 @@ module.exports.countLikes = (req, res) ->
             unless doc
                 return next 'No such tale found', {}
             tale = doc
-            getLikes "#{socialConfig.baseUrl}fairy-tale/#{doc._id}", next
+            getLikes "#{socialConfig.baseUrl}like/#{doc._id}", next
         (data, next) ->
             tale.fbLikes = data.fb.total_count
             tale.vkLikes = data.vk
@@ -39,11 +41,25 @@ module.exports.countLikes = (req, res) ->
         res.send data
 
 module.exports.taleLike = (req, res) ->
+    botHeaders = [
+        'OdklBot'
+        'facebookexternalhit'
+    ]
+
     console.log req.headers['user-agent']
+
+    isBot = _.find botHeaders, (bot) ->
+        return req.headers['user-agent'].indexOf(bot) isnt -1
+
+    if not isBot
+        return res.redirect 301, "/fairy-tale/#{req.params.id}"
+
     async.waterfall [
         (next) ->
             Model 'Tale', 'findOne', next, _id: req.params.id
     ], (err, doc) ->
-        View.render 'user/fbTaleLike', res,
-            appId: socialConfig.facebook.clientID
+        View.render 'user/taleLike', res,
+            fbAppId: socialConfig.facebook.clientID
+            okAppId: socialConfig.vk.apiId
+            vkAppId: socialConfig.odnoklassniki.clientID
             tale: doc
