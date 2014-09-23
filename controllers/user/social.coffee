@@ -41,16 +41,16 @@ module.exports.countLikes = (req, res) ->
         res.send data
 
 module.exports.taleLike = (req, res) ->
-    # botHeaders = [
-    #     'OdklBot'
-    #     'facebookexternalhit'
-    # ]
-    #
-    # isBot = _.find botHeaders, (bot) ->
-    #     return req.headers['user-agent'].indexOf(bot) isnt -1
-    #
-    # if not isBot
-    #     return res.redirect 301, "/fairy-tale/#{req.params.id}"
+    botHeaders = [
+        'OdklBot'
+        'facebookexternalhit'
+    ]
+
+    isBot = _.find botHeaders, (bot) ->
+        return req.headers['user-agent'].indexOf(bot) isnt -1
+
+    if not isBot
+        return res.redirect 301, "/fairy-tale/#{req.params.id}"
 
     async.waterfall [
         (next) ->
