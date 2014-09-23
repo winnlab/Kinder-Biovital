@@ -254,10 +254,10 @@
         background: url('#{$imgPath}likeBg.png');
 
         .likeBtns {
-            text-align: justify;
-            margin: 37px 0 0 -35px;
+            text-align: center;
+            margin: 27px 0 0 -35px;
             padding: 0 5px 0 0;
-            width: 439px;
+            width: 429px;
             &:after {
                 content: '';
                 display: inline-block;
@@ -266,6 +266,7 @@
         }
 
         .likeBtn {
+            margin: 5px 0;
             display: inline-block;
             vertical-align: middle;
             cursor: pointer;

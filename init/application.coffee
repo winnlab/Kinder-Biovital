@@ -42,9 +42,8 @@ configure = () ->
 			rename: (fieldname, filename) ->
 				return Crypto.md5 filename + Date.now()
 	@use Cache.requestCache
-	# @use bodyParser.json(limit: '50mb')
-	# @use bodyParser.urlencoded(limit: '50mb')
-	@use bodyParser(limit: '50mb')
+	@use bodyParser.json(limit: '50mb')
+	@use bodyParser.urlencoded({limit: '50mb', extended: true})	
 	@use cookieParser 'LmAK3VNuA6'
 	@use session sessionParams
 	@use passport.initialize()

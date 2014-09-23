@@ -1077,15 +1077,16 @@ html {
   font-size: 18px;
   background: url("/img/likeBg.png"); }
   .taleZone.previewBlock .likeBox .likeBtns {
-    text-align: justify;
-    margin: 37px 0 0 -35px;
+    text-align: center;
+    margin: 27px 0 0 -35px;
     padding: 0 5px 0 0;
-    width: 439px; }
+    width: 429px; }
     .taleZone.previewBlock .likeBox .likeBtns:after {
       content: '';
       display: inline-block;
       width: 100%; }
   .taleZone.previewBlock .likeBox .likeBtn {
+    margin: 5px 0;
     display: inline-block;
     vertical-align: middle;
     cursor: pointer; }

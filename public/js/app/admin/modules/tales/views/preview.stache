@@ -50,8 +50,8 @@
 
     <div class="likeBtns">
         <fb:like class="likeBtn" href="{{baseUrl}}/like/{{tale._id}}" layout="button_count" action="like" show_faces="false" send="false" share="false"></fb:like>
-        <div class="likeBtn" id="ok-like-{{tale._id}}" data-nw="ok"></div>
         <div class="likeBtn" id="vk-like-{{tale._id}}" data-nw="vk"></div>
+        <div class="likeBtn" id="ok-like-{{tale._id}}" data-nw="ok"></div>
     </div>
 </div>
 

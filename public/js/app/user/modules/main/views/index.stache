@@ -1,52 +1,80 @@
-<div class="positioned mainPage" style="top: {{size.topOffset}}; left: {{size.leftOffset}};">
+<div class="mainPage">
+    <div class="videoBg">
+        <video id="intro" preload="metadata" autoplay="">
+            <source src="/video/intro.mp4" type='video/mp4'>
+            <source src="/video/intro.webm" type='video/webm'>
+            <source src="/video/intro.ogv" type='video/ogg'>
+        </video>
+    </div>
 
-    <div class="taleTitle">
-        <div class="innerTitle">
-            {{{locale.main.title}}}
+    <div class="positioned" style="top: {{size.topOffset}}; left: {{size.leftOffset}};">
+
+        <div class="bg">
+            <img src="/img/introTop.png" class="topBg" style="
+                left: -{{size.leftOffset}};
+                top: {{bgOffset}}px;
+                width: {{bgSize.width}}px;
+                height: {{bgSize.height}}px;
+            "/>
+            <img src="/img/introBtm.png" class="btmBg" style="
+                left: -{{size.leftOffset}};
+                bottom: {{bgOffset}}px;
+                width: {{bgSize.width}}px;
+                height: {{bgSize.height}}px;
+            "/>
         </div>
+
+        <div class="content {{#if videoEnded}}active{{/if}}">
+            <div class="taleTitle">
+                <div class="innerTitle">
+                    {{{locale.main.title}}}
+                </div>
+            </div>
+
+            <nav class="menu">
+                <!-- <a class="module" href="/sp/conditions">
+                    <span class="label">{{!locale.main.terms}}</span>
+                </a> -->
+                <a class="module" href="/rating">
+                    <span class="label">{{locale.main.rating}}</span>
+                </a>
+                <!-- <a class="module" href="/sp/conditions">
+                    <span class="label">{{!locale.main.gifts}}</span>
+                </a> -->
+                <a class="module" href="/sp/kinder-biovital">
+                    <span class="label">{{locale.main.brand}}</span>
+                </a>
+            </nav>
+
+            <div class="langsWrap">
+                <a class="isoLang" href="/">
+                    <span class="label">Укр</span>
+                </a>
+                <a class="isoLang" href="/ru">
+                    <span class="label">Рус</span>
+                </a>
+            </div>
+
+            <div class="howToWrite taleBtnWrap big orange">
+                <a class="module taleBtn" href="/sp/how-to-write">{{locale.main.how}}</a>
+            </div>
+
+            <div class="watchTale taleBtnWrap big">
+                <a class="module taleBtn red" href="/tales">
+                    <span>{{locale.main.watchTale}}</span>
+                </a>
+            </div>
+
+            <div class="createTale taleBtnWrap big red">
+                <a class="module taleBtn" href="/create-tale">{{locale.main.create}}</a>
+            </div>
+
+            <div class="text">
+                <div class="column">{{{locale.main.block1}}}</div>
+                <div class="column">{{{locale.main.block2}}}</div>
+            </div>
+        </div>
+
+
     </div>
-
-    <nav class="menu">
-        <!-- <a class="module" href="/sp/conditions">
-            <span class="label">{{!locale.main.terms}}</span>
-        </a> -->
-        <a class="module" href="/rating">
-            <span class="label">{{locale.main.rating}}</span>
-        </a>
-        <!-- <a class="module" href="/sp/conditions">
-            <span class="label">{{!locale.main.gifts}}</span>
-        </a> -->
-        <a class="module" href="/sp/kinder-biovital">
-            <span class="label">{{locale.main.brand}}</span>
-        </a>
-    </nav>
-
-    <div class="langsWrap">
-        <a class="isoLang" href="/">
-            <span class="label">Укр</span>
-        </a>
-        <a class="isoLang" href="/ru">
-            <span class="label">Рус</span>
-        </a>
-    </div>
-
-    <div class="howToWrite taleBtnWrap big orange">
-        <a class="module taleBtn" href="/sp/how-to-write">{{locale.main.how}}</a>
-    </div>
-
-    <div class="watchTale taleBtnWrap big">
-        <a class="module taleBtn red" href="/tales">
-            <span>{{locale.main.watchTale}}</span>
-        </a>
-    </div>
-
-    <div class="createTale taleBtnWrap big red">
-        <a class="module taleBtn" href="/create-tale">{{locale.main.create}}</a>
-    </div>
-
-    <div class="text">
-        <div class="column">{{{locale.main.block1}}}</div>
-        <div class="column">{{{locale.main.block2}}}</div>
-    </div>
-
 </div>

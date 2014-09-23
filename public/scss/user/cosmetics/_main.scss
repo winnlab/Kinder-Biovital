@@ -4,8 +4,38 @@
 @import '../../base/_placeholders.scss';
 @import '../../base/_variables.scss';
 
+$duration: 1s;
+
 .mainPage {
+    @include size(100%);
+    position: relative;
     font-family: Arial;
+    overflow: hidden;
+
+    .bg {
+        @include size(100%);
+        position: absolute;
+        z-index: -2;
+
+        img {
+            @include position(absolute, null null null 0);
+            @include transition(all $duration 0 ease-in-out);
+            display: block;
+        }
+    }
+
+    .content {
+        @include size(100%);
+        position: absolute;
+        z-index: 1;
+        opacity: 0;
+        @include transition(all 0.3s $duration linear);
+
+        &.active {
+            opacity: 1;
+        }
+    }
+
 
     .menu {
         @include position(absolute, 114px null null 269px);
@@ -153,5 +183,24 @@
             }
         }
 
+    }
+}
+
+.videoBg {
+    @include position(absolute, 0 0 0 0);
+    z-index: -1;
+    overflow: hidden;
+    // background-image: url(http://vodkabears.github.io/vide/video/ocean.jpg);
+    // background-size: cover;
+    // background-position: 50% 50%;
+    // background-repeat: no-repeat;
+
+    video {
+        @include position(absolute, 50% null null 50%);
+        @include transform(translate(-50%, -50%));
+        z-index: -1;
+        margin: auto;
+        width: 100%;
+        height: auto;
     }
 }

@@ -47,7 +47,9 @@ body {
 module {
   display: none; }
   module.active {
-    display: block; }
+    display: block;
+    height: 100%;
+    width: 100%; }
 
 .positioned {
   width: 1224px;
@@ -1104,15 +1106,16 @@ module {
   font-size: 18px;
   background: url("/img/likeBg.png"); }
   .taleZone.previewBlock .likeBox .likeBtns {
-    text-align: justify;
-    margin: 37px 0 0 -35px;
+    text-align: center;
+    margin: 27px 0 0 -35px;
     padding: 0 5px 0 0;
-    width: 439px; }
+    width: 429px; }
     .taleZone.previewBlock .likeBox .likeBtns:after {
       content: '';
       display: inline-block;
       width: 100%; }
   .taleZone.previewBlock .likeBox .likeBtn {
+    margin: 5px 0;
     display: inline-block;
     vertical-align: middle;
     cursor: pointer; }
@@ -1353,7 +1356,34 @@ module {
   background-position: center center; }
 
 .mainPage {
-  font-family: Arial; }
+  height: 100%;
+  width: 100%;
+  position: relative;
+  font-family: Arial;
+  overflow: hidden; }
+  .mainPage .bg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -2; }
+    .mainPage .bg img {
+      position: absolute;
+      left: 0;
+      -webkit-transition: all 1s 0 ease-in-out;
+      -moz-transition: all 1s 0 ease-in-out;
+      transition: all 1s 0 ease-in-out;
+      display: block; }
+  .mainPage .content {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    -webkit-transition: all 0.3s 1s linear;
+    -moz-transition: all 0.3s 1s linear;
+    transition: all 0.3s 1s linear; }
+    .mainPage .content.active {
+      opacity: 1; }
   .mainPage .menu, .mainPage .langsWrap {
     position: absolute;
     top: 114px;
@@ -1481,6 +1511,28 @@ module {
           color: #df4a08; }
         .mainPage .text .column .block-title.color-orange {
           color: #f59b06; }
+
+.videoBg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  overflow: hidden; }
+  .videoBg video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    margin: auto;
+    width: 100%;
+    height: auto; }
 
 .coverImgTbl .coverImage {
   background-size: contain;
