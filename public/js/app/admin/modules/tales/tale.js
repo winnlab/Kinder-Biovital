@@ -40,8 +40,8 @@ define(
 
                 instructions: {
                     bg: '//www.youtube.com/embed/-ifaAKZVWuY',
-                    frame: '//www.youtube.com/embed/-GSl6LFAhFc',
-                    cover: '//www.youtube.com/embed/mca-rAJqI1A'
+                    frame: '//www.youtube.com/embed/K1Zzyyzni_w',
+                    cover: '//www.youtube.com/embed/X2BDSRiN-Wk'
                 }
             }
         }, {
