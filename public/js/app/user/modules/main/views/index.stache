@@ -1,5 +1,5 @@
 <div class="mainPage">
-    <div class="videoBg">
+    <div class="videoBg" style="{{#if videoEnded}}display: none;{{/if}}">
         <video id="intro" preload="metadata">
             <source src="/video/intro.mp4" type='video/mp4'>
             <source src="/video/intro.webm" type='video/webm'>

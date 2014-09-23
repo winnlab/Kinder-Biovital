@@ -47,14 +47,14 @@ define(
                         folder: '/img/',
                         callback: function () {
                             options.isReady.resolve();
-                            self.element.find('video')[0].play();
+                            // self.element.find('video')[0].play();
                         }
                     });
                 }
 
-                self.element.find('video').on('ended', function() {
+                // self.element.find('video').on('ended', function() {
                     self.module.attr('videoEnded', true);
-                });
+                // });
             },
 
             '{window} resize': function () {

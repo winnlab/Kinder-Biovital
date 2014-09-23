@@ -21,7 +21,7 @@ define(
                 // which frame show while init tale preview
                 frameIndex: 0,
                 // Player timeout
-                timeOut: 5000,
+                timeOut: 12000,
                 // is the last page of tale 'Sharing'
                 share: false
             }
