@@ -53,7 +53,7 @@ exports.init = (callback) ->
 		clientID: socialConfig.odnoklassniki.clientID
 		clientPublic: socialConfig.odnoklassniki.clientPublic
 		clientSecret: socialConfig.odnoklassniki.clientSecret
-		callbackURL: socialConfig.odnoklassniki.clientID
+		callbackURL: socialConfig.odnoklassniki.callbackURL		
 
 	, (accessToken, refreshToken, profile, done) ->
 

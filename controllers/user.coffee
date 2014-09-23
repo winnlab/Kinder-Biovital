@@ -54,8 +54,8 @@ Router.get '/count-likes/:id?', social.countLikes
 
 Router.get '/like/:id?', social.taleLike
 
-Router.get '/auth/odnoklassniki', OK.login
-Router.get "/auth/#{socialConfig.odnoklassniki.clientID}", passport.authenticate "odnoklassniki",
+Router.get '/login/ok', OK.login
+Router.get "/loged/ok", passport.authenticate "odnoklassniki",
 	successRedirect: '/simplePage/personal-form'
 	failureRedirect: '/simplePage/login-page'
 
