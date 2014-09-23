@@ -46,6 +46,8 @@ module.exports.taleLike = (req, res) ->
         'facebookexternalhit'
     ]
 
+    console.log req.headers['user-agent']
+
     isBot = _.find botHeaders, (bot) ->
         return req.headers['user-agent'].indexOf(bot) isnt -1
 
