@@ -2,7 +2,7 @@ doctype html
 html(lang="ua")
     head
 
-        meta(property="fb:app_id" content="#{fbAppId}")                
+        meta(property="fb:app_id" content="#{fbAppId}")
         meta(property="og:site_name" content="Kinder-Biovital")
         meta(property="og:type" content="website")
         meta(property="og:title" content="#{tale.name}")
@@ -11,6 +11,8 @@ html(lang="ua")
             meta(property="og:image" content="#{host}uploads/#{tale.cover}")
         else
             meta(property="og:image" content="#{host}img/favicon.png")
+
+        <link rel="canonical" href="#{host}fairy-tale/#{tale._id}" />
 
         title Kinder-Biovital
     body
