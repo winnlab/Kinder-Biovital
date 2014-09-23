@@ -46,18 +46,19 @@ module.exports.taleLike = (req, res) ->
         'facebookexternalhit'
     ]
 
-    console.log req.headers['user-agent']
-
     isBot = _.find botHeaders, (bot) ->
         return req.headers['user-agent'].indexOf(bot) isnt -1
 
     if not isBot
         return res.redirect 301, "/fairy-tale/#{req.params.id}"
 
+    console.log isBot
+
     async.waterfall [
         (next) ->
             Model 'Tale', 'findOne', next, _id: req.params.id
     ], (err, doc) ->
+        console.log 'render like page'
         View.render 'user/taleLike', res,
             fbAppId: socialConfig.facebook.clientID
             vkAppId: socialConfig.vk.apiId
