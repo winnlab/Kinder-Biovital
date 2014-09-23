@@ -39,9 +39,9 @@ define(
                 ],
 
                 instructions: {
-                    bg: '//www.youtube.com/embed/L7NyuuBN51M',
+                    bg: '//www.youtube.com/embed/-ifaAKZVWuY',
                     frame: '//www.youtube.com/embed/-GSl6LFAhFc',
-                    cover: '//www.youtube.com/embed/mca-rAJqI1A'                    
+                    cover: '//www.youtube.com/embed/mca-rAJqI1A'
                 }
             }
         }, {
