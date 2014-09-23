@@ -10,7 +10,7 @@ define(
             },
 
             logIn: function (cb) {
-                window.location.href = window.location.origin + '/auth/odnoklassniki'
+                window.location.href = window.location.origin + '/login/ok'
             },
 
             logedIn: function (response, cb) {
@@ -31,7 +31,7 @@ define(
 
             makeLike: function (id, options) {
                 setTimeout(function () {
-                    OK.CONNECT.insertShareWidget(id, options.url, "{width: 165,height: 35,st: 'straight',sz: 30,ck: 1}");
+                    OK.CONNECT.insertShareWidget(id, options.url, "{width:165,height:35,st:'straight',sz:30,ck:1}");
                 }, 0);
             },
 
