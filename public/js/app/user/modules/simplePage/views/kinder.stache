@@ -6,7 +6,7 @@
         </div>
     </div>
 
-    <a href="/" class="taleBtnWrap small closeFrame">
+    <a href="/" class="taleBtnWrap small closeFrame module">
         <div class="small taleBtn orange"></div>
     </a>
 

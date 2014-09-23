@@ -120,6 +120,10 @@ define(
                             });
                         }
 
+                        appState.attr('social').getProvider('ok').makeShare('ok-share-' + id, {
+                            'url': window.location.origin + '/like/' + id
+                        })
+
                         if (options.isReady) {
                             options.isReady.resolve();
                         }

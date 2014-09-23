@@ -181,8 +181,8 @@
             }
 
             &.ok {
-                width: 13px;
-                background-position: -28px 0;
+                @include size(21px);
+                background: none;
             }
 
             &.vk {

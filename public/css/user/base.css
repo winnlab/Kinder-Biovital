@@ -1035,8 +1035,9 @@ module {
       width: 18px;
       background-position: 0 0; }
     .taleZone.previewBlock .sharing .share.ok {
-      width: 13px;
-      background-position: -28px 0; }
+      height: 21px;
+      width: 21px;
+      background: none; }
     .taleZone.previewBlock .sharing .share.vk {
       width: 17px;
       background-position: -52px 0; }

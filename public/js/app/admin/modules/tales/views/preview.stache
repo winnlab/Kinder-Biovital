@@ -70,7 +70,7 @@
 <div class="sharing">
     <span class="shareLabel">{{locale.shareLabel}}</span>
     <span class="share fb" data-nw="fb" can-click="share"></span>
-    <!-- <span class="share ok" data-nw="ok" can-click="share"></span> -->
+    <span class="share ok" id="ok-share-{{tale._id}}"></span>
     <span class="share vk" data-nw="vk" can-click="share"></span>
 </div>
 

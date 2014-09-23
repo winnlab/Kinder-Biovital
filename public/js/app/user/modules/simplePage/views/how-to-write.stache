@@ -6,7 +6,7 @@
         </div>
     </div>
 
-    <a href="/{{#is page.link 'instruction'}}create-tale{{/is}}" class="taleBtnWrap small closeFrame">
+    <a href="/{{#is page.link 'instruction'}}create-tale{{/is}}" class="taleBtnWrap small closeFrame module">
         <div class="small taleBtn orange"></div>
     </a>
 

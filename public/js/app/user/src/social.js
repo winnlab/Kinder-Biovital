@@ -52,6 +52,10 @@ define(
                 }
             },
 
+            getProvider: function (key) {
+                return network[key];
+            },
+
             getUser: function (cb) {
                 network[this.nw].getUser(cb);
             }
