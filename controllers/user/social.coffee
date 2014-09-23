@@ -46,13 +46,13 @@ module.exports.taleLike = (req, res) ->
         'facebookexternalhit'
     ]
 
-    isBot = _.find botHeaders, (bot) ->
-        return req.headers['user-agent'].indexOf(bot) isnt -1
+    # isBot = _.find botHeaders, (bot) ->
+    #     return req.headers['user-agent'].indexOf(bot) isnt -1
+    #
+    # if not isBot
+    #     return res.redirect 301, "/fairy-tale/#{req.params.id}"
 
-    if not isBot
-        return res.redirect 301, "/fairy-tale/#{req.params.id}"
-
-    console.log isBot
+    # console.log isBot
 
     async.waterfall [
         (next) ->
