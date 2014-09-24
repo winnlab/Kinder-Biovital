@@ -21,7 +21,7 @@ define(
                     define: {
                         bgOffset: {
                             get: function () {
-                                if (this.attr('videoEnded')) {
+                                if (this.attr('loaded')) {
                                     return - (this.attr('bgSize.height') - taleConfig.taleSize.height) / 2;
                                 } else {
                                     return - this.attr('bgSize.height');
@@ -34,7 +34,7 @@ define(
                 self.module = new Module({
                     locale: appState.attr('locale'),
                     size: appState.attr('size'),
-                    videoEnded: false
+                    loaded: false
                 });
 
                 self.getBgSize();
@@ -46,15 +46,12 @@ define(
                         images: ['introTop.png', 'introBtm.png'],
                         folder: '/img/',
                         callback: function () {
-                            options.isReady.resolve();
-                            // self.element.find('video')[0].play();
+                            options.isReady.resolve();                            
+                            self.module.attr('loaded', true);
                         }
                     });
                 }
 
-                // self.element.find('video').on('ended', function() {
-                    self.module.attr('videoEnded', true);
-                // });
             },
 
             '{window} resize': function () {

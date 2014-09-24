@@ -12,16 +12,17 @@
     font-size: 15px;
     line-height: 130%;
 
-    .howToWrite & {
-
-    }
-
     &:after {
         content: '';
         z-index: -1;
         @include position(absolute, -32px null null -40px);
         @include size(726px 466px);
         background: url('#{$imgPath}pageBg.png');
+    }
+
+    video {
+        height: 110%;
+        margin: -15px auto;
     }
 
     list-slider {
@@ -74,13 +75,13 @@
 
         &.slide-0:before {
             content: '';
-            @include position(absolute, 35px null null -226px);
+            @include position(absolute, -1px null null -226px);
             @include size(221px 288px);
             background: url('#{$imgPath}kibi.png');
         }
         &.slide-1:before {
             content: '';
-            @include position(absolute, 12px null null -196px);
+            @include position(absolute, -8px null null -196px);
             @include size(185px 310px);
             background: url('#{$imgPath}gel.png');
         }
@@ -88,10 +89,12 @@
         div:first-child:first-letter {
             float: left;
             color: $orange;
-            font-size: 65px;
-            font-weight: normal;
+            font {
+                size: 65px;
+                weight: normal;
+                family: Futura;
+            }
             line-height: 60px;
-            font-family: Futura;
             margin: 3px 3px -7px -7px;
             text-shadow: 1px 2px 0 #bb6920;
         }
@@ -99,6 +102,13 @@
         div {
             margin: 0 0 10px;
         }
+    }
+
+    .watchIntro {
+        @include position(absolute, null null 34px 34px);
+        padding: 6px 15px;
+        height: 31px;
+        font-weight: bold;
     }
 
     ul {

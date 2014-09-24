@@ -11,9 +11,17 @@
     </a>
 
     <div class="pageWrap">
-        <list-slider data="{page.frames}">
+        <video preload="metadata" style="display: {{#if watchVideo}}block{{else}}none{{/if}};">
+            <source src="/video/intro.mp4" type='video/mp4'>
+            <source src="/video/intro.webm" type='video/webm'>
+            <source src="/video/intro.ogv" type='video/ogg'>
+        </video>
+        <list-slider data="{page.frames}" style="{{#if watchVideo}}display: none;{{/if}}">
             <div class="kinderSlide slide-{{@index}}">{{{frame.text}}}</div>
         </list-slider>
+        <div class="taleBtn orange watchIntro" style="{{#if watchVideo}}display: none;{{/if}}">
+            {{appState.locale.watchIntro}}
+        </div>
     </div>
 
     <div class="link taleBtnWrap big orange">

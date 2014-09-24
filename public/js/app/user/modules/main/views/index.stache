@@ -1,11 +1,7 @@
+<div class="loaderBg">
+    <img class="loader" src="/img/loader.gif">
+</div>
 <div class="mainPage">
-    <div class="videoBg" style="{{#if videoEnded}}display: none;{{/if}}">
-        <video id="intro" preload="metadata">
-            <source src="/video/intro.mp4" type='video/mp4'>
-            <source src="/video/intro.webm" type='video/webm'>
-            <source src="/video/intro.ogv" type='video/ogg'>
-        </video>
-    </div>
 
     <div class="positioned" style="top: {{size.topOffset}}; left: {{size.leftOffset}};">
 
@@ -24,7 +20,7 @@
             "/>
         </div>
 
-        <div class="content {{#if videoEnded}}active{{/if}}">
+        <div class="content {{#if loaded}}active{{/if}}">
             <div class="taleTitle">
                 <div class="innerTitle">
                     {{{locale.main.title}}}

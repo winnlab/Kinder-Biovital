@@ -18,15 +18,21 @@ define(
                     lang = appState.attr('lang'),
                     link = can.route.attr('id');
 
+                self.watchVideo = can.compute(false);
+
                 can.ajax({
                     url: (lang ? '/' + lang : '') + '/page/' + link
                 }).done(function (page) {
-                    self.element.html(
-                        can.view(self.options.viewpath + (page.data.view ? page.data.view : 'index') + '.stache', {
-                            appState: appState,
-                            page: page.data
-                        })
-                    );
+                    can.view(self.options.viewpath + (page.data.view ? page.data.view : 'index') + '.stache', {
+                        appState: appState,
+                        watchVideo: self.watchVideo,
+                        page: page.data
+                    }, function (fragment) {
+                        self.element.html(fragment);
+                        self.element.find('video').on('ended', function() {
+                            self.watchVideo(false);
+                        });
+                    });
                     self.loaded();
                 }).fail(function () {
                     self.loaded();
@@ -39,6 +45,12 @@ define(
                 if (self.options.isReady) {
                     self.options.isReady.resolve();
                 }
+            },
+
+            '.watchIntro click': function () {
+                var self = this;
+                self.watchVideo(true);
+                self.element.find('video')[0].play();
             }
 
         });

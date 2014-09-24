@@ -52,3 +52,4 @@ module.exports =
 	appName: 'Kinder-Biovital'
 	author: 'Автор'
 	allLikes: 'Всього лайків'
+	watchIntro: 'Переглянути ролик'

@@ -20,11 +20,20 @@ html(lang="ua")
 				bottom: 0;
 				left: 0;
 				z-index: 1010;
-				background: #4A4A4A;
+				background: #ffffff;
+			}
+			#preloader img {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				width: 250px;
+				height: 250px;
+				margin: -125px 0 0 -125px;
 			}
 	body
 		div#modules
 		div#preloader
+			img(src="/img/loader.gif")
 		div#fb-root
 		script(data-main="/js/app/user/core/core.js" src='/js/lib/requirejs/require.js')
 		script.
