@@ -121,8 +121,7 @@ define(
                         }
 
                         appState.attr('social').getProvider('ok').makeShare('ok-share-' + id, {
-                            // 'url': window.location.origin + '/like/' + id
-                            'url': 'http://promo.365rozvag.com.ua/like/541ffb7dc65b93723c0f5f3e'
+                            'url': window.location.origin + '/like/' + id
                         })
 
                         if (options.isReady) {
