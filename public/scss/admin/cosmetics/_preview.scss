@@ -136,13 +136,23 @@
         }
     }
 
-    .soundBtn {
-        position: absolute;
-        bottom: 18px;
-        left: 3px;
+    .soundBtnWrap {
+        @include position(absolute, null null 34px 28px);
+        @include size(49px);
         cursor: pointer;
-        @include size(103px 88px);
-        background: url('#{$imgPath}soundOn.png');
+        box-shadow: $outerShadow;
+        border-radius: 5px;
+        background: #fff;
+
+        .soundBtn {
+            @include position(absolute, 6px null null 6px);
+            @include size(36px 37px);
+            background-image: url('#{$imgPath}soundOn.jpg');
+
+            &.muted {
+                background-image: url('#{$imgPath}soundOff.jpg');
+            }
+        }
     }
 
     .sharing {
@@ -227,16 +237,26 @@
         }
 
         .playFrame {
-            @include position(absolute, 28px null null 86px);
-            @include size(86px 86px);
+            @include position(absolute, 15px null null 75px);
+            @include size(106px);
             z-index: 1;
             cursor: pointer;
+            background: $red;
+            border: 13px solid $white;
+            border-radius: 50%;
+            box-shadow: inset -1px -2px 0px 0px rgba(0, 0, 0, 0.2), $outerShadow;
 
             &:after {
                 content: '';
-                @include position(absolute, -28px null null -28px);
-                @include size(143px 142px);
-                background: url('#{$imgPath}playBtn.png');
+                @include position(absolute, 19px null null 27px);
+                @include size(40px 42px);
+                background: url('#{$imgPath}play.png');
+            }
+
+            &.pause:after {
+                @include position(absolute, 23px null null 23px);
+                @include size(34px);
+                background: url('#{$imgPath}pause.png');
             }
         }
     }

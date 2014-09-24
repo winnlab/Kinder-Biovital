@@ -21,7 +21,8 @@ define(
                 // which frame show while init tale preview
                 frameIndex: 0,
                 // Player timeout
-                timeOut: 12000,
+                // timeOut: 12000,
+                timeOut: 1000,
                 // is the last page of tale 'Sharing'
                 share: false
             }
@@ -41,6 +42,7 @@ define(
                     tale: {},
                     frame: {},
                     playTrack: true,
+                    showPause: false,
                     locale: appState.attr('locale'),
                     baseUrl: window.location.origin,
 
@@ -152,20 +154,27 @@ define(
 
             '.prevFrame click': function () {
                 this.changeFrame(-1);
+                self.module.attr('showPause', false);
                 clearInterval(this.playInterval);
             },
 
             '.nextFrame click': function () {
                 this.changeFrame(1);
+                self.module.attr('showPause', false);
                 clearInterval(this.playInterval);
             },
 
-            '.playFrame click': function () {
+            '.playFrame click': function (el) {
                 var self = this;
-
-                self.playInterval = setInterval(function () {
-                    self.changeFrame(1);
-                }, self.options.timeOut);
+                if (self.module.attr('showPause')) {
+                    clearInterval(self.playInterval);
+                    self.module.attr('showPause', false);
+                } else {
+                    self.module.attr('showPause', true);
+                    self.playInterval = setInterval(function () {
+                        self.changeFrame(1);
+                    }, self.options.timeOut);
+                }
             },
 
             changeFrame: function (i) {
@@ -178,6 +187,7 @@ define(
                     module.attr('cIndex', index + 1);
                     this.currentFrame(index);
                 } else {
+                    module.attr('showPause', false);
                     clearInterval(this.playInterval);
                 }
             },

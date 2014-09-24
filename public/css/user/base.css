@@ -996,14 +996,25 @@ module {
     font-size: 16px;
     text-align: center;
     vertical-align: middle; }
-.taleZone.previewBlock .soundBtn {
+.taleZone.previewBlock .soundBtnWrap {
   position: absolute;
-  bottom: 18px;
-  left: 3px;
+  bottom: 34px;
+  left: 28px;
+  height: 49px;
+  width: 49px;
   cursor: pointer;
-  height: 88px;
-  width: 103px;
-  background: url("/img/soundOn.png"); }
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background: #fff; }
+  .taleZone.previewBlock .soundBtnWrap .soundBtn {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    height: 37px;
+    width: 36px;
+    background-image: url("/img/soundOn.jpg"); }
+    .taleZone.previewBlock .soundBtnWrap .soundBtn.muted {
+      background-image: url("/img/soundOff.jpg"); }
 .taleZone.previewBlock .sharing {
   position: absolute;
   right: -3px;
@@ -1080,20 +1091,31 @@ module {
       background: url("/img/playN.png"); }
   .taleZone.previewBlock .frameControl .playFrame {
     position: absolute;
-    top: 28px;
-    left: 86px;
-    height: 86px;
-    width: 86px;
+    top: 15px;
+    left: 75px;
+    height: 106px;
+    width: 106px;
     z-index: 1;
-    cursor: pointer; }
+    cursor: pointer;
+    background: #df4a08;
+    border: 13px solid #f5ebd9;
+    border-radius: 50%;
+    box-shadow: inset -1px -2px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 5px 5px rgba(0, 0, 0, 0.1); }
     .taleZone.previewBlock .frameControl .playFrame:after {
       content: '';
       position: absolute;
-      top: -28px;
-      left: -28px;
-      height: 142px;
-      width: 143px;
-      background: url("/img/playBtn.png"); }
+      top: 19px;
+      left: 27px;
+      height: 42px;
+      width: 40px;
+      background: url("/img/play.png"); }
+    .taleZone.previewBlock .frameControl .playFrame.pause:after {
+      position: absolute;
+      top: 23px;
+      left: 23px;
+      height: 34px;
+      width: 34px;
+      background: url("/img/pause.png"); }
 .taleZone.previewBlock .trackWrap {
   display: none; }
 .taleZone.previewBlock .likeBox {
@@ -1248,6 +1270,14 @@ module {
     max-width: 70%;
     height: 0;
     padding-top: 40%; }
+  .popUpInfo .popUpTitle {
+    position: absolute;
+    top: -35px;
+    left: 0;
+    width: 100%;
+    font-family: Futura;
+    font-size: 32px;
+    color: #fff; }
   .popUpInfo iframe {
     position: absolute;
     top: 0;

@@ -467,10 +467,11 @@ define(
 
             '.question click': function () {
                 var self = this,
-                    source = self.options.instructions[self.module.attr('display')];
+                    display = self.module.attr('display'),
+                    source = self.options.instructions[display];
 
                 popUp.info({
-                    content: '<iframe src="' + source + '?autoplay=1" frameborder="0" allowfullscreen></iframe>'
+                    content: '<div class="popUpTitle">' + appState.attr('locale.' + display + 'How') + '</div><iframe src="' + source + '?autoplay=1" frameborder="0" allowfullscreen></iframe>'
                 });
 
             }

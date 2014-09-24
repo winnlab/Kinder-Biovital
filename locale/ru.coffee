@@ -53,3 +53,6 @@ module.exports =
 	author: 'Автор'
 	allLikes: 'Всего лайков'
 	watchIntro: 'Посмотреть ролик'
+	bgHow: 'Как выбрать фон'
+	frameHow: 'Как добавить героев на слайд'
+	coverHow: 'Как закончить сказку'

@@ -125,6 +125,16 @@
         padding-top: 40%;
     }
 
+    .popUpTitle {
+        @include position(absolute, -35px null null 0);
+        width: 100%;
+        font: {
+            family: Futura;
+            size: 32px;
+        }
+        color: #fff;
+    }
+
     iframe {
         @include position(absolute, 0 0 0 0);
         @include size(100%);

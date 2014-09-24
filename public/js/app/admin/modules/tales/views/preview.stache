@@ -61,14 +61,16 @@
 </div>
 
 {{#if tale.trackId}}
-    <div class="soundBtn"></div>
+    <div class="soundBtnWrap">
+        <div class="soundBtn{{#unless playTrack}} muted{{/unless}}"></div>
+    </div>
 {{/if}}
 
 <div class="frameControl">
     {{#isnt cIndex 1}}
         <div class="prevFrame"></div>
     {{/isnt}}
-    <div class="playFrame"></div>
+    <div class="playFrame{{#if showPause}} pause{{/if}}"></div>
     {{#isnt cIndex tale.frames.length}}
         <div class="nextFrame"></div>
     {{/isnt}}
