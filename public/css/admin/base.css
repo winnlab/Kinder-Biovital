@@ -954,7 +954,8 @@ html {
     text-align: center;
     font-size: 16px;
     background: #fff;
-    opacity: 0; }
+    opacity: 0;
+    font-family: Arial; }
 .taleZone.previewBlock .authorText.active {
   display: table; }
   .taleZone.previewBlock .authorText.active .authorInner {

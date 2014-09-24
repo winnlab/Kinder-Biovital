@@ -27,17 +27,22 @@
 
 </div>
 
-<div class="taleTitle">
-    <div class="innerTitle">
-        {{#if frame.share}}
+
+{{#if frame.share}}
+    <div class="taleTitle">
+        <div class="innerTitle">
             {{locale.liked}}?
-        {{else}}
-            {{#if tale.name}}
-                {{tale.name}}
-            {{/if}}
-        {{/if}}
+        </div>
     </div>
-</div>
+{{else}}
+    {{#if tale.name}}
+        <div class="taleTitle">
+            <div class="innerTitle">
+                {{tale.name}}
+            </div>
+        </div>
+    {{/if}}
+{{/if}}
 
 <div class="authorText{{#if frame.text}} active{{/if}}">
     <div class="authorInner">
@@ -55,7 +60,9 @@
     </div>
 </div>
 
-<div class="soundBtn"></div>
+{{#if tale.trackId}}
+    <div class="soundBtn"></div>
+{{/if}}
 
 <div class="frameControl">
     {{#isnt cIndex 1}}
