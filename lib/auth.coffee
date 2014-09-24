@@ -11,6 +11,10 @@ params =
 		failureRedirect: '/account/signin'
 		successRedirect: '/account'
 		session: true
+	odnoklassniki:
+		scope: [
+			'VALUABLE_ACCESS'			
+		]
 
 exports.isAuth = (req, res, next)->
 	path = url.parse req.path

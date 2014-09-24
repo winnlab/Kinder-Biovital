@@ -1009,7 +1009,7 @@ module {
   bottom: -11px;
   height: 69px;
   width: 195px;
-  padding: 15px 20px 23px 18px;
+  padding: 15px 23px 23px 18px;
   line-height: 170%;
   background: url("/img/playerShareBg.png");
   text-align: justify; }
@@ -1671,7 +1671,7 @@ module {
       font-weight: normal;
       line-height: 60px;
       font-family: Futura;
-      margin: 3px 3px -15px -7px;
+      margin: 3px 3px -7px -7px;
       text-shadow: 1px 2px 0 #bb6920; }
     .pageWrap .kinderSlide div {
       margin: 0 0 10px; }

@@ -14,16 +14,20 @@ parameters =
 	passwordField: 'password'
 
 passport.serializeUser (user, done) ->
-	done null, user.id
+	done null, user
 
-passport.deserializeUser (id, done) ->
+# passport.serializeUser (user, done) ->
+# 	done null, user.id
 
-	async.waterfall [
-		(next)->
-			Model 'User', 'findOne', next, _id : id
-		(user, next) ->
-			done null, user
-	], done
+passport.deserializeUser (user, done) ->
+	done null, user
+# passport.deserializeUser (id, done) ->
+	# async.waterfall [
+	# 	(next)->
+	# 		Model 'User', 'findOne', next, _id: id
+	# 	(user, next) ->
+	# 		done null, user
+	# ], done
 
 validation = (err, user, password, done) ->
 	if err
@@ -53,26 +57,13 @@ exports.init = (callback) ->
 		clientID: socialConfig.odnoklassniki.clientID
 		clientPublic: socialConfig.odnoklassniki.clientPublic
 		clientSecret: socialConfig.odnoklassniki.clientSecret
-		callbackURL: socialConfig.odnoklassniki.callbackURL		
+		callbackURL: socialConfig.odnoklassniki.callbackURL
 
 	, (accessToken, refreshToken, profile, done) ->
-
 		process.nextTick ->
-			async.waterfall [
-				(next) ->
-					Model 'User', 'findOne', next, {'ok.id': profile.id}
-				(visitor, next) ->
-					if visitor
-						done null, visitor
-					else
-						Model 'User', 'create', done,
-							ok:
-								id: profile.id
-								birthday: profile._json.birthday
-							firstName: profile.name.givenName
-							lastName: profile.name.familyName
-			], done
-
+			profile.accessToken = accessToken
+			profile.refreshToken = refreshToken
+			done null, profile
 
 	passport.use 'odnoklassniki', odnoklassnikiAuth
 	passport.use 'admin', adminAuth

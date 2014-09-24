@@ -28,7 +28,7 @@ define(
         return can.Control.extend({
             defaults: {
                 viewpath: 'app/modules/tale/views/',
-                dataArr: {                    
+                dataArr: {
                     tracks: TracksModel,
                     coverColors: CoverColorModel,
                     coverImages: CoverImagesModel,
@@ -58,11 +58,11 @@ define(
                     def.push(self.module.attr(key));
                 }
 
-                can.when.apply(can, def).then(function () {
+                self.element.html('<div class="taleForm"></div>')
+
+                can.when.apply(can, def).then(function () {                    
                     self.initSetControl(self.element.find('.taleForm'), new TalesModel(self.getStoredTale()));
                 });
-
-                self.element.html(can.view(options.viewpath + 'set.stache', self.module));
 
             },
 

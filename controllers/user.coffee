@@ -55,9 +55,11 @@ Router.get '/count-likes/:id?', social.countLikes
 Router.get '/like/:id?', social.taleLike
 
 Router.get '/login/ok', OK.login
-Router.get "/loged/ok", passport.authenticate "odnoklassniki",
-	successRedirect: '/simplePage/personal-form'
-	failureRedirect: '/simplePage/login-page'
+Router.get '/logged/ok',
+	passport.authenticate("odnoklassniki",	failureRedirect: '/create-tale'),
+	(req, res) ->
+		console.log req.params
+		res.send req.user
 
 #------- Hero ---------#
 

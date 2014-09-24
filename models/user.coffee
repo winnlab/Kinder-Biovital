@@ -41,11 +41,6 @@ UserShemaFields =
 	lastName:
 		type: String
 		required: false
-	ok:
-		id:
-			type: String
-		birthday:
-			type: String
 
 options =
 	collection: 'users'

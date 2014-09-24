@@ -11,6 +11,6 @@ module.exports =
 		clientID: 1101943552
 		clientPublic: 'CBAEFPKCEBABABABA'
 		clientSecret: '55C1FD7EA97F4FBDB571E7A8'
-		callbackURL: '/loged/ok'
+		callbackURL: '/logged/ok'
 
 	baseUrl: 'http://promo.365rozvag.com.ua/'
