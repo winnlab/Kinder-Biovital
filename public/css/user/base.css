@@ -103,7 +103,7 @@ module {
 .taleBtn {
   position: relative;
   border-radius: 7px;
-  background: #fff;
+  background: #f5ebd9;
   display: block;
   float: left;
   cursor: pointer;
@@ -123,10 +123,10 @@ module {
   .taleBtn:active {
     box-shadow: none; }
   .taleBtn.orange {
-    color: #fff;
+    color: #f5ebd9;
     background: #f59b06; }
   .taleBtn.red {
-    color: #fff;
+    color: #f5ebd9;
     background: #df4a08; }
 
 .coverImgTbl .coverImage {
@@ -175,6 +175,8 @@ module {
   letter-spacing: 2px;
   padding-top: 5px;
   text-shadow: 1px 2px 0 #bb6920; }
+  .chooseBg .taleTitle {
+    font-size: 28px; }
   .taleTitle .innerTitle {
     display: table-cell;
     vertical-align: middle;

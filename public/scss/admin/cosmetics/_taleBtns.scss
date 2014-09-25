@@ -36,7 +36,7 @@
 .taleBtn {
     position: relative;
     border-radius: 7px;
-    background: #fff;
+    background: $white;
     display: block;
     float: left;
     cursor: pointer;
@@ -63,11 +63,11 @@
     }
 
     &.orange {
-        color: #fff;
+        color: $white;
         background: $orange;
     }
     &.red {
-        color: #fff;
+        color: $white;
         background: $red;
     }
 }

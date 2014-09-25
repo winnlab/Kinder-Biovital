@@ -8,7 +8,7 @@
             {{/isnt}}
         </div>
 
-        <div class="taleIn{{#is display 'bg'}} active{{/is}}">
+        <div class="chooseBg taleIn{{#is display 'bg'}} active{{/is}}">
             <div class="big taleBtnWrap setDecorations">
                 {{#each decorations}}
                     <div class="big taleBtn{{#is time 0}} orange{{else}} red{{/is}}" can-click="setBg"></div>
