@@ -9,11 +9,14 @@ define({
     // the offset top of hero when it become bigger
     firstPlanTop: 570,
     // the minimal amount of left frameBg offset in pixels
-    frameBgMinOffset: 348,
+    // frameBgMinOffset: 348,
+    frameBgMinOffset: 0,
 
     taleSize: {
         width: 1224,
-        height: 650
+        height: 650,
+        minLeft: 348,
+        maxLeft: 2133
     },
 
     heroSize: {

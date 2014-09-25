@@ -285,12 +285,6 @@ module {
       z-index: 2;
       width: 382px;
       height: 124px; }
-      .taleZone .framePosWrap .miniBg .miniLimit {
-        position: absolute;
-        top: 0;
-        left: 33px;
-        height: 100%;
-        width: 316px; }
     .taleZone .framePosWrap .miniFrame {
       position: absolute;
       top: 0;
@@ -302,7 +296,7 @@ module {
       border-left: 13px solid #f59b06;
       border-right: 13px solid #f59b06;
       box-shadow: inset 2px 2px 0px 0px rgba(0, 0, 0, 0.3);
-      cursor: move; }
+      cursor: default; }
 
 .chooseMusic {
   position: absolute;
@@ -370,6 +364,29 @@ module {
       .chooseMusic .trackList .trackItem:last-of-type {
         margin: 0; }
 
+.frameBgPosition {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: col-resize;
+  cursor: ev-resize;
+  z-index: 0; }
+  .frameBgPosition:active {
+    cursor: none; }
+  .frameBgPosition .dragArrow {
+    position: absolute;
+    top: 271px;
+    left: 548px;
+    height: 100px;
+    width: 131px;
+    background: url("/img/dragArrow.png"); }
+
 .closeFrame, .question {
   position: absolute;
   top: 9px;
@@ -399,16 +416,19 @@ module {
   position: absolute;
   width: 3705px;
   height: 1200px;
-  top: -275px; }
-  .frameBg img {
+  top: -275px;
+  z-index: -2; }
+  .frameBg div {
     position: absolute;
     top: 0;
-    left: 0; }
-    .frameBg img.fg {
+    left: 0;
+    width: 3705px;
+    height: 1200px; }
+    .frameBg div.fg {
       z-index: 4; }
-    .frameBg img.plan {
+    .frameBg div.plan {
       z-index: 2; }
-    .frameBg img.bg {
+    .frameBg div.bg {
       z-index: 0; }
 
 .taleIn {
@@ -417,7 +437,8 @@ module {
   top: 0;
   right: 0;
   bottom: 0;
-  display: none; }
+  display: none;
+  z-index: 1; }
   .taleIn.active {
     display: block; }
 

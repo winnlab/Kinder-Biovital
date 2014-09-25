@@ -9,6 +9,11 @@
         </div>
 
         <div class="chooseBg taleIn{{#is display 'bg'}} active{{/is}}">
+
+            <div class="frameBgPosition">
+                <div class="dragArrow"></div>
+            </div>
+
             <div class="big taleBtnWrap setDecorations">
                 {{#each decorations}}
                     <div class="big taleBtn{{#is time 0}} orange{{else}} red{{/is}}" can-click="setBg"></div>
@@ -33,9 +38,7 @@
 
             <div class="framePosWrap">
                 <div class="miniBg" style="background-image: url(/uploads/{{arrFind decorations frame.decorationId '_id' 'preview'}})">
-                    <div class="miniLimit">
-                        <div class="miniFrame" style="{{miniOffset frame.left}}"></div>
-                    </div>
+                    <div class="miniFrame" style="{{miniOffset frame.left}}"></div>                    
                 </div>
             </div>
 

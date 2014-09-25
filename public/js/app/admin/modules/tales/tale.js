@@ -78,7 +78,7 @@ define(
                         return css;
                     },
                     miniOffset: function (left) {
-                        return 'left: ' + Math.round((left() - options.frameBgMinOffset / 2) / options.miniProp) + 'px';
+                        return 'left: ' + Math.round(left() / options.realProp) + 'px';
                     }
                 });
 
@@ -148,24 +148,27 @@ define(
                 }
             },
 
-            '.miniFrame draginit': function (el, ev, drag) {
-                drag.limit(el.parent());
-                drag.horizontal();
+            '.frameBgPosition mousedown': function (el, ev) {
+                var self = this;
+                self.mouseLeft = ev.pageX;
+                $(window).on('mousemove.frameBg', function(ev) {
+                    return self.setFrameLeft.call(self, ev.pageX);
+                });
+                $(window).on('mouseup', function(ev) {
+                    return $(window).off('mousemove.frameBg');
+                });
             },
 
-            '.miniFrame dragmove': 'setFrameLeft',
-
-            '.miniFrame dragend': 'setFrameLeft',
-
-            setFrameLeft: function (el, ev, drag) {
-                if (!drag.required_css_position) {
-                    return true;
-                }
-                var dragLeft = drag.required_css_position['0'],
-                    frameBgMinOffset = this.options.frameBgMinOffset,
+            setFrameLeft: function (mouseLeft) {
+                var deltaLeft = -(this.mouseLeft - mouseLeft),
                     module = this.module,
                     oldLeft = module.attr('frame.left'),
-                    left = ~~(this.options.realProp * dragLeft + frameBgMinOffset);
+                    left = ~~(oldLeft + deltaLeft);
+                this.mouseLeft = mouseLeft;
+
+                if (left < taleConfig.taleSize.minLeft || left > taleConfig.taleSize.maxLeft) {
+                    return false;
+                }
 
                 _.each(module.attr('frame.heroes'), function (hero){
                     var heroLeft = hero.attr('left'),

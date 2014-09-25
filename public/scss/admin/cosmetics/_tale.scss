@@ -191,15 +191,7 @@ $posWrapWidth: 424px;
             left: 21px;
             z-index: 2;
             width: 382px;
-            height: 124px;
-
-            .miniLimit {
-                position: absolute;
-                top: 0;
-                left: 33px;
-                height: 100%;
-                width: 316px;
-            }
+            height: 124px;            
 
         }
 
@@ -212,7 +204,7 @@ $posWrapWidth: 424px;
             border-left: 13px solid $orange;
             border-right: 13px solid $orange;
             box-shadow: inset 2px 2px 0px 0px rgba(0, 0, 0, 0.3);
-            cursor: move;
+            cursor: default;
         }
     }
 }
@@ -286,6 +278,24 @@ $posWrapWidth: 424px;
     }
 }
 
+.frameBgPosition {
+    @include position(absolute, 0 0 0 0);
+    @include user-select(none);
+    cursor: col-resize;
+    cursor: ev-resize;
+    z-index: 0;
+
+    &:active {
+        cursor: none;
+    }
+
+    .dragArrow {
+        @include position(absolute, 271px null null 548px);
+        @include size(131px 100px);
+        background: url('#{$imgPath}dragArrow.png');
+    }
+}
+
 .closeFrame {
     @include position(absolute, 9px 8px null null);
     z-index: 1;
@@ -316,11 +326,12 @@ $posWrapWidth: 424px;
     width: $frameBgWidth;
     height: $frameBgHeight;
     top: ($taleZoneHeight - $frameBgHeight) / 2;
+    z-index: -2;
 
-    img {
-        position: absolute;
-        top: 0;
-        left: 0;
+    div {
+        @include position(absolute, 0 null null 0);
+        width: $frameBgWidth;
+        height: $frameBgHeight;
 
         &.fg {
             z-index: 4;
@@ -337,6 +348,7 @@ $posWrapWidth: 424px;
 .taleIn {
     @include absolute();
     display: none;
+    z-index: 1;
 
     &.active {
         display: block;
