@@ -312,7 +312,7 @@ html {
     left: 14px;
     background: #f5ebd9;
     width: 121px;
-    padding: 5px 10px 0;
+    padding: 5px 10px 5px;
     border-radius: 3px 3px 0 0;
     font-size: 12px; }
     .chooseMusic .trackList:before, .chooseMusic .trackList.taleZone:after {
@@ -335,7 +335,11 @@ html {
       background: #f5ebd9; }
     .chooseMusic .trackList .trackItem {
       cursor: pointer;
-      margin-bottom: 5px; }
+      margin-bottom: 10px;
+      line-height: 100%;
+      text-align: center; }
+      .chooseMusic .trackList .trackItem:last-of-type {
+        margin: 0; }
 
 .closeFrame, .question {
   position: absolute;

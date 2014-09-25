@@ -24,6 +24,17 @@ $duration: 0.6s;
     font-family: Arial;
     overflow: hidden;
 
+    .innerTitle {
+        font-size: 34px;
+        padding: 4px 0 0;
+
+        .small {
+            font-size: 23px;
+            margin-top: -1px;
+            display: block;
+        }
+    }
+
     .bg {
         @include size(100%);
         position: absolute;
