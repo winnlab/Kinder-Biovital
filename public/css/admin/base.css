@@ -239,38 +239,41 @@ html {
         background: url("/img/nextInSlide.png"); }
   .taleZone .framePosWrap {
     position: absolute;
-    width: 424px;
-    height: 153px;
-    bottom: 21px;
-    left: 400px; }
+    bottom: 10px;
+    left: 448px;
+    height: 152px;
+    width: 328px; }
     .taleZone .framePosWrap:after {
       content: '';
       position: absolute;
-      left: -14px;
       top: -13px;
+      left: -14px;
       z-index: 1;
-      width: 451px;
-      height: 180px;
+      height: 192px;
+      width: 363px;
       background-image: url("/img/spread.png"); }
     .taleZone .framePosWrap .miniBg {
       position: absolute;
-      top: 12px;
-      left: 21px;
-      z-index: 2;
-      width: 382px;
-      height: 124px; }
+      top: 26px;
+      left: 18px;
+      height: 103px;
+      width: 295px;
+      z-index: 2; }
     .taleZone .framePosWrap .miniFrame {
       position: absolute;
-      top: 0;
-      height: 124px;
-      width: 154px;
+      top: -18px;
+      height: 142px;
+      width: 201px;
       margin-left: -13px;
-      border-radius: 10px;
-      border: 31px solid #f59b06;
-      border-left: 13px solid #f59b06;
-      border-right: 13px solid #f59b06;
-      box-shadow: inset 2px 2px 0px 0px rgba(0, 0, 0, 0.3);
-      cursor: default; }
+      cursor: move; }
+      .taleZone .framePosWrap .miniFrame:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 142px;
+        width: 201px;
+        background: url("/img/previewFrame.png"); }
 
 .chooseMusic {
   position: absolute;

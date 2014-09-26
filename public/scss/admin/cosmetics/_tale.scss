@@ -12,7 +12,7 @@ $frameBgWidth: 3705px;
 $frameBgHeight: 1200px;
 $taleBorderBg: #000;
 $titleWidth: 346px;
-$posWrapWidth: 424px;
+$posWrapWidth: 328px;
 
 .taleForm {
     .right-side {
@@ -167,43 +167,34 @@ $posWrapWidth: 424px;
     }
 
     .framePosWrap {
-        position: absolute;
-        width: $posWrapWidth;
-        height: 153px;
-        bottom: 21px;
-        left: ($taleZoneWidth - $posWrapWidth) / 2;
+        @include position(absolute, null null 10px ($taleZoneWidth - $posWrapWidth) / 2);
+        @include size($posWrapWidth 152px);
 
         &:after {
             content: '';
-            position: absolute;
-            left: -14px;
-            top: -13px;
+            @include position(absolute, -13px none none -14px);
             z-index: 1;
-            width: 451px;
-            height: 180px;
+            @include size(363px 192px);
             background-image: url('#{$imgPath}spread.png');
         }
 
         .miniBg {
-            position: absolute;
-            top: 12px;
-            left: 21px;
+            @include position(absolute, 26px null null 18px);
+            @include size(295px 103px);
             z-index: 2;
-            width: 382px;
-            height: 124px;
-
         }
 
         .miniFrame {
-            @include position(absolute, 0 null null null);
-            @include size(154px 124px);
+            @include position(absolute, -18px null null null);
+            @include size(201px 142px);
             margin-left: -13px;
-            border-radius: 10px;
-            border: 31px solid $orange;
-            border-left: 13px solid $orange;
-            border-right: 13px solid $orange;
-            box-shadow: inset 2px 2px 0px 0px rgba(0, 0, 0, 0.3);
-            cursor: default;
+            cursor: move;
+            &:after {
+                content: '';
+                @include position(absolute, 0 null null 0);
+                @include size(201px 142px);
+                background: url('#{$imgPath}previewFrame.png');
+            }
         }
     }
 }
