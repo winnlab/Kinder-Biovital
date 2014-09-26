@@ -418,17 +418,17 @@ module {
   height: 1200px;
   top: -275px;
   z-index: -2; }
-  .frameBg div {
+  .frameBg .img, .frameBg img {
     position: absolute;
     top: 0;
     left: 0;
     width: 3705px;
     height: 1200px; }
-    .frameBg div.fg {
+    .frameBg .img.fg, .frameBg img.fg {
       z-index: 4; }
-    .frameBg div.plan {
+    .frameBg .img.plan, .frameBg img.plan {
       z-index: 2; }
-    .frameBg div.bg {
+    .frameBg .img.bg, .frameBg img.bg {
       z-index: 0; }
 
 .taleIn {

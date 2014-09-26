@@ -1,7 +1,7 @@
 {{#each decorations}}
     {{#is frame.decorationId _id}}
-        <div class="fg" style="background-image: url(/uploads/{{fg}});"></div>
-        <div class="plan" style="background-image: url(/uploads/{{plan}})"></div>
-        <div class="bg" style="background-image: url(/uploads/{{bg}})"></div>
+        <div class="img fg" style="background-image: url(/uploads/{{fg}});"></div>
+        <div class="img plan" style="background-image: url(/uploads/{{plan}})"></div>
+        <div class="img bg" style="background-image: url(/uploads/{{bg}})"></div>
     {{/is}}
 {{/each}}
