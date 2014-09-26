@@ -21,7 +21,7 @@ define(
                 // which frame show while init tale preview
                 frameIndex: 0,
                 // Player timeout
-                timeOut: 12000,                
+                timeOut: 12000,
                 // is the last page of tale 'Sharing'
                 share: false
             }
@@ -153,13 +153,13 @@ define(
 
             '.prevFrame click': function () {
                 this.changeFrame(-1);
-                self.module.attr('showPause', false);
+                this.module.attr('showPause', false);
                 clearInterval(this.playInterval);
             },
 
             '.nextFrame click': function () {
                 this.changeFrame(1);
-                self.module.attr('showPause', false);
+                this.module.attr('showPause', false);
                 clearInterval(this.playInterval);
             },
 
