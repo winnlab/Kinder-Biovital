@@ -13,7 +13,6 @@
     "tests"
   ],
   "dependencies": {
-    "canjs": "~2.1.3",
     "requirejs": "~2.1.14",
     "require-css": "~0.1.5",
     "jquery": "~2.1.1",
@@ -22,7 +21,10 @@
     "jquery-form": "https://github.com/malsup/form.git#latest",
     "fontawesome": "~4.2.0",
     "jquerypp": "~1.0.1",
-    "malihu-custom-scrollbar-plugin": "~3.0.4"
+    "malihu-custom-scrollbar-plugin": "~3.0.4",
+    "steal": "~0.3.0",
+    "canjs": "~2.1.3",
+    "canjsView": "git://github.com/bitovi/canjs.git#017d8aed847dc69e7abaae1bd3edb274c13cb89d"
   },
   "devDependencies": {
     "mocha": "~1.21.4",
