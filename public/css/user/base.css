@@ -418,6 +418,8 @@ module {
   height: 1200px;
   top: -275px;
   z-index: -2; }
+  .talePreview .frameBg {
+    z-index: 0; }
   .frameBg .img, .frameBg img {
     position: absolute;
     top: 0;

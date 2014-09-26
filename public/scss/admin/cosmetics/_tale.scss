@@ -328,6 +328,10 @@ $posWrapWidth: 424px;
     top: ($taleZoneHeight - $frameBgHeight) / 2;
     z-index: -2;
 
+    .talePreview & {
+        z-index: 0;
+    }
+
     .img, img {
         @include position(absolute, 0 null null 0);
         width: $frameBgWidth;
