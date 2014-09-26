@@ -10,22 +10,22 @@ define({
 		}],
 		modules: [{
 			name: 'main',
-			path: 'app/modules/main/main'
+			path: 'modules/main/'
 		}, {
 			name: 'tales',
-			path: 'app/modules/tales/tales'
+			path: 'modules/tales/'
 		}, {
 			name: 'create-tale',
-			path: 'app/modules/tale/tale'
+			path: 'modules/tale/'
 		}, {
 			name: 'fairy-tale',
-			path: 'app/modules/tale/view'
+			path: 'modules/tale/view'
 		}, {
 			name: 'sp',
-			path: 'app/modules/simplePage/simplePage'
+			path: 'modules/simplePage/'
 		}, {
 			name: 'rating',
-			path: 'app/modules/rating/rating'
+			path: 'modules/rating/'
 		}]
 	},
 	social: {

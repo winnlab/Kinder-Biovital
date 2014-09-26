@@ -24,16 +24,27 @@
 	}());
 
 	System.config({
-		baseURL: '/js/app/user',
-		main: 'core/',
+		baseURL: '/js/app',
+		main: 'user/core/',
 		map: {
 			"can/util/util.js": "can/util/jquery/jquery.js",
 			"jquery/jquery": "jquery"
 		},
 		paths: {
+			// Canjs
+			// "can/*": "/js/lib/canjs/steal/canjs/*.js"
+			"can/*": "/js/lib/canjsView/*.js",
+			"can": "/js/lib/canjsView/can.js",
+			// App
+			"core/*": "/js/app/user/core/*.js",
+			"modules/*": "/js/app/user/modules/*.js",
+			"components/*": "/js/app/components/*.js",
+			"lib/*": "/js/app/lib/*.js",
+			"ui/*": "/js/app/ui/*.js",
+			"utils/*": "/js/app/utils/*.js",
+			// Vendors
 			"jquery": "/js/lib/jquery/dist/jquery.js",
-			"can/*": "/js/lib/canjs/steal/canjs/*.js"
-			// "can/*": "/js/lib/canjsView/*.js"
+			"lodash": "/js/lib/lodash/dist/lodash.js"
 		},
 		meta: {
 			jquery: {
@@ -41,17 +52,22 @@
 				deps: supportsUnknownElements ? undefined : ["can/lib/html5shiv.js"]
 			},
 			can: {
-				deps: ['jquery']
-			},
-			"ui/core": {deps: ["jquery","theme/core.css!","theme/theme.css!"]},
-			"ui/widget": {deps: ["jquery"]},
-			"ui/accordion": {deps: ["ui/core","ui/widget","theme/accordion.css!"]}
+				deps: [
+					'jquery',
+					'can/route/pushstate/',
+					'can/map/define/',
+					'can/map/delegate/',
+					'can/map/sort/',
+					'can/list/promise/',
+					'can/construct/super/'
+				]
+			}
 		},
 		ext: {
 			js: 'js',
 			css: 'css',
-			mustache: "can/view/mustache/mustache.js",
-			stache: "can/view/stache/stache.js"
+			mustache: "can/view/mustache/system",
+			stache: "can/view/stache/system"
 		},
 		bundle: [
             "components/home/home",

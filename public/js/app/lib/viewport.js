@@ -1,9 +1,11 @@
 define([
-    'canjs'
+    'can/'
 ],
     function (can) {
 
-        var Viewprot = can.Control.extend({
+        'use strict';
+
+        var Viewprot = can.Control.extend({}, {
             init: function () {
                 this.state = new can.Map({
                     width: 0,
@@ -11,7 +13,7 @@ define([
                 });
 
                 this._setViewWidth();
-                this._setViewHeight();
+                this._setViewHeight();                
             },
 
             _setViewWidth: function () {
@@ -21,7 +23,7 @@ define([
                         ? document.documentElement.clientWidth
                         : document.body.offsetWidth));
                 if (width < 1224) {
-                    width = 1224;                    
+                    width = 1224;
                 }
 
                 this.state.attr('width', width);
@@ -54,9 +56,7 @@ define([
                 return this.state.attr('height');
             }
         });
-        var viewport = new Viewprot('body');
-        window['viewport'] = viewport;
-        return viewport;
 
+        return new Viewprot(document.body);
     }
 );

@@ -1,5 +1,5 @@
 define(
-    ['canjs', 'core/appState', 'lib/preloader', 'lib/viewport', 'modules/tales/taleConfig'],
+    ['can', 'core/appState', 'lib/preloader', 'lib/viewport', 'modules/tales/taleConfig'],
 
     function (can, appState, Preloader, viewport, taleConfig) {
 
@@ -46,7 +46,7 @@ define(
                         images: ['introTop.png', 'introBtm.png'],
                         folder: '/img/',
                         callback: function () {
-                            options.isReady.resolve();                            
+                            options.isReady.resolve();
                             self.module.attr('loaded', true);
                         }
                     });

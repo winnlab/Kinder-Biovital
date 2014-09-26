@@ -1,8 +1,8 @@
 define([
-	'canjs',
+	'can/',
 	'lib/viewport'
 ],
-	function (can, viewport) {		
+	function (can, viewport) {
 		var AppState = can.Map.extend({
 				//Settings
 				imgPath: '/img/',
@@ -26,7 +26,7 @@ define([
 				}
 
 			}),
-			appState = new AppState();
+			appState = new AppState();		
 
 		delete window.data;
 
