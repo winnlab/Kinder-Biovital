@@ -78,7 +78,7 @@ define(
                         return css;
                     },
                     miniOffset: function (left) {
-                        return 'left: ' + Math.round(left() / options.realProp) + 'px';
+                        return 'left: ' + Math.round((left() - options.frameBgMinOffset / 2) / options.miniProp) + 'px';
                     }
                 });
 
@@ -148,6 +148,27 @@ define(
                 }
             },
 
+            '.miniFrame draginit': function (el, ev, drag) {
+                drag.limit(el.parent());
+                drag.horizontal();
+            },
+
+            '.miniFrame dragmove': 'setMiniFrameLeft',
+
+            '.miniFrame dragend': 'setMiniFrameLeft',
+
+            setMiniFrameLeft: function (el, ev, drag) {
+                if (!drag.required_css_position) {
+                    return true;
+                }
+                var dragLeft = drag.required_css_position['0'],
+                    frameBgMinOffset = this.options.frameBgMinOffset,
+                    module = this.module,
+                    oldLeft = module.attr('frame.left'),
+                    left = ~~(this.options.realProp * dragLeft + frameBgMinOffset);
+                this.setFrameLeft(left);
+            },
+
             '.frameBgPosition mousedown': function (el, ev) {
                 var self = this;
                 self.mouseLeft = ev.pageX;
@@ -159,12 +180,19 @@ define(
                 });
             },
 
-            setFrameLeft: function (mouseLeft) {
+            setMouseFrameLeft: function (mouseLeft) {
                 var deltaLeft = -(this.mouseLeft - mouseLeft),
-                    module = this.module,
-                    oldLeft = module.attr('frame.left'),
+                    oldLeft = this.module.attr('frame.left'),
                     left = ~~(oldLeft + deltaLeft);
+
                 this.mouseLeft = mouseLeft;
+
+                this.setFrameLeft(left);
+            },
+
+            setFrameLeft: function (left) {
+                var module = this.module,
+                    oldLeft = module.attr('frame.left');
 
                 if (left < taleConfig.taleSize.minLeft || left > taleConfig.taleSize.maxLeft) {
                     return false;
