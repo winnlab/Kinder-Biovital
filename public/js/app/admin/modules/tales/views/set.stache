@@ -10,9 +10,7 @@
 
         <div class="chooseBg taleIn{{#is display 'bg'}} active{{/is}}">
 
-            <div class="frameBgPosition">
-                <div class="dragArrow"></div>
-            </div>
+            <div class="frameBgPosition"></div>
 
             <div class="big taleBtnWrap setDecorations">
                 {{#each decorations}}
@@ -38,7 +36,7 @@
 
             <div class="framePosWrap">
                 <div class="miniBg" style="background-image: url(/uploads/{{arrFind decorations frame.decorationId '_id' 'preview'}})">
-                    <div class="miniFrame" style="{{miniOffset frame.left}}"></div>                    
+                    <div class="miniFrame" style="{{miniOffset frame.left}}"></div>
                 </div>
             </div>
 
@@ -67,6 +65,16 @@
                 <div class="small taleBtn orange"></div>
             </div>
 
+            <div class="taleBtnWrap panels">
+                <div class="taleBtn red" can-click="changeCollapse">
+                    {{#if collapsed}}
+                        {{locale.setTale.expand}}
+                    {{else}}
+                        {{locale.setTale.collapse}}
+                    {{/if}}
+                </div>
+            </div>
+
             <div class="leftPanel">
                 <div class="{{#if showText}}removeTitr{{else}}addTitr{{/if}} taleBtnWrap medium">
                     <div class="taleBtn orange">
@@ -79,20 +87,6 @@
                 </div>
 
                 <div class="taleBtnWrap medium">
-                    <div class="taleBtn orange" can-click="changeCollapse">
-                        {{#if collapsed}}
-                            {{locale.setTale.expand}}
-                        {{else}}
-                            {{locale.setTale.collapse}}
-                        {{/if}}
-                    </div>
-                </div>
-
-                <div class="taleBtnWrap medium">
-                    <div class="taleBtn orange changeBg" data-display="bg">{{locale.setTale.changeBg}}</div>
-                </div>
-
-                <div class="taleBtnWrap medium">
                     <div class="taleBtn orange">
                         <div class="title">{{locale.setTale.addHero}}</div>
                         {{#each heroes}}
@@ -102,6 +96,11 @@
                         {{/each}}
                     </div>
                 </div>
+
+                <div class="taleBtnWrap medium">
+                    <div class="taleBtn orange changeBg" data-display="bg">{{locale.setTale.changeBg}}</div>
+                </div>
+
             </div>
 
             {{>/js/app/admin/modules/tales/views/trackList.stache}}

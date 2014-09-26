@@ -15,25 +15,29 @@ define(
 
             init: function () {
                 var self = this,
-                    options = this.options;
-
-                var Module = can.Map.extend({
-                    define: {
-                        bgOffset: {
-                            get: function () {
-                                if (this.attr('loaded')) {
-                                    return - (this.attr('bgSize.height') - taleConfig.taleSize.height) / 2;
-                                } else {
-                                    return - this.attr('bgSize.height');
+                    options = this.options,
+                    Module = can.Map.extend({
+                        define: {
+                            bgOffset: {
+                                get: function () {
+                                    if (this.attr('loaded')) {
+                                        return - (this.attr('bgSize.height') - taleConfig.taleSize.height) / 2;
+                                    } else {
+                                        return - this.attr('bgSize.height');
+                                    }
                                 }
                             }
                         }
-                    }
-                });
+                    }),
+                    offset = $('#preloader img').offset();
 
                 self.module = new Module({
                     locale: appState.attr('locale'),
                     size: appState.attr('size'),
+                    loaderPosition: {
+                        left: offset.left,
+                        top: offset.top
+                    },
                     loaded: false
                 });
 
@@ -46,7 +50,7 @@ define(
                         images: ['introTop.png', 'introBtm.png'],
                         folder: '/img/',
                         callback: function () {
-                            options.isReady.resolve();                            
+                            options.isReady.resolve();
                             self.module.attr('loaded', true);
                         }
                     });

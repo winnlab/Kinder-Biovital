@@ -134,21 +134,24 @@ module {
   background-repeat: no-repeat;
   background-position: center center; }
 
-.taleForm .right-side {
-  overflow-y: hidden;
-  overflow-x: visible;
-  min-height: 820px;
-  position: relative;
-  margin-left: 0;
-  min-height: 650px; }
+.taleForm {
+  background: #52e2ed; }
+  .taleForm .right-side {
+    overflow-y: hidden;
+    overflow-x: visible;
+    min-height: 820px;
+    position: relative;
+    margin-left: 0;
+    min-height: 650px; }
 
 .taleContainer {
   min-width: 1604px;
   min-height: 820px;
-  width: 100%;
   position: absolute;
-  left: 0;
   top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
   overflow: hidden; }
   .taleContainer.small {
     width: 100%;
@@ -329,6 +332,9 @@ module {
     display: block;
     border-radius: 4px;
     overflow: hidden; }
+    .chooseMusic .musicLabel.chosen {
+      color: #333;
+      text-shadow: none; }
   .chooseMusic .trackList {
     position: absolute;
     bottom: 50px;
@@ -374,18 +380,10 @@ module {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  cursor: col-resize;
-  cursor: ev-resize;
+  cursor: url("/img/dragArrow.png"), move;
   z-index: 0; }
   .frameBgPosition:active {
     cursor: none; }
-  .frameBgPosition .dragArrow {
-    position: absolute;
-    top: 271px;
-    left: 548px;
-    height: 100px;
-    width: 131px;
-    background: url("/img/dragArrow.png"); }
 
 .closeFrame, .question {
   position: absolute;
@@ -489,6 +487,22 @@ module {
     border-radius: 10px;
     box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.3); }
 
+.panels {
+  position: absolute;
+  top: 10px;
+  left: 11px;
+  padding: 3px 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  width: 115px;
+  font-weight: bold; }
+  .panels .taleBtn {
+    padding: 5px 2px 4px;
+    margin-bottom: 1px;
+    float: none;
+    text-align: center;
+    border-radius: 3px; }
+
 .authorText {
   position: absolute;
   top: 110px;
@@ -523,7 +537,7 @@ module {
     background: none; }
 
 .taleZone .displayFrame .chooseMusic {
-  bottom: -95px;
+  bottom: -63px;
   left: -176px;
   z-index: 1; }
   .small .taleZone .displayFrame .chooseMusic {
@@ -532,7 +546,7 @@ module {
 
 .btmPanel {
   position: absolute;
-  bottom: -119px;
+  bottom: -107px;
   left: 326px;
   z-index: 1; }
   .small .btmPanel {
@@ -582,13 +596,14 @@ module {
 
 .rightPanel {
   position: absolute;
-  top: 453;
   right: -179px;
+  bottom: 0;
   z-index: 1;
   width: 156px; }
   .small .rightPanel {
     right: 16px;
-    top: 357px; }
+    top: 357px;
+    bottom: auto; }
   .rightPanel .taleBtnWrap {
     display: block;
     margin: 0 0 9px;
@@ -736,8 +751,8 @@ module {
       position: absolute;
       top: 0;
       right: 0;
-      height: 30px;
-      width: 30px;
+      height: 35px;
+      width: 35px;
       background: #f4ecd9;
       box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
       border-radius: 5px;
@@ -745,10 +760,10 @@ module {
       .heroInDrag .replicaBtn.add:after {
         content: '';
         position: absolute;
-        top: 7px;
-        left: 4px;
-        height: 18px;
-        width: 23px;
+        top: 8px;
+        left: 5px;
+        height: 19px;
+        width: 25px;
         background: url("/img/addBubble.png"); }
     .heroInDrag .replicaBtn.remove {
       left: auto;
@@ -1417,27 +1432,21 @@ module {
   background-position: center center; }
 
 .loaderBg {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background: #fff;
+  background: #f5ebd9;
   z-index: -1; }
   .loaderBg img {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    bottom: 0;
-    left: 50%;
-    height: 250px;
-    width: 250px;
-    margin: -125px 0 0 -125px; }
+    position: absolute; }
 
 .mainPage {
   height: 100%;
   width: 100%;
   position: relative;
+  z-index: 1;
   font-family: Arial;
   overflow: hidden; }
   .mainPage .innerTitle {
@@ -1455,9 +1464,9 @@ module {
     .mainPage .bg img {
       position: absolute;
       left: 0;
-      -webkit-transition: all 0.6s 0 ease-in-out;
-      -moz-transition: all 0.6s 0 ease-in-out;
-      transition: all 0.6s 0 ease-in-out;
+      -webkit-transition: all 0.6s ease-in-out;
+      -moz-transition: all 0.6s ease-in-out;
+      transition: all 0.6s ease-in-out;
       display: block; }
   .mainPage .content {
     height: 100%;
@@ -1733,13 +1742,12 @@ module {
     .pageWrap .kinderSlide div:first-child:first-letter {
       float: left;
       color: #f59b06;
+      font-size: 65px;
+      font-weight: normal;
+      font-family: Futura;
       line-height: 60px;
       margin: 3px 3px -7px -7px;
       text-shadow: 1px 2px 0 #bb6920; }
-      .pageWrap .kinderSlide div:first-child:first-letter font {
-        size: 65px;
-        weight: normal;
-        family: Futura; }
     .pageWrap .kinderSlide div {
       margin: 0 0 10px; }
   .pageWrap .watchIntro {

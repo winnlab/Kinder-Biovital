@@ -1,5 +1,8 @@
 <div class="loaderBg">
-    <img class="loader" src="/img/loader.gif">
+    <img class="loader" src="/img/loader.gif" style="
+        left: {{loaderPosition.left}}px;
+        top: {{loaderPosition.top}}px;
+    ">
 </div>
 <div class="mainPage">
 

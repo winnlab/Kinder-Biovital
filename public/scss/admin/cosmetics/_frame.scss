@@ -50,6 +50,22 @@
 
 }
 
+.panels {
+    @include position(absolute, 10px null null 11px);
+    padding: 3px 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 115px;
+    font-weight: bold;
+    .taleBtn {
+        padding: 5px 2px 4px;
+        margin-bottom: 1px;
+        float: none;
+        text-align: center;
+        border-radius: 3px;
+    }
+}
+
 .authorText {
     position: absolute;
     top: 110px;
@@ -91,7 +107,7 @@
     }
 }
 .taleZone .displayFrame .chooseMusic {
-    bottom: -95px;
+    bottom: -63px;
     left: -176px;
     z-index: 1;
 
@@ -102,9 +118,7 @@
 }
 
 .btmPanel {
-    position: absolute;
-    bottom: -119px;
-    left: 326px;
+    @include position(absolute, null null -107px 326px);
     z-index: 1;
 
     .small & {
@@ -169,13 +183,14 @@
 }
 
 .rightPanel {
-    @include position(absolute, 453 -179px null null);
+    @include position(absolute, null -179px 0 null);
     z-index: 1;
     width: 156px;
 
     .small & {
         right: 16px;
         top: 357px;
+        bottom: auto;
     }
 
     .taleBtnWrap {
@@ -348,7 +363,7 @@
 
         &.add {
             @include position(absolute, 0 0 null null);
-            @include size(30px 30px);
+            @include size(35px);
             background: #f4ecd9;
             box-shadow: $outerShadow;
             border-radius: 5px;
@@ -356,8 +371,8 @@
 
             &:after {
                 content: '';
-                @include position(absolute, 7px null null 4px);
-                @include size(23px 18px);
+                @include position(absolute, 8px null null 5px);
+                @include size(25px 19px);
                 background: url('#{$imgPath}addBubble.png');
             }
         }

@@ -23,17 +23,16 @@ $posWrapWidth: 424px;
         margin-left: 0;
         min-height: 650px;
     }
+    background: #52e2ed;
 }
 
 .taleContainer {
     min-width: $taleContainerWidth;
     min-height: $taleContainerHeight;
+    @include position(absolute, 0 null null 0);
+    z-index: 1;
     width: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
     overflow: hidden;
-
 
     &.small {
         width: 100%;
@@ -242,6 +241,11 @@ $posWrapWidth: 424px;
         display: block;
         border-radius: 4px;
         overflow: hidden;
+
+        &.chosen {
+            color: #333;
+            text-shadow: none;
+        }
     }
 
     .trackList {
@@ -281,19 +285,13 @@ $posWrapWidth: 424px;
 .frameBgPosition {
     @include position(absolute, 0 0 0 0);
     @include user-select(none);
-    cursor: col-resize;
-    cursor: ev-resize;
+    cursor: url('#{$imgPath}dragArrow.png'), move;
     z-index: 0;
 
     &:active {
         cursor: none;
     }
 
-    .dragArrow {
-        @include position(absolute, 271px null null 548px);
-        @include size(131px 100px);
-        background: url('#{$imgPath}dragArrow.png');
-    }
 }
 
 .closeFrame {

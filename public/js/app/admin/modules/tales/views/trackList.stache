@@ -5,7 +5,7 @@
         {{/each}}
     </div>
     <div class="taleBtn orange showTracks">
-        <span class="musicLabel">
+        <span class="musicLabel {{#if tale.trackId}}chosen{{/if}}">
             {{#unless tale.trackId}}
                 {{locale.setTale.tracks}}
             {{/unless}}
