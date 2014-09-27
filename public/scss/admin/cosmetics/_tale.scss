@@ -187,7 +187,7 @@ $posWrapWidth: 328px;
         .miniFrame {
             @include position(absolute, -18px null null null);
             @include size(201px 142px);
-            margin-left: -13px;
+            margin-left: -28px;
             cursor: move;
             &:after {
                 content: '';

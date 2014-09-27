@@ -173,7 +173,7 @@ define(
                 var self = this;
                 self.mouseLeft = ev.pageX;
                 $(window).on('mousemove.frameBg', function(ev) {
-                    return self.setFrameLeft.call(self, ev.pageX);
+                    return self.setMouseFrameLeft.call(self, ev.pageX);
                 });
                 $(window).on('mouseup', function(ev) {
                     return $(window).off('mousemove.frameBg');

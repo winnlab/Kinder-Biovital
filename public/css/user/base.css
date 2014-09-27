@@ -134,21 +134,24 @@ module {
   background-repeat: no-repeat;
   background-position: center center; }
 
-.taleForm .right-side {
-  overflow-y: hidden;
-  overflow-x: visible;
-  min-height: 820px;
-  position: relative;
-  margin-left: 0;
-  min-height: 650px; }
+.taleForm {
+  background: #52e2ed; }
+  .taleForm .right-side {
+    overflow-y: hidden;
+    overflow-x: visible;
+    min-height: 820px;
+    position: relative;
+    margin-left: 0;
+    min-height: 650px; }
 
 .taleContainer {
   min-width: 1604px;
   min-height: 820px;
-  width: 100%;
   position: absolute;
-  left: 0;
   top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
   overflow: hidden; }
   .taleContainer.small {
     width: 100%;
@@ -265,38 +268,41 @@ module {
         background: url("/img/nextInSlide.png"); }
   .taleZone .framePosWrap {
     position: absolute;
-    width: 424px;
-    height: 153px;
-    bottom: 21px;
-    left: 400px; }
+    bottom: 10px;
+    left: 448px;
+    height: 152px;
+    width: 328px; }
     .taleZone .framePosWrap:after {
       content: '';
       position: absolute;
-      left: -14px;
       top: -13px;
+      left: -14px;
       z-index: 1;
-      width: 451px;
-      height: 180px;
+      height: 192px;
+      width: 363px;
       background-image: url("/img/spread.png"); }
     .taleZone .framePosWrap .miniBg {
       position: absolute;
-      top: 12px;
-      left: 21px;
-      z-index: 2;
-      width: 382px;
-      height: 124px; }
+      top: 26px;
+      left: 18px;
+      height: 103px;
+      width: 295px;
+      z-index: 2; }
     .taleZone .framePosWrap .miniFrame {
       position: absolute;
-      top: 0;
-      height: 124px;
-      width: 154px;
-      margin-left: -13px;
-      border-radius: 10px;
-      border: 31px solid #f59b06;
-      border-left: 13px solid #f59b06;
-      border-right: 13px solid #f59b06;
-      box-shadow: inset 2px 2px 0px 0px rgba(0, 0, 0, 0.3);
-      cursor: default; }
+      top: -18px;
+      height: 142px;
+      width: 201px;
+      margin-left: -28px;
+      cursor: move; }
+      .taleZone .framePosWrap .miniFrame:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 142px;
+        width: 201px;
+        background: url("/img/previewFrame.png"); }
 
 .chooseMusic {
   position: absolute;
@@ -329,6 +335,9 @@ module {
     display: block;
     border-radius: 4px;
     overflow: hidden; }
+    .chooseMusic .musicLabel.chosen {
+      color: #333;
+      text-shadow: none; }
   .chooseMusic .trackList {
     position: absolute;
     bottom: 50px;
@@ -374,18 +383,10 @@ module {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  cursor: col-resize;
-  cursor: ev-resize;
+  cursor: url("/img/dragArrow.png"), move;
   z-index: 0; }
   .frameBgPosition:active {
     cursor: none; }
-  .frameBgPosition .dragArrow {
-    position: absolute;
-    top: 271px;
-    left: 548px;
-    height: 100px;
-    width: 131px;
-    background: url("/img/dragArrow.png"); }
 
 .closeFrame, .question {
   position: absolute;
@@ -418,17 +419,19 @@ module {
   height: 1200px;
   top: -275px;
   z-index: -2; }
-  .frameBg div {
+  .talePreview .frameBg {
+    z-index: 0; }
+  .frameBg .img, .frameBg img {
     position: absolute;
     top: 0;
     left: 0;
     width: 3705px;
     height: 1200px; }
-    .frameBg div.fg {
+    .frameBg .img.fg, .frameBg img.fg {
       z-index: 4; }
-    .frameBg div.plan {
+    .frameBg .img.plan, .frameBg img.plan {
       z-index: 2; }
-    .frameBg div.bg {
+    .frameBg .img.bg, .frameBg img.bg {
       z-index: 0; }
 
 .taleIn {
