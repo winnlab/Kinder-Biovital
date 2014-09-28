@@ -21,8 +21,17 @@
     }
 
     video {
-        height: 110%;
+        height: 375px;
         margin: -15px auto;
+        display: block;
+    }
+
+    .backToText {
+        @include position(absolute, 14px null null 0);
+        padding: 1px 10px;
+        border-radius: 3px;
+        text-transform: lowercase;
+        font-size: 14px;
     }
 
     list-slider {

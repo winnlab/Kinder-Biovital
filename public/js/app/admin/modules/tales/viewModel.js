@@ -25,6 +25,31 @@ define(
                 this.attr('frame.text', text);
             },
 
+            setTaleName: function (scope, el, ev) {
+                var text = el.val().slice(0, 20);
+                el.val(text);
+                this.attr('tale.name', text);
+            },
+
+            // TODO: do refactoring into 2 diferent methods
+            replicaHeight: function (scope, el, ev) {
+                var textLength;
+                if (ev) {
+                    textLength = el.val().length;
+                } else {
+                    textLength = scope.attr('replica.text').length;
+                }
+                var lineLength = 25,
+                    lineHeight = 18,
+                    outerHeight = 40,
+                    lines = ~~(textLength / lineLength) + 1;
+                if (ev) {
+                    el.height(lines * lineHeight + outerHeight);
+                } else {
+                    return lines * lineHeight + outerHeight;
+                }
+            },
+
             setReplica: function (scope, el, ev) {
                 var text = el.val().slice(0, 240);
                 el.val(text);

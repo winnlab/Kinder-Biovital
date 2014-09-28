@@ -157,10 +157,29 @@ define([
 			':module/:id route': 'routeChanged',
 
 			routeChanged: function(data) {
+				this.historyWatcher(data);
 				var moduleName = data.module,
 					id = moduleName + (data.id ? '-' + data.id : '');
 
 				this.Modules.initModule(moduleName, id);
+			},
+
+			historyWatcher: function (data) {
+				var location = window.location,
+					referrer = location.pathname,
+					url;
+
+				if (data.module === 'main') {
+					url = '/';
+				} else {
+					url = '/' + can.route.param(data)
+				}
+
+				if (referrer !== url) {
+					_gaq.push(['_setReferrerOverride', location.origin + referrer]);
+					_gaq.push(['_trackEvent', 'Window', 'open']);
+					_gaq.push(['_trackPageview'], location.origin + url);
+				}
 			},
 
 			'{langBtn} click': function (el, ev) {

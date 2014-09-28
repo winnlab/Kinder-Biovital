@@ -25,7 +25,8 @@ define(
                 viewpath: '/js/app/admin/modules/tales/views/',
                 viewName: 'set.stache',
                 // can be "bg", "frame", "cover", "share"
-                display: 'frame',
+                // display: 'frame',
+                display: 'cover',
 
                 data: [
                     'display',
@@ -78,7 +79,7 @@ define(
                         return css;
                     },
                     miniOffset: function (left) {
-                        return 'left: ' + Math.round((left() - options.frameBgMinOffset / 2) / options.miniProp) + 'px';
+                        return 'left: ' + Math.round((left()) / options.miniProp) + 'px';
                     }
                 });
 
@@ -97,7 +98,7 @@ define(
                 doc.attr({
                     frames: [this.addFrame(0)],
                     left: 150,
-                    top: 50
+                    top: 150
                 });
             },
 
@@ -193,6 +194,10 @@ define(
             setFrameLeft: function (left) {
                 var module = this.module,
                     oldLeft = module.attr('frame.left');
+
+                if (left == oldLeft) {
+                    return false;
+                }
 
                 if (left < taleConfig.taleSize.minLeft || left > taleConfig.taleSize.maxLeft) {
                     return false;
@@ -441,17 +446,18 @@ define(
                         return cover.attr('_id') === tale.attr('coverColorId');
                     });
 
-                if (coverImage && coverImage.attr('img')) {
+                // if (coverImage && coverImage.attr('img')) {
                     Cover.getCover(
-                        coverImage.attr('img'),
+                        // coverImage.attr('img'),
+                        '',
                         coverColor && coverColor.attr('color'),
                         function (imageData) {
                             self.doUploadCover(imageData, cb);
                         }
                     );
-                } else {
-                    cb();
-                }
+                // } else {
+                //     cb();
+                // }
 
             },
 

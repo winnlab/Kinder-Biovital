@@ -182,18 +182,21 @@ $posWrapWidth: 328px;
             @include position(absolute, 26px null null 18px);
             @include size(295px 103px);
             z-index: 2;
+            background: {
+                size: cover;
+                position: center center;
+            }
         }
 
         .miniFrame {
             @include position(absolute, -18px null null null);
-            @include size(201px 142px);
-            margin-left: -28px;
-            cursor: move;
+            @include size(154px 142px);
             &:after {
+                cursor: move;
                 content: '';
-                @include position(absolute, 0 null null 0);
-                @include size(201px 142px);
-                background: url('#{$imgPath}previewFrame.png');
+                @include position(absolute, 0 null null -8px);
+                @include size(170px 142px);
+                background: url('#{$imgPath}previewFrame2.png');
             }
         }
     }

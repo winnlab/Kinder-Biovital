@@ -51,6 +51,20 @@ define(
                 var self = this;
                 self.watchVideo(true);
                 self.element.find('video')[0].play();
+            },
+
+            '.closeFrame click': 'pauseVideo',
+
+            '.backToText click': 'pauseVideo',
+
+            pauseVideo: function () {
+                var self = this,
+                    video = self.element.find('video');
+
+                if (video.length) {
+                    self.watchVideo(false);
+                    video[0].pause();
+                }
             }
 
         });

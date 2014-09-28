@@ -3,7 +3,7 @@ define({
     decorationWidth: 3705,
     // Proportion of frame background and mini frame
     realProp: 12.559322034,
-    miniProp: 11.724683544,
+    miniProp: 15.4375,
     // This is offset of tale backround from tale zone
     frameBgTop: -275,
     // the offset top of hero when it become bigger

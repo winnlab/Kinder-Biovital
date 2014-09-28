@@ -11,6 +11,9 @@ define(
         return {
 
             getCover: function (img, color, cb) {
+
+                img = '/img/coverBg2.jpg';
+
                 var self = this,
                     canvas = document.getElementById('cover'),
                     context = canvas.getContext('2d'),
@@ -28,7 +31,8 @@ define(
                         self.getImageData(canvas, cb);
                     };
 
-                    image.src = '/uploads/' + img;
+                    // image.src = '/uploads/' + img;
+                    image.src = img;
                 } else {
                     cb(null);
                 }

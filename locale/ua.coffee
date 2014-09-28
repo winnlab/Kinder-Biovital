@@ -56,3 +56,4 @@ module.exports =
 	bgHow: 'Як вибрати фон'
 	frameHow: 'Як додати героїв на слайд'
 	coverHow: 'Як закінчити казку'
+	back: 'Назад'

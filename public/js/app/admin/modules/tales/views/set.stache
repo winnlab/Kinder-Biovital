@@ -149,7 +149,7 @@
                                         {{#if replica.left}}left: {{minus replica.left left}}px;{{/if}}
                                         {{#if replica.top}}top: {{minus replica.top top}}px;{{/if}}
                                     ">
-                                        <textarea name="replicaText" can-change="setReplica">{{replica.text}}</textarea>
+                                        <textarea name="replicaText" can-keyup="replicaHeight" style="height: {{replicaHeight}}px;" can-change="setReplica">{{replica.text}}</textarea>
                                         <div class="replicaBtn remove"></div>
                                     </div>
                                 {{/if}}
@@ -191,7 +191,7 @@
                 <div class="small taleBtn orange"></div>
             </div>
 
-            <div class="chooseCover">
+            <div class="chooseCover" style="display: none;">
                 <div class="chooseImg taleBtnWrap">
                     <div class="taleBtn orange">
                         <item-scroll data="{coverImages}" count="3">
@@ -211,7 +211,7 @@
             </div>
 
             <div class="taleCover taleBtnWrap orange">
-                <div class="coverPreview" style="
+                <div class="coverPreview" style="background-image: url('/img/coverBg2.jpg');
                 {{#if tale.coverColorId}}
                     background-color: #{{arrFind coverColors tale.coverColorId '_id' 'color'}};
                 {{/if}}
@@ -229,7 +229,7 @@
 
             <div class="taleName taleBtnWrap big">
                 <div class="taleBtn orange">
-                    <input type="text" can-value="tale.name" placeholder="{{locale.setTale.taleName}}">
+                    <input type="text" can-change="setTaleName" placeholder="{{locale.setTale.taleName}}">
                 </div>
             </div>
 
