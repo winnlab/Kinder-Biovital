@@ -25,8 +25,7 @@ define(
                 viewpath: '/js/app/admin/modules/tales/views/',
                 viewName: 'set.stache',
                 // can be "bg", "frame", "cover", "share"
-                // display: 'frame',
-                display: 'cover',
+                display: 'frame',                
 
                 data: [
                     'display',
