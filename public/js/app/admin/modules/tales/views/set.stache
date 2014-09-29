@@ -227,9 +227,11 @@
                 </div>
             </div>
 
+            <div class="taleNameLimit">{{locale.nameLimit}}</div>
+
             <div class="taleName taleBtnWrap big">
                 <div class="taleBtn orange">
-                    <input type="text" can-change="setTaleName" placeholder="{{locale.setTale.taleName}}">
+                    <input type="text" can-change="setTaleName" value="{{tale.name}}" placeholder="{{locale.setTale.taleName}}">
                 </div>
             </div>
 
@@ -259,14 +261,12 @@
                 <div class="small taleBtn orange"></div>
             </div>
 
-            {{#if tale.shared}}
-                <div class="shareLink">
-                    <div class="linkTitle">{{locale.link}}</div>
-                    <a class="link" href="{{baseUrl}}/fairy-tale/{{tale._id}}">
-                        {{baseUrl}}/fairy-tale/{{tale._id}}
-                    </a>
-                </div>
-            {{/if}}
+            <div class="shareLink">
+                <div class="linkTitle">{{locale.link}}</div>
+                <a class="link" href="{{baseUrl}}/fairy-tale/{{tale._id}}">
+                    {{baseUrl}}/fairy-tale/{{tale._id}}
+                </a>
+            </div>
 
             <div class="shareTaleSoc">
                 <div class="share fb" data-nw="fb" can-click="share"></div>

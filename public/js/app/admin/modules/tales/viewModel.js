@@ -26,7 +26,7 @@ define(
             },
 
             setTaleName: function (scope, el, ev) {
-                var text = el.val().slice(0, 20);
+                var text = el.val().slice(0, 30);
                 el.val(text);
                 this.attr('tale.name', text);
             },

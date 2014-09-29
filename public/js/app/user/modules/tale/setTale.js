@@ -39,6 +39,8 @@ define(
                 var self = this,
                     module = self.module;
 
+                module.attr('clearStorage', true);
+
                 module.saveTale(function () {
                     self.uploadCover(function () {
                         module.attr('display', 'share');

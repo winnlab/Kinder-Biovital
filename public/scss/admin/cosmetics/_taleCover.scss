@@ -140,6 +140,23 @@
         }
     }
 
+    .taleNameLimit {
+        @include position(absolute, 540px null null 498px);
+        background: $white;
+        box-shadow: $outerShadow;
+        text-shadow: -1px -1px 0 scale-color($orange, $lightness: -20%);
+        cursor: default;
+        color: $orange;
+        font: {
+            weight: bold;
+            size: 16px;
+            family: Arial;
+        }
+        padding: 5px 15px;
+        border-radius: 3px;
+        width: 236px;
+    }
+
     .prev {
         @include position(absolute, null 221px 18px null);
         padding: 8px 11px 11px 9px;

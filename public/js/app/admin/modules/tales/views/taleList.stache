@@ -1,0 +1,28 @@
+<tr class="tale" {{data "tales"}}>
+    <td>{{name}}</td>
+    <td>
+        <span class="label label-primary">{{frames.length}}</span>
+    </td>
+    <td>
+        {{#unless shared}}
+            <span class="label label-danger">Еще не расшарена</span>
+        {{else}}
+            {{#if active}}
+                <span class="label label-success">Активированая</span>
+            {{else}}
+                <div class="btn btn-warning btn-sm activate">Активировать сказку</div>
+            {{/if}}
+        {{/unless}}
+    </td>
+    <td>
+        <div class="btn btn-sm btn-default editTale">
+            <i class="fa fa-pencil"></i>
+        </div>
+        <div class="btn btn-sm btn-danger removeTale">
+            <i class="fa fa-trash-o"></i>
+        </div>
+        <a href="/fairy-tale/{{_id}}" target="_blank" class="btn btn-sm btn-primary">
+            <i class="fa fa-eye"></i>
+        </a>
+    </td>
+</tr>
