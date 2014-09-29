@@ -4,15 +4,11 @@
         <span class="label label-primary">{{frames.length}}</span>
     </td>
     <td>
-        {{#unless shared}}
-            <span class="label label-danger">Еще не расшарена</span>
+        {{#if active}}
+            <span class="label label-success">Активированая</span>
         {{else}}
-            {{#if active}}
-                <span class="label label-success">Активированая</span>
-            {{else}}
-                <div class="btn btn-warning btn-sm activate">Активировать сказку</div>
-            {{/if}}
-        {{/unless}}
+            <div class="btn btn-warning btn-sm activate">Активировать сказку</div>
+        {{/if}}
     </td>
     <td>
         <div class="btn btn-sm btn-default editTale">

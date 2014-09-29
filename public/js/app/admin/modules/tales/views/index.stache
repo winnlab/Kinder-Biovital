@@ -12,26 +12,47 @@
     <div class="content">
         {{#if tales.isResolved}}
             {{#if tales.length}}
-
+                <table class='table'>
+                    <thead>
+                        <th>Название</th>
+                        <th>Количество слайдов</th>
+                        <th>Активирована</th>
+                        <th>Действия</th>
+                    </thead>
+                </table>
                 <tabs>
                     <panel name="Сказки пользователей">
                         <tabs>
                             <panel name="Сказки с названием">
-
+                                <table class="table">
+                                    <tbody>
+                                        {{#sortedBy tales '_id' 'desc'}}
+                                            {{#is type 1}}
+                                                {{#if name}}
+                                                    {{>/js/app/admin/modules/tales/views/taleList.stache}}
+                                                {{/if}}
+                                            {{/is}}
+                                        {{/sortedBy}}
+                                    </tbody>
+                                </table>
                             </panel>
                             <panel name="Сказки без названия">
-
+                                <table class="table">
+                                    <tbody>
+                                        {{#sortedBy tales '_id' 'desc'}}
+                                            {{#is type 1}}
+                                                {{#unless name}}
+                                                    {{>/js/app/admin/modules/tales/views/taleList.stache}}
+                                                {{/unless}}
+                                            {{/is}}
+                                        {{/sortedBy}}
+                                    </tbody>
+                                </table>
                             </panel>
                         </tabs>
                     </panel>
                     <panel name="Сказки компании">
-                        <table class='table'>
-                            <thead>
-                                <th>Название</th>
-                                <th>Количество слайдов</th>
-                                <th>Активирована</th>
-                                <th>Действия</th>
-                            </thead>
+                        <table class="table">
                             <tbody>
                                 {{#sortedBy tales '_id' 'desc'}}
                                     {{#is type 0}}
