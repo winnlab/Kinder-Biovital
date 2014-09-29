@@ -29,6 +29,11 @@ html {
 
 .talesList {
 	width: 100%;
+
+	&.body {
+		margin: -21px 0 0;
+	}
+
 	.name {
 		width: 25%;
 	}

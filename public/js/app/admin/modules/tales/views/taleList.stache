@@ -1,4 +1,4 @@
-<tr class="tale talesList" {{data "tales"}}>
+<tr class="tale" {{data "tales"}}>
     <td class="name">{{name}}</td>
     <td class="slides">
         <span class="label label-primary">{{frames.length}}</span>

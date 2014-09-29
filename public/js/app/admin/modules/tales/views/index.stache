@@ -17,13 +17,13 @@
                         <tabs>
                             <panel name="Сказки с названием">
                                 {{>/js/app/admin/modules/tales/views/taleListHead.stache}}
-                                <table class="table">
+                                <table class="table talesList body">
                                     <tbody>
                                         {{#sortedBy tales '_id' 'desc'}}
                                             {{#is type 1}}
-                                                {{#if name}}
+                                                {{#isnt name ../name}}
                                                     {{>/js/app/admin/modules/tales/views/taleList.stache}}
-                                                {{/if}}
+                                                {{/isnt}}
                                             {{/is}}
                                         {{/sortedBy}}
                                     </tbody>
@@ -31,13 +31,13 @@
                             </panel>
                             <panel name="Сказки без названия">
                                 {{>/js/app/admin/modules/tales/views/taleListHead.stache}}
-                                <table class="table">
+                                <table class="table talesList body">
                                     <tbody>
                                         {{#sortedBy tales '_id' 'desc'}}
                                             {{#is type 1}}
-                                                {{#unless name}}
+                                                {{#is name ../name}}
                                                     {{>/js/app/admin/modules/tales/views/taleList.stache}}
-                                                {{/unless}}
+                                                {{/is}}
                                             {{/is}}
                                         {{/sortedBy}}
                                     </tbody>
@@ -47,7 +47,7 @@
                     </panel>
                     <panel name="Сказки компании">
                         {{>/js/app/admin/modules/tales/views/taleListHead.stache}}
-                        <table class="table">
+                        <table class="table talesList body">
                             <tbody>
                                 {{#sortedBy tales '_id' 'desc'}}
                                     {{#is type 0}}
