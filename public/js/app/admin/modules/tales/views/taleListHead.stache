@@ -1,0 +1,8 @@
+<table class='table talesList'>
+    <thead>
+        <th class="name">Название</th>
+        <th class="slides">Количество слайдов</th>
+        <th class="isActive">Активирована</th>
+        <th class="action">Действия</th>
+    </thead>
+</table>

@@ -27,6 +27,22 @@ html {
 	background-color: #f2dede;
 }
 
+.talesList {
+	width: 100%;
+	.name {
+		width: 25%;
+	}
+	.slides {
+		width: 25%;
+	}
+	.isActive {
+		width: 25%;
+	}
+	.action {
+		width: 25%;
+	}
+}
+
 @import 'cosmetics/_cover.scss';
 @import 'cosmetics/_taleBtns.scss';
 @import 'cosmetics/_tale.scss';

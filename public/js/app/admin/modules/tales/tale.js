@@ -474,8 +474,8 @@ define(
                     processData: false,
                     contentType: false,
                     success: function (data) {
-                        self.module.attr('tale.cover', data.data.cover)
-                        localStorage.setItem('tale', JSON.stringify(self.module.attr('tale').attr()));
+                        self.module.attr('tale.cover', data.data.cover);
+                        self.module.saveToStorage();                        
                         cb();
                     },
                     error: function (shr, status, data) {

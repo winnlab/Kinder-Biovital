@@ -1,16 +1,16 @@
-<tr class="tale" {{data "tales"}}>
-    <td>{{name}}</td>
-    <td>
+<tr class="tale talesList" {{data "tales"}}>
+    <td class="name">{{name}}</td>
+    <td class="slides">
         <span class="label label-primary">{{frames.length}}</span>
     </td>
-    <td>
+    <td class="isActive">
         {{#if active}}
             <span class="label label-success">Активированая</span>
         {{else}}
             <div class="btn btn-warning btn-sm activate">Активировать сказку</div>
         {{/if}}
     </td>
-    <td>
+    <td class="action">
         <div class="btn btn-sm btn-default editTale">
             <i class="fa fa-pencil"></i>
         </div>

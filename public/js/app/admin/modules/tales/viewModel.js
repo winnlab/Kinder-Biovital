@@ -101,11 +101,7 @@ define(
 
                 tale.save()
                     .done(function () {
-                        if (!self.attr('clearStorage')) {
-                            localStorage.setItem('tale', JSON.stringify(tale.attr()));
-                        } else {
-                            localStorage.removeItem('tale');
-                        }
+                        self.saveToStorage();
 
                         if (typeof cb === 'function') {
                             cb();
@@ -117,6 +113,16 @@ define(
                             msg: 'Невозможно сохранить сказку'
                         });
                     });
+            },
+
+            saveToStorage: function () {
+                var self = this,
+                    tale = self.attr('tale');
+                if (!self.attr('clearStorage')) {
+                    localStorage.setItem('tale', JSON.stringify(tale.attr()));
+                } else {
+                    localStorage.removeItem('tale');
+                }
             }
         })
 
