@@ -89,6 +89,9 @@ TaleShemaFields =
     type:
         type: Number
         default: 1
+    blocked:
+        type: Number
+        default: 0
     active:
         type: Number
         default: 0
@@ -98,7 +101,7 @@ TaleShemaFields =
     vkLikes:
         type: Number
         default: 0
-    okLikes: 
+    okLikes:
         type: Number
         default: 0
 

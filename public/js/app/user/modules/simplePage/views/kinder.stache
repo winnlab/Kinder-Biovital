@@ -22,11 +22,13 @@
             </video>
         </div>
         <list-slider data="{page.frames}" style="{{#if watchVideo}}display: none;{{/if}}">
+            {{#is @index 0}}
+                <div class="taleBtn orange watchIntro" style="{{#if watchVideo}}display: none;{{/if}}">
+                    {{appState.locale.watchIntro}}
+                </div>
+            {{/is}}
             <div class="kinderSlide slide-{{@index}}">{{{frame.text}}}</div>
         </list-slider>
-        <div class="taleBtn orange watchIntro" style="{{#if watchVideo}}display: none;{{/if}}">
-            {{appState.locale.watchIntro}}
-        </div>
     </div>
 
     <div class="link taleBtnWrap big orange">

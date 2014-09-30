@@ -114,7 +114,7 @@
     }
 
     .watchIntro {
-        @include position(absolute, null null 34px 34px);
+        @include position(absolute, null null 0 0);
         padding: 6px 15px;
         height: 31px;
         font-weight: bold;

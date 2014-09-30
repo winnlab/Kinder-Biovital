@@ -10,6 +10,13 @@
             <div class="btn btn-warning btn-sm activate">Активировать сказку</div>
         {{/if}}
     </td>
+    <td class="isLocked">
+        {{#if blocked}}
+            <span class="label label-success">Заблокировано</span>
+        {{else}}
+            <div class="btn btn-danger btn-sm lock">Заблокировать сказку</div>
+        {{/if}}
+    </td>
     <td class="action">
         <div class="btn btn-sm btn-default editTale">
             <i class="fa fa-pencil"></i>

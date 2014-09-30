@@ -1,32 +1,33 @@
-<div class="frameBg" style="{{bgOffset frame.left}}">
-    <img class="bg" src="/uploads/{{frame.decorationId.bg}}">
-    <img class="plan" src="/uploads/{{frame.decorationId.plan}}">
-    <img class="fg" src="/uploads/{{frame.decorationId.fg}}">
+{{#unless blocked}}
+    <div class="frameBg" style="{{bgOffset frame.left}}">
+        <img class="bg" src="/uploads/{{frame.decorationId.bg}}">
+        <img class="plan" src="/uploads/{{frame.decorationId.plan}}">
+        <img class="fg" src="/uploads/{{frame.decorationId.fg}}">
 
-    <div class="topBlock">
-        {{#each frame.heroes}}
-            <div class="heroInDrag {{heroPlan}}" style="left: {{left}}px; top: {{top}}px;">
-                <div class="heroImg {{heroPlan}}"></div>
-                <div class="name">
-                    {{name}}
-                </div>
-            </div>
-            {{#if replica.text}}
-                <div class="replica{{#or replica.top replica.left}} dragged{{/or}}" style="{{#if replica.left}}left: {{replica.left}}px;{{/if}}{{#if replica.top}}top: {{replica.top}}px;{{/if}}">
-                    <div class="replicaInner {{getReplicaTail}}">
-                        {{replica.text}}
+        <div class="topBlock">
+            {{#each frame.heroes}}
+                <div class="heroInDrag {{heroPlan}}" style="left: {{left}}px; top: {{top}}px;">
+                    <div class="heroImg {{heroPlan}}"></div>
+                    <div class="name">
+                        {{name}}
                     </div>
                 </div>
-            {{/if}}
+                {{#if replica.text}}
+                    <div class="replica{{#or replica.top replica.left}} dragged{{/or}}" style="{{#if replica.left}}left: {{replica.left}}px;{{/if}}{{#if replica.top}}top: {{replica.top}}px;{{/if}}">
+                        <div class="replicaInner {{getReplicaTail}}">
+                            {{replica.text}}
+                        </div>
+                    </div>
+                {{/if}}
+            {{/each}}
+        </div>
+
+        {{#each frame.heroes}}
+            <div class="heroImg {{heroPlan}}" style="left: {{left}}px; top: {{top}}px; background-image: url('/uploads/{{#is frame.time 0}}{{heroId.img}}{{else}}{{heroId.imgNight}}{{/is}}');"></div>
         {{/each}}
+
     </div>
-
-    {{#each frame.heroes}}
-        <div class="heroImg {{heroPlan}}" style="left: {{left}}px; top: {{top}}px; background-image: url('/uploads/{{#is frame.time 0}}{{heroId.img}}{{else}}{{heroId.imgNight}}{{/is}}');"></div>
-    {{/each}}
-
-</div>
-
+{{/unless}}
 
 {{#if frame.share}}
     <div class="taleTitle">
@@ -39,6 +40,13 @@
         <div class="taleTitle">
             <div class="innerTitle">
                 {{tale.name}}
+            </div>
+        </div>
+    {{/if}}
+    {{#if blocked}}
+        <div class="taleTitle">
+            <div class="innerTitle">
+                {{locale.blocked}}
             </div>
         </div>
     {{/if}}
@@ -66,22 +74,28 @@
     </div>
 {{/if}}
 
-<div class="frameControl">
-    {{#isnt cIndex 1}}
-        <div class="prevFrame"></div>
-    {{/isnt}}
-    <div class="playFrame{{#if showPause}} pause{{/if}}"></div>
-    {{#isnt cIndex tale.frames.length}}
-        <div class="nextFrame"></div>
-    {{/isnt}}
-</div>
+{{#unless blocked}}
 
-<div class="sharing">
-    <span class="shareLabel">{{locale.shareLabel}}</span>
-    <span class="share fb" data-nw="fb" can-click="share"></span>
-    <span class="share ok" id="ok-share-{{tale._id}}"></span>
-    <span class="share vk" data-nw="vk" can-click="share"></span>
-</div>
+    <div class="frameControl">
+        {{#isnt cIndex 1}}
+            <div class="prevFrame"></div>
+        {{/isnt}}
+        <div class="playFrame{{#if showPause}} pause{{/if}}"></div>
+        {{#isnt cIndex tale.frames.length}}
+            <div class="nextFrame"></div>
+        {{/isnt}}
+    </div>
+
+{{/unless}}
+
+{{#unless blocked}}
+    <div class="sharing">
+        <span class="shareLabel">{{locale.shareLabel}}</span>
+        <span class="share fb" data-nw="fb" can-click="share"></span>
+        <span class="share ok" id="ok-share-{{tale._id}}"></span>
+        <span class="share vk" data-nw="vk" can-click="share"></span>
+    </div>
+{{/unless}}
 
 <div class="trackWrap">
     {{#or tale.trackId.sound.mp3 tale.trackId.sound.wav}}

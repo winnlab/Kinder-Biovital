@@ -179,11 +179,9 @@ define([
 					url = '/' + can.route.param(data)
 				}
 
-				if (referrer !== url) {
-					_gaq.push(['_setReferrerOverride', location.origin + referrer]);
-					_gaq.push(['_trackEvent', 'Window', 'open']);
-					_gaq.push(['_trackPageview'], location.origin + url);
-				}
+				_gaq.push(['_setReferrerOverride', referrer !== url ? location.origin + referrer : null]);
+				_gaq.push(['_trackEvent', 'Window', 'open']);
+				_gaq.push(['_trackPageview'], location.origin + url);
 			},
 
 			'{langBtn} click': function (el, ev) {

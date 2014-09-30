@@ -127,9 +127,23 @@ define(
 			},
 
 			'.activate click': function (el) {
+				this.changeProperties(el, {
+					'active': 1,
+					'blocked': 0
+				}, 'Вы хотите активировать сказку "');
+			},
+
+			'.lock click': function (el) {
+				this.changeProperties(el, {
+					'active': 0,
+					'blocked': 1
+				}, 'Вы хотите заблокировать сказку "');
+			},
+
+			changeProperties: function (el, obj, msg) {
 				var tale = el.parents('.tale').data('tales');
-				if (confirm('Вы хотите активировать сказку "' + tale.attr('name') + '"')) {
-					tale.attr('active', 1).save();
+				if (confirm(msg + tale.attr('name') + '"?')) {
+					tale.attr(obj).save();
 				}
 			},
 

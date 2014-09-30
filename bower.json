@@ -22,7 +22,8 @@
     "jquery-form": "https://github.com/malsup/form.git#latest",
     "fontawesome": "~4.2.0",
     "jquerypp": "~1.0.1",
-    "malihu-custom-scrollbar-plugin": "~3.0.4"
+    "malihu-custom-scrollbar-plugin": "~3.0.4",
+    "require.min": "http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js"
   },
   "devDependencies": {
     "mocha": "~1.21.4",

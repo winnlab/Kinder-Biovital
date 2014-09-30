@@ -94,10 +94,14 @@ define(
                 });
 
                 can.ajax({url: '/tale/' + this.options.taleId})
-                .done(function(data){
-                    self.module.attr('tale', data.data);
-                    if (options.share && data.data.type == 1) {
-                        self.addShareFrame();
+                .done(function(data){                    
+                    if (!data.data.blocked) {
+                        self.module.attr('tale', data.data);
+                        if (options.share && data.data.type == 1) {
+                            self.addShareFrame();
+                        }
+                    } else {
+                        self.module.attr('blocked', 1);
                     }
                     def.resolve();
                 });
@@ -133,9 +137,12 @@ define(
             },
 
             currentFrame: function (index) {
-                var module = this.module;
+                var module = this.module,
+                    tale = module.attr('tale');
                 index = index || 0;
-                module.attr('frame', module.attr('tale').attr('frames.' + index));
+                if (tale) {
+                    module.attr('frame', tale.attr('frames.' + index));
+                }
             },
 
             addShareFrame: function () {

@@ -7,7 +7,7 @@
     mainConfigFile: "./user/req.config.js",
     normalizeDirDefines: "all",
 
-    optimize: "uglify2",    
+    optimize: "uglify2",
 
     preserveLicenseComments: false,
 
@@ -28,6 +28,9 @@
             'underscore',
             'modules/tales/talesModel',
             'core/appState'
+        ],
+        insertRequire: [
+            'custom-scrollbar'
         ]
     }, {
         name: "app/modules/simplePage/simplePage",

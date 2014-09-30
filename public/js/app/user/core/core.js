@@ -23,8 +23,6 @@ require(['/js/dist/user/req.config.js?cache=' + Date.now()], function () {
 
 			appState.attr('router', new Router(body, config.router));
 			appState.attr('social', new Social());
-			//
-			// appState.attr('social').logIn();
 
 		}
 	);
