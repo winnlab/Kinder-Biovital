@@ -42,6 +42,8 @@ define(
             }
 
             VK.Api.call('wall.post', {
+                // Сказка «название сказки» готова!
+                // Понравилась моя сказка? Жми Like!
                 message: options.msg,
                 attachments: attachments
             }, function (response) {

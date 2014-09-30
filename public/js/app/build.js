@@ -13,6 +13,7 @@
 
     modules: [{
         name: "core/core",
+        include: ['lib/preloader', 'lib/viewport', 'underscore'],
         insertRequire: [
             'can/route/pushstate',
             'can/map/define',
@@ -34,8 +35,27 @@
         ]
     }, {
         name: "app/modules/simplePage/simplePage",
-        include: [
-            'components/listSlider/listSlider'
+        exclude: [
+            'canjs',
+            'core/appState'
+        ]
+    }, {
+        name: "app/modules/tales/tales",
+        exclude: [
+            'canjs',
+            'core/appState'
+        ]
+    }, {
+        name: "app/modules/tale/tale",
+        exclude: [
+            'canjs',
+            'core/appState'
+        ]
+    }, {
+        name: "app/modules/tale/view",
+        exclude: [
+            'canjs',
+            'core/appState'
         ]
     }],
 
