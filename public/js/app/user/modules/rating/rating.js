@@ -4,8 +4,8 @@ define(
         'underscore',
         'modules/tales/talesModel',
         'core/appState',
-        '/js/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js',
-        'css!/js/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css'
+        'custom-scrollbar',
+        'css!malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css'
     ],
 
     function (can, _, TalesModel, appState) {

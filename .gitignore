@@ -26,3 +26,5 @@ node_modules
 
 .sass-cache
 .idea
+
+public/js/dist

@@ -16,6 +16,8 @@ require.config({
 		viewHelpers: '../app/admin/core/viewHelpers',
 		cssComponents: '../../css/admin/components',
 
+		'custom-scrollbar': 'malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min',
+
 		// Social
 		fb: '../app/user/src/networks/fb-sdk',
 		vk: '../app/user/src/networks/vk-sdk',
@@ -45,6 +47,13 @@ require.config({
 				'can/map/sort',
 				'can/list/promise',
 				'can/construct/super'
+			]
+		},
+		'core': {
+			deps: [
+				'lib/preloader',
+				'lib/viewport',
+				'modules/tales/taleConfig'
 			]
 		},
 		'fb': {
