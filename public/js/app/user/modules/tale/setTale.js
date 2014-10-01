@@ -39,10 +39,23 @@ define(
                 var self = this,
                     module = self.module;
 
+                if (!module.attr('tale.name')) {
+                    popUp.show({
+                        msg: appState.locale.emptyName,
+                        choice: false
+                    });
+                    return false;
+                }
+
                 module.attr('clearStorage', true);
 
                 module.saveTale(function () {
                     self.uploadCover(function () {
+                        var id = module.attr('tale._id');
+                        appState.attr('social').getProvider('ok').makeShare('ok-tale-share-' + id, {
+                            'url': window.location.origin + '/like/' + id,
+                            'settings': "{width:45,height:50,st:'rounded',sz:45,nt:1,nc:1}"
+                        });
                         module.attr('display', 'share');
                     });
                 }, true);

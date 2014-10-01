@@ -80,13 +80,12 @@ define(
                     miniOffset: function (left) {
                         return 'left: ' + Math.round((left()) / options.miniProp) + 'px';
                     }
+                }, function (html) {
+                    self.element.html(html);
+                    if (options.isReady) {
+                        Preloader.preload(self.module.attr(), options.isReady.resolve);
+                    }
                 });
-
-                self.element.html(html);
-
-                if (options.isReady) {
-                    Preloader.preload(self.module.attr(), options.isReady.resolve);
-                }
 
             },
 
@@ -450,6 +449,7 @@ define(
                         // coverImage.attr('img'),
                         '',
                         coverColor && coverColor.attr('color'),
+                        tale.attr('name'),
                         function (imageData) {
                             self.doUploadCover(imageData, cb);
                         }
@@ -475,7 +475,7 @@ define(
                     contentType: false,
                     success: function (data) {
                         self.module.attr('tale.cover', data.data.cover);
-                        self.module.saveToStorage();                        
+                        self.module.saveToStorage();
                         cb();
                     },
                     error: function (shr, status, data) {

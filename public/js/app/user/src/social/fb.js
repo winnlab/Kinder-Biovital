@@ -76,10 +76,8 @@ define(
                     name: appState.attr('locale.appName'),
                     link: options.link,
                     picture: options.img,
-                    // Сказка «название сказки» готова!
-                    // Понравилась моя сказка? Жми Like! 
-                    caption:  options.msg + ' Caption',
-                    description: options.msg + ' Description'
+                    caption:  options.title,
+                    description: options.desc
                 };
 
                 FB.ui(shareObj, function (response) {

@@ -211,7 +211,7 @@
             </div>
 
             <div class="taleCover taleBtnWrap orange">
-                <div class="coverPreview" style="background-image: url('/img/coverBg2.jpg');
+                <div class="coverPreview" style="background-image: url('/img/coverBg.jpg');
                 {{#if tale.coverColorId}}
                     background-color: #{{arrFind coverColors tale.coverColorId '_id' 'color'}};
                 {{/if}}
@@ -249,12 +249,16 @@
         <div class="taleIn{{#is display 'share'}} active{{/is}}">
             <div class="taleTitle">
                 <div class="innerTitle">
-                    {{#if shared}}
+                    {{!#if shared}}
                         {{locale.setTale.shareTale}}
-                    {{else}}
-                        {{{locale.setTale.shareTitle}}}
-                    {{/if}}
+                    {{!else}}
+                        {{! {locale.setTale.shareTitle}}}
+                    {{!/if}}
                 </div>
+            </div>
+
+            <div class="shareCreated">
+                {{locale.created}}
             </div>
 
             <div class="taleBtnWrap small closeFrame">
@@ -268,10 +272,14 @@
                 </a>
             </div>
 
+            <div class="shareToFriends">
+                {{locale.shareToFriends}}
+            </div>
+
             <div class="shareTaleSoc">
                 <div class="share fb" data-nw="fb" can-click="share"></div>
+                <div class="share ok" id="ok-tale-share-{{tale._id}}"></div>
                 <div class="share vk" data-nw="vk" can-click="share"></div>
-                <div class="share ok" data-nw="ok" can-click="share"></div>
             </div>
 
         </div>

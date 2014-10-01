@@ -51,10 +51,19 @@ define(
                             tale = self.attr('tale'),
                             cover = tale.attr('cover'),
                             social = appState.attr('social'),
-                            msg = tale.attr('type') == 1 ? appState.attr('locale.shareUser') : appState.attr('locale.shareCompany');
+                            title = '',
+                            desc = '';
+
+                        if (tale.attr('type') == 1) {
+                            title = appState.attr('locale.shareUser');
+                            tale.attr('type') == 1 ? appState.attr('locale.shareUserLike') : '';
+                        } else {
+                            title = appState.attr('locale.shareCompany');
+                        }
 
                         social.provider(network).share({
-                            msg: msg.format(tale.attr('name')),
+                            title: title.format(tale.attr('name')),
+                            desc: desc,
                             link: window.location.origin + '/fairy-tale/' + tale.attr('_id'),
                             img: window.location.origin + (cover ? '/uploads/' + cover : '/img/favicon.png'),
                             taleId: tale.attr('_id')
@@ -94,7 +103,7 @@ define(
                 });
 
                 can.ajax({url: '/tale/' + this.options.taleId})
-                .done(function(data){                    
+                .done(function(data){
                     if (!data.data.blocked) {
                         self.module.attr('tale', data.data);
                         if (options.share && data.data.type == 1) {

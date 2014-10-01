@@ -3,14 +3,15 @@ define(
 
     function () {
 
-        var width = 470,
-            height = 246;
+        var width = 516,
+            height = 273,
+            textTop = 144;
 
         $('body').prepend('<canvas id="cover">');
 
         return {
 
-            getCover: function (img, color, cb) {
+            getCover: function (img, color, text, cb) {
 
                 img = '/img/coverBg2.jpg';
 
@@ -28,6 +29,21 @@ define(
                 if (img) {
                     image.onload = function() {
                         self.drawImage(image, context, width, height);
+
+                        self.textRender({
+                            text: text,
+                            color: '#bb6920',
+                            x: width / 2 + 1,
+                            y: textTop + 2
+                        }, context);
+
+                        self.textRender({
+                            text: text,
+                            color: '#f59b06',
+                            x: width / 2,
+                            y: textTop
+                        }, context);
+
                         self.getImageData(canvas, cb);
                     };
 
@@ -56,6 +72,14 @@ define(
                 }
 
                 context.drawImage(image, left, top, imgWidth, imgHeight);
+            },
+
+            textRender: function (data, context) {
+                context.fillStyle = data.color;
+                context.baseLine = 'middle';
+                context.textAlign = 'center';
+                context.font = '30px Futura';
+                context.fillText(data.text, data.x, data.y, width);
             },
 
             getImageData: function (canvas, cb) {

@@ -41,14 +41,15 @@
 }
 
 .shareTaleSoc {
-    @include position(absolute, 334px null null 466px);
+    @include position(absolute, 444px null null 466px);
     @include size(297px 155px);
-    padding: 45px 40px 40px 58px;
+    padding: 45px 36px 40px 58px;
     background: url('#{$imgPath}shareSoc.png');
 
     .share {
-        float: left;
         @include size(45px);
+        display: inline-block;
+        vertical-align: middle;
         position: relative;
         margin: 13px 20px 13px 0px;
         background: $orange;
@@ -67,7 +68,7 @@
         }
 
         &.ok:after {
-            background: url('#{$imgPath}OK.png');
+            display: none;
         }
 
         &.vk:after {
@@ -75,4 +76,30 @@
         }
     }
 
+}
+
+.shareCreated {
+    @include position(absolute, 145px null null 358px);
+    background: $white;
+    box-shadow: $outerShadow;
+    text-shadow: -1px -1px 0 #c47c05;
+    border-radius: 3px;
+    cursor: default;
+    color: $orange;
+    font: {
+        weight: bold;
+        size: 22px;
+        family: Arial;
+    }
+    padding: 10px 15px;
+    width: 510px;
+    text-align: center;
+}
+
+.shareToFriends {
+    @extend .shareCreated;
+    top: 350px;
+    left: 415px;
+    font-size: 18px;
+    width: 400px;
 }
