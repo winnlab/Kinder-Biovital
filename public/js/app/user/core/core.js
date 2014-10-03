@@ -1,4 +1,4 @@
-require(['/js/dist/user/req.config.js?cache=' + Date.now()], function () {
+require(['/js/app/user/req.config.js?cache=' + Date.now()], function () {
 
 	require([
 			'app/router/router',

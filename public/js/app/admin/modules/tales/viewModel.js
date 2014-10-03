@@ -8,14 +8,16 @@ define(
                 winWidth = viewport.getViewportWidth(),
                 winHeight = viewport.getViewportHeight();
 
+            console.log(winWidth, winHeight)
+
             if (winWidth > taleConfig.taleSize.width && winWidth < 1600) {
                 if (position === 'bottom') {
-                    result = position + ': ' + ((taleConfig.taleSize.width + 40) - winWidth) / 2 + 'px;';
+                    result = position + ': ' + ((taleConfig.taleSize.height) - winHeight) / 2 + 'px;';
                 } else {
-                    result = position + ': ' + ((taleConfig.taleSize.height + 40) - winHeight) / 2 + 'px;';
+                    result = position + ': ' + ((taleConfig.taleSize.width + 40) - winWidth) / 2 + 'px;';
                 }
             }
-
+            console.log(result);
             return result;
         }
 

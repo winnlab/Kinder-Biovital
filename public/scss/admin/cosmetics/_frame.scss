@@ -8,7 +8,7 @@
 
 .leftPanel {
     @include position(absolute, 140px null null -176px);
-    @include size(164px null);
+    @include size(164px);
     z-index: 3;
     text-shadow: -1px -1px 0 #c58730;
 
@@ -118,7 +118,7 @@
 
 .btmPanel {
     @include position(absolute, null null -107px 326px);
-    z-index: 1;
+    z-index: 3;
 
     .small & {
         bottom: 4px;
@@ -215,7 +215,7 @@
 }
 
 .endTale.taleBtnWrap {
-    @include position(absolute, null -178px -88px null);    
+    @include position(absolute, null -178px -88px null);
     z-index: 3;
     padding: 9px 13px 9px 9px;
 
