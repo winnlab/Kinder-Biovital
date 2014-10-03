@@ -3,15 +3,17 @@
 @import '../../base/_mixins.scss';
 @import '../../base/_placeholders.scss';
 @import '../../base/_variables.scss';
+@import '../../base/_sprites.scss';
+
 
 .leftPanel {
     @include position(absolute, 140px null null -176px);
-    @include size(164px 340px);
-    z-index: 1;
+    @include size(164px null);
+    z-index: 3;
     text-shadow: -1px -1px 0 #c58730;
 
     .small & {
-        left: 18px;
+        left: 15px;
     }
 
     .taleBtnWrap {
@@ -51,7 +53,7 @@
 }
 
 .panels {
-    @include position(absolute, 10px null null 11px);
+    @include position(absolute, 10px null null 15px);
     padding: 3px 5px;
     border-radius: 5px;
     font-size: 12px;
@@ -76,13 +78,10 @@
     z-index: 1;
 
     &:after {
-        content: '';
-        position: absolute;
-        top: -15px;
-        left: -17px;
+        @include sprite($authorText);
+        @include position(absolute, -15px null null -17px);
         z-index: -1;
-        @include size(787px 117px);
-        background: url('#{$imgPath}authorText.png');
+        content: '';
     }
 
     &.active {
@@ -109,7 +108,7 @@
 .taleZone .displayFrame .chooseMusic {
     bottom: -63px;
     left: -176px;
-    z-index: 1;
+    z-index: 3;
 
     .small & {
         bottom: 35px;
@@ -160,35 +159,33 @@
 
         .plus {
             @include position(absolute, 13px null null 24px);
-            @include size(39px 39px);
-            background: url('#{$imgPath}addSlide.png');
+            @include sprite($addSlide);
         }
     }
 
     .arrow {
         @include position(absolute, 25px null null null);
-        @include size(15px 29px);
         cursor: pointer;
 
         &.btm {
             right: -19px;
-            background: url('#{$imgPath}nextFrame.png');
+            @include sprite($nextFrame);
         }
 
         &.top {
             left: -19px;
-            background: url('#{$imgPath}prevFrame.png');
+            @include sprite($prevFrame);
         }
     }
 }
 
 .rightPanel {
     @include position(absolute, null -179px 0 null);
-    z-index: 1;
+    z-index: 3;
     width: 156px;
 
     .small & {
-        right: 16px;
+        right: 15px;
         top: 357px;
         bottom: auto;
     }
@@ -218,10 +215,8 @@
 }
 
 .endTale.taleBtnWrap {
-    position: absolute;
-    bottom: -88px;
-    right: -178px;
-    z-index: 1;
+    @include position(absolute, null -178px -88px null);    
+    z-index: 3;
     padding: 9px 13px 9px 9px;
 
     .small & {
@@ -294,27 +289,26 @@
         &:before {
             content: '';
             z-index: -1;
-            @include size(67px 57px);
         }
 
         &.RT:before {
             @include position(absolute, null null -45px -3px);
-            background: url('#{$imgPath}bubleTailRT.png');
+            @include sprite($bubleTailRT);
         }
 
         &.LT:before {
             @include position(absolute, null -3px -45px null);
-            background: url('#{$imgPath}bubleTailLT.png');
+            @include sprite($bubleTailLT);
         }
 
         &.RB:before {
             @include position(absolute, -50px null null -3px);
-            background: url('#{$imgPath}bubleTailRB.png');
+            @include sprite($bubleTailRB);
         }
 
         &.LB:before {
             @include position(absolute, -50px -3px null null);
-            background: url('#{$imgPath}bubleTailLB.png');
+            @include sprite($bubleTailLB);
         }
 
         &:after {
@@ -354,8 +348,7 @@
         &:after {
             content: '';
             @include position(absolute, 7px null null 8px);
-            @include size(15px 14px);
-            background: url('#{$imgPath}smallX.jpg');
+            @include sprite($smallX);
         }
     }
 
@@ -373,8 +366,7 @@
             &:after {
                 content: '';
                 @include position(absolute, 8px null null 5px);
-                @include size(25px 19px);
-                background: url('#{$imgPath}addBubble.png');
+                @include sprite($addBubble);
             }
         }
         &.remove {

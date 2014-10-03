@@ -3,12 +3,13 @@
 @import '../../base/_mixins.scss';
 @import '../../base/_placeholders.scss';
 @import '../../base/_variables.scss';
+@import '../../base/_sprites.scss';
+
 
 .ratingTales {
     @include position(absolute, 92px null null 245px);
-    @include size(738px 575px);
+    @include sprite($ratingBg);
     padding: 25px 31px;
-    background: url('#{$imgPath}ratingBg.png');
 
     .ratingTalesWrap {
         @include size(676px 519px);
@@ -17,12 +18,11 @@
     }
 
     .tale {
-        @include size(642px 172px);
-        position: relative;
-        display: block;
-        background: url('#{$imgPath}ratingTaleBg.png');
+        @include sprite($ratingTaleBg);
         margin: 0 0 1px;
         padding: 18px 21px;
+        position: relative;
+        display: block;
 
         .cover {
             @include size(233px 136px);
@@ -34,16 +34,17 @@
             border-right: 14px solid #f59b06;
             border-radius: 10px;
             box-shadow: inset 2px 2px 0 0 rgba(0, 0, 0, 0.3), $btnShadow;
-            background-color: #b3b4b5;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center center;
+            background: {
+                color: #b3b4b5;
+                size: contain;
+                repeat: no-repeat;
+                position: center center;
+            }
 
             &:after {
                 content: '';
                 @include position(absolute, 22px null null 71px);
-                @include size(65px 64px);
-                background: url('#{$imgPath}playInRating.png');
+                @include sprite($playInRating);
             }
 
         }
@@ -87,8 +88,7 @@
 
         .mCSB_buttonUp {
             @include position(absolute, 2px null null 1px);
-            @include size(11px 8px);
-            background-image: url('#{$imgPath}scrollArTop.png');
+            @include sprite($scrollArTop);
             opacity: 0.8;
         }
 
@@ -97,8 +97,7 @@
             top: auto;
             bottom: 0;
             left: 2px;
-            background-image: url('#{$imgPath}scrollArBtm.png');
-            background-position: 0 0;
+            @include sprite($scrollArBtm);
         }
 
         .mCSB_dragger .mCSB_dragger_bar {

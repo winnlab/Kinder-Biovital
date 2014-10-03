@@ -21,7 +21,7 @@ define([
                         ? document.documentElement.clientWidth
                         : document.body.offsetWidth));
                 if (width < 1224) {
-                    width = 1224;                    
+                    width = 1224;
                 }
 
                 this.state.attr('width', width);
@@ -54,9 +54,9 @@ define([
                 return this.state.attr('height');
             }
         });
-        var viewport = new Viewprot('body');
-        window['viewport'] = viewport;
-        return viewport;
 
+        var viewport = new Viewprot('body');
+
+        return viewport;
     }
 );

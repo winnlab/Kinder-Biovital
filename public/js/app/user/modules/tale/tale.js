@@ -2,6 +2,7 @@ define(
     [
         'canjs',
         'underscore',
+        'lib/viewport',
         'app/modules/tale/setTale',
         'modules/tales/talesModel',
         'modules/tracks/tracksModel',
@@ -14,6 +15,7 @@ define(
     function (
         can,
         _,
+        viewport,
         Tale,
         TalesModel,
         TracksModel,
@@ -60,7 +62,7 @@ define(
 
                 self.element.html('<div class="taleForm"></div>')
 
-                can.when.apply(can, def).then(function () {                    
+                can.when.apply(can, def).then(function () {
                     self.initSetControl(self.element.find('.taleForm'), new TalesModel(self.getStoredTale()));
                 });
 

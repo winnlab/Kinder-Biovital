@@ -4,6 +4,7 @@
 @import '../../base/_placeholders.scss';
 @import '../../base/_variables.scss';
 
+
 .popUpWrap {
     display: none;
     @include position(fixed, 0 0 0 0);
@@ -34,12 +35,11 @@
     }
 
     .popUp {
+        @include sprite($popupBg);
         @include position(absolute, 50% null null 50%);
         z-index: 1;
-        @include size(393px 206px);
         margin: -103px 0 0 -186px;
         padding: 30px;
-        background: url('#{$imgPath}popupBg.png');
 
         &.largeText {
             .msg {
@@ -64,8 +64,7 @@
             &:after {
                 content: '';
                 @include position(absolute, 7px null null 8px);
-                @include size(15px 14px);
-                background: url('#{$imgPath}smallX.jpg');
+                @include sprite($smallX);
             }
         }
 
@@ -154,8 +153,7 @@
         &:after {
             content: '';
             @include position(absolute, 7px null null 8px);
-            @include size(15px 14px);
-            background: url('#{$imgPath}smallX.jpg');
+            @include sprite($smallX);
         }
     }
 }

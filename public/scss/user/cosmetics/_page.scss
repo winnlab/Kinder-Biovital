@@ -3,6 +3,8 @@
 @import '../../base/_mixins.scss';
 @import '../../base/_placeholders.scss';
 @import '../../base/_variables.scss';
+@import '../../base/_sprites.scss';
+
 
 .pageWrap {
     @include position(absolute, 125px null null 289px);
@@ -16,8 +18,7 @@
         content: '';
         z-index: -1;
         @include position(absolute, -32px null null -40px);
-        @include size(726px 466px);
-        background: url('#{$imgPath}pageBg.png');
+        @include sprite($pageBg);
     }
 
     video {
@@ -42,17 +43,16 @@
         .arrow {
             @include position(absolute, 144px null null null);
             z-index: 10;
-            @include size(22px 41px);
             cursor: pointer;
 
             &.prev {
                 left: -32px;
-                background: url('#{$imgPath}kibiPrev.png');
+                @include sprite($kibiPrev);
             }
 
             &.next {
                 right: -23px;
-                background: url('#{$imgPath}kibiNext.png');
+                @include sprite($kibiNext);
             }
         }
 
@@ -63,13 +63,12 @@
 
             .dot {
                 display: inline-block;
-                @include size(11px 9px);
                 margin: 0 4px 0 0;
                 cursor: pointer;
-                background: url('#{$imgPath}dot.png');
+                @include sprite($dot);
 
                 &.active {
-                    background: url('#{$imgPath}dotActive.png');
+                    @include sprite($dotActive);
                 }
             }
         }
@@ -85,14 +84,13 @@
         &.slide-0:before {
             content: '';
             @include position(absolute, -1px null null -226px);
-            @include size(221px 288px);
-            background: url('#{$imgPath}kibi.png');
+            @include sprite($kibi);
         }
         &.slide-1:before {
             content: '';
             @include position(absolute, -8px null null -196px);
             @include size(185px 310px);
-            background: url('#{$imgPath}gel.png');
+            @include sprite($gel);
         }
 
         div:first-child:first-letter {
@@ -121,13 +119,13 @@
     }
 
     ul {
-        list-style: url(#{$imgPath}list-style.png) inside;
         li {
             margin: -2px 0 6px;
             display: block;
 
             &:before {
-                content: url(#{$imgPath}list-style.png);
+                content: '';
+                @include sprite($list-style);
                 display: inline-block;
                 vertical-align: middle;
                 margin: 0 10px 0 0;

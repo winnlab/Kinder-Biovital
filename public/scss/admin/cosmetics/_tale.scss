@@ -3,6 +3,7 @@
 @import '../../base/_mixins.scss';
 @import '../../base/_placeholders.scss';
 @import '../../base/_variables.scss';
+@import '../../base/_sprites.scss';
 
 $taleZoneWidth: 1224px;
 $taleZoneHeight: 650px;
@@ -72,14 +73,10 @@ $posWrapWidth: 328px;
     }
 
     &:after {
-        content: '';
-        position: absolute;
-        background-image: url('#{$imgPath}titleBg.png');
-        width: 381px;
-        height: 138px;
-        left: -16px;
-        top: -14px;
+        @include sprite($titleBg);
+        @include position(absolute, -14px null null -16px);
         z-index: -1;
+        content: '';
     }
 
     .small {
@@ -94,35 +91,25 @@ $posWrapWidth: 328px;
     width: $taleZoneWidth;
     height: $taleZoneHeight;
 
-    &:before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 1px;
-        z-index: 2;
-        background: $taleBorderBg;
-    }
-
-    &:after {
-        @extend :before;
-        left: auto;
-        right: 0;
-    }
-
     .border {
         position: absolute;
-        left: 0;
-        right: 0;
         z-index: 2;
-        height: 1px;
         background: $taleBorderBg;
         &.top {
             top: 0;
+            @include size(100% 1px);
         }
         &.btm {
             bottom: 0;
+            @include size(100% 1px);
+        }
+        &.left {
+            left: 0;
+            @include size(1px 100%);
+        }
+        &.right {
+            right: 0;
+            @include size(1px 100%);
         }
     }
 
@@ -136,13 +123,12 @@ $posWrapWidth: 328px;
             &:after {
                 content: '';
                 @include position(absolute, 0 null null 0);
-                @include size(37px 37px);
             }
             &.orange:after {
-                background: url('#{$imgPath}sun.png');
+                @include sprite($sun);
             }
             &.red:after {
-                background: url('#{$imgPath}moon.png');
+                @include sprite($moon);
             }
         }
     }
@@ -160,8 +146,7 @@ $posWrapWidth: 328px;
             &:after {
                 content: '';
                 @include position(absolute, 17px 8px null null);
-                @include size(27px 25px);
-                background: url('#{$imgPath}nextInSlide.png');
+                @include sprite($nextInSlide);
             }
         }
     }
@@ -171,11 +156,10 @@ $posWrapWidth: 328px;
         @include size($posWrapWidth 152px);
 
         &:after {
-            content: '';
+            @include sprite($spread);
             @include position(absolute, -13px none none -14px);
             z-index: 1;
-            @include size(363px 192px);
-            background-image: url('#{$imgPath}spread.png');
+            content: '';
         }
 
         .miniBg {
@@ -195,17 +179,15 @@ $posWrapWidth: 328px;
                 cursor: move;
                 content: '';
                 @include position(absolute, 0 null null -8px);
-                @include size(170px 142px);
-                background: url('#{$imgPath}previewFrame2.png');
+                @include sprite($previewFrame2);
             }
         }
     }
 }
 
 .chooseMusic {
-    position: absolute;
-    bottom: 34px;
-    left: 14px;
+    @include position(absolute, null null 34px 15px);
+    z-index: 3;
 
     &.taleBtnWrap {
         padding: 7px 5px;
@@ -220,8 +202,7 @@ $posWrapWidth: 328px;
         &:after {
             content: '';
             @include position(absolute, 8px null null 135px);
-            @include size(26px 21px);
-            background: url('#{$imgPath}sound.png');
+            @include sprite($sound);
         }
     }
     .musicLabel {
@@ -297,8 +278,7 @@ $posWrapWidth: 328px;
         &:after {
             content: '';
             @include position(absolute, -1px null null -1px);
-            @include size(22px 22px);
-            background: url('#{$imgPath}close.png');
+            @include sprite($close);
         }
     }
 }
@@ -308,7 +288,7 @@ $posWrapWidth: 328px;
     right: 44px;
 
     .taleBtn:after {
-        background: url('#{$imgPath}question.png');
+        @include sprite($question);
     }
 }
 

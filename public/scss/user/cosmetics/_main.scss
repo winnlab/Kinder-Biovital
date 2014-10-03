@@ -3,7 +3,7 @@
 @import '../../base/_mixins.scss';
 @import '../../base/_placeholders.scss';
 @import '../../base/_variables.scss';
-
+@import '../../base/_sprites.scss';
 $duration: 0.6s;
 
 .loaderBg {
@@ -120,10 +120,9 @@ $duration: 0.6s;
             text-decoration: none;
 
             &:after {
-                content: '';
-                background: url('#{$imgPath}watchTale.png');
-                @include size(83px 82px);
+                @include sprite($watchTale);
                 @include position(absolute, 22px null null 32px);
+                content: '';
                 z-index: 2;
             }
         }
@@ -163,18 +162,16 @@ $duration: 0.6s;
         padding: 29px 19px 28px 141px;
 
         &:after {
-            content: '';
-            z-index: -1;
+            @include sprite($mainTextBg);
             @include position(absolute, -11px null null -17px);
-            @include size(1006px 190px);
-            background: url('#{$imgPath}mainTextBg.png');
+            z-index: -1;
+            content: '';
         }
 
         &:before {
             content: '';
             @include position(absolute, 12px null null 40px);
-            @include size(81px 133px);
-            background: url('#{$imgPath}vedmeBanka.png');
+            @include sprite($vedmeBanka);
         }
 
         .column {

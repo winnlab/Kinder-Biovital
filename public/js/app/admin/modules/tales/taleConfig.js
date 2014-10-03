@@ -15,7 +15,7 @@ define({
         width: 1224,
         height: 650,
         minLeft: 348,
-        maxLeft: 2133
+        maxLeft: 2133        
     },
 
     heroSize: {

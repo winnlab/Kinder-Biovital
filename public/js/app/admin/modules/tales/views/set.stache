@@ -1,7 +1,5 @@
 <div class="taleContainer {{interface}}" style="{{contentSize}}">
     <div class="taleZone" style="{{#if talePreview}}display: none;{{/if}} {{talePosition}}">
-        <div class="border top"></div>
-        <div class="border btm"></div>
         <div class="frameBg" style="{{bgOffset frame.left}}">
             {{#isnt display 'frame'}}
                 {{>/js/app/admin/modules/tales/views/decoration.stache}}
@@ -9,6 +7,7 @@
         </div>
 
         <div class="chooseBg taleIn{{#is display 'bg'}} active{{/is}}">
+            {{>/js/app/admin/modules/tales/views/border.stache}}
 
             <div class="frameBgPosition"></div>
 
@@ -47,6 +46,7 @@
         </div>
 
         <div class="displayFrame taleIn{{#is display 'frame'}} active{{/is}}">
+            {{>/js/app/admin/modules/tales/views/border.stache}}
             <div class="taleTitle">
                 <div class="innerTitle">
                     {{locale.setTale.create}} {{indexOfInc tale.frames frame}}
@@ -75,7 +75,7 @@
                 </div>
             </div>
 
-            <div class="leftPanel">
+            <div class="leftPanel" style="{{panelLeft}}">
                 <div class="{{#if showText}}removeTitr{{else}}addTitr{{/if}} taleBtnWrap medium">
                     <div class="taleBtn orange">
                         {{#if showText}}
@@ -105,7 +105,7 @@
 
             {{>/js/app/admin/modules/tales/views/trackList.stache}}
 
-            <div class="btmPanel" {{#if collapsed}}style="display: none;"{{/if}}>
+            <div class="btmPanel" style="{{#if collapsed}}display: none;{{/if}} {{panelBtm}}">
                 <div class="taleBtnWrap big">
                     <div class="taleBtn orange">
                         <item-scroll data="{tale.frames}" count="4">
@@ -118,7 +118,7 @@
                 </div>
             </div>
 
-            <div class="rightPanel" {{#if collapsed}}style="display: none;"{{/if}}>
+            <div class="rightPanel" style="{{#if collapsed}}display: none;{{/if}} {{panelRight}}">
                 <div class="taleBtnWrap big orange">
                     <div class="taleBtn preview">
                         {{locale.setTale.preview}}
@@ -131,7 +131,7 @@
                 </div>
             </div>
 
-            <div class="endTale taleBtnWrap big" {{#if collapsed}}style="display: none;"{{/if}}>
+            <div class="endTale taleBtnWrap big" style="{{#if collapsed}}display: none;{{/if}} {{panelRight}}">
                 <div class="taleBtn red" data-display="cover">{{locale.setTale.endTale}}</div>
             </div>
 
@@ -177,6 +177,7 @@
         </div>
 
         <div class="taleIn{{#is display 'cover'}} active{{/is}}">
+            {{>/js/app/admin/modules/tales/views/border.stache}}
             <div class="taleTitle">
                 <div class="innerTitle">
                     {{locale.setTale.createCover}}
@@ -247,6 +248,7 @@
         </div>
 
         <div class="taleIn{{#is display 'share'}} active{{/is}}">
+            {{>/js/app/admin/modules/tales/views/border.stache}}
             <div class="taleTitle">
                 <div class="innerTitle">
                     {{!#if shared}}

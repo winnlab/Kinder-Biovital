@@ -4,6 +4,7 @@
 @import '../../base/_placeholders.scss';
 @import '../../base/_variables.scss';
 
+
 .taleZone.previewBlock {
     &:before {
         display: none;
@@ -70,27 +71,26 @@
             &:before {
                 content: '';
                 z-index: -1;
-                @include size(67px 57px);
             }
 
             &.RT:before {
                 @include position(absolute, null null -45px -3px);
-                background: url('#{$imgPath}bubleTailRT.png');
+                @include sprite($bubleTailRT);
             }
 
             &.LT:before {
                 @include position(absolute, null -3px -45px null);
-                background: url('#{$imgPath}bubleTailLT.png');
+                @include sprite($bubleTailLT);
             }
 
             &.RB:before {
                 @include position(absolute, -50px null null -3px);
-                background: url('#{$imgPath}bubleTailRB.png');
+                @include sprite($bubleTailRB);
             }
 
             &.LB:before {
                 @include position(absolute, -50px -3px null null);
-                background: url('#{$imgPath}bubleTailLB.png');
+                @include sprite($bubleTailLB);
             }
 
             &:after {
@@ -147,21 +147,19 @@
 
         .soundBtn {
             @include position(absolute, 6px null null 6px);
-            @include size(36px 37px);
-            background-image: url('#{$imgPath}soundOn.jpg');
+            @include sprite($soundOn);
 
             &.muted {
-                background-image: url('#{$imgPath}soundOff.jpg');
+                @include sprite($soundOff);
             }
         }
     }
 
     .sharing {
         @include position(absolute, null -3px -11px null);
-        @include size(195px 69px);
+        @include sprite($playerShareBg);
         padding: 15px 23px 23px 18px;
         line-height: 170%;
-        background: url('#{$imgPath}playerShareBg.png');
         text-align: justify;
 
         &:after {
@@ -181,25 +179,20 @@
         }
 
         .share {
-            height: 22px;
             display: inline-block;
             vertical-align: middle;
-            background: url('#{$imgPath}playerShareNw.png');
             cursor: pointer;
 
             &.fb {
-                width: 18px;
-                background-position: 0 0;
+                @include sprite($fbMiniShare);
             }
 
             &.ok {
                 @include size(21px);
-                background: none;
             }
 
             &.vk {
-                width: 17px;
-                background-position: -52px 0;
+                @include sprite($vkMiniShare);
             }
         }
 
@@ -219,9 +212,8 @@
             background: #f4ecd9;
             &:after {
                 content: '';
-                @include size(32px 26px);
                 @include position(absolute, 11px null null 5px);
-                background: url('#{$imgPath}playP.png');
+                @include sprite($playP);
             }
         }
 
@@ -231,9 +223,7 @@
 
             &:after {
                 @include position(absolute, 10px null null 4px);
-                @include size(33px 26px);
-                background: url('#{$imgPath}playN.png');
-
+                @include sprite($playN);
             }
         }
 
@@ -250,14 +240,12 @@
             &:after {
                 content: '';
                 @include position(absolute, 19px null null 27px);
-                @include size(40px 42px);
-                background: url('#{$imgPath}play.png');
+                @include sprite($play);
             }
 
             &.pause:after {
                 @include position(absolute, 23px null null 23px);
-                @include size(34px);
-                background: url('#{$imgPath}pause.png');
+                @include sprite($pause);
             }
         }
     }
@@ -268,12 +256,11 @@
 
     .likeBox {
         @include position(absolute, 208px null null 380px);
-        @include size(471px 206px);
+        @include sprite($likeBg);
         z-index: 2;
         padding: 43px 58px;
         font-family: Arial;
         font-size: 18px;
-        background: url('#{$imgPath}likeBg.png');
 
         .likeBtns {
             text-align: center;
@@ -292,21 +279,6 @@
             display: inline-block;
             vertical-align: middle;
             cursor: pointer;
-
-            &.fb {
-                @include size(73px 31px);
-                background: url('#{$imgPath}fbLike.png');
-            }
-
-            &.ok {
-                @include size(90px 28px);
-                background: url('#{$imgPath}okLike.png');
-            }
-
-            &.vk {
-                @include size(121px 28px);
-                background: url('#{$imgPath}vkLike.png');
-            }
         }
     }
 }

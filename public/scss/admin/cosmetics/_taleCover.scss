@@ -3,6 +3,8 @@
 @import '../../base/_mixins.scss';
 @import '../../base/_placeholders.scss';
 @import '../../base/_variables.scss';
+@import '../../base/_sprites.scss';
+
 
 .taleZone {
 
@@ -55,17 +57,17 @@
                 background: #f5ebd9;
             }
 
-            .arrow {
-                left: 19px;
-                &.top {
-                    top: 12px;
-                    background-image: url('#{$imgPath}colorTop.jpg');
-                }
-                &.btm {
-                    bottom: 11px;
-                    background-image: url('#{$imgPath}colorBtm.jpg');
-                }
-            }
+            // .arrow {
+            //     left: 19px;
+            //     &.top {
+            //         top: 12px;
+            //         background-image: url('#{$imgPath}colorTop.jpg');
+            //     }
+            //     &.btm {
+            //         bottom: 11px;
+            //         background-image: url('#{$imgPath}colorBtm.jpg');
+            //     }
+            // }
         }
 
         .coverColor {
@@ -77,22 +79,22 @@
             margin-bottom: 4px;
         }
 
-        .arrow {
-            position: absolute;
-            width: 27px;
-            height: 15px;
-            left: 28px;
-            cursor: pointer;
-
-            &.top {
-                top: -23px;
-                background-image: url('#{$imgPath}imgTop.jpg');
-            }
-            &.btm {
-                background-image: url('#{$imgPath}imgBtm.jpg');
-                bottom: -23px;
-            }
-        }
+        // .arrow {
+        //     position: absolute;
+        //     width: 27px;
+        //     height: 15px;
+        //     left: 28px;
+        //     cursor: pointer;
+        //
+        //     &.top {
+        //         top: -23px;
+        //         background-image: url('#{$imgPath}imgTop.jpg');
+        //     }
+        //     &.btm {
+        //         background-image: url('#{$imgPath}imgBtm.jpg');
+        //         bottom: -23px;
+        //     }
+        // }
     }
 
     .taleCover {
@@ -170,8 +172,7 @@
             &:after {
                 content: '';
                 @include position(absolute, 16px null null 6px);
-                @include size(26px 26px);
-                background: url('#{$imgPath}backArrow.png');
+                @include sprite($backArrow);
             }
         }
     }

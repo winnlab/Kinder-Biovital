@@ -3,6 +3,8 @@
 @import '../../base/_mixins.scss';
 @import '../../base/_placeholders.scss';
 @import '../../base/_variables.scss';
+@import '../../base/_sprites.scss';
+
 
 #cover {
     display: none;
@@ -18,11 +20,10 @@
     padding: 25px 0 0;
 
     &:after {
+        @include sprite($shareLink);
         @include position(absolute, -29px null null -18px);
-        @include size(618px 123px);
-        content: '';
         z-index: -1;
-        background: url('#{$imgPath}shareLink.png');
+        content: '';
     }
 
     .linkTitle {
@@ -42,9 +43,8 @@
 
 .shareTaleSoc {
     @include position(absolute, 444px null null 466px);
-    @include size(297px 155px);
+    @include sprite($shareSoc);
     padding: 45px 36px 40px 58px;
-    background: url('#{$imgPath}shareSoc.png');
 
     .share {
         @include size(45px);
@@ -60,11 +60,10 @@
         &:after {
             content: '';
             @include position(absolute, 0 null null 0);
-            @include size(47px);
         }
 
         &.fb:after {
-            background: url('#{$imgPath}FB.png');
+            @include sprite($FB);
         }
 
         &.ok:after {
@@ -72,7 +71,7 @@
         }
 
         &.vk:after {
-            background: url('#{$imgPath}VK.png');
+            @include sprite($VK);
         }
     }
 

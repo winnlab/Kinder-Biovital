@@ -1,9 +1,45 @@
 define(
-    ['canjs', 'core/appState', 'lib/popUp/popUp'],
+    ['canjs', 'core/appState', 'modules/tales/taleConfig', 'lib/popUp/popUp', 'lib/viewport'],
 
-    function (can, appState, popUp) {
+    function (can, appState, taleConfig, popUp, viewport) {
 
         return can.Map.extend({
+
+            panelPosition: function (position) {
+                var result = '',
+                    winWidth = viewport.getViewportWidth(),
+                    winHeight = viewport.getViewportHeight();
+
+                if (winWidth > taleConfig.taleSize.width && winWidth < 1600) {
+                    if (position === 'bottom') {
+                        result = position + ': ' + ((taleConfig.taleSize.width + 40) - winWidth) / 2 + 'px;';
+                    } else {
+                        result = position + ': ' + ((taleConfig.taleSize.height + 40) - winHeight) / 2 + 'px;';
+                    }
+                }
+
+                return result;
+            }
+
+
+            define: {
+                panelLeft: {
+                    get: function () {
+                        return panelPosition('left');
+                    }
+                },
+                panelRight: {
+                    get: function () {
+                        return panelPosition('right');
+                    }
+                },
+                panelBtm: {
+                    get: function () {
+                        return panelPosition('bottom');
+                    }
+                }
+            },
+
             showText: false,
             showTracks: false,
             talePreview: '',
