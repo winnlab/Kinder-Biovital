@@ -3,25 +3,23 @@ define(
 
     function (can, appState, taleConfig, popUp, viewport) {
 
-        return can.Map.extend({
+        function panelPosition (position) {
+            var result = '',
+                winWidth = viewport.getViewportWidth(),
+                winHeight = viewport.getViewportHeight();
 
-            panelPosition: function (position) {
-                var result = '',
-                    winWidth = viewport.getViewportWidth(),
-                    winHeight = viewport.getViewportHeight();
-
-                if (winWidth > taleConfig.taleSize.width && winWidth < 1600) {
-                    if (position === 'bottom') {
-                        result = position + ': ' + ((taleConfig.taleSize.width + 40) - winWidth) / 2 + 'px;';
-                    } else {
-                        result = position + ': ' + ((taleConfig.taleSize.height + 40) - winHeight) / 2 + 'px;';
-                    }
+            if (winWidth > taleConfig.taleSize.width && winWidth < 1600) {
+                if (position === 'bottom') {
+                    result = position + ': ' + ((taleConfig.taleSize.width + 40) - winWidth) / 2 + 'px;';
+                } else {
+                    result = position + ': ' + ((taleConfig.taleSize.height + 40) - winHeight) / 2 + 'px;';
                 }
-
-                return result;
             }
 
+            return result;
+        }
 
+        return can.Map.extend({
             define: {
                 panelLeft: {
                     get: function () {
