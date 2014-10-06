@@ -1,6 +1,6 @@
 require.config({
 	baseUrl: '/js/lib',
-	urlArgs: "v=0.0.1.7",
+	urlArgs: "v=0.0.1.8",
 	paths: {
 		cssDir: '../../css/user',
 		app: '../app/user',
