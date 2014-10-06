@@ -189,6 +189,10 @@ $posWrapWidth: 328px;
     @include position(absolute, null null 34px 15px);
     z-index: 3;
 
+    .chooseBg & {
+        left: 15px !important;
+    }
+
     &.taleBtnWrap {
         padding: 7px 5px;
         border-radius: 7px;
