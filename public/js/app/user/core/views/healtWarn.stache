@@ -1,0 +1,3 @@
+{{#if appState.locale.warn}}
+    <div class="healthWarn">{{appState.locale.warn}}</div>
+{{/if}}

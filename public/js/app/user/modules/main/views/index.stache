@@ -26,22 +26,22 @@
         <div class="content {{#if loaded}}active{{/if}}">
             <div class="taleTitle">
                 <div class="innerTitle">
-                    {{{locale.main.title}}}
+                    {{{appState.locale.main.title}}}
                 </div>
             </div>
 
             <nav class="menu">
                 <!-- <a class="module" href="/sp/conditions">
-                    <span class="label">{{!locale.main.terms}}</span>
+                    <span class="label">{{!appState.locale.main.terms}}</span>
                 </a> -->
                 <a class="module" href="/rating">
-                    <span class="label">{{locale.main.rating}}</span>
+                    <span class="label">{{appState.locale.main.rating}}</span>
                 </a>
                 <!-- <a class="module" href="/sp/conditions">
-                    <span class="label">{{!locale.main.gifts}}</span>
+                    <span class="label">{{!appState.locale.main.gifts}}</span>
                 </a> -->
                 <a class="module" href="/sp/kinder-biovital">
-                    <span class="label">{{locale.main.brand}}</span>
+                    <span class="label">{{appState.locale.main.brand}}</span>
                 </a>
             </nav>
 
@@ -55,25 +55,25 @@
             </div>
 
             <div class="howToWrite taleBtnWrap big orange">
-                <a class="module taleBtn" href="/sp/how-to-write">{{locale.main.how}}</a>
+                <a class="module taleBtn" href="/sp/how-to-write">{{appState.locale.main.how}}</a>
             </div>
 
             <div class="watchTale taleBtnWrap big">
                 <a class="module taleBtn red" href="/tales">
-                    <span>{{locale.main.watchTale}}</span>
+                    <span>{{appState.locale.main.watchTale}}</span>
                 </a>
             </div>
 
             <div class="createTale taleBtnWrap big red">
-                <a class="module taleBtn" href="/create-tale">{{locale.main.create}}</a>
+                <a class="module taleBtn" href="/create-tale">{{appState.locale.main.create}}</a>
             </div>
 
             <div class="text">
-                <div class="column">{{{locale.main.block1}}}</div>
-                <div class="column">{{{locale.main.block2}}}</div>
+                <div class="column">{{{appState.locale.main.block1}}}</div>
+                <div class="column">{{{appState.locale.main.block2}}}</div>
             </div>
         </div>
 
-
+        {{>/js/app/user/core/views/healtWarn.stache}}
     </div>
 </div>

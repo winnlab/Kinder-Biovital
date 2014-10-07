@@ -13,7 +13,7 @@
 
     modules: [{
         name: "core/core",
-        include: ['lib/preloader', 'lib/viewport', 'underscore'],
+        include: ['lib/preloader', 'lib/viewport', 'underscore', 'modules/tales/talesModel'],
         insertRequire: [
             'can/route/pushstate',
             'can/map/define',
@@ -24,6 +24,9 @@
         ]
     }, {
         name: "app/modules/rating/rating",
+        // include: [
+        //     'modules/tales/talesModel'
+        // ],
         exclude: [
             'canjs',
             'underscore',

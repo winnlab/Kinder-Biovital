@@ -51,6 +51,17 @@ module {
     z-index: 10;
 }
 
+.healthWarn {
+    @include position(absolute, null null -14px 262px);
+    color: #FFF;
+    font: {
+        family: Arial;
+        size: 10px;
+    }
+    width: 700px;
+    text-align: center;
+}
+
 @import '../admin/cosmetics/_cover.scss';
 @import '../admin/cosmetics/_taleBtns.scss';
 @import '../admin/cosmetics/_tale.scss';

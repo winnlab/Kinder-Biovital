@@ -32,7 +32,7 @@ define(
                     offset = $('#preloader img').offset();
 
                 self.module = new Module({
-                    locale: appState.attr('locale'),
+                    appState: appState,
                     size: appState.attr('size'),
                     loaderPosition: {
                         left: offset.left,

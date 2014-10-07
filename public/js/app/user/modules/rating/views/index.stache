@@ -41,4 +41,6 @@
         </div>
     </div>
 
+    {{>/js/app/user/core/views/healtWarn.stache}}
+
 </div>
