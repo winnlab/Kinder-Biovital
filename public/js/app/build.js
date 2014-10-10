@@ -20,13 +20,11 @@
             'can/map/delegate',
             'can/map/sort',
             'can/list/promise',
-            'can/construct/super'
+            'can/construct/super',
+            'src/transition'
         ]
     }, {
         name: "app/modules/rating/rating",
-        // include: [
-        //     'modules/tales/talesModel'
-        // ],
         exclude: [
             'canjs',
             'underscore',

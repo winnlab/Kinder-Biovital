@@ -1,7 +1,7 @@
 define(
-    ['canjs', 'core/appState', 'lib/preloader', 'lib/viewport', 'modules/tales/taleConfig'],
+    ['canjs', 'core/appState', 'lib/preloader', 'lib/viewport', 'modules/tales/taleConfig', 'src/transition'],
 
-    function (can, appState, Preloader, viewport, taleConfig) {
+    function (can, appState, Preloader, viewport, taleConfig, transition) {
 
         return can.Control.extend({
             defaults: {
@@ -48,6 +48,9 @@ define(
                         callback: function () {
                             options.isReady.resolve();
                             self.module.attr('loaded', true);
+                            self.element.find('.bg img').one(transition(), function () {
+                                $(this).addClass('animated')
+                            });
                         }
                     });
                 }

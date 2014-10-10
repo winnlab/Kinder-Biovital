@@ -41,8 +41,12 @@ $duration: 0.6s;
 
         img {
             @include position(absolute, null null null 0);
-            @include transition (all $duration ease-in-out);
+            @include transition(all $duration ease-in-out);
             display: block;
+
+            &.animated {
+                @include transition(none);
+            }
         }
     }
 
