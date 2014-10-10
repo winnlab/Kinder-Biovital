@@ -13,15 +13,20 @@
 
     modules: [{
         name: "core/core",
-        include: ['lib/preloader', 'lib/viewport', 'underscore', 'modules/tales/talesModel'],
+        include: [
+            'lib/preloader',
+            'lib/viewport',
+            'underscore',
+            'modules/tales/talesModel',
+            'src/transition'
+        ],
         insertRequire: [
             'can/route/pushstate',
             'can/map/define',
             'can/map/delegate',
             'can/map/sort',
             'can/list/promise',
-            'can/construct/super',
-            'src/transition'
+            'can/construct/super'
         ]
     }, {
         name: "app/modules/rating/rating",
