@@ -16,22 +16,9 @@ define(
             init: function () {
                 var self = this,
                     options = this.options,
-                    Module = can.Map.extend({
-                        define: {
-                            bgOffset: {
-                                get: function () {
-                                    if (this.attr('loaded')) {
-                                        return - (this.attr('bgSize.height') - taleConfig.taleSize.height) / 2;
-                                    } else {
-                                        return - this.attr('bgSize.height');
-                                    }
-                                }
-                            }
-                        }
-                    }),
                     offset = $('#preloader img').offset();
 
-                self.module = new Module({
+                self.module = new can.Map({
                     appState: appState,
                     size: appState.attr('size'),
                     loaderPosition: {
@@ -43,7 +30,16 @@ define(
 
                 self.getBgSize();
 
-                self.element.html(can.view(options.viewpath + 'index.stache', self.module));
+                self.element.html(can.view(options.viewpath + 'index.stache', self.module, {
+                    bgOffset: function () {
+                            var height = this.attr('bgSize.height');
+                            if (this.attr('loaded')) {
+                                return - (height - taleConfig.taleSize.height) / 2;
+                            } else {
+                                return - height;
+                            }
+                    }
+                }));
 
                 if (options.isReady) {
                     new Preloader({
