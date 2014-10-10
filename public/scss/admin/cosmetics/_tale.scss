@@ -44,6 +44,7 @@ $posWrapWidth: 328px;
 
 .taleTitle {
     @include user-select(none);
+    cursor: default;
     color: $orange;
     width: $titleWidth;
     display: table;

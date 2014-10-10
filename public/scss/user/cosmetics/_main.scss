@@ -163,6 +163,7 @@ $duration: 0.6s;
     .text {
         @include position(absolute, null null 9px 126px);
         @include size(971px 155px);
+        cursor: default;
         padding: 29px 19px 28px 141px;
 
         &:after {

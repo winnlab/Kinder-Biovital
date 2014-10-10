@@ -73,7 +73,6 @@
                 <div class="column">{{{appState.locale.main.block2}}}</div>
             </div>
         </div>
-
-        {{>/js/app/user/core/views/healtWarn.stache}}
     </div>
 </div>
+{{>/js/app/user/core/views/healtWarn.stache}}
