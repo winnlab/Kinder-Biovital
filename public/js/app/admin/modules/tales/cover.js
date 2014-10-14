@@ -1,34 +1,52 @@
 define(
-    [],
+    ['lib/preloader', 'modules/tales/taleConfig'],
 
-    function () {
+    function (Preloader, taleConfig) {
 
         var width = 516,
-            height = 273,
-            textTop = 144;
+            height = 274,
+            textTop = 233;
 
         $('body').prepend('<canvas id="cover">');
 
         return {
 
-            getCover: function (img, color, text, cb) {
+            getCover: function (imgs, text, cb) {
 
-                img = '/img/coverBg2.jpg';
+                imgs.unshift('/img/coverBg.jpg')
+                imgs.push('/img/coverTextBg.png');
 
                 var self = this,
                     canvas = document.getElementById('cover'),
-                    context = canvas.getContext('2d'),
-                    image = new Image();
+                    context = canvas.getContext('2d');
 
                 context.canvas.width = width;
                 context.canvas.height = height;
 
-                context.fillStyle = '#' + (color || 'ffffff');
-                context.fillRect(0, 0, width, height);
+                new  Preloader({
+                    images: imgs,
+                    callback: function (images) {
+                        var bg = images.shift(),
+                            textBg = images.pop(),
+                            ln = images.length;
 
-                if (img) {
-                    image.onload = function() {
-                        self.drawImage(image, context, width, height);
+                        context.drawImage(bg, 0, 0, width, height);
+                        images.reverse();
+                        _.each(images, function (img, i) {
+                            var size = taleConfig.heroSize,
+                                left;
+
+                            if (ln * size.coverWidth < size.coverWrapWidth) {
+                                left = (size.coverWrapWidth - size.coverWidth * ln) / 2 + (ln - i - 1) * size.coverWidth;
+                            } else {
+                                left = (ln - i - 1) * size.coverWidth + ((size.coverWrapWidth - size.coverWidth * ln) / (ln - 1)) * (ln - i - 1);
+                            }
+
+                            context.drawImage(img, left + 42, 75, size.coverWidth, size.coverHeight);
+
+                        });
+
+                        context.drawImage(textBg, 42, 187, 433, 82);
 
                         self.textRender({
                             text: text,
@@ -45,33 +63,8 @@ define(
                         }, context);
 
                         self.getImageData(canvas, cb);
-                    };
-
-                    // image.src = '/uploads/' + img;
-                    image.src = img;
-                } else {
-                    cb(null);
-                }
-            },
-
-            drawImage: function (image, context) {
-                var proportion = image.width / image.height,
-                    imgWidth,
-                    imgHeight,
-                    top = 0,
-                    left = 0;
-
-                if (proportion > width / height) {
-                    imgWidth = width;
-                    imgHeight = ~~(imgWidth / proportion);
-                    top = (height - imgHeight) / 2;
-                } else {
-                    imgHeight = height;
-                    imgWidth = ~~(imgHeight * proportion);
-                    left = (width - imgWidth) / 2;
-                }
-
-                context.drawImage(image, left, top, imgWidth, imgHeight);
+                    }
+                });
             },
 
             textRender: function (data, context) {

@@ -176,7 +176,7 @@
 
         </div>
 
-        <div class="taleIn{{#is display 'cover'}} active{{/is}}">
+        <div class="makeCover taleIn{{#is display 'cover'}} active{{/is}}">
             {{>/js/app/admin/modules/tales/views/border.stache}}
             <div class="taleTitle">
                 <div class="innerTitle">
@@ -192,8 +192,25 @@
                 <div class="small taleBtn orange"></div>
             </div>
 
-            <div class="chooseCover" style="display: none;">
-                <div class="chooseImg taleBtnWrap">
+            <div class="chooseCover">
+
+                <div class="chooseHero taleBtnWrap medium">
+                    <div class="taleBtn orange">
+                        {{#each heroes}}
+                            {{#if img}}
+                                <div class="coverHero" data-id="{{_id}}" style="{{#if img}}background-image: url(/uploads/{{img}});{{/if}}">
+                                    {{#each tale.coverHeroes}}
+                                        {{#is . _id}}
+                                            <div class="removeCoverHero" data-id="{{_id}}"></div>
+                                        {{/is}}
+                                    {{/each}}
+                                </div>
+                            {{/if}}
+                        {{/each}}
+                    </div>
+                </div>
+
+                <div class="chooseImg taleBtnWrap" style="display: none;">
                     <div class="taleBtn orange">
                         <item-scroll data="{coverImages}" count="3">
                             {{#if img}}
@@ -202,7 +219,7 @@
                         </item-scroll>
                     </div>
                 </div>
-                <div class="chooseColor taleBtnWrap">
+                <div class="chooseColor taleBtnWrap" style="display: none;">
                     <item-scroll data="{coverColors}" count="3">
                         {{#if color}}
                             <div class="coverColor" data-id="{{_id}}" style="background-color: #{{color}};"></div>
@@ -220,8 +237,16 @@
                     background-image: url(/uploads/{{arrFind coverImages tale.coverImgId '_id' 'img'}});
                 {{/if}}
                 ">
+                    <div class="coverHeroes">
+                        {{#each tale.coverHeroes}}
+                            <div class="coverHeroImg" style="
+                                background-image: url(/uploads/{{arrFind heroes . '_id' 'img'}});
+                                {{coverHeroLeft @index tale.coverHeroes.length}}
+                            "></div>
+                        {{/each}}
+                    </div>
                     {{#if tale.name}}
-                        <div class="coverName" style="top: {{tale.top}}px; left: {{tale.left}}px;">
+                        <div class="coverName">
                             {{tale.name}}
                         </div>
                     {{/if}}

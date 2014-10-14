@@ -15,7 +15,7 @@ define({
         width: 1224,
         height: 650,
         minLeft: 348,
-        maxLeft: 2133        
+        maxLeft: 2133
     },
 
     heroSize: {
@@ -24,6 +24,9 @@ define({
         bgWidth: 120,
         bgHeight: 150,
         replWidth: 216,
-        replHeight: 80
+        replHeight: 80,
+        coverWidth: 135,
+        coverHeight: 171,
+        coverWrapWidth: 432
     },
 });

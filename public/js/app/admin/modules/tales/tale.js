@@ -79,6 +79,23 @@ define(
                     },
                     miniOffset: function (left) {
                         return 'left: ' + Math.round((left()) / options.miniProp) + 'px';
+                    },
+                    coverHeroLeft: function(i, ln) {
+                        i = i(), ln = ln();
+
+                        var result = 'z-index: ' + (ln - i) + ';',
+                            size = taleConfig.heroSize,
+                            left;
+
+                        if (ln * size.coverWidth < size.coverWrapWidth) {
+                            left = (size.coverWrapWidth - size.coverWidth * ln) / 2 + i * size.coverWidth;
+                        } else {
+                            left = i * size.coverWidth + ((size.coverWrapWidth - size.coverWidth * ln) / (ln - 1)) * i;
+                        }
+
+                        result += 'left:' + left + 'px;';
+
+                        return result;
                     }
                 }, function (html) {
                     self.element.html(html);
@@ -95,8 +112,7 @@ define(
             setDefaults: function (doc, options) {
                 doc.attr({
                     frames: [this.addFrame(0)],
-                    left: 150,
-                    top: 150
+                    coverHeroes: []
                 });
             },
 
@@ -308,20 +324,6 @@ define(
                 }
             },
 
-            '.coverName draginit': function (el, ev, drag) {
-                drag.limit(el.parent());
-            },
-
-            '.coverName dragend': function (el, ev, drag) {
-                var offset = el.parents('.coverPreview').offset(),
-                    left = drag.location.left() - offset.left,
-                    top = drag.location.top() - offset.top;
-
-                this.module.attr('tale.top', top);
-                this.module.attr('tale.left', left);
-            },
-
-
             '[data-display] click': function (el) {
                 this.module.attr('display', el.data('display'));
             },
@@ -403,12 +405,21 @@ define(
                 });
             },
 
-            '.coverImage click': function (el) {
-                this.module.attr('tale.coverImgId', el.data('id'));
+            '.coverHero click': function (el) {
+                var coverHeroes = this.module.attr('tale.coverHeroes'),
+                    heroId = el.data('id');
+                if (coverHeroes.attr().indexOf(heroId) === -1) {
+                   coverHeroes.push(heroId);
+                }
             },
 
-            '.coverColor click': function (el) {
-                this.module.attr('tale.coverColorId', el.data('id'));
+            '.removeCoverHero click': function (el, ev) {
+                ev.stopPropagation();
+                var coverHeroes = this.module.attr('tale.coverHeroes'),
+                    heroId = el.data('id'),
+                    index = coverHeroes.attr().indexOf(heroId);
+
+                coverHeroes.splice(index, 1);
             },
 
             '.preview click': function () {
@@ -429,7 +440,7 @@ define(
                 self.module.saveTale(function () {
                     self.uploadCover(function () {
                         can.route.attr({module: 'tales'}, true);
-                    })
+                    });
                 }, true);
             },
 
@@ -437,27 +448,19 @@ define(
                 var self = this,
                     module = this.module,
                     tale = module.attr('tale'),
-                    coverImage = _.find(module.attr('coverImages'), function (cover) {
-                        return cover.attr('_id') === tale.attr('coverImgId');
-                    }),
-                    coverColor = _.find(module.attr('coverColors'), function (cover) {
-                        return cover.attr('_id') === tale.attr('coverColorId');
+                    heroes = _.map(tale.attr('coverHeroes').attr(), function (hero) {
+                        return _.find(module.attr('heroes').attr(), function (h) {
+                            return hero == h._id
+                        }).img;
                     });
 
-                // if (coverImage && coverImage.attr('img')) {
-                    Cover.getCover(
-                        // coverImage.attr('img'),
-                        '',
-                        coverColor && coverColor.attr('color'),
-                        tale.attr('name'),
-                        function (imageData) {
-                            self.doUploadCover(imageData, cb);
-                        }
-                    );
-                // } else {
-                //     cb();
-                // }
-
+                Cover.getCover(
+                    heroes,
+                    tale.attr('name'),
+                    function (imageData) {
+                        self.doUploadCover(imageData, cb);
+                    }
+                );
             },
 
             doUploadCover: function (imageData, cb) {

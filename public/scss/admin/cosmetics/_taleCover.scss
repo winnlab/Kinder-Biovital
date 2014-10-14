@@ -11,6 +11,48 @@
     .chooseCover {
         @include position(absolute, 130px null null 83px);
 
+        .chooseHero {
+            width: 184px;
+        }
+        .coverHero {
+            @include size(62px);
+            float: left;
+            background: {
+                size: contain;
+                repeat: no-repeat;
+                position: center center;
+                color: #fff;
+            }
+            margin: 0 4px 5px;
+            border-radius: 10px;
+            box-shadow: $innerShadow;
+            position: relative;
+            z-index: 1;
+
+            &:hover {
+                .removeCoverHero {
+                    display: block;
+                }
+            }
+        }
+
+        .removeCoverHero {
+            @include position(absolute, 16px null null 16px);
+            @include size(30px);
+            z-index: 3;
+            background-color: $white;
+            border-radius: 6px;
+            box-shadow: $outerShadow;
+            cursor: pointer;
+            display: none;
+
+            &:after {
+                @include position(absolute, 7px null null 8px);
+                @include sprite($smallX);
+                content: '';
+            }
+        }
+
         .taleBtnWrap {
             padding: 30px 8px;
             border-radius: 15px;
@@ -105,6 +147,21 @@
         top: 114px;
         border-radius: 20px;
 
+        .coverHeroes {
+            margin: 75px 42px 0;
+            position: relative;
+        }
+
+        .coverHeroImg {
+            @include size(135px 171px);
+            background: {
+                repeat: no-repeat;
+                size: contain;
+                position: center;
+            }
+            position: absolute;
+        }
+
         .coverPreview {
             position: absolute;
             width: 516px;
@@ -185,17 +242,15 @@
 }
 
 .coverName {
-    position: absolute;
+    @include position(absolute, null null 5px 42px);
+    @include size(433px 82px);
+    z-index: 100;
+    padding-top: 30px;
     font-family: Futura;
-    font-size: 32px;
+    font-size: 30px;
     text-shadow: 1px 2px 0 #bb6920;
     color: $orange;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.7);
-    cursor: move;
-}
-
-
-#cover {
-    display: none;
+    cursor: default;
+    text-align: center;
+    background: url('#{$imgPath}coverTextBg.png');
 }

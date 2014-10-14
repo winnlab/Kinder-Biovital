@@ -5,7 +5,6 @@
 @import '../../base/_variables.scss';
 @import '../../base/_sprites.scss';
 
-
 .leftPanel {
     @include position(absolute, 140px null null -176px);
     @include size(164px);
@@ -395,4 +394,8 @@
     position: absolute;
     z-index: 1;
     @include size(120px 150px);
+}
+
+.makeCover .chooseMusic {
+    left: 15px !important;
 }
