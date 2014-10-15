@@ -1,6 +1,6 @@
 define([
 	'jquery',
-	'canjs', 
+	'canjs',
 	'core/appState',
 
 	'css!cssComponents/notification'
@@ -23,14 +23,14 @@ define([
 					setTimeout(function() {
 						self.attr('visible', false);
 					}, time);
-				}				
-			}), 
+				}
+			}),
 
-			notification = new Notification();		
+			notification = new Notification();
 
-		appState.delegate('notification', 'set', function() {			
+		appState.delegate('notification', 'set', function(ev, newVal) {
 			notification.attr({
-				'notification': appState.attr('notification'),
+				'notification': newVal,
 				'visible': true
 			});
 			notification.hide();
@@ -38,23 +38,23 @@ define([
 
 		can.Component.extend({
 			tag: 'notification',
-			template: 
+			template:
 				'{{#if visible}}'+
-					'<div id="appNotification" class="alert {{getClass}} alert-dismissable">' + 
+					'<div id="appNotification" class="alert {{getClass}} alert-dismissable">' +
 						'<i class="fa {{getIcon}}"></i>' +
 						'<b>Внимание:&nbsp;</b>' +
 						'{{notification.msg}}' +
-					'</div>' + 				
+					'</div>' +
 				'{{/if}}',
 			scope: notification,
 			helpers: {
-				getClass: function () {
-					var status = this.attr('notification.status'),
+				getClass: function (options) {
+					var status = options.context.attr('notification').attr('status'),
 						className = status === 'success' ? 'alert-success' : 'alert-danger';
 					return className;
 				},
-				getIcon: function () {
-					var status = this.attr('notification.status'),
+				getIcon: function (options) {
+					var status = options.context.attr('notification').attr('status'),
 						iconName = status === 'success' ? 'fa-check' : 'fa-ban';
 					return iconName;
 				}
@@ -66,10 +66,10 @@ define([
 			}
 		});
 
-		return function () {			
+		return function () {
 			var template = can.mustache("<notification></notification>");
 			$(document.body).append(template());
-		}		
+		}
 
 	}
 );

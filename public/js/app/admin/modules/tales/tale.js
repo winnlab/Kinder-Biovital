@@ -408,6 +408,10 @@ define(
             '.coverHero click': function (el) {
                 var coverHeroes = this.module.attr('tale.coverHeroes'),
                     heroId = el.data('id');
+                if (!coverHeroes) {
+                    this.module.attr('tale.coverHeroes', []);
+                }
+
                 if (coverHeroes.attr().indexOf(heroId) === -1) {
                    coverHeroes.push(heroId);
                 }
