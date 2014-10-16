@@ -25,14 +25,26 @@ define(
 
             init: function () {
 
+                var coverPopUpShowed = false;
+
                 if (!localStorage.getItem('tale')) {
                     popUp.show({
-                        msg: appState.locale.goodTales,
+                        msg: appState.attr('locale.goodTales'),
                         choice: false
                     });
                 }
 
                 this._super.apply(this, arguments);
+
+                this.module.delegate("display", "set", function (ev, newVal, oldVal, prop) {
+                    if (newVal === 'cover' && !coverPopUpShowed) {
+                        popUp.show({
+                            msg: appState.attr('locale.coverHeroes'),
+                            choice: false
+                        });
+                        coverPopUpShowed = true;
+                    }
+                });
             },
 
             '.end click': function () {

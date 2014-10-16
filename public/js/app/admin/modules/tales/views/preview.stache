@@ -99,7 +99,7 @@
 
 <div class="trackWrap">
     {{#or tale.trackId.sound.mp3 tale.trackId.sound.wav}}
-        <audio id="track{{tale._id}}" preload="metadata">
+        <audio id="track{{tale._id}}" preload="metadata" loop="loop">
             {{#if tale.trackId.sound.mp3}}
                 <source src="/uploads/{{tale.trackId.sound.mp3}}" type="audio/mp3" >
             {{/if}}
