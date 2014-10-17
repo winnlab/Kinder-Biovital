@@ -1115,7 +1115,8 @@ The provided mixins are intended to be used with the array-like variables
   width: 220px;
   padding: 20px;
   background: #f4ecd9;
-  border-radius: 52px; }
+  border-radius: 52px;
+  word-wrap: break-word; }
 .taleZone.previewBlock .topBlock .replicaInner:before {
   content: '';
   z-index: -1; }
