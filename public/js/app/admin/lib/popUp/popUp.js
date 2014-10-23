@@ -33,7 +33,8 @@ define(
                     'choice': typeof options.choice == 'undefined' ? true : options.choice,
                     'visible': true,
                     'msgLength': options.msg.length > 200 ? true : false,
-                    'content': false
+                    'content': false,
+                    'cb': options.cb
                 });
             },
 
@@ -87,6 +88,10 @@ define(
                 });
 
                 this.def = null
+
+                if (typeof this.module.cb === 'function') {
+                    this.module.cb();
+                }
             }
 
         });

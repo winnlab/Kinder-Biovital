@@ -134,10 +134,10 @@ define(
                 var self = this,
                     tale = this.attr('tale');
 
+                self.saveToStorage();
+
                 tale.save()
                     .done(function () {
-                        self.saveToStorage();
-
                         if (typeof cb === 'function') {
                             cb();
                         }
@@ -152,9 +152,12 @@ define(
 
             saveToStorage: function () {
                 var self = this,
-                    tale = self.attr('tale');
+                    tale = self.attr('tale').attr();
+
+                tale.display = self.attr('display');
+
                 if (!self.attr('clearStorage')) {
-                    localStorage.setItem('tale', JSON.stringify(tale.attr()));
+                    localStorage.setItem('tale', JSON.stringify(tale));
                 } else {
                     localStorage.removeItem('tale');
                 }

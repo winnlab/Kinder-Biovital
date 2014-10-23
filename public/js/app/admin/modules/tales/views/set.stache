@@ -309,6 +309,19 @@
                 <div class="share vk" data-nw="vk" can-click="share"></div>
             </div>
 
+            <div class="finishBlock">
+                <div class="taleBtnWrap big orange">
+                    <div class="taleBtn preview">
+                        {{locale.setTale.preview}}
+                    </div>
+                </div>
+                <div class="taleBtnWrap big red">
+                    <div class="taleBtn finish">
+                        {{locale.finish}}
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>

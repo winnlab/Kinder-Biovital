@@ -59,8 +59,6 @@ define(
                     return false;
                 }
 
-                module.attr('clearStorage', true);
-
                 module.saveTale(function () {
                     self.uploadCover(function () {
                         var id = module.attr('tale._id');
@@ -80,6 +78,23 @@ define(
                     this.module.saveTale();
                     can.route.attr({module: 'main'}, true);
                 }
+            },
+
+            '.finish click': function () {
+                var module = this.module;
+                module.attr('clearStorage', true);
+                module.saveToStorage();
+
+                popUp.show({
+                    msg: appState.attr('locale.created'),
+                    choice: false,
+                    cb: function () {
+                        can.route.attr({
+                            module: 'rating'
+                        }, true);
+                    }
+                });
+
             }
         });
     }

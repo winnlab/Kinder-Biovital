@@ -102,3 +102,33 @@
     font-size: 18px;
     width: 400px;
 }
+
+.finishBlock {
+    @include position(absolute, null 20px 20px null);
+    z-index: 3;
+    width: 156px;
+
+    .taleBtnWrap {
+        display: block;
+        margin: 0 0 9px;
+        font-size: 19px;
+
+        .taleBtn {
+            @include size(133px 56px);
+            margin: 0 0 1px 1px;
+            float: none;
+            padding: 10px 0 0;
+
+            &.preview {
+                text-shadow: -1px -1px 0 #c28f58;
+                color: $orange;
+            }
+
+            &.finish {
+                padding-top: 19px;
+                color: $red;
+                text-shadow: -1px -1px 0 #bb3d0a;
+            }
+        }
+    }
+}

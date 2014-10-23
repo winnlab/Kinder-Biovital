@@ -88,6 +88,10 @@ define(
                         interface: this.getInterfaceSize()
                     };
 
+                if (doc.attr('display')) {
+                    obj.display = doc.attr('display');
+                }
+
                 for (var key in options.dataArr) {
                     obj[key] = module.attr(key)
                 }

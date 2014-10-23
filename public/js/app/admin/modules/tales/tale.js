@@ -154,7 +154,7 @@ define(
             currentFrame: function (index) {
                 var module = this.module;
                 index = index || 0;
-                module.attr('frame', module.attr('tale').attr('frames.' + index));
+                module.attr('frame', module.attr('tale.frames.' + index));
 
                 if (module.attr('frame.text').length === 0) {
                     module.attr('showText', false);
@@ -326,6 +326,7 @@ define(
 
             '[data-display] click': function (el) {
                 this.module.attr('display', el.data('display'));
+                this.module.saveToStorage();
             },
 
             '.addTitr click': function () {
