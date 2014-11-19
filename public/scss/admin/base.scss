@@ -52,6 +52,10 @@ html {
 	}
 }
 
+#cover {
+	display: none;
+}
+
 @import 'cosmetics/_cover.scss';
 @import 'cosmetics/_taleBtns.scss';
 @import 'cosmetics/_tale.scss';

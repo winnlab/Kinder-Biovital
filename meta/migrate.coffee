@@ -49,7 +49,7 @@ module.exports = [
 		_id: '53b54577f5adc6a9932b1aec'
 		username: 'admin'
 		email: 'admin@admin.com'
-		password: '202cb962ac59075b964b07152d234b70'
+		password: '44528b3fe8808d19c9f0add1da7de0cc'
 		role: 'admin'
 		status: 1
 	]
@@ -66,6 +66,6 @@ module.exports = [
 		'name' : 'Русский'
 		'isoCode' : 'ru'
 		'active' : true
-		'default': false	
+		'default': false
 	]
 ]
