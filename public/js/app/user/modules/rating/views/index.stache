@@ -14,7 +14,7 @@
         <div class="ratingTalesWrap" {{customScroll}}>
             {{#sortedBy tales 'likes'}}
                 <div class="tale">
-                    <a class="cover" href="/fairy-tale/{{_id}}" style="
+                    <a class="cover module" href="/fairy-tale/{{_id}}" style="
                         {{#if coverImgId.img}}background-image: url(/uploads/{{coverImgId.img}});{{/if}}
                         {{#if coverColorId.color}}background-color: #{{coverColorId.color}};{{/if}}
                     "></a>
